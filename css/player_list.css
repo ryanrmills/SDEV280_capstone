@@ -1,0 +1,79 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  /* background-color: #d5ffedf8; */
+  background-color: #e6510000;
+}
+
+nav {
+  display: flex;
+  margin: em 0em;
+  background-color: rgb(0, 47, 0);
+  background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0));
+  color: white;
+  font-family: "Urbanist", sans-serif;
+  font-weight: 700;
+  min-width: 1000px;
+  height: 100px;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+nav h3 {
+  margin: 0px;
+  height: 100%;
+  transition: 0.1s;
+}
+
+nav h3:hover {
+  color: #e65100;
+  transform: translateY(-2px);
+}
+
+nav div img:hover {
+  transition: 0.1s;
+  transform: translateY(-2px);
+}
+
+.navbar_icon {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em;
+}
+
+.navbar_icon img {
+  width: 100%;
+}
+
+.navbar_links {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navbar_links div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playerList_container {
+  width:100%;
+  background-color: #e37e4800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#player_table {
+  margin: 1em;
+  padding: 1em;
+  background-color: white;
+  min-width: 1100px;
+  max-width: 1100px;
+  font-family: "Urbanist", sans-serif;
+}
