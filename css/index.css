@@ -453,9 +453,9 @@ p {
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
 
-  min-width: 600px;
-  max-width: 600px;
-  height: 500px;
+  min-width: 500px;
+  max-width: 500px;
+  height: 400px;
 
   display: flex;
   padding: 1em;
@@ -515,6 +515,7 @@ p {
 canvas {
   /* position: absolute;
   right: 50px; */
+  margin-top: 2em;
   height: 100px;
   width: 70%;
 }
@@ -526,9 +527,9 @@ canvas {
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
 
-  min-width: 600px;
-  max-width: 600px;
-  min-height: 500px;
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 400px;
 
   display: flex;
   padding: 1em;
@@ -541,7 +542,7 @@ canvas {
 
 .breakdown_hbars {
   position: absolute;
-  top: 70px;
+  top: 25px;
   width: 100%;
 }
 
