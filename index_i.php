@@ -1,0 +1,181 @@
+  
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- handmade stylesheet -->
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- google font styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Provides flag images -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+    <!-- provides icons, like the views icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- &icon_names=visibility -->
+    <!-- handmade js file for this specific page -->
+    <script src="./js/index_i.js" defer></script>
+    <!-- JQuery, necessary for DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    
+    <!-- JS and CSS for DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" defer></script>
+    <!-- cdn for Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"defer></script>
+  </head>
+  
+  <body>
+    <nav>
+      <div class="navbar_icon">
+        <img src="./assets/logo-banner.png">
+      </div>
+  
+      <div class="navbar_links">
+        <div class="navbar_link">
+          <h3>Live</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Rankings</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Player Profiles</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Monday</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Head-to-Head</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>StatZone</h3>
+        </div>
+
+        <div class="navbar_link">
+          <span class="material-symbols-outlined" style="font-size: 2em;">account_circle</span>
+        </div>
+      </div>
+  
+    </nav>
+  
+    <section class="player_container">
+      <div class="playerbio_section">
+        <div class="playerbio_section_profilepic">
+          <img id="athlete_image">
+        </div>
+        
+  
+        <div class="playerbio_section_selfIntro">
+          <h1 id="first_name">
+            <!-- Brian -->
+          </h1>
+  
+          <h1 id="last_name">
+            <!-- Schweberger -->
+          </h1>
+
+          <div class="player_origin">
+            <p id="hometown"></p>
+            <i class="fi fi-us"></i>
+          </div>
+        </div>
+
+        <!-- <div class="player_social_media">
+          <i class="fa fa-instagram" style="font-size: 24px"></i>
+          <i class="fa fa-facebook" style="font-size: 24px"></i>
+          <i class="fa fa-twitter" style="font-size: 24px"></i>
+        </div> -->
+  
+        <div class="playerbio_section_media">
+          <p><i class="material-symbols-outlined">visibility</i>3M views in 17 media appearances</p>
+        </div>
+  
+        <div class="playerbio_section_mainStats">
+          <div class="mainStats_wins">
+            <h1 id="wins"></h1>
+            <p>Wins</p>
+          </div>
+
+          <div class="mainStats_podiums">
+            <h1 id="podiums"></h1>
+            <p>Podiums</p>
+          </div>
+  
+          <div class="mainStats_topTens">
+            <h1 id="top_tens"></h1>
+            <p>Top Tens</p>
+          </div>
+  
+          <div class="mainStats_earnings">
+            <h1>$23,456</h1>
+            <p>Earnings</p>
+          </div>
+        </div>
+
+        <div class="playerbio_section_xStats">
+          <div class="xStats_totalEvents">
+            <h1 id="total_events"></h1>
+            <p>Total Events</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_place"></h1>
+            <p>Avg. Place</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_rating">998</h1>
+            <p>Avg. Rating</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_strokes"></h1>
+            <p>Avg. Strokes</p>
+          </div>
+        </div>
+
+
+  
+        <div class="playerbio_section_searchCompare">
+          <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="totalStats_container">
+      <div class="totalStats_section">
+        <h2 class="totalStats_section_title">Performance</h2>
+
+        <div class="totalStats_categoryDropdown">
+          <select class="categoryDropdown">
+            <option>Main stats</option>
+            <option>Driving</option>
+            <option>Short Game</option>
+          </select>
+        </div>
+
+        <canvas id="radar_chart"></canvas>
+      </div>
+    </section>
+
+    <section class="playerStats_tableStats">
+      <table id="eventsTable" class="display" style="width: 100%;">
+
+      </table>
+
+      <table id="statsTable"  class="display" style="width:100%">
+
+      </table>
+    </section>
+  </body>
+  </html>

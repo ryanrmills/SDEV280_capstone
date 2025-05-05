@@ -1,118 +1,245 @@
-<!-- <?php
-  include("database.php");
-?> -->
-
-
-<!-- this is my first code change -->
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/index.css">
-  <title>Document</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=visibility" />
-</head>
-
-<body>
-  <nav>
-    <div class="navbar_icon">
-      <img src="./assets/logo-banner.png">
-    </div>
-
-    <div class="navbar_links">
-      <div>
-        <h3>Live</h3>
+  
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- handmade stylesheet -->
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- google font styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Provides flag images -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+    <!-- provides icons, like the views icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- &icon_names=visibility -->
+    <!-- JQuery, necessary for DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    
+    <!-- JS and CSS for DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" defer></script>
+    <!-- cdn for Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+    <!-- handmade js file for this specific page -->
+    <script src="./js/index.js" defer></script>
+  </head>
+  
+  <body>
+    <nav>
+      <div class="navbar_icon">
+        <img src="./assets/logo-banner.png">
       </div>
+  
+      <div class="navbar_links">
+        <div class="navbar_link">
+          <h3>Live</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Rankings</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Player Profiles</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Monday</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>Head-to-Head</h3>
+        </div>
+  
+        <div class="navbar_link">
+          <h3>StatZone</h3>
+        </div>
 
-      <div>
-        <h3>Rankings</h3>
+        <div class="navbar_link">
+          <span class="material-symbols-outlined" style="font-size: 2em;">account_circle</span>
+        </div>
       </div>
-
-      <div>
-        <h3>Player Profiles</h3>
-      </div>
-
-      <div>
-        <h3>Monday</h3>
-      </div>
-
-      <div>
-        <h3>Head-to-Head</h3>
-      </div>
-
-      <div>
-        <h3>StatZone</h3>
-      </div>
-    </div>
-
-  </nav>
-
-  <section class="player_container">
-    <div class="playerbio_section">
-      <div class="playerbio_section_profilepic">
-        <img src="./assets/brianSchweberger.jpg" >
-      </div>
-      
-
-      <div class="playerbio_section_selfIntro">
-        <h1>
-          Brian
-        </h1>
-
-        <h1>
-          Schweberger
-        </h1>
-
-        <p><i class="fi fi-us"></i> Tarboro, NC</p>
-
+  
+    </nav>
+  
+    <section class="player_container">
+      <div class="playerbio_section">
+        <div class="playerbio_section_profilepic">
+          <img id="athlete_image">
+        </div>
         
-      </div>
-
-      <div class="playerbio_section_media">
-        <p><i class="material-symbols-outlined">visibility</i>11M views in 74 media appearances</p>
-      </div>
-
-      <div class="playerbio_section_mainStats">
-        <div class="mainStats_wins">
-          <h1>32</h1>
-          <p>Wins</p>
+  
+        <div class="playerbio_section_selfIntro">
+          <h1 id="first_name">
+            <!-- Brian -->
+          </h1>
+  
+          <h1 id="last_name" style="display:flex; align-items: center; gap: 0em; position: relative;">
+            <!-- Schweberger -->
+          </h1>
+          <div class="player_origin">
+            <p id="hometown"></p>
+            <!-- <i class="fi fi-us"></i> -->
+          </div>
         </div>
 
-        <div class="mainStats_topTens">
-          <h1>32</h1>
-          <p>Top Tens</p>
+        <div class="playerbio_sponsors">
+          
         </div>
 
-        <div class="mainStats_podiums">
-          <h1>32</h1>
-          <p>Podiums</p>
+        <div class="playerbio_wins">
+
         </div>
 
-        <div class="mainStats_earnings">
-          <h1>$6,005,234</h1>
-          <p>Earnings</p>
+        <!-- <div class="player_social_media">
+          <i class="fa fa-instagram" style="font-size: 24px"></i>
+          <i class="fa fa-facebook" style="font-size: 24px"></i>
+          <i class="fa fa-twitter" style="font-size: 24px"></i>
+        </div> -->
+  
+        <!-- <div class="playerbio_section_media">
+          <p><i class="material-symbols-outlined">visibility</i>3M views in 17 media appearances</p>
+          <div class="playerbio_section_searchCompare">
+            <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
+          </div>
+        </div> -->
+  
+        <div class="playerbio_section_mainStats">
+          <div class="mainStats_wins">
+            <h1 id="wins"></h1>
+            <p>Wins</p>
+          </div>
+
+          <div class="mainStats_podiums">
+            <h1 id="podiums"></h1>
+            <p>Podiums</p>
+          </div>
+  
+          <div class="mainStats_topTens">
+            <h1 id="top_tens"></h1>
+            <p>Top Tens</p>
+          </div>
+  
+          <div class="mainStats_earnings">
+            <h1 id="earnings"></h1>
+            <p>Earnings</p>
+          </div>
         </div>
 
+        <div class="playerbio_section_xStats">
+          <div class="xStats_totalEvents">
+            <h1 id="total_events"></h1>
+            <p>Total Events</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_place"></h1>
+            <p>Avg. Place</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_rating"></h1>
+            <p>Avg. Rating</p>
+          </div>
+
+          <div class="xStats_totalEvents">
+            <h1 id="avg_strokes"></h1>
+            <p>Avg. Strokes</p>
+          </div>
+        </div>
         
+
+        <div class="playerbio_section_searchCompare">
+          <!-- <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button> -->
+        </div>
+        
+        <div class="player_mainRadials">
+          <div style="display:flex; align-items:center;justify-content:center">
+
+            <div class="radial_configs">
+              <select id="radial_dropdown" class="radial_dropdown">
+              </select>
+            </div>
+            
+            <div class="player_radials" id="FWH_radial">
+  
+            </div>
+  
+            <div class="player_radials" id="C2R_radial">
+  
+            </div>
+  
+            <div class="player_radials" id="C1X_radial">
+  
+            </div>
+          </div>
+          </div>
+      </div>
+    </section>
+    <br>
+    <section class="totalStats_container">
+      <div class="totalStats_section">
+        <div class="totalStats_sectionHeader">
+          <h2 class="totalStats_section_title">Performance</h2>
+
+          <div class="totalStats_categoryDropdown">
+            <div class="categoryDropdown_years">
+              <select class="categoryDropdown">
+                <option>All-time</option>
+              </select>
+            </div>
+
+            <div class="categoryDropdown_years">
+              <select class="categoryDropdown">
+                <option>All-events</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <canvas id="radar_chart"></canvas>
       </div>
 
-      <div class="playerbio_section_searchCompare">
-        <h4>See Brian compared to </h4><input placeholder="SEARCH..."><button>Go</button>
-      </div>
-    </div>
-  </section>
-  <section class="totalStats_container">
-    <div class="totalStats_section">
+      <div class="totalStats_breakdown">
+        <div class="totalStats_sectionHeader">
+          <h2 class="totalStats_section_title">Breakdown</h2>
 
-    </div>
-  </section>
-</body>
-</html>
+          <div class="totalStats_categoryDropdown">
+            <div class="categoryDropdown_years">
+              <select class="categoryDropdown">
+                <option>All-time</option>
+              </select>
+            </div>
+
+            <div class="categoryDropdown_years">
+              <select class="categoryDropdown">
+                <option>All-events</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <canvas id="hbar_percentile_chart" class="breakdown_hbars">
+
+        </canvas>
+      </div>
+    </section>
+
+    <!-- <section class="playerStats_tableStats">
+      <table id="eventsTable" class="display" style="width: 100%;">
+
+      </table>
+
+      <table id="statsTable"  class="display" style="width:100%">
+
+      </table>
+    </section> -->
+  </body>
+  </html>

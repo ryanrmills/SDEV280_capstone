@@ -1,0 +1,309 @@
+const urlParams = new URLSearchParams(window.location.search);
+const pdgaNum  = urlParams.get("pdga_number");
+
+//I put all the urls in one place
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`
+//function defined so that I can keep reusing to retrieve json data
+async function getJsons(url){
+  try {
+    const response = await fetch(url);
+    if (!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const playerInfoJson = await response.json();
+    return playerInfoJson;
+
+  } catch (error){
+    console.log("Something went wrong: " + error);
+  }
+}
+
+//this part of the code starts displaying the player bio
+async function playerBio() {
+  const data = await getJsons(playerBioUrl);
+
+  //adding appropriate commas to thousands place to earnings
+  let earnings = parseFloat(data.player.earnings).toLocaleString('en-US');
+
+  //populate your player info into the HTML
+  document.getElementById('athlete_image').src = `./assets/${data.player.pdga_number}.jpg`;
+  document.getElementById('first_name').innerHTML = data.player.first_name;
+  document.getElementById('last_name').innerHTML = data.player.last_name /*+ `<i class="fi fi-us" style="height: 0.6em; position:absolute;left: 0em;"></i>`*/;
+  document.getElementById('hometown').innerHTML  = data.player.hometown;
+  document.getElementById('wins').innerHTML = data.player.wins;
+  document.getElementById('top_tens').innerHTML = data.player.top_tens;
+  document.getElementById('earnings').innerHTML = `\$${earnings}`;
+  document.getElementById('podiums').innerHTML = data.player.podiums;
+  //document.getElementById('first_name_compared').innerHTML = data.player.first_name;
+  document.getElementById('total_events').innerHTML = data.player.total_events;
+  document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place) + "th";
+  document.getElementById('avg_rating').innerHTML = data.player.avg_rating;
+  document.getElementById('avg_strokes').innerHTML = Math.floor(data.player.avg_strokes_per_event);
+
+}
+playerBio();
+
+//this part is responsible for retrieving the data for the radar graph
+async function playerRadar(){
+  const data = await getJsons(playerRadarUrl);
+  new Chart(
+    //grab the canvas element meant for the radar chart
+    document.getElementById('radar_chart'),
+    {
+      type: 'radar',
+      data: {
+        labels: data.abbrev,
+        datasets: [{
+          label: 'Performance',
+          data: data.z_score,
+          fill: true,
+          backgroundColor: 'rgba(0, 183, 64, 0.2)',
+          borderColor:   'rgb(1, 97, 27)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(54, 162, 235)'
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          r: {
+            beginAtZero: false,
+            suggestedMax: 0.8,
+            suggestedMin: -1,
+            ticks: {
+              font: { size: 8 },
+              color: '#EA7317'
+            },
+            pointLabels: {
+              font: { size: 12 },
+              color: '#252525'
+            },
+            grid: { circular: true }
+          }
+        },
+        plugins: { legend: { display: false } }
+      }
+    }  
+  )
+};
+playerRadar();
+
+
+let fwhChart, c2rChart, c1xChart;
+async function playerRadial(){
+  const yearSelect = document.getElementById('radial_dropdown');
+  
+  const allOpt = document.createElement('option');
+  allOpt.value = '';
+  allOpt.textContent = 'All Time';
+  yearSelect.append(allOpt);
+  
+  const dataYear = await getJsons(playerYearsUrl);
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option');
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+
+  async function drawRadials(year){
+    const url = year
+      ? `${playerRadialUrl}&year=${year}`
+      : playerRadialUrl;
+    const data = await getJsons(url);
+
+    // destructure
+    const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
+    const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
+
+    // call our create/update helper
+    createOrUpdateRadial("FWH_radial", fwhLabel, fwhVal);
+    createOrUpdateRadial("C2R_radial", c2rLabel, c2rVal);
+    createOrUpdateRadial("C1X_radial", c1xLabel, c1xVal);
+  }
+
+  yearSelect.addEventListener('change', e => {
+    drawRadials(e.target.value);
+  });
+
+  drawRadials('');
+}
+playerRadial();
+
+const radialCharts = {
+  FWH_radial: null,
+  C2R_radial: null,
+  C1X_radial: null
+};
+
+function createOrUpdateRadial(elementId, label, value) {
+  const el = document.querySelector(`#${elementId}`);
+  const opts = {
+    series: [value],
+    labels: [`${label}%`],
+    chart: { height: 150, type: 'radialBar' },
+    colors: ["#00450E"],
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+          name: { fontSize: '14px', fontWeight: 550 },
+          value: {
+            fontSize: '20px',
+            fontWeight: 800,
+            color: '#5D5D5D',
+            formatter: v => v
+          }
+        },
+        hollow: { size: "57.5%", background: "#FFEDD6" }
+      }
+    },
+    fill: {
+      type: "gradient",
+      gradient: { shade: "dark", type: "diagonal", gradientToColors: ["#20E647"], stops: [0,100] }
+    },
+    stroke: { lineCap: "round" }
+  };
+
+  if (radialCharts[elementId]) {
+    // already created → just update
+    radialCharts[elementId].updateSeries(opts.series);
+    radialCharts[elementId].updateOptions({ labels: opts.labels });
+  } else {
+    // first time → create & render
+    radialCharts[elementId] = new ApexCharts(el, opts);
+    radialCharts[elementId].render();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function playerHbar(){
+  Chart.register(ChartDataLabels);
+  const data = await getJsons(playerHbarUrl);
+
+  const statLabels = data.stat_abbrev;
+  const percentileValues = data.percentile;
+
+  // in your JS, after loading Chart.js
+  const ctx = document.getElementById('hbar_percentile_chart').getContext('2d');
+
+  new Chart(ctx, {
+    data: {
+      labels: statLabels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: percentileValues,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+        // the dots
+        {
+          type: 'bubble',
+          label: 'Marker',
+          data: percentileValues.map((v,i)=>({ x: v, y: i, r: 6 })),
+          backgroundColor: '#FFF',
+          borderColor: '#2F855A',
+          borderWidth: 2,
+          datalabels: {
+            anchor: 'end',
+            align: 'right',
+            formatter: (value) => value.x,
+            font: {
+              weight: 'bold',
+              size: 10
+            },
+            color: '#444'
+          }
+          // hoverRadius: 8,
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 100,
+          grid: { display: true }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        datalabels: {
+          display: true
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+}
+
+playerHbar();
+
+

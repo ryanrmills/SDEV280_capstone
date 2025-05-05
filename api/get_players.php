@@ -26,7 +26,7 @@
 
   //if $res is not null AND there is a single row of data in $res
   //fetch_assoc retrieves a single of row of data, and maps the keys(columns) to its corres value
-  if ($res && $res -> fetch_assoc()){
+  if ($res && $res -> num_rows > 0){
 
     //while there is a row that is returned by 'fetch_assoc', it continues to run
     while($row = $res -> fetch_assoc()){
