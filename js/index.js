@@ -6,7 +6,8 @@ const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?p
 const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
 const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
 const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 //function defined so that I can keep reusing to retrieve json data
 async function getJsons(url){
   try {
@@ -50,51 +51,148 @@ playerBio();
 
 //this part is responsible for retrieving the data for the radar graph
 async function playerRadar(){
-  const data = await getJsons(playerRadarUrl);
-  new Chart(
-    //grab the canvas element meant for the radar chart
-    document.getElementById('radar_chart'),
-    {
-      type: 'radar',
-      data: {
-        labels: data.abbrev,
-        datasets: [{
-          label: 'Performance',
-          data: data.z_score,
-          fill: true,
-          backgroundColor: 'rgba(0, 183, 64, 0.2)',
-          borderColor:   'rgb(1, 97, 27)',
-          borderWidth: 2,
-          pointBackgroundColor: 'rgb(54, 162, 235)'
-        }]
-      },
-      options: {
-        responsive: false,
-        scales: {
-          r: {
-            beginAtZero: false,
-            suggestedMax: 0.8,
-            suggestedMin: -1,
-            ticks: {
-              font: { size: 8 },
-              color: '#EA7317'
-            },
-            pointLabels: {
-              font: { size: 12 },
-              color: '#252525'
-            },
-            grid: { circular: true }
-          }
-        },
-        plugins: { legend: { display: false } }
-      }
-    }  
-  )
+  const yearSelect = document.getElementById('radar_yearSelect');
+  const radarSelect = document.getElementById('radar_eventSelect');
+  
+  const allOptYears = document.createElement('option');
+  allOptYears.value = '';
+  allOptYears.textContent = 'All Time';
+  yearSelect.append(allOptYears);
+
+  const allOptEvents = document.createElement('option');
+  allOptEvents.value = '';
+  allOptEvents.textContent = 'All Events';
+  radarSelect.append(allOptEvents);
+
+
+  
+
+  
+  const dataYear = await getJsons(playerYearsUrl);
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option');
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+  async function drawRadar(year){
+    const url = year
+      ? playerRadarUrl + "&year=" + year
+      : playerRadarUrl;
+      
+    const data = await getJsons(url);
+
+    const label = data.abbrev;
+    const statData = data.z_score;
+
+    createOrUpdateRadar(label, statData, 'radar_chart');
+    
+  }
+
+  //function to retrieve events from specific year
+  async function getEventsFromYear(year){
+
+    const eventsList = await getJsons(`${playerEventsUrl}${year}`);
+    eventsList.forEach((e) => {
+      const option = document.createElement('option');
+      option.value = e;
+      option.innerHTML = e;
+      radarSelect.append(option);
+    })
+
+  }
+
+  yearSelect.addEventListener('change', e => {
+    let currentYear = e.target.value;
+    getEventsFromYear(currentYear);
+    drawRadar(currentYear);
+  })
+
+  drawRadar('');
+
 };
 playerRadar();
 
+let radarChart;
+async function createOrUpdateRadar(label, data, elementId){
+  //grab element
+  let canvas = document.getElementById(`${elementId}`);
+  let options = {
+    type: 'radar',
+    data: {
+      labels: label,//data.abbrev,
+      datasets: [{
+        label: 'Performance',
+        data: data,//data.z_score,
+        fill: true,
+        backgroundColor: 'rgba(0, 183, 64, 0.2)',
+        borderColor:   'rgb(1, 97, 27)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgb(54, 162, 235)'
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        r: {
+          beginAtZero: false,
+          suggestedMax: 0.8,
+          suggestedMin: -1,
+          ticks: {
+            font: { size: 8 },
+            color: '#EA7317'
+          },
+          pointLabels: {
+            font: { size: 12 },
+            color: '#252525'
+          },
+          grid: { circular: true }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  }
 
-let fwhChart, c2rChart, c1xChart;
+  if (radarChart){
+    radarChart.data.labels = label;
+    console.log("data original: ", options.data.datasets[0].data)
+    radarChart.data.datasets[0].data = data;
+    console.log("data after: ", options.data.datasets[0].data)
+    radarChart.update();
+  } else {
+
+    radarChart = new Chart(canvas, options);
+    console.log(options.data.datasets[0].data)
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//let fwhChart, c2rChart, c1xChart;
 async function playerRadial(){
   const yearSelect = document.getElementById('radial_dropdown');
   
@@ -274,8 +372,8 @@ async function playerHbar(){
               size: 10
             },
             color: '#444'
-          }
-          // hoverRadius: 8,
+          },
+          hoverRadius: 8,
         }
       ]
     },
@@ -294,7 +392,7 @@ async function playerHbar(){
       },
       plugins: {
         datalabels: {
-          display: true
+          display: false
         },
         legend: { display: false },
         tooltip: { enabled: true }

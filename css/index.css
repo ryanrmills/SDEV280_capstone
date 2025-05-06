@@ -14,7 +14,8 @@ nav {
   font-family: "Urbanist", sans-serif;
   font-weight: 700;
   min-width: 1200px;
-  height: 100px;
+  /* height: 100px; */
+  height: 75px;
   justify-content: space-between;
   box-sizing: border-box;
 }
@@ -77,11 +78,11 @@ nav div img:hover {
   /* box-sizing: border-box; */
 }
 
-.playerbio_section {
+/* .playerbio_section {
   background-color: white;
   border-radius: 0.4em;
-  /* min-width: 1200px; */
-  max-width: 1200px;
+  
+  max-width: 1075px;
   height: 100%;
   display: grid;
   margin: 1em;
@@ -90,6 +91,26 @@ nav div img:hover {
     "pic pic pic bio bio xstat xstat xstat xstat"
     "pic pic pic wins wins radial radial radial radial"
     "pic pic pic spons spons radial radial radial radial";
+
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+  padding: 1em;
+  
+} */
+
+.playerbio_section {
+  background-color: white;
+  border-radius: 0.4em;
+  /* min-width: 1200px; */
+  max-width: 1075px;
+  height: 100%;
+  display: grid;
+  margin: 1em;
+  grid-template-areas:
+    "pic pic stat stat stat stat wins wins wins"
+    "pic pic xstat xstat xstat xstat wins wins wins"
+    "bio bio radial radial radial radial spons spons spons"
+    "extra1 extra1 radial radial radial radial spons spons spons";
 
   grid-template-columns: repeat(9, 1fr);
   gap: 10px;
@@ -126,15 +147,15 @@ nav div img:hover {
   padding: 0em 0.2em;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
-  font-size: 1.5em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  max-height:100px;
+  /* justify-content: center; */
 }
 
-.playerbio_section_selfIntro h1,
-p {
+.playerbio_section_selfIntro h4 {
   margin: 0px;
+  font-size: 1.5em;
 }
 
 .playerbio_section_selftIntro .player_origin {
@@ -181,7 +202,7 @@ i {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
+  min-height: 100px;
   background-color: #d7b8ff;
   border-radius: 0.4em;
   /* border: -1px solid #8527ff; */
@@ -494,8 +515,9 @@ p {
   gap: 1em;
 }
 
-.totalStats_categoryDropdown .categoryDropdown {
+.categoryDropdown {
   min-width: 120px;
+  max-width: 140px;
   height: 30px;
   font-family: "Urbanist", sans-serif;
   font-weight: bolder;
@@ -505,7 +527,7 @@ p {
   border-bottom: 1px solid black;
 }
 
-.totalStats_categoryDropdown .categoryDropdown:active,
+.categoryDropdown:active,
 .categoryDropdown:focus {
   border-style: none;
   outline: none;

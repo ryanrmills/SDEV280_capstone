@@ -242,6 +242,74 @@ ORDER BY
 ;
 ";
 
+$year = 0;
+
+if (isset($_GET['year'])){
+  $year = intval($_GET['year']);
+
+  $stdDevQuery = 
+  "SELECT
+      stats.stat_id,
+      stats.abbreviation,
+      stats.stat_name,
+      ROUND(
+        (player_stats.player_average - field_stats.field_average)
+        / NULLIF(field_stats.field_stddev,0),
+        2
+      ) AS z_score
+    FROM players
+
+    -- 1) this player’s average per stat **for just that year**
+    JOIN (
+      SELECT
+        er.pdga_number,
+        erp.stat_id,
+        AVG(erp.printed_value) AS player_average
+      FROM event_round_player_stats AS erp
+      JOIN event_rounds            AS er
+        ON erp.event_round_id = er.event_round_id
+      JOIN events                  AS e
+        ON er.pdga_event_id = e.pdga_event_id
+      WHERE er.pdga_number = ?     -- your bound PDGA #
+        AND YEAR(e.start_date) = $year -- <<<< filter by your $year here
+      GROUP BY
+        er.pdga_number,
+        erp.stat_id
+    ) AS player_stats
+      ON player_stats.pdga_number = players.pdga_number
+
+    -- 2) field average & σ **for that same year** in each division
+    JOIN (
+      SELECT
+        er.division,
+        erp.stat_id,
+        AVG(erp.printed_value)    AS field_average,
+        STDDEV_POP(erp.printed_value) AS field_stddev
+      FROM event_round_player_stats AS erp
+      JOIN event_rounds            AS er
+        ON erp.event_round_id = er.event_round_id
+      JOIN events                  AS e
+        ON er.pdga_event_id = e.pdga_event_id
+      WHERE YEAR(e.start_date) = $year -- <<<< also filter by $year here
+      GROUP BY
+        er.division,
+        erp.stat_id
+    ) AS field_stats
+      ON field_stats.division = players.division
+    AND field_stats.stat_id  = player_stats.stat_id
+
+    JOIN stats
+      ON stats.stat_id = player_stats.stat_id
+
+    WHERE
+      players.pdga_number = ?
+      AND stats.stat_id     IN ($statIdList)
+    ORDER BY
+      stats.stat_id
+    ;
+  ";
+}
+
 $stmt = $db->prepare($stdDevQuery);
 $stmt -> bind_param('ii', $pdgaNumber, $pdgaNumber);
 $stmt -> execute();

@@ -77,13 +77,13 @@
         
   
         <div class="playerbio_section_selfIntro">
-          <h1 id="first_name">
+          <h4 id="first_name">
             <!-- Brian -->
-          </h1>
+          </h4>
   
-          <h1 id="last_name" style="display:flex; align-items: center; gap: 0em; position: relative;">
+          <h4 id="last_name" style="display:flex; align-items: center; gap: 0em; position: relative;">
             <!-- Schweberger -->
-          </h1>
+          </h4>
           <div class="player_origin">
             <p id="hometown"></p>
             <!-- <i class="fi fi-us"></i> -->
@@ -191,14 +191,12 @@
 
           <div class="totalStats_categoryDropdown">
             <div class="categoryDropdown_years">
-              <select class="categoryDropdown">
-                <option>All-time</option>
+              <select id="radar_yearSelect" class="categoryDropdown">
               </select>
             </div>
 
             <div class="categoryDropdown_years">
-              <select class="categoryDropdown">
-                <option>All-events</option>
+              <select id="radar_eventSelect" class="categoryDropdown">
               </select>
             </div>
           </div>
