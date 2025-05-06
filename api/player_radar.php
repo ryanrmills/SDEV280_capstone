@@ -244,6 +244,8 @@ ORDER BY
 
 $year = 0;
 
+$eventId = 0;
+
 if (isset($_GET['year'])){
   $year = intval($_GET['year']);
 
@@ -303,6 +305,76 @@ if (isset($_GET['year'])){
 
     WHERE
       players.pdga_number = ?
+      AND stats.stat_id     IN ($statIdList)
+    ORDER BY
+      stats.stat_id
+    ;
+  ";
+}
+
+if (isset($_GET['event'])){
+  $eventId = intval($_GET['event']);
+
+  $stdDevQuery = 
+    "SELECT
+      stats.stat_id,
+      stats.abbreviation,
+      stats.stat_name,
+      ROUND(
+        (player_stats.player_average - field_stats.field_average)
+        / NULLIF(field_stats.field_stddev, 0),
+        2
+      ) AS z_score
+    FROM players
+
+    -- 1) this player’s per‑stat average in that year & event
+    JOIN (
+      SELECT
+        er.pdga_number,
+        erp.stat_id,
+        AVG(erp.printed_value) AS player_average
+      FROM event_round_player_stats AS erp
+      JOIN event_rounds            AS er
+        ON erp.event_round_id = er.event_round_id
+      JOIN events                  AS e
+        ON er.pdga_event_id = e.pdga_event_id
+      WHERE
+          er.pdga_number    = ?        -- bind $pdgaNumber
+        AND YEAR(e.start_date) = $year     -- bind $year
+        AND e.pdga_event_id  = $eventId       -- bind $eventId
+      GROUP BY
+        er.pdga_number,
+        erp.stat_id
+    ) AS player_stats
+      ON player_stats.pdga_number = players.pdga_number
+
+    -- 2) field average & σ in that same year & event
+    JOIN (
+      SELECT
+        er.division,
+        erp.stat_id,
+        AVG(erp.printed_value)       AS field_average,
+        STDDEV_POP(erp.printed_value) AS field_stddev
+      FROM event_round_player_stats AS erp
+      JOIN event_rounds            AS er
+        ON erp.event_round_id = er.event_round_id
+      JOIN events                  AS e
+        ON er.pdga_event_id = e.pdga_event_id
+      WHERE
+          YEAR(e.start_date) = $year    -- bind $year again
+        AND e.pdga_event_id  = $eventId     -- bind $eventId again
+      GROUP BY
+        er.division,
+        erp.stat_id
+    ) AS field_stats
+      ON field_stats.division = players.division
+    AND field_stats.stat_id  = player_stats.stat_id
+
+    JOIN stats
+      ON stats.stat_id = player_stats.stat_id
+
+    WHERE
+      players.pdga_number = ?       -- bind $pdgaNumber again
       AND stats.stat_id     IN ($statIdList)
     ORDER BY
       stats.stat_id

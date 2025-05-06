@@ -18,7 +18,7 @@
 
   $sql = 
   "SELECT DISTINCT
-    -- events.pdga_event_id,
+    events.pdga_event_id,
     events.name
     -- events.start_date,
     -- events.end_date,
@@ -42,5 +42,5 @@
   $stmt->bind_param('ii',$pdga, $year);
   $stmt->execute();
   $events = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-  echo json_encode(array_column($events, 'name'));
+  echo json_encode([$events]);
 ?>

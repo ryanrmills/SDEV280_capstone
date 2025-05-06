@@ -61,11 +61,9 @@ async function playerRadar(){
 
   const allOptEvents = document.createElement('option');
   allOptEvents.value = '';
+  // allOptEvents.class = 'radarEventSelectDefault'
   allOptEvents.textContent = 'All Events';
   radarSelect.append(allOptEvents);
-
-
-  
 
   
   const dataYear = await getJsons(playerYearsUrl);
@@ -77,10 +75,16 @@ async function playerRadar(){
     yearSelect.append(option);
   })
 
-  async function drawRadar(year){
-    const url = year
+  async function drawRadar(year, eventId){
+    let url = year
       ? playerRadarUrl + "&year=" + year
       : playerRadarUrl;
+    
+    url = eventId
+      ? url + "&event=" + eventId
+      : url
+    
+    console.log(url)
       
     const data = await getJsons(url);
 
@@ -95,22 +99,33 @@ async function playerRadar(){
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
-    eventsList.forEach((e) => {
+    eventsList[0].forEach((e) => {
       const option = document.createElement('option');
-      option.value = e;
-      option.innerHTML = e;
+      option.value = e.pdga_event_id;
+      option.innerHTML = e.name;
       radarSelect.append(option);
     })
 
   }
 
   yearSelect.addEventListener('change', e => {
-    let currentYear = e.target.value;
-    getEventsFromYear(currentYear);
-    drawRadar(currentYear);
+    //let currentYear = e.target.value;
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    getEventsFromYear(e.target.value);
+
+    drawRadar(e.target.value, '');
   })
 
-  drawRadar('');
+  radarSelect.addEventListener('change', e => {
+    console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+    drawRadar(yearSelect.value, e.target.value);
+  })
+
+  drawRadar('', '');
 
 };
 playerRadar();
@@ -157,14 +172,11 @@ async function createOrUpdateRadar(label, data, elementId){
 
   if (radarChart){
     radarChart.data.labels = label;
-    console.log("data original: ", options.data.datasets[0].data)
     radarChart.data.datasets[0].data = data;
-    console.log("data after: ", options.data.datasets[0].data)
     radarChart.update();
   } else {
 
     radarChart = new Chart(canvas, options);
-    console.log(options.data.datasets[0].data)
   }
 
 }
