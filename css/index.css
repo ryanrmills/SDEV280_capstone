@@ -160,6 +160,7 @@ nav div img:hover {
 
 .playerbio_section_selftIntro .player_origin {
   display: flex;
+  /* margin-bottom: 0.03em; */
 }
 
 .player_origin p,
@@ -347,6 +348,7 @@ p {
 .playerbio_section > .player_mainRadials {
   grid-area: radial;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-color: #ffedd5f8;
@@ -361,10 +363,25 @@ p {
   position: relative;
 }
 
+.radialPerformance_headerSection {
+  display: flex;
+  width: 94%;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(99, 99, 99);
+}
+
+.radialPerformance_headerSection h4 {
+  margin: 0em;
+}
+
 .radial_configs {
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
+
+}
+
+.radial_bin {
+  display: flex;
+  flex-direction: row;
 }
 
 .radial_dropdown {
@@ -384,7 +401,6 @@ p {
   width: 150px;
   /* height: 50px; */
   margin: 0em;
-  margin-top: 1.5em;
   padding: 0em;
 }
 

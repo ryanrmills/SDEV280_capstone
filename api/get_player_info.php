@@ -34,8 +34,7 @@ $pdga = intval($_GET['pdga_number']);
 
 $sql = "SELECT
     players.pdga_number, 
-    first_name,
-    last_name,
+    CONCAT(players.first_name, ' ',players.last_name) AS full_name,
     players.division,
     CONCAT(players.city, ', ', players.state) AS hometown,
     nationality,

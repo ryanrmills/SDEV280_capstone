@@ -77,17 +77,22 @@
         
   
         <div class="playerbio_section_selfIntro">
-          <h4 id="first_name">
-            <!-- Brian -->
+          <!-- <h4 id="first_name">
+            
           </h4>
   
           <h4 id="last_name" style="display:flex; align-items: center; gap: 0em; position: relative;">
-            <!-- Schweberger -->
-          </h4>
+           
+          </h4> -->
+
+          <h4 id="full_name"></h4>
           <div class="player_origin">
             <p id="hometown"></p>
-            <!-- <i class="fi fi-us"></i> -->
           </div>
+          
+          <p id="bio_pdga_number"></p>
+          <p id="bio_division"></p>
+
         </div>
 
         <div class="playerbio_sponsors">
@@ -161,25 +166,29 @@
         </div>
         
         <div class="player_mainRadials">
-          <div style="display:flex; align-items:center;justify-content:center">
+          <!-- <div style="display:flex; align-items:center;justify-content:center"> -->
+            <div class="radialPerformance_headerSection">
+              <h4>Performance</h4>
+              <div class="radial_configs">
+                <select id="radial_dropdown" class="radial_dropdown">
+                </select>
+              </div>
+            </div>
 
-            <div class="radial_configs">
-              <select id="radial_dropdown" class="radial_dropdown">
-              </select>
+            <div class="radial_bin">
+              <div class="player_radials" id="FWH_radial">
+    
+              </div>
+    
+              <div class="player_radials" id="C2R_radial">
+    
+              </div>
+    
+              <div class="player_radials" id="C1X_radial">
+    
+              </div>
             </div>
-            
-            <div class="player_radials" id="FWH_radial">
-  
-            </div>
-  
-            <div class="player_radials" id="C2R_radial">
-  
-            </div>
-  
-            <div class="player_radials" id="C1X_radial">
-  
-            </div>
-          </div>
+          <!-- </div> -->
           </div>
       </div>
     </section>
@@ -187,7 +196,7 @@
     <section class="totalStats_container">
       <div class="totalStats_section">
         <div class="totalStats_sectionHeader">
-          <h2 class="totalStats_section_title">Performance</h2>
+          <h2 class="totalStats_section_title">Skill Profile</h2>
 
           <div class="totalStats_categoryDropdown">
             <div class="categoryDropdown_years">
@@ -213,13 +222,11 @@
           <div class="totalStats_categoryDropdown">
             <div class="categoryDropdown_years">
               <select class="categoryDropdown">
-                <option>All-time</option>
               </select>
             </div>
 
             <div class="categoryDropdown_years">
               <select class="categoryDropdown">
-                <option>All-events</option>
               </select>
             </div>
           </div>

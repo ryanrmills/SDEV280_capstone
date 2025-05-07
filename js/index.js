@@ -33,9 +33,12 @@ async function playerBio() {
 
   //populate your player info into the HTML
   document.getElementById('athlete_image').src = `./assets/${data.player.pdga_number}.jpg`;
-  document.getElementById('first_name').innerHTML = data.player.first_name;
-  document.getElementById('last_name').innerHTML = data.player.last_name /*+ `<i class="fi fi-us" style="height: 0.6em; position:absolute;left: 0em;"></i>`*/;
+  // document.getElementById('first_name').innerHTML = data.player.first_name;
+  // document.getElementById('last_name').innerHTML = data.player.last_name;
+  document.getElementById('full_name').innerHTML = data.player.full_name
+  document.getElementById('bio_pdga_number').innerHTML = "#" + data.player.pdga_number + ", member since " + data.player.member_since;
   document.getElementById('hometown').innerHTML  = data.player.hometown;
+  document.getElementById('bio_division').innerHTML = data.player.division
   document.getElementById('wins').innerHTML = data.player.wins;
   document.getElementById('top_tens').innerHTML = data.player.top_tens;
   document.getElementById('earnings').innerHTML = `\$${earnings}`;
@@ -69,7 +72,7 @@ async function playerRadar(){
   const dataYear = await getJsons(playerYearsUrl);
 
   dataYear.forEach((y) => {
-    const option = document.createElement('option');
+    const option = document.createElement('option'); 
     option.value = y;
     option.innerHTML = y;
     yearSelect.append(option);
@@ -346,7 +349,7 @@ function createOrUpdateRadial(elementId, label, value) {
 
 
 async function playerHbar(){
-  Chart.register(ChartDataLabels);
+  // Chart.register(ChartDataLabels);
   const data = await getJsons(playerHbarUrl);
 
   const statLabels = data.stat_abbrev;
@@ -395,11 +398,11 @@ async function playerHbar(){
       indexAxis: 'y',
       scales: {
         x: {
-          max: 100,
+          max: 105,
           grid: { display: true }
         },
         y: {
-          grid: { display: false }
+          grid: { display: true }
         }
       },
       plugins: {
@@ -410,7 +413,7 @@ async function playerHbar(){
         tooltip: { enabled: true }
       }
     },
-    plugins: [ChartDataLabels]
+    // plugins: [ChartDataLabels]
   });
 }
 
