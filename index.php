@@ -220,13 +220,13 @@
           <h2 class="totalStats_section_title">Breakdown</h2>
 
           <div class="totalStats_categoryDropdown">
-            <div class="categoryDropdown_years">
-              <select class="categoryDropdown">
+            <div  class="categoryDropdown_years">
+              <select id="hbar_dropdown_years" class="categoryDropdown">
               </select>
             </div>
 
             <div class="categoryDropdown_years">
-              <select class="categoryDropdown">
+              <select id="hbar_dropdown_events" class="categoryDropdown">
               </select>
             </div>
           </div>

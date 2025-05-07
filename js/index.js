@@ -78,7 +78,7 @@ async function playerRadar(){
     yearSelect.append(option);
   })
 
-  async function drawRadar(year, eventId){
+  async function drawHbar(year, eventId){
     let url = year
       ? playerRadarUrl + "&year=" + year
       : playerRadarUrl;
@@ -120,15 +120,15 @@ async function playerRadar(){
 
     getEventsFromYear(e.target.value);
 
-    drawRadar(e.target.value, '');
+    drawHbar(e.target.value, '');
   })
 
   radarSelect.addEventListener('change', e => {
     console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
-    drawRadar(yearSelect.value, e.target.value);
+    drawHbar(yearSelect.value, e.target.value);
   })
 
-  drawRadar('', '');
+  drawHbar('', '');
 
 };
 playerRadar();
@@ -350,46 +350,129 @@ function createOrUpdateRadial(elementId, label, value) {
 
 async function playerHbar(){
   // Chart.register(ChartDataLabels);
-  const data = await getJsons(playerHbarUrl);
+  // const data = await getJsons(playerHbarUrl);
 
-  const statLabels = data.stat_abbrev;
-  const percentileValues = data.percentile;
+  // const statLabels = data.stat_abbrev;
+  // const percentileValues = data.percentile;
 
   // in your JS, after loading Chart.js
-  const ctx = document.getElementById('hbar_percentile_chart').getContext('2d');
+  const yearSelect = document.getElementById('hbar_dropdown_years');
+  const eventSelect = document.getElementById('hbar_dropdown_events');
+  
+  const allOptYears = document.createElement('option');
+  allOptYears.value = '';
+  allOptYears.textContent = 'All Time';
+  yearSelect.append(allOptYears);
 
-  new Chart(ctx, {
+  const allOptEvents = document.createElement('option');
+  allOptEvents.value = '';
+  // allOptEvents.class = 'radarEventSelectDefault'
+  allOptEvents.textContent = 'All Events';
+  eventSelect.append(allOptEvents);
+
+  
+  const dataYear = await getJsons(playerYearsUrl);
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option'); 
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+  async function drawHbar(year, eventId){
+    let url = year
+      ? playerHbarUrl + "&year=" + year
+      : playerHbarUrl;
+    
+    url = eventId
+      ? url + "&event=" + eventId
+      : url
+    
+    console.log(url)
+      
+    const data = await getJsons(url);
+
+    const label = data.stat_abbrev;
+    const statData = data.percentile;
+
+    createOrUpdateHbar(label, statData, 'hbar_percentile_chart');
+    
+  }
+
+  //function to retrieve events from specific year
+  async function getEventsFromYear(year){
+
+    const eventsList = await getJsons(`${playerEventsUrl}${year}`);
+    console.log(eventsList)
+    eventsList[0].forEach((e) => {
+      const option = document.createElement('option');
+      option.value = e.pdga_event_id;
+      option.innerHTML = e.name;
+      eventSelect.append(option);
+    })
+
+  }
+
+  yearSelect.addEventListener('change', e => {
+    //let currentYear = e.target.value;
+
+    eventSelect.innerHTML = '';
+
+    eventSelect.append(allOptEvents);
+
+    getEventsFromYear(e.target.value);
+
+    drawHbar(e.target.value, '');
+  })
+
+  eventSelect.addEventListener('change', e => {
+    console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+    drawHbar(yearSelect.value, e.target.value);
+  })
+
+  drawHbar('', '');
+  
+}
+
+playerHbar();
+
+
+let hbarChart;
+function createOrUpdateHbar(labels, data, elementId){
+  const canvas = document.getElementById(elementId).getContext('2d');
+  options = {
     data: {
-      labels: statLabels,
+      labels: labels,
       datasets: [
         // the thin bars
         {
           type: 'bar',
           label: 'Percentile',
-          data: percentileValues,
+          data: data,
           backgroundColor: '#38A169',
           barThickness: 8,
         },
         // the dots
-        {
-          type: 'bubble',
-          label: 'Marker',
-          data: percentileValues.map((v,i)=>({ x: v, y: i, r: 6 })),
-          backgroundColor: '#FFF',
-          borderColor: '#2F855A',
-          borderWidth: 2,
-          datalabels: {
-            anchor: 'end',
-            align: 'right',
-            formatter: (value) => value.x,
-            font: {
-              weight: 'bold',
-              size: 10
-            },
-            color: '#444'
-          },
-          hoverRadius: 8,
-        }
+        // {
+        //   type: 'bubble',
+        //   label: 'Marker',
+        //   data: data.map((v,i)=>({ x: v, y: i, r: 6 })),
+        //   backgroundColor: '#FFF',
+        //   borderColor: '#2F855A',
+        //   borderWidth: 2,
+        //   datalabels: {
+        //     anchor: 'start',
+        //     align: 'right',
+        //     formatter: (value) => value.x,
+        //     font: {
+        //       weight: 'bold',
+        //       size: 10
+        //     },
+        //     color: '#444'
+        //   },
+        //   hoverRadius: 8,
+        // }
       ]
     },
     options: {
@@ -414,9 +497,14 @@ async function playerHbar(){
       }
     },
     // plugins: [ChartDataLabels]
-  });
+  }
+
+  if (hbarChart){
+    hbarChart.data.datasets[0].data = data;
+    hbarChart.data.labels = labels;
+    hbarChart.update();
+  } else {
+    hbarChart = new Chart(canvas, options);
+  }
+
 }
-
-playerHbar();
-
-
