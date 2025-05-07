@@ -481,7 +481,7 @@ function createOrUpdateHbar(labels, data, elementId){
       indexAxis: 'y',
       scales: {
         x: {
-          max: 105,
+          max: 100,
           grid: { display: true }
         },
         y: {

@@ -115,30 +115,59 @@
             <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
           </div>
         </div> -->
-  
-        <div class="playerbio_section_mainStats">
-          <div class="mainStats_wins">
-            <h1 id="wins"></h1>
-            <p>Wins</p>
+        <div class="playerbio_highlights">
+          <div class="highlights_headerSection">
+            <h4>Career profile</h4>
+            <select>
+              <option>All-time</option>
+            </select>
           </div>
+          <div class="playerbio_section_mainStats">
+            <div class="mainStats_wins">
+              <h1 id="wins"></h1>
+              <p>Wins</p>
+            </div>
 
-          <div class="mainStats_podiums">
-            <h1 id="podiums"></h1>
-            <p>Podiums</p>
-          </div>
-  
-          <div class="mainStats_topTens">
-            <h1 id="top_tens"></h1>
-            <p>Top Tens</p>
-          </div>
-  
-          <div class="mainStats_earnings">
-            <h1 id="earnings"></h1>
-            <p>Earnings</p>
+            <div class="mainStats_wins">
+              <h1 id="podiums"></h1>
+              <p>Podiums</p>
+            </div>
+    
+            <div class="mainStats_wins">
+              <h1 id="top_tens"></h1>
+              <p>Top Tens</p>
+            </div>
+    
+            <div class="mainStats_wins">
+              <h1 id="earnings"></h1>
+              <p>Earnings</p>
+            </div>
+
+            <div class="mainStats_wins">
+              <h1 id="total_events"></h1>
+              <p>Total Events</p>
+            </div>
+
+            <div class="mainStats_wins">
+              <h1 id="avg_place"></h1>
+              <p>Avg. Place</p>
+            </div>
+
+            <div class="mainStats_wins">
+              <h1 id="avg_rating"></h1>
+              <p>Avg. Rating</p>
+            </div>
+
+            <div class="mainStats_wins">
+              <h1 id="avg_strokes"></h1>
+              <p>Avg. Strokes</p>
+            </div>
           </div>
         </div>
+  
+        
 
-        <div class="playerbio_section_xStats">
+        <!-- <div class="playerbio_section_xStats">
           <div class="xStats_totalEvents">
             <h1 id="total_events"></h1>
             <p>Total Events</p>
@@ -158,7 +187,7 @@
             <h1 id="avg_strokes"></h1>
             <p>Avg. Strokes</p>
           </div>
-        </div>
+        </div> -->
         
 
         <div class="playerbio_section_searchCompare">

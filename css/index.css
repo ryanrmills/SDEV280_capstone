@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   /* background-color: #d5ffedf8; */
-  background-color: #e6510000;
+  background-color: #00000000;
 }
 
 nav {
@@ -142,7 +142,7 @@ nav div img:hover {
 .playerbio_section > .playerbio_section_selfIntro {
   grid-area: bio;
   color: rgb(64, 64, 64);
-  background-color: rgb(216, 253, 207);
+  background-color: rgba(216, 253, 207, 0);
   /* border: 1px solid rgb(6, 129, 0); */
   padding: 0em 0.2em;
   border-radius: 0.4em;
@@ -209,16 +209,52 @@ i {
   /* border: -1px solid #8527ff; */
 }
 
-.playerbio_section > .playerbio_section_mainStats {
+.playerbio_highlights {
   grid-area: stat;
   width: 100%;
   height: 100%;
-  background-color: #e6510000;
+  /* background-color: #e65100a5; */
+  background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0));
   color: rgb(68, 68, 68);
-  display: flex;
-  justify-content: space-evenly;
+  /* padding: 0.5em 0.5em; */
+  border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
-  gap: 1em;
+  padding: 0.2em 0em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerbio_highlights .highlights_headerSection {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  padding: 0.4em 0em;
+}
+
+.playerbio_highlights .highlights_headerSection h4, select{
+  margin: 0em;
+  padding: 0em;
+}
+
+
+
+.playerbio_highlights .playerbio_section_mainStats {
+  width: 100%;
+  height: 100%;
+  /* background-color: #e65100a5; */
+  /* background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0)); */
+  color: rgb(68, 68, 68);
+  /* padding: 0.5em 0.5em; */
+  border-radius: 0.4em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: "Urbanist", sans-serif;
+  gap: 0.4em;
 }
 
 .mainStats_wins {
@@ -231,8 +267,8 @@ i {
   /* width:75px;
   height: 75px; */
   min-width: 100px;
-  min-height: 95px;
-  max-height: 100px;
+  min-height: 100px;
+  /* max-height: 90px; */
 
   /* background-color: #dda25ea4; */
   /* background-color: #fefae0c1; */
