@@ -8,6 +8,7 @@ const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pd
 const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
 const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
 const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
 //function defined so that I can keep reusing to retrieve json data
 async function getJsons(url){
   try {
@@ -51,6 +52,327 @@ async function playerBio() {
 
 }
 playerBio();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function playerRatingLine(){
+  const data = await getJsons(playerRatingUrl);
+  
+  let dates = data.dates;
+  let values = data.values;
+  
+  createOrUpdateLine(dates, values, 'rating_lineChart');
+}
+
+playerRatingLine();
+
+
+let lineChart;
+async function createOrUpdateLine(label, data, elementId){
+  const canvas = document.getElementById(`${elementId}`);
+
+  //   var options = {
+  //     chart: {
+  //         height: 350,
+  //         type: "line",
+  //         stacked: false
+  //       },
+  //       dataLabels: {
+  //           enabled: false
+  //         },
+  //         colors: ["#FF1654", "#247BA0"],
+  //   series: [
+  //     {
+  //       name: "Series A",
+  //       data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+  //     },
+  //     {
+  //       name: "Series B",
+  //       data: [20, 29, 37, 36, 44, 45, 50, 58]
+  //     }
+  //   ],
+  //   stroke: {
+  //     width: [4, 4]
+  //   },
+  //   plotOptions: {
+  //     bar: {
+  //       columnWidth: "20%"
+  //     }
+  //   },
+  //   xaxis: {
+  //     categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
+  //   },
+  //   yaxis: [
+  //     {
+  //       axisTicks: {
+  //         show: true
+  //       },
+  //       axisBorder: {
+  //         show: true,
+  //         color: "#FF1654"
+  //       },
+  //       labels: {
+  //         style: {
+  //           colors: "#FF1654"
+  //         }
+  //       },
+  //       title: {
+  //         text: "Series A",
+  //         style: {
+  //           color: "#FF1654"
+  //         }
+  //       }
+  //     },
+  //     {
+  //       opposite: true,
+  //       axisTicks: {
+  //         show: true
+  //       },
+  //       axisBorder: {
+  //         show: true,
+  //         color: "#247BA0"
+  //       },
+  //       labels: {
+  //         style: {
+  //           colors: "#247BA0"
+  //         }
+  //       },
+  //       title: {
+  //         text: "Series B",
+  //         style: {
+  //           color: "#247BA0"
+  //         }
+  //       }
+  //     }
+  //   ],
+  //   tooltip: {
+  //     shared: false,
+  //     intersect: true,
+  //     x: {
+  //       show: false
+  //     }
+  //   },
+  //   legend: {
+  //     horizontalAlign: "left",
+  //     offsetX: 40
+  //   }
+  // };
+  
+  // var chart = new ApexCharts(document.querySelector("#chart"), options);
+  
+  // chart.render();
+
+
+
+
+  const options = {
+    chart: {
+      type: 'line',
+      width: 320,
+      height: 120,
+      sparkline: { enabled: true },   // ← removes axes, grid, legend, title
+    },
+    colors: ["#00F5D4"],
+    series: [{
+      name: 'Avg Rating',
+      data: data
+    }],
+    stroke: {
+      curve: 'smooth',
+      width: 2
+    },
+    xaxis: {
+      axisBorder: {
+        show: true
+      },
+      axisTicks: {
+        show: true
+      }
+    },
+    yaxis: {
+      axisBorder: {
+        show: true
+      }
+    },
+    grid: {
+      show: true,
+      strokeDashArray: 2,
+      xaxis: {
+        lines: {
+          show: true
+        }
+      },
+      yaxis: {
+        lines: {
+          show: true
+        }
+      }
+    },
+    markers: {
+      size: 3
+    },
+    tooltip: {
+      enabled: true,
+      theme: 'dark',
+      x: { show: false },
+      y: { formatter: v => v.toFixed(1) }
+    }
+    // chart: {
+    //   height: 150,//350,
+    //   type: "line",
+    //   stacked: false
+    // },
+    // dataLabels: {
+    //   enabled: false
+    // },
+    // colors: ["#FF1654", "#247BA0"],
+    // series: [
+    //   {
+    //     name: "Series A",
+    //     data: data//[1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+    //   },
+    //   {
+    //     name: "Series B",
+    //     data: [20, 29, 37, 36, 44, 45, 50, 58]
+    //   }
+    // ],
+    // stroke: {
+    //   width: [4, 4]
+    // },
+    // plotOptions: {
+    //   bar: {
+    //     columnWidth: "20%"
+    //   }
+    // },
+    // xaxis: {
+    //   categories: label//[2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
+    // },
+    // yaxis: [
+    //   {
+    //     axisTicks: {
+    //       show: false
+    //     },
+    //     axisBorder: {
+    //       show: false,
+    //       color: "#FF1654"
+    //     },
+    //     labels: {
+    //       style: {
+    //         colors: "#FF1654"
+    //       }
+    //     },
+    //     title: {
+    //       text: "Series A",
+    //       style: {
+    //         color: "#FF1654"
+    //       }
+    //     }
+    //   },
+    //   {
+    //     opposite: true,
+    //     axisTicks: {
+    //       show: false
+    //     },
+    //     axisBorder: {
+    //       show: true,
+    //       color: "#247BA0"
+    //     },
+    //     labels: {
+    //       style: {
+    //         colors: "#247BA0"
+    //       }
+    //     },
+    //     title: {
+    //       text: "Series B",
+    //       style: {
+    //         color: "#247BA0"
+    //       }
+    //     }
+    //   }
+    // ],
+    // tooltip: {
+    //   shared: false,
+    //   intersect: false,
+    //   x: {
+    //     show: false
+    //   }
+    // },
+    // legend: {
+    //   horizontalAlign: "left",
+    //   offsetX: 40
+    // }
+  }
+  
+  if (lineChart){
+    
+  } else {
+    lineChart = new ApexCharts(canvas, options);
+    lineChart.render();
+    console.log("PlayerRatingLine");
+    
+  }
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //this part is responsible for retrieving the data for the radar graph
 async function playerRadar(){
@@ -261,20 +583,31 @@ function createOrUpdateRadial(elementId, label, value) {
   const opts = {
     series: [value],
     labels: [`${label}%`],
-    chart: { height: 150, type: 'radialBar' },
+    chart: { height: 170, type: 'radialBar' },
     colors: ["#00450E"],
     plotOptions: {
       radialBar: {
+        // 
+        startAngle: -135,
+        endAngle: 135,
         dataLabels: {
-          name: { fontSize: '14px', fontWeight: 550 },
+          name: { 
+            show: true,
+            offsetY: 60,
+            fontSize: '14px', 
+            fontWeight: 550, 
+            color: "#FEFAE0"
+          },
           value: {
+            show: true,
+            offsetY: -6,
             fontSize: '20px',
             fontWeight: 800,
-            color: '#5D5D5D',
+            color: '#FEFAE0',
             formatter: v => v
           }
         },
-        hollow: { size: "57.5%", background: "#FFEDD6" }
+        hollow: { size: "50%", /*background: "#FFEDD6"*/ }
       }
     },
     fill: {
@@ -508,3 +841,70 @@ function createOrUpdateHbar(labels, data, elementId){
   }
 
 }
+
+
+
+
+// fetch(`http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`)
+//   .then(r => r.json())
+//   .then(locations => {
+//     Globe()
+//       (document.getElementById('globe'))
+//       .pointAltitude(0.02)
+//       .pointColor(() => '#EA7317')
+//       .labelsData(locations)
+//       .labelLat(d => d.latitude)
+//       .labelLng(d => d.longitude)
+//       .labelText(d => `${d.start_date} • ${d.name}`);
+//   });
+
+// 4) Fetch your pre‑geocoded event locations
+fetch(`http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`)
+  .then(res => res.json())
+  .then(locations => {
+    const tooltip = document.getElementById('globe_tooltip');
+    const globeEl = document.getElementById('globe');
+
+    const world = Globe()
+      (globeEl)
+      .width(400)
+      .height(400)
+      // Earth day‑texture & bump map
+      // .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      // .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+      // Transparent background
+      .backgroundColor('rgba(0,0,0,0)')
+      // Plot only points (no labelsData)
+      .pointsData(locations)
+      .pointLat(d => d.latitude)
+      .pointLng(d => d.longitude)
+      .pointColor(() => '#EA7317')
+      .pointAltitude(0.02)
+      .pointRadius(0.5)
+      
+      // 5) Show a tooltip on hover
+      .onPointHover(point => {
+        if (!point) {
+          tooltip.style.display = 'none';
+          return;
+        }
+        // Populate tooltip content
+        tooltip.innerHTML = `
+        <strong>${point.name}</strong><br>
+        ${point.city}, ${point.state}, ${point.country}<br>
+        ${point.start_date}
+        `;
+        // Position tooltip at mouse
+        // (we’ll listen to the globeEl’s mousemove for coords)
+        tooltip.style.display = 'block';
+      })
+      .pointOfView({lat:40.176404, lng: -95.327418, altitude: 1}, 0);
+      //40.176404, -95.327418
+
+    // 6) Sync tooltip position with mouse
+    globeEl.addEventListener('mousemove', e => {
+      tooltip.style.top  = e.clientY + 10 + 'px';
+      tooltip.style.left = e.clientX + 10 + 'px';
+    });
+  });

@@ -21,7 +21,7 @@ $pdgaNumber = intval($_GET['pdga_number']);
 $year = 0;
 
 $statIds = [1,3,7];
-$ids       = implode(',', $statIds);
+$ids = implode(',', $statIds);
 
 $sql = "SELECT
     stats.stat_id,

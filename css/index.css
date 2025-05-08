@@ -3,6 +3,7 @@ body {
   padding: 0px;
   /* background-color: #d5ffedf8; */
   background-color: #00000000;
+  min-width: 1200px;
 }
 
 nav {
@@ -109,11 +110,11 @@ nav div img:hover {
   grid-template-areas:
     "pic pic stat stat stat stat wins wins wins"
     "pic pic xstat xstat xstat xstat wins wins wins"
-    "bio bio radial radial radial radial spons spons spons"
-    "extra1 extra1 radial radial radial radial spons spons spons";
+    "bio bio radial radial radial radial rate rate rate"
+    "extra1 extra1 radial radial radial radial rate rate rate";
 
   grid-template-columns: repeat(9, 1fr);
-  gap: 10px;
+  gap: 0.6em;
   padding: 1em;
   /* box-sizing: border-box; */
 }
@@ -187,44 +188,110 @@ i {
   justify-content: space-evenly;
 }
 
-.playerbio_section > .playerbio_wins {
+.playerbio_section > .playerbio_globe_events {
   grid-area: wins;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
-  background-color: #ffc3b8;
+  /* min-height: 100%; */
+  width: 100%;
+  height: 100%;
+  background-color: #ffedd500;
   border-radius: 0.4em;
+  overflow-x: hidden;
+  overflow-y: hidden;
   /* border: 1px solid #fc2200;*/
+  position: relative;
 }
 
-.playerbio_section > .playerbio_sponsors {
-  grid-area: spons;
+.playerbio_globe_events #globe{
+  border-radius: 0.4em;
+}
+
+.globe_tooltip {
+  position: fixed;
+  right: -2em;
+  /* pointer-events: none; */
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  /* padding: 4px 8px; */
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  /* white-space: nowrap; */
+  z-index: 1000;
+}
+
+.playerbio_section > .playerbio_ratingOverTime {
+  grid-area: rate;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100px;
-  background-color: #d7b8ff;
+  /* flex-direction: column; */
+  /* min-height: 100px; */
+  /* background-color: #d7b8ff; */
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to bottom, rgb(0, 52, 0),rgb(0, 33, 15));
   border-radius: 0.4em;
-  /* border: -1px solid #8527ff; */
+  position: relative;
 }
+
+.playerbio_ratingOverTime .ratingOverTime_headerSection {
+  display: flex;
+  width: 94%;
+  height: 10%;
+  font-family: "Urbanist", sans-serif;
+  color: rgb(229, 229, 229);
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0.4em;
+}
+
+.playerbio_ratingOverTime .ratingOverTime_headerSection h4,select{
+  margin: 0em;
+  padding: 0em;
+}
+
+.rating_dropdown {
+  background-color: rgba(255, 255, 255, 0);
+  /* color: rgb(92, 92, 92); */
+  color: rgb(229, 229, 229);
+  border-style: none;
+}
+
+.rating_dropdown:active,
+.rating_dropdown:focus {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(92, 92, 92);
+  outline: none;
+}
+
+.playerbio_ratingOverTime .ratingOverTime_chartDiv{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 2em;
+  left:1em;
+}
+
+
 
 .playerbio_highlights {
   grid-area: stat;
   width: 100%;
   height: 100%;
   /* background-color: #e65100a5; */
-  background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0));
-  color: rgb(68, 68, 68);
+  /* background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0)); */
   /* padding: 0.5em 0.5em; */
   border-radius: 0.4em;
-  font-family: "Urbanist", sans-serif;
-  padding: 0.2em 0em;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .playerbio_highlights .highlights_headerSection {
@@ -232,11 +299,26 @@ i {
   justify-content: space-between;
   width: 90%;
   padding: 0.4em 0em;
+  font-family: "Urbanist", sans-serif;
+  color: rgb(68, 68, 68);
 }
 
 .playerbio_highlights .highlights_headerSection h4, select{
   margin: 0em;
   padding: 0em;
+}
+
+.career_dropdown {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(92, 92, 92);
+  border-style: none;
+}
+
+.career_dropdown:active,
+.career_dropdown:focus {
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(92, 92, 92);
+  outline: none;
 }
 
 
@@ -246,7 +328,7 @@ i {
   height: 100%;
   /* background-color: #e65100a5; */
   /* background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0)); */
-  color: rgb(68, 68, 68);
+  color: rgb(78, 78, 78);
   /* padding: 0.5em 0.5em; */
   border-radius: 0.4em;
   display: flex;
@@ -255,6 +337,7 @@ i {
   align-items: center;
   font-family: "Urbanist", sans-serif;
   gap: 0.4em;
+  box-sizing: border-box;
 }
 
 .mainStats_wins {
@@ -272,9 +355,10 @@ i {
 
   /* background-color: #dda25ea4; */
   /* background-color: #fefae0c1; */
-  background-color: #d5ffedf8;
+  /* background-color: #d5ffedf8; */
+  background-image: linear-gradient(to bottom, #c3ffe5f8, #23feb1f8);
   border-radius: 0.4em;
-  box-shadow: 0px 1px rgb(87, 87, 87);
+  /* box-shadow: 0px 1px rgb(87, 87, 87); */
 }
 
 .mainStats_topTens {
@@ -383,12 +467,15 @@ p {
 }
 
 .playerbio_section > .player_mainRadials {
+  box-sizing: border-box;
   grid-area: radial;
+  padding-top: 0.4em;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #ffedd5f8;
+  /* background-color: #6f3f00f8; */
+  background-image: linear-gradient(to bottom, #ffae51f8, #e7983df8 );
   border-radius: 0.4em;
   /* border: 1px solid #ea7317; */
 
@@ -405,15 +492,14 @@ p {
   width: 94%;
   justify-content: space-between;
   align-items: center;
-  color: rgb(99, 99, 99);
+  /* color: rgb(99, 99, 99); */
+  color: rgb(251, 251, 251);
+  position: absolute;
+  top: 0.4em;
 }
 
 .radialPerformance_headerSection h4 {
   margin: 0em;
-}
-
-.radial_configs {
-
 }
 
 .radial_bin {
@@ -423,7 +509,8 @@ p {
 
 .radial_dropdown {
   background-color: rgba(255, 255, 255, 0);
-  color: rgb(92, 92, 92);
+  /* color: rgb(92, 92, 92); */
+  color: rgb(255, 255, 255);
   border-style: none;
 }
 
@@ -438,6 +525,7 @@ p {
   width: 150px;
   /* height: 50px; */
   margin: 0em;
+  margin-top: 0.8em;
   padding: 0em;
 }
 
@@ -489,28 +577,6 @@ p {
   background-color: rgb(0, 133, 20);
 }
 
-/* 
-.playerbio_section {
-  width: 95%;
-  height: 350px;
-  background-color: white;
-  border-radius: 0.4em;
-
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  overflow: hidden;
-}
-
-.playerbio_section_profilepic {
-  position: absolute;
-  left: 10px;
-  height: 80%;
-  border-radius: 0.3em;
-  display:none;
-
-} */
 .totalStats_container {
   width: 100%;
   margin-top: 1em;
@@ -551,17 +617,9 @@ p {
 .totalStats_section_title {
   margin: 0px;
   padding: 0px;
-  /* position: absolute;
-  top: 1em;
-  left: 1em; */
 }
 
 .totalStats_categoryDropdown {
-  /* height: 100%; */
-  /* position: absolute;
-  top: 1em;
-  right: 1em; */
-  /* width: 30%; */
   display: flex;
   align-items: center;
   justify-content: center;

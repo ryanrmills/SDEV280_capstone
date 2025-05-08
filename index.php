@@ -27,11 +27,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+    <!-- Testing Globe Chart -->
+    <script src="https://unpkg.com/three" defer></script>
+    <script src="https://unpkg.com/globe.gl" defer></script>
     <!-- handmade js file for this specific page -->
     <script src="./js/index.js" defer></script>
   </head>
   
   <body>
+  
     <nav>
       <div class="navbar_icon">
         <img src="./assets/logo-banner.png">
@@ -95,12 +99,26 @@
 
         </div>
 
-        <div class="playerbio_sponsors">
-          
+        <div class="playerbio_ratingOverTime">
+
+          <div class="ratingOverTime_headerSection">
+            <h4>Rating Progression</h4>
+            <select class="rating_dropdown">
+              <option>All time</option>
+            </select>
+          </div >
+
+          <div id="rating_lineChart" class="ratingOverTime_chartDiv">
+
+          </div>
         </div>
 
-        <div class="playerbio_wins">
+        <div class="playerbio_globe_events">
+          <div id="globe">
 
+          </div>
+          
+          <div id="globe_tooltip"></div>
         </div>
 
         <!-- <div class="player_social_media">
@@ -117,8 +135,8 @@
         </div> -->
         <div class="playerbio_highlights">
           <div class="highlights_headerSection">
-            <h4>Career profile</h4>
-            <select>
+            <h4>Career Profile</h4>
+            <select class="career_dropdown">
               <option>All-time</option>
             </select>
           </div>
