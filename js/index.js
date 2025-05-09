@@ -596,14 +596,14 @@ function createOrUpdateRadial(elementId, label, value) {
             offsetY: 60,
             fontSize: '14px', 
             fontWeight: 550, 
-            color: "#FEFAE0"
+            color: "#323232"//"#FEFAE0"
           },
           value: {
             show: true,
             offsetY: -6,
             fontSize: '20px',
             fontWeight: 800,
-            color: '#FEFAE0',
+            color: "#323232",//'#FEFAE0',
             formatter: v => v
           }
         },

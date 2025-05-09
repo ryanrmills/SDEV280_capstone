@@ -81,13 +81,6 @@
         
   
         <div class="playerbio_section_selfIntro">
-          <!-- <h4 id="first_name">
-            
-          </h4>
-  
-          <h4 id="last_name" style="display:flex; align-items: center; gap: 0em; position: relative;">
-           
-          </h4> -->
 
           <h4 id="full_name"></h4>
           <div class="player_origin">
@@ -96,6 +89,9 @@
           
           <p id="bio_pdga_number"></p>
           <p id="bio_division"></p>
+
+        </div>
+        <div class="playerbio_sponsors">
 
         </div>
 
@@ -206,11 +202,13 @@
             <p>Avg. Strokes</p>
           </div>
         </div> -->
+
+        
         
 
-        <div class="playerbio_section_searchCompare">
-          <!-- <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button> -->
-        </div>
+        <!-- <div class="playerbio_section_searchCompare">
+          <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
+        </div> -->
         
         <div class="player_mainRadials">
           <!-- <div style="display:flex; align-items:center;justify-content:center"> -->
