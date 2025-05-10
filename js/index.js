@@ -342,8 +342,6 @@ async function createOrUpdateLine(label, data, elementId){
   } else {
     lineChart = new ApexCharts(canvas, options);
     lineChart.render();
-    console.log("PlayerRatingLine");
-    
   }
   
 
@@ -408,8 +406,6 @@ async function playerRadar(){
     url = eventId
       ? url + "&event=" + eventId
       : url
-    
-    console.log(url)
       
     const data = await getJsons(url);
 
@@ -446,7 +442,7 @@ async function playerRadar(){
   })
 
   radarSelect.addEventListener('change', e => {
-    console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+    //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
     drawHbar(yearSelect.value, e.target.value);
   })
 
@@ -553,6 +549,7 @@ async function playerRadial(){
       ? `${playerRadialUrl}&year=${year}`
       : playerRadialUrl;
     const data = await getJsons(url);
+    console.log(data)
 
     // destructure
     const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
@@ -721,8 +718,6 @@ async function playerHbar(){
     url = eventId
       ? url + "&event=" + eventId
       : url
-    
-    console.log(url)
       
     const data = await getJsons(url);
 
@@ -737,7 +732,6 @@ async function playerHbar(){
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
-    console.log(eventsList)
     eventsList[0].forEach((e) => {
       const option = document.createElement('option');
       option.value = e.pdga_event_id;
@@ -760,7 +754,7 @@ async function playerHbar(){
   })
 
   eventSelect.addEventListener('change', e => {
-    console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+    //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
     drawHbar(yearSelect.value, e.target.value);
   })
 

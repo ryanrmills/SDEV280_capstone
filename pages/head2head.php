@@ -24,12 +24,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" defer></script>
     <!-- cdn for Chart.js -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
     <!-- Testing Globe Chart -->
-    <!-- <script src="https://unpkg.com/three" defer></script>
-    <script src="https://unpkg.com/globe.gl" defer></script> -->
+    <script src="https://unpkg.com/three" defer></script>
+    <script src="https://unpkg.com/globe.gl" defer></script>
 
   </head>
   
@@ -71,16 +71,131 @@
       </div>
     </nav>
     
-    <section>
-      <div>
+    <section class="comparison_container">
+      <div class="comparison_layout">
+        <div class="comparison_player_one_bio">
+          <div class="playerOne_profilepic">
+            <img id="playerone_pic">
+          </div>
+
+          <div class="playerone_bioDetails">
+            <h3 id="playerone_name"></h3>
+            <p id="playerone_home"></p>
+            <p id="playerone_pdgaNum"></p>
+            <p id="playerone_division"></p>
+            <p id="playerone_memberSince"></p>
+          </div>
+        </div>
+
+        <div class="comparison_center_playerbio"></div>
+
+        <div class="comparison_player_two_bio">
+          <div class="playerTwo_profilepic">
+            <img id="playertwo_pic">
+          </div>
+
+          <div class="playertwo_bioDetails">
+            <h3 id="playertwo_name"></h3>
+            <p id="playertwo_home"></p>
+            <p id="playertwo_pdgaNum"></p>
+            <p id="playertwo_division"></p>
+            <p id="playertwo_memberSince"></p>
+          </div>
+        </div>
+
+
+        <!-- showing main player stats below bio -->
+        <div class="comparison_playerone_stats">
+          <div class="mainStats_tiles">
+            <h3 id="playerone_wins"></h3>
+            <p>Wins</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_topTens"></h3>
+            <p>Top Tens</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_podiums"></h3>
+            <p>Podiums</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_earnings"></h3>
+            <p>Earnings</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_rating"></h3>
+            <p>Avg. Rating</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_events"></h3>
+            <p>Total Events</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_place"></h3>
+            <p>Avg. Place</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playerone_strokes"></h3>
+            <p>Avg. Strokes</p>
+          </div>
+        </div>
+
+        <div class="playerstats_center">
+
+        </div>
+
+        <div class="comparison_playertwo_stats">
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_wins"></h3>
+            <p>Wins</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_topTens"></h3>
+            <p>Top Tens</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_podiums"></h3>
+            <p>Podiums</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_earnings"></h3>
+            <p>Earnings</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_rating"></h3>
+            <p>Avg. Rating</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_events"></h3>
+            <p>Total Events</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_place"></h3>
+            <p>Avg. Place</p>
+          </div>
+
+          <div class="mainStats_tiles">
+            <h3 id="playertwo_strokes"></h3>
+            <p>Avg. Strokes</p>
+          </div>
+        </div>
 
       </div>
     </section>
     
-    <table id="rounds-table">
-   
-    
-    </table>
     
   </body>
   </html>

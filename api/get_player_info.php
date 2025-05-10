@@ -29,7 +29,6 @@ if ($db->connect_error) {
 
 //assign the pdga number, that is an int value and retrieved from GET, to the pdga variable
 $pdga = intval($_GET['pdga_number']);
-
 // ——— 1) Main player summary (wins, top_tens, podiums, total_events) ———
 
 $sql = "SELECT
@@ -155,7 +154,7 @@ $player['avg_strokes_per_event'] = $avgStrokes !== null ? round($avgStrokes, 1) 
 
 //─── 6) output everything ───────────────────────────────────────────────────
 echo json_encode([
-  'player'      => $player,
+  'player' => $player
   // 'events'      => $events,
   // 'round_stats' => $round_stats
 ]);
