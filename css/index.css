@@ -77,6 +77,7 @@ nav div img:hover {
   justify-content: center;
   align-items: center;
   /* box-sizing: border-box; */
+  position: relative;
 }
 
 /* .playerbio_section {
@@ -214,11 +215,32 @@ i {
   overflow-y: hidden;
   /* border: 1px solid #fc2200;*/
   position: relative;
+  color: white;
+  font-family: "Urbanist", sans-serif;
+  margin: 0em;
+  padding: 0em;
 }
 
 .playerbio_globe_events #globe {
   border-radius: 0.4em;
+  margin: 0em;
+  padding: 0em;
 }
+
+#globe_tooltip {
+  position: absolute;
+  display: none;
+  top:1em;
+  right: 0px;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  flex-wrap: wrap;
+  margin: 0em;
+  padding: 0.4em;
+  background-color: rgba(51, 51, 51, 0.84);
+  border-radius: 0.4em;
+ }
 
 
 
@@ -306,6 +328,13 @@ select {
 select {
   margin: 0em;
   padding: 0em;
+}
+
+.highlights_titleAndH2H {
+  display: flex;
+  gap: 0.6em;
+  align-items: center;
+  justify-content: center;
 }
 
 .career_dropdown {
@@ -695,21 +724,11 @@ canvas {
 }
 
 .window_globe_tooltip_container{
+  /* display: none; */
   height: 100vh;
   width: 100vw;
   z-index: 1000;
-  position: relative;
+  position: fixed;
 }
 
-.window_globe_tooltip_container .globe_tooltip {
-  position: fixed;
-  right: 0em;
-  /* pointer-events: none; */
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  /* padding: 4px 8px; */
-  border-radius: 4px;
-  font-size: 12px;
-  display: none;
-  /* white-space: nowrap; */
-}
+

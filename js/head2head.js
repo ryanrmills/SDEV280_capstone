@@ -37,6 +37,10 @@ const radialCharts = {
 
 
 function createOrUpdateRadial(elementId, label, value, color) {
+  if (!color){
+    color = "#000000";
+  }
+
   const el = document.querySelector(`#${elementId}`);
   const opts = {
     series: [value],
@@ -90,20 +94,22 @@ function createOrUpdateRadial(elementId, label, value, color) {
 async function displayPlayerRadials(){
 
   let url = pdgaNumOne
-      ? playerRadialUrl + `?pdga_number=${pdgaNumOne}`
-      : playerRadialUrl
-    
-    let url2 = pdgaNumTwo
-      ? playerRadialUrl + `?pdga_number=${pdgaNumTwo}`
-      : playerRadialUrl
-
-    const data = await getJsons(url);
-    const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
-    const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
-
-    const data2 = await getJsons(url2);
-    const [ fwhLabel2, c2rLabel2, c1xLabel2 ] = data2.stat;
-    const [ fwhVal2,   c2rVal2,   c1xVal2   ] = data2.values;
+    ? playerRadialUrl + `?pdga_number=${pdgaNumOne}`
+    : '';
+      
+  let url2 = pdgaNumTwo
+    ? playerRadialUrl + `?pdga_number=${pdgaNumTwo}`
+    : '';
+      
+      
+  const data = pdgaNumOne ? await getJsons(url) : '';
+  const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
+  const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
+      
+  const data2 = pdgaNumTwo ? await getJsons(url2) : '';
+  const [ fwhLabel2, c2rLabel2, c1xLabel2 ] = data2 ? data2.stat : '';
+  const [ fwhVal2,   c2rVal2,   c1xVal2   ] = data2 ? data2.values : '';
+  
 
     /**
      * Color comparison section
@@ -112,7 +118,8 @@ async function displayPlayerRadials(){
      * then assign the color to 'createOrUpdateRadial
      */
 
-    let fwhValcolor, c2rValcolor, c1xValcolor, fwhVal2color, c2rVal2color, c1xVal2color
+  let fwhValcolor, c2rValcolor, c1xValcolor, fwhVal2color, c2rVal2color, c1xVal2color
+  if (data && data2){
     if (Number(fwhVal) < Number(fwhVal2)){
       fwhValcolor = '#C20017';
       fwhVal2color = '#20A000';
@@ -120,7 +127,7 @@ async function displayPlayerRadials(){
       fwhValcolor = '#20A000';
       fwhVal2color = '#C20017';
     }
-
+  
     if (Number(c2rVal) < Number(c2rVal2)){
       c2rValcolor = '#C20017';
       c2rVal2color = '#20A000';
@@ -128,7 +135,7 @@ async function displayPlayerRadials(){
       c2rValcolor = '#20A000';
       c2rVal2color = '#C20017';
     }
-
+  
     if (Number(c1xVal) < Number(c1xVal2)){
       c1xValcolor = '#C20017';
       c1xVal2color = '#20A000';
@@ -136,16 +143,20 @@ async function displayPlayerRadials(){
       c1xValcolor = '#20A000';
       c1xVal2color = '#C20017';
     }
+  }
 
     
-
+  if (data){
     createOrUpdateRadial("FWH_radial", fwhLabel, fwhVal, fwhValcolor);
     createOrUpdateRadial("C2R_radial", c2rLabel, c2rVal, c2rValcolor);
     createOrUpdateRadial("C1X_radial", c1xLabel, c1xVal, c1xValcolor);
+  }
 
+  if (data2){
     createOrUpdateRadial("FWH_radial2", fwhLabel2, fwhVal2, fwhVal2color);
     createOrUpdateRadial("C2R_radial2", c2rLabel2, c2rVal2, c2rVal2color);
     createOrUpdateRadial("C1X_radial2", c1xLabel2, c1xVal2, c1xVal2color);
+  }
 }
 
 displayPlayerRadials();
@@ -205,28 +216,33 @@ async function displayPlayerBio(
 
   let url = pdgaNum
     ? playerBioUrl + `?pdga_number=${pdgaNum}`
-    : playerBioUrl;
+    : '';
   
     
-    const data = await getJsons(url);
+    const data = url ? await getJsons(url) : '';
+
+    if (data){
+      let earnings = parseFloat(data.player.earnings).toLocaleString('en-US')
+    
+      document.getElementById(picElement).src = `./../assets/${data.player.pdga_number}.jpg`;
+      document.getElementById(nameElement).innerHTML = data.player.full_name;
+      document.getElementById(homeElement).innerHTML = data.player.hometown;
+      document.getElementById(pdgaNumElement).innerHTML = `#${data.player.pdga_number}`;
+      document.getElementById(divElement).innerHTML = `${data.player.division} Division`;
+      document.getElementById(memberElement).innerHTML = `member since <strong>${data.player.member_since}</strong>`;
+      document.getElementById(winsElement).innerHTML = data.player.wins;
+      document.getElementById(tensElement).innerHTML = data.player.top_tens;
+      document.getElementById(podiumsElement).innerHTML = data.player.podiums;
+      document.getElementById(earningsElement).innerHTML = `$${earnings}`
+      document.getElementById(avgRateElement).innerHTML = data.player.avg_rating;
+      document.getElementById(totalEventsElement).innerHTML = data.player.total_events;
+      document.getElementById(avgPlaceElement).innerHTML = data.player.avg_place;
+      document.getElementById(avgStrokesPerEventElement).innerHTML = data.player.avg_strokes_per_event;
+    } else if (!data){
+      document.getElementById(picElement).src = `./../assets/blank-profile.jpg`;
+    }
     
     
-    let earnings = parseFloat(data.player.earnings).toLocaleString('en-US')
-    
-    document.getElementById(picElement).src = `./../assets/${data.player.pdga_number}.jpg`;
-    document.getElementById(nameElement).innerHTML = data.player.full_name;
-    document.getElementById(homeElement).innerHTML = data.player.hometown;
-    document.getElementById(pdgaNumElement).innerHTML = `#${data.player.pdga_number}`;
-    document.getElementById(divElement).innerHTML = `${data.player.division} Division`;
-    document.getElementById(memberElement).innerHTML = `member since <strong>${data.player.member_since}</strong>`;
-    document.getElementById(winsElement).innerHTML = data.player.wins;
-    document.getElementById(tensElement).innerHTML = data.player.top_tens;
-    document.getElementById(podiumsElement).innerHTML = data.player.podiums;
-    document.getElementById(earningsElement).innerHTML = `$${earnings}`
-    document.getElementById(avgRateElement).innerHTML = data.player.avg_rating;
-    document.getElementById(totalEventsElement).innerHTML = data.player.total_events;
-    document.getElementById(avgPlaceElement).innerHTML = data.player.avg_place;
-    document.getElementById(avgStrokesPerEventElement).innerHTML = data.player.avg_strokes_per_event;
     
     
     /**
@@ -235,115 +251,119 @@ async function displayPlayerBio(
      */
     let url2 = pdgaNum2
     ? playerBioUrl + `?pdga_number=${pdgaNum2}`
-    : playerBioUrl;
+    : '';
     
     
-    const data2 = await getJsons(url2);
+    const data2 = url2 ? await getJsons(url2) : '';
 
-    let earnings2 = parseFloat(data2.player.earnings).toLocaleString('en-US')
+    if (data2){
+      let earnings2 = parseFloat(data2.player.earnings).toLocaleString('en-US')
+      document.getElementById(picElement2).src = `./../assets/${data2.player.pdga_number}.jpg`;
+      document.getElementById(nameElement2).innerHTML = data2.player.full_name;
+      document.getElementById(homeElement2).innerHTML = data2.player.hometown;
+      document.getElementById(pdgaNumElement2).innerHTML = `#${data2.player.pdga_number}`;
+      document.getElementById(divElement2).innerHTML = `${data2.player.division} Division`;
+      document.getElementById(memberElement2).innerHTML = `member since <strong>${data2.player.member_since}</strong>`;
+      document.getElementById(winsElement2).innerHTML = data2.player.wins;
+      document.getElementById(tensElement2).innerHTML = data2.player.top_tens;
+      document.getElementById(podiumsElement2).innerHTML = data2.player.podiums;
+      document.getElementById(earningsElement2).innerHTML = `$${earnings2}`
+      document.getElementById(avgRateElement2).innerHTML = data2.player.avg_rating;
+      document.getElementById(totalEventsElement2).innerHTML = data2.player.total_events;
+      document.getElementById(avgPlaceElement2).innerHTML = data2.player.avg_place;
+      document.getElementById(avgStrokesPerEventElement2).innerHTML = data2.player.avg_strokes_per_event;
+    } else if (!data2){
+      document.getElementById(picElement2).src = `./../assets/blank-profile.jpg`;
+    }
+
     
-    document.getElementById(picElement2).src = `./../assets/${data2.player.pdga_number}.jpg`;
-    document.getElementById(nameElement2).innerHTML = data2.player.full_name;
-    document.getElementById(homeElement2).innerHTML = data2.player.hometown;
-    document.getElementById(pdgaNumElement2).innerHTML = `#${data2.player.pdga_number}`;
-    document.getElementById(divElement2).innerHTML = `${data2.player.division} Division`;
-    document.getElementById(memberElement2).innerHTML = `member since <strong>${data2.player.member_since}</strong>`;
-    document.getElementById(winsElement2).innerHTML = data2.player.wins;
-    document.getElementById(tensElement2).innerHTML = data2.player.top_tens;
-    document.getElementById(podiumsElement2).innerHTML = data2.player.podiums;
-    document.getElementById(earningsElement2).innerHTML = `$${earnings2}`
-    document.getElementById(avgRateElement2).innerHTML = data2.player.avg_rating;
-    document.getElementById(totalEventsElement2).innerHTML = data2.player.total_events;
-    document.getElementById(avgPlaceElement2).innerHTML = data2.player.avg_place;
-    document.getElementById(avgStrokesPerEventElement2).innerHTML = data2.player.avg_strokes_per_event;
-
-
 
     /**
      * Start comparisons for stats
      */
-    console.log(typeof data.player.wins)
-
-    if (parseInt(data.player.wins) > parseInt(data2.player.wins)){
-      document.getElementById(winsElement).style.color = '#A6FFA6';
-      document.getElementById(winsElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.wins) < parseInt(data2.player.wins)) {
-      document.getElementById(winsElement2).style.color = '#A6FFA6';
-      document.getElementById(winsElement).style.color = '#FF3E3E';
+    if (data && data2){
+      if (parseInt(data.player.wins) > parseInt(data2.player.wins)){
+        document.getElementById(winsElement).style.color = '#A6FFA6';
+        document.getElementById(winsElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.wins) < parseInt(data2.player.wins)) {
+        document.getElementById(winsElement2).style.color = '#A6FFA6';
+        document.getElementById(winsElement).style.color = '#FF3E3E';
+      }
+  
+  
+      if (parseInt(data.player.top_tens) > parseInt(data2.player.top_tens)){
+        document.getElementById(tensElement).style.color = '#A6FFA6';
+        document.getElementById(tensElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.top_tens) < parseInt(data2.player.top_tens)) {
+        document.getElementById(tensElement2).style.color = '#A6FFA6';
+        document.getElementById(tensElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.podiums) > parseInt(data2.player.podiums)){
+        document.getElementById(podiumsElement).style.color = '#A6FFA6';
+        document.getElementById(podiumsElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.podiums) < parseInt(data2.player.podiums)) {
+        document.getElementById(podiumsElement2).style.color = '#A6FFA6';
+        document.getElementById(podiumsElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.podiums) > parseInt(data2.player.podiums)){
+        document.getElementById(podiumsElement).style.color = '#A6FFA6';
+        document.getElementById(podiumsElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.podiums) < parseInt(data2.player.podiums)) {
+        document.getElementById(podiumsElement2).style.color = '#A6FFA6';
+        document.getElementById(podiumsElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.earnings) > parseInt(data2.player.earnings)){
+        document.getElementById(earningsElement).style.color = '#A6FFA6';
+        document.getElementById(earningsElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.earnings) < parseInt(data2.player.earnings)) {
+        document.getElementById(earningsElement2).style.color = '#A6FFA6';
+        document.getElementById(earningsElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.avg_rating) > parseInt(data2.player.avg_rating)){
+        document.getElementById(avgRateElement).style.color = '#A6FFA6';
+        document.getElementById(avgRateElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.avg_rating) < parseInt(data2.player.avg_rating)) {
+        document.getElementById(avgRateElement2).style.color = '#A6FFA6';
+        document.getElementById(avgRateElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.avg_rating) > parseInt(data2.player.avg_rating)){
+        document.getElementById(avgRateElement).style.color = '#A6FFA6';
+        document.getElementById(avgRateElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.avg_rating) < parseInt(data2.player.avg_rating)) {
+        document.getElementById(avgRateElement2).style.color = '#A6FFA6';
+        document.getElementById(avgRateElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.total_events) > parseInt(data2.player.total_events)){
+        document.getElementById(totalEventsElement).style.color = '#A6FFA6';
+        document.getElementById(totalEventsElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.total_events) < parseInt(data2.player.total_events)) {
+        document.getElementById(totalEventsElement2).style.color = '#A6FFA6';
+        document.getElementById(totalEventsElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.avg_place) < parseInt(data2.player.avg_place)){
+        document.getElementById(avgPlaceElement).style.color = '#A6FFA6';
+        document.getElementById(avgPlaceElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.avg_place) > parseInt(data2.player.avg_place)) {
+        document.getElementById(avgPlaceElement2).style.color = '#A6FFA6';
+        document.getElementById(avgPlaceElement).style.color = '#FF3E3E';
+      }
+  
+      if (parseInt(data.player.avg_strokes_per_event) < parseInt(data2.player.avg_strokes_per_event)){
+        document.getElementById(avgStrokesPerEventElement).style.color = '#A6FFA6';
+        document.getElementById(avgStrokesPerEventElement2).style.color = '#FF3E3E';
+      } else if (parseInt(data.player.avg_strokes_per_event) > parseInt(data2.player.avg_strokes_per_event)) {
+        document.getElementById(avgStrokesPerEventElement2).style.color = '#A6FFA6';
+        document.getElementById(avgStrokesPerEventElement).style.color = '#FF3E3E';
+      }
     }
-
-
-    if (parseInt(data.player.top_tens) > parseInt(data2.player.top_tens)){
-      document.getElementById(tensElement).style.color = '#A6FFA6';
-      document.getElementById(tensElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.top_tens) < parseInt(data2.player.top_tens)) {
-      document.getElementById(tensElement2).style.color = '#A6FFA6';
-      document.getElementById(tensElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.podiums) > parseInt(data2.player.podiums)){
-      document.getElementById(podiumsElement).style.color = '#A6FFA6';
-      document.getElementById(podiumsElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.podiums) < parseInt(data2.player.podiums)) {
-      document.getElementById(podiumsElement2).style.color = '#A6FFA6';
-      document.getElementById(podiumsElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.podiums) > parseInt(data2.player.podiums)){
-      document.getElementById(podiumsElement).style.color = '#A6FFA6';
-      document.getElementById(podiumsElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.podiums) < parseInt(data2.player.podiums)) {
-      document.getElementById(podiumsElement2).style.color = '#A6FFA6';
-      document.getElementById(podiumsElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.earnings) > parseInt(data2.player.earnings)){
-      document.getElementById(earningsElement).style.color = '#A6FFA6';
-      document.getElementById(earningsElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.earnings) < parseInt(data2.player.earnings)) {
-      document.getElementById(earningsElement2).style.color = '#A6FFA6';
-      document.getElementById(earningsElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.avg_rating) > parseInt(data2.player.avg_rating)){
-      document.getElementById(avgRateElement).style.color = '#A6FFA6';
-      document.getElementById(avgRateElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.avg_rating) < parseInt(data2.player.avg_rating)) {
-      document.getElementById(avgRateElement2).style.color = '#A6FFA6';
-      document.getElementById(avgRateElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.avg_rating) > parseInt(data2.player.avg_rating)){
-      document.getElementById(avgRateElement).style.color = '#A6FFA6';
-      document.getElementById(avgRateElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.avg_rating) < parseInt(data2.player.avg_rating)) {
-      document.getElementById(avgRateElement2).style.color = '#A6FFA6';
-      document.getElementById(avgRateElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.total_events) > parseInt(data2.player.total_events)){
-      document.getElementById(totalEventsElement).style.color = '#A6FFA6';
-      document.getElementById(totalEventsElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.total_events) < parseInt(data2.player.total_events)) {
-      document.getElementById(totalEventsElement2).style.color = '#A6FFA6';
-      document.getElementById(totalEventsElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.avg_place) < parseInt(data2.player.avg_place)){
-      document.getElementById(avgPlaceElement).style.color = '#A6FFA6';
-      document.getElementById(avgPlaceElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.avg_place) > parseInt(data2.player.avg_place)) {
-      document.getElementById(avgPlaceElement2).style.color = '#A6FFA6';
-      document.getElementById(avgPlaceElement).style.color = '#FF3E3E';
-    }
-
-    if (parseInt(data.player.avg_strokes_per_event) < parseInt(data2.player.avg_strokes_per_event)){
-      document.getElementById(avgStrokesPerEventElement).style.color = '#A6FFA6';
-      document.getElementById(avgStrokesPerEventElement2).style.color = '#FF3E3E';
-    } else if (parseInt(data.player.avg_strokes_per_event) > parseInt(data2.player.avg_strokes_per_event)) {
-      document.getElementById(avgStrokesPerEventElement2).style.color = '#A6FFA6';
-      document.getElementById(avgStrokesPerEventElement).style.color = '#FF3E3E';
-    }
+    
     
   }
 
@@ -508,20 +528,20 @@ async function displayPlayerBio(
 
     let url = pdgaNumOne
       ? playerRadarUrl + `?pdga_number=${pdgaNumOne}`
-      : playerRadarUrl
+      : ''
     
     let url2 = pdgaNumTwo
       ? playerRadarUrl + `?pdga_number=${pdgaNumTwo}`
-      : playerRadarUrl
+      : ''
 
-    const data = await getJsons(url);
-    let labelsOne = data.abbrev;
-    let dataOne = data.z_score;
+    const data = url ? await getJsons(url) : '';
+    let labelsOne = data ? data.abbrev : '';
+    let dataOne = data ? data.z_score : '';
     let elementIdOne = 'playerone_radar';
 
-    const data2 = await getJsons(url2);
-    let labelsTwo = data2.abbrev;
-    let dataTwo = data2.z_score;
+    const data2 = url2 ? await getJsons(url2) : '';
+    let labelsTwo = data2 ? data2.abbrev : '';
+    let dataTwo = data2 ? data2.z_score : '';
     let elementIdTwo = 'playertwo_radar';
 
     createOrUpdateRadar(

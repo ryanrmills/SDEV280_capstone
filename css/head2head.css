@@ -445,7 +445,7 @@ nav div img:hover {
   border-radius: 0.4em;
   /* background-color: rgba(238, 238, 238, 0.338);
   border: 1px solid rgb(56, 56, 56); */
-  background-image: linear-gradient(to bottom, rgba(238, 238, 238, 0.338), rgba(187, 187, 187, 0.722));
+  background-image: linear-gradient(to bottom, rgba(242, 242, 242, 0.141), rgba(187, 187, 187, 0.338));
   min-height: 400px;
 
   display: flex;

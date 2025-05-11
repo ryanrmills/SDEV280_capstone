@@ -74,6 +74,7 @@
     </nav>
   
     <section class="player_container">
+      
       <div class="playerbio_section">
         <div class="playerbio_section_profilepic">
           <img id="athlete_image">
@@ -114,7 +115,7 @@
 
           </div>
           
-          
+          <div id="globe_tooltip"></div>
         </div>
 
         <!-- <div class="player_social_media">
@@ -131,7 +132,10 @@
         </div> -->
         <div class="playerbio_highlights">
           <div class="highlights_headerSection">
-            <h4>Career Profile</h4>
+            <div class="highlights_titleAndH2H">
+              <h4>Career Profile</h4>
+              <p><a id="head2head_link">Head-to-Head</a></p>
+            </div>
             <select id="careerProfile_12moBool" class="career_dropdown">
               <option value=''>All-time</option>
               <option value="true">Last 12 Months</option>
@@ -292,9 +296,8 @@
 
       </table>
     </section> -->
+    <!-- <div class="window_globe_tooltip_container">
+      
+      </div> -->
   </body>
-  <div class="window_globe_tooltip_container">
-    <div id="globe_tooltip"></div>
-
-  </div>
   </html>

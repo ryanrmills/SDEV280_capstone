@@ -10,6 +10,9 @@ const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pd
 const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
 //function defined so that I can keep reusing to retrieve json data
+
+document.getElementById('head2head_link').href = `./pages/head2head.php?pdga_number1=${pdgaNum}`;
+
 async function getJsons(url){
   try {
     const response = await fetch(url);
@@ -755,20 +758,20 @@ fetch(`http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_
         }
         // Populate tooltip content
         tooltip.innerHTML = `
-        <strong>${point.name}</strong><br>
+        <!-- <strong>${point.name}</strong> --><br>
         ${point.city}, ${point.state}, ${point.country}<br>
         ${point.start_date}
         `;
         // Position tooltip at mouse
         // (we’ll listen to the globeEl’s mousemove for coords)
-        tooltip.style.display = 'block';
+        tooltip.style.display = 'flex';
       })
       .pointOfView({lat:40.176404, lng: -95.327418, altitude: 1}, 0);
       //40.176404, -95.327418
 
     // 6) Sync tooltip position with mouse
     globeEl.addEventListener('mousemove', e => {
-      tooltip.style.top  = e.clientY + 10 + 'px';
-      tooltip.style.left = e.clientX + 10 + 'px';
+      tooltip.style.top  = /*e.clientY + */10 + 'px';
+      tooltip.style.right = /*e.clientX + */10 + 'px';
     });
   });
