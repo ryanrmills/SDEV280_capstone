@@ -39,7 +39,7 @@ async function playerBio() {
   document.getElementById('full_name').innerHTML = data.player.full_name
   document.getElementById('bio_pdga_number').innerHTML = "#" + data.player.pdga_number + ", member since " + data.player.member_since;
   document.getElementById('hometown').innerHTML  = data.player.hometown;
-  document.getElementById('bio_division').innerHTML = data.player.division
+  document.getElementById('bio_division').innerHTML = `${data.player.division} Division`
   document.getElementById('wins').innerHTML = data.player.wins;
   document.getElementById('top_tens').innerHTML = data.player.top_tens;
   document.getElementById('earnings').innerHTML = `\$${earnings}`;
@@ -94,110 +94,17 @@ async function playerRatingLine(){
   
   let dates = data.dates;
   let values = data.values;
+  let barData = data.reg_avg;
   
-  createOrUpdateLine(dates, values, 'rating_lineChart');
+  createOrUpdateLine(dates, values, barData, 'rating_lineChart');
 }
 
 playerRatingLine();
 
 
 let lineChart;
-async function createOrUpdateLine(label, data, elementId){
+async function createOrUpdateLine(label, data, barData, elementId){
   const canvas = document.getElementById(`${elementId}`);
-
-  //   var options = {
-  //     chart: {
-  //         height: 350,
-  //         type: "line",
-  //         stacked: false
-  //       },
-  //       dataLabels: {
-  //           enabled: false
-  //         },
-  //         colors: ["#FF1654", "#247BA0"],
-  //   series: [
-  //     {
-  //       name: "Series A",
-  //       data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
-  //     },
-  //     {
-  //       name: "Series B",
-  //       data: [20, 29, 37, 36, 44, 45, 50, 58]
-  //     }
-  //   ],
-  //   stroke: {
-  //     width: [4, 4]
-  //   },
-  //   plotOptions: {
-  //     bar: {
-  //       columnWidth: "20%"
-  //     }
-  //   },
-  //   xaxis: {
-  //     categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
-  //   },
-  //   yaxis: [
-  //     {
-  //       axisTicks: {
-  //         show: true
-  //       },
-  //       axisBorder: {
-  //         show: true,
-  //         color: "#FF1654"
-  //       },
-  //       labels: {
-  //         style: {
-  //           colors: "#FF1654"
-  //         }
-  //       },
-  //       title: {
-  //         text: "Series A",
-  //         style: {
-  //           color: "#FF1654"
-  //         }
-  //       }
-  //     },
-  //     {
-  //       opposite: true,
-  //       axisTicks: {
-  //         show: true
-  //       },
-  //       axisBorder: {
-  //         show: true,
-  //         color: "#247BA0"
-  //       },
-  //       labels: {
-  //         style: {
-  //           colors: "#247BA0"
-  //         }
-  //       },
-  //       title: {
-  //         text: "Series B",
-  //         style: {
-  //           color: "#247BA0"
-  //         }
-  //       }
-  //     }
-  //   ],
-  //   tooltip: {
-  //     shared: false,
-  //     intersect: true,
-  //     x: {
-  //       show: false
-  //     }
-  //   },
-  //   legend: {
-  //     horizontalAlign: "left",
-  //     offsetX: 40
-  //   }
-  // };
-  
-  // var chart = new ApexCharts(document.querySelector("#chart"), options);
-  
-  // chart.render();
-
-
-
 
   const options = {
     chart: {
@@ -205,32 +112,49 @@ async function createOrUpdateLine(label, data, elementId){
       width: 320,
       height: 120,
       sparkline: { enabled: true },   // ← removes axes, grid, legend, title
+      stacked: false
     },
-    colors: ["#00F5D4"],
-    series: [{
-      name: 'Avg Rating',
-      data: data
-    }],
+    colors: ["#00F5D4", "#FFF"],
+    series: [
+      {
+        name: 'Running avg',
+        type: 'line',
+        data: data
+      },
+      {
+        name: 'Event avg',
+        type: 'column',
+        data: barData
+      }
+    ],
+    plotOptions: {
+      bar: {
+        columnWidth: '40%'
+      }
+    },
     stroke: {
       curve: 'smooth',
-      width: 2
+      width: 4
     },
     xaxis: {
+      categories: label,
       axisBorder: {
         show: true
       },
       axisTicks: {
-        show: true
+        show: false
       }
     },
     yaxis: {
+      min: 950,
+      max: 1100,
       axisBorder: {
         show: true
       }
     },
     grid: {
       show: true,
-      strokeDashArray: 2,
+      strokeDashArray: 6,
       xaxis: {
         lines: {
           show: true
@@ -243,98 +167,14 @@ async function createOrUpdateLine(label, data, elementId){
       }
     },
     markers: {
-      size: 3
+      size: 4
     },
     tooltip: {
       enabled: true,
-      theme: 'dark',
+      theme: 'light',
       x: { show: false },
       y: { formatter: v => v.toFixed(1) }
     }
-    // chart: {
-    //   height: 150,//350,
-    //   type: "line",
-    //   stacked: false
-    // },
-    // dataLabels: {
-    //   enabled: false
-    // },
-    // colors: ["#FF1654", "#247BA0"],
-    // series: [
-    //   {
-    //     name: "Series A",
-    //     data: data//[1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
-    //   },
-    //   {
-    //     name: "Series B",
-    //     data: [20, 29, 37, 36, 44, 45, 50, 58]
-    //   }
-    // ],
-    // stroke: {
-    //   width: [4, 4]
-    // },
-    // plotOptions: {
-    //   bar: {
-    //     columnWidth: "20%"
-    //   }
-    // },
-    // xaxis: {
-    //   categories: label//[2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
-    // },
-    // yaxis: [
-    //   {
-    //     axisTicks: {
-    //       show: false
-    //     },
-    //     axisBorder: {
-    //       show: false,
-    //       color: "#FF1654"
-    //     },
-    //     labels: {
-    //       style: {
-    //         colors: "#FF1654"
-    //       }
-    //     },
-    //     title: {
-    //       text: "Series A",
-    //       style: {
-    //         color: "#FF1654"
-    //       }
-    //     }
-    //   },
-    //   {
-    //     opposite: true,
-    //     axisTicks: {
-    //       show: false
-    //     },
-    //     axisBorder: {
-    //       show: true,
-    //       color: "#247BA0"
-    //     },
-    //     labels: {
-    //       style: {
-    //         colors: "#247BA0"
-    //       }
-    //     },
-    //     title: {
-    //       text: "Series B",
-    //       style: {
-    //         color: "#247BA0"
-    //       }
-    //     }
-    //   }
-    // ],
-    // tooltip: {
-    //   shared: false,
-    //   intersect: false,
-    //   x: {
-    //     show: false
-    //   }
-    // },
-    // legend: {
-    //   horizontalAlign: "left",
-    //   offsetX: 40
-    // }
   }
   
   if (lineChart){
@@ -780,26 +620,6 @@ function createOrUpdateHbar(labels, data, elementId){
           backgroundColor: '#38A169',
           barThickness: 8,
         },
-        // the dots
-        // {
-        //   type: 'bubble',
-        //   label: 'Marker',
-        //   data: data.map((v,i)=>({ x: v, y: i, r: 6 })),
-        //   backgroundColor: '#FFF',
-        //   borderColor: '#2F855A',
-        //   borderWidth: 2,
-        //   datalabels: {
-        //     anchor: 'start',
-        //     align: 'right',
-        //     formatter: (value) => value.x,
-        //     font: {
-        //       weight: 'bold',
-        //       size: 10
-        //     },
-        //     color: '#444'
-        //   },
-        //   hoverRadius: 8,
-        // }
       ]
     },
     options: {

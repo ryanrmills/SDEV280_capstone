@@ -31,7 +31,10 @@ $sql =
         ORDER BY events.start_date
         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
       )
-    , 2) AS cumulative_average_rating
+    , 2) AS cumulative_average_rating,
+    ROUND(
+      event_results.event_rating, 2
+    ) AS reg_avg
   FROM
     event_results
   JOIN
@@ -51,10 +54,12 @@ $res = $stmt -> get_result();
 
 $dates = [];
 $values = [];
+$regAvg = [];
 while ($row = $res->fetch_assoc()) {
     $dates[] = $row['event_date'];
     // Round to one decimal if you like, or leave raw
     $values[] = round((float)$row['cumulative_average_rating'], 1);
+    $regAvg[] = round((float)$row['reg_avg'],1);
 }
 
 // $statement->close();
@@ -62,7 +67,8 @@ while ($row = $res->fetch_assoc()) {
 // 6. Return the JSON payload
 echo json_encode([
     'dates' => $dates,
-    'values' => $values
+    'values' => $values,
+    'reg_avg' => $regAvg
 ]);
 
 ?>

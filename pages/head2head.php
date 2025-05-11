@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./../css/head2head.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Permanent+Marker&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Fugaz+One&display=swap" rel="stylesheet">
     <!-- Provides flag images -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
     <!-- provides icons, like the views icon -->
@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
     <!-- Testing Globe Chart -->
-    <script src="https://unpkg.com/three" defer></script>
+    <!-- <script src="https://unpkg.com/three" defer></script> -->
     <script src="https://unpkg.com/globe.gl" defer></script>
 
   </head>
@@ -70,6 +70,13 @@
         </div>
       </div>
     </nav>
+
+    <div class="head2head_pageTitle">
+      <img src="./../assets/logo-banner.png">
+      <h1>
+        Head-to-Head
+      </h1>
+    </div>
     
     <section class="comparison_container">
       <div class="comparison_layout">
@@ -87,19 +94,61 @@
           </div>
         </div>
 
-        <div class="comparison_center_playerbio"></div>
+        <div class="comparison_center_playerbio">
+          <h3>
+            Athlete Details
+          </h3>
+        </div>
 
         <div class="comparison_player_two_bio">
-          <div class="playerTwo_profilepic">
-            <img id="playertwo_pic">
-          </div>
-
-          <div class="playertwo_bioDetails">
+        <div class="playertwo_bioDetails">
             <h3 id="playertwo_name"></h3>
             <p id="playertwo_home"></p>
             <p id="playertwo_pdgaNum"></p>
             <p id="playertwo_division"></p>
             <p id="playertwo_memberSince"></p>
+          </div>
+
+          <div class="playerTwo_profilepic">
+            <img id="playertwo_pic">
+          </div>
+        </div>
+
+        <div class="playerone_radials_container">
+          <div class="playerone_radials">
+            <div class="player_radials" id="FWH_radial">
+      
+            </div>
+
+            <div class="player_radials" id="C2R_radial">
+
+            </div>
+
+            <div class="player_radials" id="C1X_radial">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="player_radials_center">
+          <h3>
+            Performance
+          </h3>
+        </div>
+
+        <div class="playertwo_radials_container">
+          <div class="playertwo_radials">
+            <div class="player_radials" id="FWH_radial2">
+        
+            </div>
+
+            <div class="player_radials" id="C2R_radial2">
+
+            </div>
+
+            <div class="player_radials" id="C1X_radial2">
+
+            </div>
           </div>
         </div>
 
@@ -148,7 +197,9 @@
         </div>
 
         <div class="playerstats_center">
-
+          <h3>
+            Career Profile
+          </h3>
         </div>
 
         <div class="comparison_playertwo_stats">
@@ -191,6 +242,32 @@
             <h3 id="playertwo_strokes"></h3>
             <p>Avg. Strokes</p>
           </div>
+        </div>
+
+
+        <div class="playerone_radarContainer">
+          <canvas id="playerone_radar"></canvas>
+        </div>
+
+        <div class="center_radarContainer">
+          <h3>
+            Skill Profile
+          </h3>
+        </div>
+
+        <div class="playertwo_radarContainer">
+          <canvas id="playertwo_radar"></canvas>
+        </div>
+
+        <div class="playerVplayer_lineComparison">
+          <div class="lineComparison_titleSection">
+            <h1>Rating Progression</h1>
+
+          </div>
+          <div id="playerVplayer_lineChart">
+
+          </div>
+
         </div>
 
       </div>

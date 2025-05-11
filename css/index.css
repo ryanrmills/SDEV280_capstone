@@ -484,10 +484,11 @@ p {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #ff994056;
+  /* background-color: #ff6f0052; */
+  background-color:#ff9d0013;
   /* background-image: linear-gradient(to bottom, #ffae51f8, #e7983df8 ); */
   border-radius: 0.4em;
-  border: 1px solid #c45b0a;
+  border: 1px solid #ea7317;
 
   align-items: center;
   justify-content: center;
@@ -598,8 +599,8 @@ p {
 
 .totalStats_section {
   /* background-color: #d5ffedf8; */
-  border: solid 2px #077445f8;
-  background-color: #cbffe9;
+  border: solid 1px #077445f8;
+  background-color: #cbffe95d;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
@@ -667,7 +668,7 @@ canvas {
 
 .totalStats_breakdown {
   /* background-color: #d5ffedf8; */
-  border: solid 2px #ea7317;
+  border: solid 1px #ea7317;
   background-color: #ff9d0013;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
