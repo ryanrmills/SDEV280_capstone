@@ -132,8 +132,9 @@
         <div class="playerbio_highlights">
           <div class="highlights_headerSection">
             <h4>Career Profile</h4>
-            <select class="career_dropdown">
-              <option>All-time</option>
+            <select id="careerProfile_12moBool" class="career_dropdown">
+              <option value=''>All-time</option>
+              <option value="true">Last 12 Months</option>
             </select>
           </div>
           <div class="playerbio_section_mainStats">

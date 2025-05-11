@@ -29,9 +29,10 @@ if ($db->connect_error) {
 
 //assign the pdga number, that is an int value and retrieved from GET, to the pdga variable
 $pdga = intval($_GET['pdga_number']);
-// ——— 1) Main player summary (wins, top_tens, podiums, total_events) ———
+//1) Main player summary (wins, top_tens, podiums, total_events)
 
-$sql = "SELECT
+$sql = 
+  "SELECT
     players.pdga_number, 
     CONCAT(players.first_name, ' ',players.last_name) AS full_name,
     players.division,
@@ -49,12 +50,101 @@ $sql = "SELECT
     ON players.pdga_number = event_results.pdga_number
   JOIN events ON event_results.pdga_event_id = events.pdga_event_id
   WHERE players.pdga_number = ?
-   -- AND events.start_date BETWEEN '2024-01-01' AND '2025-01-01'
   GROUP BY players.pdga_number
 ";
 
-$stmt = $db->prepare($sql);
+//query for finding a player's average place
+$avgPlaceQuery =
+"SELECT ROUND(AVG(place), 0) AS avg_place
+  FROM event_results
+  WHERE pdga_number = ?
+";
 
+$avgStrokesQuery = 
+"SELECT 
+    AVG(event_totals.total_score) AS avg_strokes_per_event
+ FROM (
+    SELECT 
+      pdga_event_id,
+      SUM(score) AS total_score
+    FROM event_rounds
+    WHERE pdga_number = ?
+    GROUP BY pdga_event_id
+ ) AS event_totals
+";
+
+
+$oneYearAgo = date('Y-m-d', strtotime('-12 months'));
+
+if (isset($_GET['is_last_12_months']) == true){
+  $sql = 
+  "SELECT
+      players.pdga_number,
+      CONCAT(players.first_name, ' ', players.last_name) AS full_name,
+      players.division,
+      CONCAT(players.city, ', ', players.state) AS hometown,
+      players.nationality,
+      players.member_since,
+      SUM(CASE WHEN event_results.place = 1 THEN 1 ELSE 0 END) AS wins,
+      SUM(CASE WHEN event_results.place <= 10 THEN 1 ELSE 0 END) AS top_tens,
+      SUM(CASE WHEN event_results.place <= 3 THEN 1 ELSE 0 END) AS podiums,
+      SUM(event_results.cash) AS earnings,
+      ROUND(AVG(event_results.event_rating), 0) AS avg_rating,
+      COUNT(event_results.place) AS total_events
+    FROM
+      players
+    LEFT JOIN
+      event_results
+        ON players.pdga_number = event_results.pdga_number
+    LEFT JOIN
+      events
+        ON event_results.pdga_event_id = events.pdga_event_id
+    WHERE
+      players.pdga_number = ?
+      AND events.start_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+    GROUP BY
+      players.pdga_number
+    ";
+
+  $avgPlaceQuery =
+  "SELECT
+    ROUND(AVG(event_results.place), 0) AS avg_place
+  FROM
+    event_results
+  JOIN
+    events
+      ON event_results.pdga_event_id = events.pdga_event_id
+        AND events.start_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+  WHERE
+    event_results.pdga_number = ?
+  ";
+
+  $avgStrokesQuery =
+  "SELECT
+    AVG(event_totals.total_score) AS avg_strokes_per_event
+   FROM (
+    SELECT
+      event_rounds.pdga_event_id,
+      SUM(event_rounds.score) AS total_score
+    FROM
+      event_rounds
+    JOIN
+      events
+        ON event_rounds.pdga_event_id = events.pdga_event_id
+          AND events.start_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+    WHERE
+      event_rounds.pdga_number = ?
+    GROUP BY
+      event_rounds.pdga_event_id
+   ) AS event_totals
+  ";
+}
+
+
+/**
+ * For prepare and execute for the main query
+ */
+$stmt = $db->prepare($sql);
 if (!$stmt) {
   echo json_encode(['error' => 'Prepare failed: ' . $db->error]);
   exit;
@@ -70,11 +160,10 @@ if (!$player) {
   exit;
 }
 
-//querying average place across all events
-$avgPlaceStmt = $db->prepare("SELECT ROUND(AVG(place), 0) AS avg_place
-    FROM event_results
-   WHERE pdga_number = ?
-");
+/**
+ * For preparing and executing the query for average place
+ */
+$avgPlaceStmt = $db -> prepare($avgPlaceQuery);
 $avgPlaceStmt->bind_param('i', $pdga);
 $avgPlaceStmt->execute();
 $avgPlaceRow = $avgPlaceStmt->get_result()->fetch_assoc();
@@ -83,16 +172,10 @@ $avgPlaceStmt->close();
 $player['avg_place'] = $avgPlace !== null ? round($avgPlace, 1) : null;
 
 
-// calculating the average strokes per event ———
-$avgStrokesStmt = $db->prepare("SELECT AVG(event_totals.total_score) AS avg_strokes_per_event
-    FROM (
-           SELECT pdga_event_id,
-                  SUM(score) AS total_score
-             FROM event_rounds
-            WHERE pdga_number = ?
-            GROUP BY pdga_event_id
-         ) AS event_totals
-");
+/**
+ * For preparing and executing the query for average strokes
+ */
+$avgStrokesStmt = $db -> prepare($avgStrokesQuery);
 $avgStrokesStmt->bind_param('i', $pdga);
 $avgStrokesStmt->execute();
 $avgStrokesRow = $avgStrokesStmt->get_result()->fetch_assoc();
@@ -100,62 +183,155 @@ $avgStrokes = $avgStrokesRow ? (float)$avgStrokesRow['avg_strokes_per_event'] : 
 $avgStrokesStmt->close();
 $player['avg_strokes_per_event'] = $avgStrokes !== null ? round($avgStrokes, 1) : null;
 
-//query to display the list of events
-// $eventsStmt = $db->prepare("SELECT DISTINCT
-//     event_rounds.pdga_event_id,
-//     events.name,
-//     events.start_date,
-//     events.end_date,
-//     events.tier,
-//     events.city,
-//     events.state,
-//     events.country
-//   FROM event_rounds
-//   JOIN events
-//     ON event_rounds.pdga_event_id = events.pdga_event_id
-//   WHERE event_rounds.pdga_number = ?
-//   ORDER BY events.start_date DESC
-// ");
-// $eventsStmt->bind_param('i', $pdga);
-// $eventsStmt->execute();
-// $events = $eventsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
-// $eventsStmt->close();
 
-// //all round‐stat details
-// $statsStmt = $db->prepare("SELECT
-//       event_rounds.pdga_event_id,
-//       event_rounds.event_round_id,
-//       event_rounds.round,
-//       event_rounds.score,
-//       event_rounds.division,
-//       event_round_player_stats.stat_id,
-//       stats.stat_name,
-//       event_round_player_stats.stat_count,
-//       event_round_player_stats.opportunity_count,
-//       event_round_player_stats.printed_value
-//     FROM event_rounds
-//     JOIN event_round_player_stats
-//       ON event_rounds.event_round_id = event_round_player_stats.event_round_id
-//     JOIN stats
-//       ON stats.stat_id = event_round_player_stats.stat_id
-//     WHERE event_rounds.pdga_number = ?
-//     ORDER BY
-//       event_rounds.pdga_event_id,
-//       event_rounds.round,
-//       stats.stat_id
-// ");
-// $statsStmt->bind_param('i', $pdga);
-// $statsStmt->execute();
-// $round_stats = $statsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
-// $statsStmt->close();
-
-
-
-
-//─── 6) output everything ───────────────────────────────────────────────────
+/**
+ * Echoing the final json format data
+ */
 echo json_encode([
   'player' => $player
-  // 'events'      => $events,
-  // 'round_stats' => $round_stats
 ]);
+/*
+LEARNING EXP: DATE FORMAT
+
+SELECT
+  players.pdga_number,
+  CONCAT(players.first_name, ' ', players.last_name) as full_name,
+  players.division,
+  CONCAT(players.city, ', ', players.state) as hometown,
+  nationality,
+  member_since,
+  (
+    SELECT
+      COUNT(event_results.pdga_number)
+    FROM
+      event_results
+	JOIN events
+		ON event_results.pdga_event_id = events.pdga_event_id
+    WHERE
+      event_results.pdga_number = 75412
+      AND event_results.place = 1
+      AND events.start_date >= '05-11-2024'
+  ) AS wins,
+  (
+	SELECT
+      	COUNT(DISTINCT event_results.pdga_event_id)
+    FROM
+      event_results
+	WHERE event_results.place <= 10
+    AND pdga_number = 75412
+  ) as top_tens,
+  (
+    SELECT
+      COUNT(DISTINCT event_results.pdga_event_id)
+    FROM
+      event_results
+    WHERE
+      event_results.pdga_number = 75412
+      AND event_results.place <= 3
+  ) AS podiums,
+  (
+    SELECT
+      SUM(event_results.cash)
+    FROM
+      event_results
+    JOIN events
+      on event_results.pdga_event_id = events.pdga_event_id
+    WHERE event_results.pdga_number = 75412
+    AND events.start_date >= '2024-05-11'
+  ) AS earnings,
+  (
+    SELECT
+      COUNT(DISTINCT events.pdga_event_id)
+    FROM
+      event_rounds
+    JOIN
+      events
+        ON event_rounds.pdga_event_id = events.pdga_event_id
+    WHERE
+      event_rounds.pdga_number = 75412
+      AND events.start_date >= '2024-05-11'
+  ) AS total_events,
+  (
+  	SELECT
+      AVG(event_results.event_rating)
+	FROM
+      event_results
+	JOIN events
+      ON event_results.pdga_event_id = events.pdga_event_id
+    WHERE pdga_number = 75412
+      AND events.start_date >= '2024-05-11'
+  ) AS avg_rating
+
+FROM
+  players
+WHERE
+  players.pdga_number = 75412;
+
+----------------------------------------------------------
+
+SELECT
+  players.pdga_number,
+  CONCAT(players.first_name, ' ', players.last_name) as full_name,
+  players.division,
+  CONCAT(players.city, ', ', players.state) as hometown,
+  nationality,
+  member_since,
+  (
+    SELECT
+      COUNT(event_results.pdga_number)
+    FROM
+      event_results
+  JOIN events
+    ON event_results.pdga_event_id = events.pdga_event_id
+    WHERE
+      event_results.pdga_number = 75412
+      AND event_results.place = 1
+      AND events.start_date >= '05-11-2024'
+  ) AS wins,
+  (
+  SELECT
+        COUNT(event_results.pdga_number)
+    FROM
+      event_results
+  WHERE event_results.place <= 10
+    AND pdga_number = 75412
+  ) as top_tens,
+  (
+    SELECT
+      COUNT(event_results.pdga_number)
+    FROM
+      event_results
+    WHERE
+      event_results.pdga_number = 75412
+      AND event_results.place <= 3
+  ) AS podiums,
+  (
+    SELECT
+      SUM(event_results.cash)
+    FROM
+      event_results
+    JOIN events
+      on event_results.pdga_event_id = events.pdga_event_id
+    WHERE event_results.pdga_number = 75412
+    AND events.start_date >= '05-11-2024'
+  ) AS earnings,
+  (
+    SELECT
+      COUNT(DISTINCT events.pdga_event_id)
+    FROM
+      event_rounds
+    JOIN
+      events
+        ON event_rounds.pdga_event_id = events.pdga_event_id
+    WHERE
+      event_rounds.pdga_number = 75412
+      AND events.start_date >= '2024-05-11'
+  ) AS total_events
+
+FROM
+  players
+WHERE
+  players.pdga_number = 75412;
+
+*/
 ?>

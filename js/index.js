@@ -27,8 +27,58 @@ async function getJsons(url){
 
 //this part of the code starts displaying the player bio
 async function playerBio() {
-  const data = await getJsons(playerBioUrl);
+  function createOrUpdateCareerProfile(data){
+    //adding appropriate commas to thousands place to earnings
+    let earnings = parseFloat(data.player.earnings).toLocaleString('en-US');
 
+    //populate your player info into the HTML
+    document.getElementById('athlete_image').src = `./assets/${data.player.pdga_number}.jpg`;
+    // document.getElementById('first_name').innerHTML = data.player.first_name;
+    // document.getElementById('last_name').innerHTML = data.player.last_name;
+    document.getElementById('full_name').innerHTML = data.player.full_name
+    document.getElementById('bio_pdga_number').innerHTML = "#" + data.player.pdga_number + ", member since " + data.player.member_since;
+    document.getElementById('hometown').innerHTML  = data.player.hometown;
+    document.getElementById('bio_division').innerHTML = `${data.player.division} Division`
+    document.getElementById('wins').innerHTML = data.player.wins;
+    document.getElementById('top_tens').innerHTML = data.player.top_tens;
+    document.getElementById('earnings').innerHTML = `\$${earnings}`;
+    document.getElementById('podiums').innerHTML = data.player.podiums;
+    //document.getElementById('first_name_compared').innerHTML = data.player.first_name;
+    document.getElementById('total_events').innerHTML = data.player.total_events;
+    document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place) + "th";
+    document.getElementById('avg_rating').innerHTML = data.player.avg_rating;
+    document.getElementById('avg_strokes').innerHTML = Math.floor(data.player.avg_strokes_per_event);
+  }
+
+  const timelineSelect = document.getElementById('careerProfile_12moBool');
+  const timeline = document.getElementById('careerProfile_12moBool').value;
+
+
+  async function drawCareerProfile(isLast12){
+    let url = isLast12
+      ? playerBioUrl + `&is_last_12_months=${timeline}`
+      : playerBioUrl;
+      
+    const data = await getJsons(url);
+
+    createOrUpdateCareerProfile(data);
+  }
+
+  timelineSelect.addEventListener('change', (e) => {
+    document.getElementById('top_tens').innerHTML = ''
+    document.getElementById('earnings').innerHTML = ''
+    document.getElementById('podiums').innerHTML = ''
+    document.getElementById('wins').innerHTML = '';
+    document.getElementById('total_events').innerHTML = ''
+    document.getElementById('avg_place').innerHTML = ''
+    document.getElementById('avg_rating').innerHTML = ''
+    document.getElementById('avg_strokes').innerHTML = ''
+    drawCareerProfile(e.target.value);
+  })
+
+  drawCareerProfile('');
+
+  /*
   //adding appropriate commas to thousands place to earnings
   let earnings = parseFloat(data.player.earnings).toLocaleString('en-US');
 
@@ -49,7 +99,7 @@ async function playerBio() {
   document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place) + "th";
   document.getElementById('avg_rating').innerHTML = data.player.avg_rating;
   document.getElementById('avg_strokes').innerHTML = Math.floor(data.player.avg_strokes_per_event);
-
+  */
 }
 playerBio();
 

@@ -150,6 +150,7 @@ nav div img:hover {
   display:flex;
   padding: 0em 1em;
   justify-content: center;
+  align-items: start;
   flex-direction: column;
 
   box-sizing: border-box;
@@ -159,6 +160,7 @@ nav div img:hover {
   font-family: "Urbanist", sans-serif;
 
   height: 100%;
+  width: 100%;
 }
 
 .playerone_bioDetails h3,p {
@@ -170,8 +172,8 @@ nav div img:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* max-height: 200px;
-  max-width: 200px; */
+  /* max-height: 200px;*/
+  min-width: 200px;
   height: 200px;
   border-radius: 0.4em;
   overflow: hidden;
@@ -217,6 +219,7 @@ nav div img:hover {
   display:flex;
   padding: 0em 1em;
   justify-content: center;
+  align-items: end;
   flex-direction: column;
 
   box-sizing: border-box;
@@ -226,6 +229,7 @@ nav div img:hover {
   font-family: "Urbanist", sans-serif;
 
   height: 100%;
+  width: 100%;
 }
 
 .playertwo_bioDetails h3,p {
@@ -237,8 +241,8 @@ nav div img:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* max-height: 200px;
-  max-width: 200px; */
+  /* max-height: 200px;*/
+  min-width: 200px; 
   height: 200px;
   border-radius: 0.4em;
   overflow: hidden;
