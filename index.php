@@ -114,7 +114,7 @@
 
           </div>
           
-          <div id="globe_tooltip"></div>
+          
         </div>
 
         <!-- <div class="player_social_media">
@@ -293,4 +293,8 @@
       </table>
     </section> -->
   </body>
+  <div class="window_globe_tooltip_container">
+    <div id="globe_tooltip"></div>
+
+  </div>
   </html>

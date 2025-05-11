@@ -220,19 +220,7 @@ i {
   border-radius: 0.4em;
 }
 
-.globe_tooltip {
-  position: fixed;
-  right: -2em;
-  /* pointer-events: none; */
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  /* padding: 4px 8px; */
-  border-radius: 4px;
-  font-size: 12px;
-  display: none;
-  /* white-space: nowrap; */
-  z-index: 1000;
-}
+
 
 .playerbio_section > .playerbio_ratingOverTime {
   grid-area: rate;
@@ -363,7 +351,8 @@ select {
   min-height: 100px;
   /* max-height: 90px; */
 
-  background-color: rgb(0, 57, 0);
+  /* background-color: rgb(0, 57, 0); */
+  background-image: linear-gradient(to bottom, rgba(0, 57, 0, 0.841), rgb(0, 37, 0));
   /* background-color: #fefae0c1; */
   /* background-color: #d5ffedf8; */
   /* background-image: linear-gradient(to bottom, rgb(0, 71, 0),rgb(0, 33, 15)); */
@@ -484,11 +473,10 @@ p {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  /* background-color: #ff6f0052; */
-  background-color:#ff9d0013;
-  /* background-image: linear-gradient(to bottom, #ffae51f8, #e7983df8 ); */
+  /* background-color:#ff9d0013; */
+  background-image: linear-gradient(to bottom, #ff9d0013, #ff9d003e );
   border-radius: 0.4em;
-  border: 1px solid #ea7317;
+  /* border: 1px solid #ea7317; */
 
   align-items: center;
   justify-content: center;
@@ -599,8 +587,9 @@ p {
 
 .totalStats_section {
   /* background-color: #d5ffedf8; */
-  border: solid 1px #077445f8;
-  background-color: #cbffe95d;
+  /* border: solid 1px #077445f8;
+  background-color: #cbffe95d; */
+  background-image: linear-gradient(to bottom, #d5ffed77, #d5ffedf8 );
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
@@ -668,7 +657,8 @@ canvas {
 
 .totalStats_breakdown {
   /* background-color: #d5ffedf8; */
-  border: solid 1px #ea7317;
+  /* border: solid 1px #ea7317; */
+  background-image: linear-gradient(to bottom, #ff9d0013, #ff9d003e );
   background-color: #ff9d0013;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
@@ -702,4 +692,24 @@ canvas {
 .playerStats_tableStats table {
   font-family: "Urbanist", sans-serif;
   max-width: 1200px;
+}
+
+.window_globe_tooltip_container{
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  position: relative;
+}
+
+.window_globe_tooltip_container .globe_tooltip {
+  position: fixed;
+  right: 0em;
+  /* pointer-events: none; */
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  /* padding: 4px 8px; */
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  /* white-space: nowrap; */
 }
