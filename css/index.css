@@ -21,12 +21,15 @@ nav {
   box-sizing: border-box;
 }
 
-nav div .navbar_link {
-  box-sizing: border-box;
+.navbar_link {
+  /* box-sizing: border-box; */
   margin: 0px;
   padding: 0em 1em;
   height: 99%;
   transition: 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav .navbar_link:hover {
@@ -35,7 +38,7 @@ nav .navbar_link:hover {
   color: #e65100;
 }
 
-nav div img:hover {
+nav img:hover {
   transition: 0.1s;
   /* transform: translateY(-2px); */
 }
@@ -57,12 +60,6 @@ nav div img:hover {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.navbar_links div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .material-symbols-outlined {
@@ -607,6 +604,7 @@ p {
 
 .totalStats_container {
   width: 100%;
+  /* max-width: 1100px; */
   margin-top: 1em;
   display: flex;
   align-items: center;
@@ -624,15 +622,18 @@ p {
   color: rgb(99, 99, 99);
 
   min-width: 500px;
-  max-width: 500px;
+  max-width: 560px;
+  width: 60%;
   height: 400px;
 
   display: flex;
   padding: 1em;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   position: relative;
+  gap: 1em;
+  /* box-sizing: border-box; */
 }
 
 .totalStats_sectionHeader {
@@ -676,12 +677,67 @@ p {
   border-bottom: 1px solid black;
 }
 
+.radar_modification_container{
+  height: 40%;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+}
+
+#radar_checklist_container {
+  border: 1px solid rgb(156, 156, 156);
+  padding: 0.2em;
+  background-color: white;
+  border-radius: 0.4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: left;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  /* direction: rtl; */
+}
+
+/* #radar_checklist_container::-webkit-scrollbar {
+  display: none;
+}
+
+#radar_checklist_container {
+  scrollbar-width: none;
+}
+
+
+#radar_checklist_container {
+  -ms-overflow-style: none;
+} */
+
+.radar_checklist_submitBtn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  color: white;
+  border-radius: 0.4em;
+  /* background-image: linear-gradient(to bottom, rgb(35, 215, 173), rgb(0, 166, 94)); */
+  background-color: #002c19f8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+}
+
+.radar_checklist_submitBtn:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+
+
 canvas {
   /* position: absolute;
   right: 50px; */
   margin-top: 2em;
-  height: 100px;
-  width: 70%;
+  height: 44%;
 }
 
 .totalStats_breakdown {
@@ -693,8 +749,9 @@ canvas {
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
 
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 300px;
+  max-width: 440px;
+  width: 40%;
   min-height: 400px;
 
   display: flex;

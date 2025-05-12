@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
     <!-- Testing Globe Chart -->
-    <script src="https://unpkg.com/three" defer></script>
+    <!-- <script src="https://unpkg.com/three" defer></script> -->
     <script src="https://unpkg.com/globe.gl" defer></script>
     <!-- handmade js file for this specific page -->
     <script src="./js/index.js" defer></script>
@@ -51,7 +51,9 @@
         </div>
   
         <div class="navbar_link">
-          <h3>Player Profiles</h3>
+          <a href="./pages/player_list.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+            <h3>Player Profiles</h3>
+          </a>
         </div>
   
         <div class="navbar_link">
@@ -59,7 +61,9 @@
         </div>
   
         <div class="navbar_link">
-          <h3>Head-to-Head</h3>
+          <a href="./pages/head2head.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+            <h3>Head-to-Head</h3>
+          </a>
         </div>
   
         <div class="navbar_link">
@@ -134,7 +138,7 @@
           <div class="highlights_headerSection">
             <div class="highlights_titleAndH2H">
               <h4>Career Profile</h4>
-              <p><a id="head2head_link">Head-to-Head</a></p>
+              <p><a id="head2head_link" style="color: red;">Head-to-Head</a></p>
             </div>
             <select id="careerProfile_12moBool" class="career_dropdown">
               <option value=''>All-time</option>
@@ -244,7 +248,7 @@
     </section>
     <br>
     <section class="totalStats_container">
-      <div class="totalStats_section">
+      <div class="totalStats_section" id="radarChart_container">
         <div class="totalStats_sectionHeader">
           <h2 class="totalStats_section_title">Skill Profile</h2>
 
@@ -260,8 +264,14 @@
             </div>
           </div>
         </div>
+        <div class="radar_modification_container">
+          <div id="radar_checklist_container">
 
-
+          </div>
+          <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
+            Submit
+          </button>
+        </div>
         <canvas id="radar_chart"></canvas>
       </div>
 

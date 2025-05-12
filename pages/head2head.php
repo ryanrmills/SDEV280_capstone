@@ -50,7 +50,9 @@
         </div>
   
         <div class="navbar_link">
-          <h3>Player Profiles</h3>
+          <a href="./../pages/player_list.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+            <h3>Player Profiles</h3>
+          </a>
         </div>
   
         <div class="navbar_link">
@@ -58,7 +60,9 @@
         </div>
   
         <div class="navbar_link">
-          <h3>Head-to-Head</h3>
+          <a href="./../pages/head2head.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+            <h3>Head-to-Head</h3>
+          </a>
         </div>
   
         <div class="navbar_link">
