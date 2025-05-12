@@ -26,6 +26,13 @@ const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/ge
 */
 //function defined so that I can keep reusing to retrieve json data
 
+//if the pdgaNum is null, then redirect the user to playerList so that they can pick a player's stats
+window.addEventListener('DOMContentLoaded', () => {
+  if (pdgaNum === 'undefined' || pdgaNum === null || pdgaNum === ''){
+    window.location.href = './pages/player_list.php';
+  }
+})
+
 document.getElementById('head2head_link').href = `./pages/head2head.php?pdga_number1=${pdgaNum}`;
 
 async function getJsons(url){
