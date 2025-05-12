@@ -10,6 +10,20 @@ const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pd
 const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
 const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+
+
+
+/*
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+
+*/
 //function defined so that I can keep reusing to retrieve json data
 
 document.getElementById('head2head_link').href = `./pages/head2head.php?pdga_number1=${pdgaNum}`;
@@ -289,38 +303,7 @@ async function playerRadar(){
     radarChecklistContainer.append(label)
   }
 
-  const submitBtn = document.getElementById('radar_checklist_submitBtn');
-  let values = []
-  let checkboxes = document.querySelectorAll('#stats_check');
-  submitBtn.onclick = () => {
-    values = [];
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        values.push(parseInt(checkbox.value));
-      }
-    })
-
-    drawRadar('', '', values);
-
-  }
-
-  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn');
-  selectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (!checkbox.checked){
-        checkbox.checked = true;
-      }
-    })
-  }
-
-  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn');
-  unselectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        checkbox.checked = false;
-      }
-    })
-  }
+  
 
 
 
@@ -425,6 +408,53 @@ async function playerRadar(){
     //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
     drawRadar(yearSelect.value, e.target.value, values);
   })
+
+  const submitBtn = document.getElementById('radar_checklist_submitBtn');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadar('', '', values);
+
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
 
   drawRadar('', '', values);
 

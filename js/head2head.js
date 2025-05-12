@@ -7,6 +7,13 @@ const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php
 const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
 const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
 
+/*
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+*/
+
 async function getJsons(url){
   try {
     const response = await fetch(url);

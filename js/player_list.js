@@ -1,18 +1,3 @@
-//this function is called when the page loads, waits for event called 'DOMContentLoaded'
-// document.addEventListener('DOMContentLoaded', () => {
-
-//   //when page loads we fetch the data from the php, using the fetch function
-//   fetch('../api/players.php')
-//     .then(res => res.json())
-//     .then(players => {
-//       const li = document.createElement('li');
-
-//       li.innerHTML = `
-
-//       `
-//     })
-// })
-
 $(document).ready(function () {
   $("#player_table").DataTable({
     ajax: {
@@ -37,12 +22,3 @@ $(document).ready(function () {
     pageLength: 25,
   });
 });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   fetch('../api/get_players.php')
-//     .then(res => res.json())
-//     .then(data =>  {
-//       console.log(data);
-//     })
-
-// })

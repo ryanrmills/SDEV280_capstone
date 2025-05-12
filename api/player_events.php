@@ -6,7 +6,7 @@
 
   if (!isset($_GET['pdga_number']) OR !isset($_GET['year'])) {
     http_response_code(400);
-    echo json_encode(['error'=>'Missing pdga_number']);
+    echo json_encode(['error'=>'Missing pdga_number or year parameter']);
     exit;
   }
 
