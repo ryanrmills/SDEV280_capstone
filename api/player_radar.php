@@ -20,6 +20,15 @@ $pdgaNumber = intval($_GET['pdga_number']);
 
 //Choose which stats to include in the radar
 $statIds = [1, 7, 8, 5, 10];
+
+$items = isset($_GET['ids']) ? explode(',',$_GET['ids']) : $statIds;
+
+$items = array_map('intval', $items);
+
+
+$statIds = $items;
+
+
 // 1 = Fairway Hit         15 = Eagle or Better Percentage
 // 2 = C1 In Regulation    16 = Putting - Total Distance
 // 3 = C2 in Regulation    17 = Throw in - Longest

@@ -1,4 +1,9 @@
 <?php
+  //this is for displaying errors and debugging
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  
   header('Content-Type: application/json');
 
   //creating a function to display to console to help with debugging
@@ -7,13 +12,8 @@
   //this is where we're going to be loading the credentials from config/db.php
   require_once __DIR__ . '/../../../config/db.php';
 
-  try {
-    $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    
-    
-  } catch (mysqli_sql_exception){
-    
-  };
+  $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  $db->set_charset('utf8mb4');
 
   //This is our sql query that we'll be sending to the database to get our information
   $sql = "SELECT pdga_number, CONCAT(first_name, ' ', last_name) AS full_name, division, city, state, country, nationality, member_since FROM players";
@@ -35,7 +35,31 @@
       $players[] = $row;
     }
   }
+  
 
-  //This turns the players list into a JSON file?
+
+// array_walk_recursive($players, function(&$v){
+//   $v = mb_convert_encoding($v, 'UTF-8', 'UTF-8');
+// });
+
+// force the correct header (if not already)
+//header('Content-Type: application/json'); //; charset=UTF-8
+
+// pretty‑print only if you’re manually inspecting
+/*echo json_encode([
+  'data' => $players
+], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);*/
+
+// stop any further output
+//exit;
+  
+//   echo json_encode(['data'=>$players]);
+  
+//   if (json_last_error() !== JSON_ERROR_NONE) {
+//     error_log('JSON encode error: ' . json_last_error_msg());
+//   }
+
+
+
   echo json_encode(["data" => $players]);
 ?>

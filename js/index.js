@@ -9,7 +9,29 @@ const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdg
 const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
 const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+
+
+
+/*
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+
+*/
 //function defined so that I can keep reusing to retrieve json data
+
+//if the pdgaNum is null, then redirect the user to playerList so that they can pick a player's stats
+window.addEventListener('DOMContentLoaded', () => {
+  if (pdgaNum === 'undefined' || pdgaNum === null || pdgaNum === ''){
+    window.location.href = './pages/player_list.php';
+  }
+})
 
 document.getElementById('head2head_link').href = `./pages/head2head.php?pdga_number1=${pdgaNum}`;
 
@@ -267,6 +289,49 @@ async function createOrUpdateLine(label, data, barData, elementId){
 
 //this part is responsible for retrieving the data for the radar graph
 async function playerRadar(){
+  //populate the checkboxes
+  
+  
+  const radarChecklistContainer = document.getElementById('radar_checklist_container');
+  const statIdsData = await getJsons(statIdsList);
+
+  for (let i = 0; i < statIdsData.id.length; i++){
+    const label = document.createElement('label');
+    label.style.display = 'block';
+
+    const checkInput = document.createElement('input');
+    checkInput.type = 'checkbox';
+    checkInput.id = 'stats_check';
+    checkInput.value = statIdsData.id[i]
+    label.append(checkInput);
+
+    label.append(statIdsData.name[i]);
+
+    radarChecklistContainer.append(label)
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const yearSelect = document.getElementById('radar_yearSelect');
   const radarSelect = document.getElementById('radar_eventSelect');
   
@@ -291,7 +356,7 @@ async function playerRadar(){
     yearSelect.append(option);
   })
 
-  async function drawHbar(year, eventId){
+  async function drawRadar(year, eventId, valuesIds){
     let url = year
       ? playerRadarUrl + "&year=" + year
       : playerRadarUrl;
@@ -299,6 +364,18 @@ async function playerRadar(){
     url = eventId
       ? url + "&event=" + eventId
       : url
+    
+    // url = valuesIds
+    //   ? url + "&ids=" + encodeURIComponent(values.join(","))
+    //   : url
+
+    if (valuesIds.length > 0){
+      url = url + "&ids=" + valuesIds;
+    }
+
+
+    console.log(valuesIds)
+    console.log("hello?: ", url)
       
     const data = await getJsons(url);
 
@@ -331,15 +408,62 @@ async function playerRadar(){
 
     getEventsFromYear(e.target.value);
 
-    drawHbar(e.target.value, '');
+    drawRadar(e.target.value, '', values);
   })
 
   radarSelect.addEventListener('change', e => {
     //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
-    drawHbar(yearSelect.value, e.target.value);
+    drawRadar(yearSelect.value, e.target.value, values);
   })
 
-  drawHbar('', '');
+  const submitBtn = document.getElementById('radar_checklist_submitBtn');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadar('', '', values);
+
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
+
+  drawRadar('', '', values);
 
 };
 playerRadar();
@@ -442,7 +566,6 @@ async function playerRadial(){
       ? `${playerRadialUrl}&year=${year}`
       : playerRadialUrl;
     const data = await getJsons(url);
-    console.log(data)
 
     // destructure
     const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;

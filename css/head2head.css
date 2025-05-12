@@ -76,7 +76,7 @@ nav div img:hover {
 .head2head_pageTitle {
   width: 100%;
   font-family: "Permanent Marker", sans-serif;
-  font-size: 1.2em;
+  font-size: 1.4em;
   
 
   margin-top: 1em;
@@ -98,7 +98,8 @@ nav div img:hover {
   max-height: 60px;
   max-width: 30%;
   color: white;
-  background-image: linear-gradient(to bottom right, rgb(0, 98, 255), rgb(0, 189, 183));
+  /* background-image: linear-gradient(to bottom right, rgb(0, 98, 255), rgb(0, 189, 183)); */
+  background-image: linear-gradient(to bottom right, rgb(255, 31, 31), rgb(93, 26, 16));
   border-radius: 0.4em;
 }
 
