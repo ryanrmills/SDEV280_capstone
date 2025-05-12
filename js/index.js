@@ -48,7 +48,7 @@ async function playerBio() {
     document.getElementById('podiums').innerHTML = data.player.podiums;
     //document.getElementById('first_name_compared').innerHTML = data.player.first_name;
     document.getElementById('total_events').innerHTML = data.player.total_events;
-    document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place) + "th";
+    document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place);
     document.getElementById('avg_rating').innerHTML = data.player.avg_rating;
     document.getElementById('avg_strokes').innerHTML = Math.floor(data.player.avg_strokes_per_event);
   }
