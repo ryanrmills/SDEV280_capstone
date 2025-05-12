@@ -291,9 +291,9 @@ async function playerRadar(){
 
   const submitBtn = document.getElementById('radar_checklist_submitBtn');
   let values = []
+  let checkboxes = document.querySelectorAll('#stats_check');
   submitBtn.onclick = () => {
     values = [];
-    let checkboxes = document.querySelectorAll('#stats_check');
     checkboxes.forEach(checkbox => {
       if (checkbox.checked){
         values.push(parseInt(checkbox.value));
@@ -302,6 +302,24 @@ async function playerRadar(){
 
     drawRadar('', '', values);
 
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
   }
 
 

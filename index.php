@@ -265,6 +265,12 @@
           </div>
         </div>
         <div class="radar_modification_container">
+          <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
+            Select all
+          </button>
+          <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
+            Unselect all
+          </button>
           <div id="radar_checklist_container">
 
           </div>
@@ -295,6 +301,9 @@
 
         </canvas>
       </div>
+    </section>
+    <section style="height: 100px; width: 100%;">
+
     </section>
 
     <!-- <section class="playerStats_tableStats">
