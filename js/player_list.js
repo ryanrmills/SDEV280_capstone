@@ -9,7 +9,7 @@ $(document).ready(function () {
       {
         data: "full_name",
         render: function (data, type, row) {
-          return `<a href="./../index.php?pdga_number=${row.pdga_number}">${data}</a>`;
+          return `<a target="_blank" href="./../index.php?pdga_number=${row.pdga_number}">${data}</a>`;
         },
       },
       { data: "division" },

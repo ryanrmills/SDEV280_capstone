@@ -50,7 +50,7 @@
         </div>
   
         <div class="navbar_link">
-          <a href="./../pages/player_list.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+          <a href="./../pages/player_list.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
             <h3>Player Profiles</h3>
           </a>
         </div>
@@ -60,7 +60,7 @@
         </div>
   
         <div class="navbar_link">
-          <a href="./../pages/head2head.php" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+          <a href="./../pages/head2head.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
             <h3>Head-to-Head</h3>
           </a>
         </div>
@@ -84,6 +84,20 @@
     
     <section class="comparison_container">
       <div class="comparison_layout">
+        <div class="search_container">
+          <div class="player1_search_container">
+            <h2>Athlete 1</h2>
+            <input id="playerOne_search_input" placeholder="Search athlete..." type="text">
+            <div id="playerOne_suggestion" class="suggestion_box"></div>
+          </div>
+
+          <div class="player2_search_container">
+            <h2>Athlete 2</h2>
+            <input id="playerTwo_search_input" placeholder="Search athlete..." type="text">
+            <div id="playerTwo_suggestion" class="suggestion_box"></div>
+          </div>
+
+        </div>
         <div class="comparison_player_one_bio">
           <div class="playerOne_profilepic">
             <img id="playerone_pic">

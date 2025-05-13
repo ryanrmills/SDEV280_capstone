@@ -1,17 +1,19 @@
 const urlParams = new URLSearchParams(window.location.search);
-const pdgaNumOne = urlParams.get("pdga_number1");
-const pdgaNumTwo = urlParams.get("pdga_number2");
+let pdgaNumOne = urlParams.get("pdga_number1");
+let pdgaNumTwo = urlParams.get("pdga_number2");
 
 const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
 const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
 const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
 const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
 
 /*
 const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
 const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
 const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
 const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
 */
 
 async function getJsons(url){
@@ -28,6 +30,105 @@ async function getJsons(url){
     console.log("Something went wrong: " + error);
   }
 }
+
+
+let playerOneInput = document.getElementById('playerOne_search_input');
+let playerTwoInput = document.getElementById('playerTwo_search_input');
+let playerOneSuggestion = document.getElementById('playerOne_suggestion');
+let playerTwoSuggestion = document.getElementById('playerTwo_suggestion');
+
+playerOneInput.addEventListener('input', async () => {
+  let query = playerOneInput.value.trim();
+  if (query.length === 0){
+    playerOneSuggestion.style.display = 'none';
+    return;
+  }
+
+  let url = query
+    ? playerSearchUrl + `?query=` + query
+    : '';
+
+  let searchData = await getJsons(url);
+
+  playerOneSuggestion.innerHTML = "";
+
+  if (searchData.length > 0){
+    searchData.forEach((suggestion) => {
+      let player = document.createElement('div');
+      player.className = 'playerOneOptions';
+      
+      let playerName = document.createElement('h4');
+      playerName.innerHTML = suggestion.full_name;
+
+      let playerId = document.createElement('p');
+      playerId.innerHTML = `#${suggestion.pdga_number}`;
+
+      player.append(playerName);
+      player.append(playerId);
+
+
+      player.onclick = () => {
+        pdgaNumOne = suggestion.pdga_number;
+        window.location.href = pdgaNumTwo
+          ? `./head2head.php?pdga_number1=${pdgaNumOne}&pdga_number2=${pdgaNumTwo}`
+          : `./head2head.php?pdga_number1=${pdgaNumOne}`;
+      }
+      playerOneSuggestion.append(player);
+    })
+    playerOneSuggestion.style.display = 'flex';
+  } else {
+    playerOneSuggestion.style.display = 'none';
+  }
+
+})
+
+playerTwoInput.addEventListener('input', async () => {
+  let query = playerTwoInput.value.trim();
+  if (query.length === 0){
+    playerTwoSuggestion.style.display = 'none';
+    return;
+  }
+
+  let url = query
+    ? playerSearchUrl + `?query=` + query
+    : '';
+
+  let searchData = await getJsons(url);
+
+  playerTwoSuggestion.innerHTML = "";
+
+  if (searchData.length > 0){
+    searchData.forEach((suggestion) => {
+      let player = document.createElement('div');
+      player.className = 'playerTwoOptions';
+      
+      let playerName = document.createElement('h4');
+      playerName.innerHTML = suggestion.full_name;
+
+      let playerId = document.createElement('p');
+      playerId.innerHTML = `#${suggestion.pdga_number}`;
+
+      player.append(playerName);
+      player.append(playerId);
+
+
+      player.onclick = () => {
+        pdgaNumTwo = suggestion.pdga_number;
+        window.location.href = pdgaNumOne
+          ? `./head2head.php?pdga_number1=${pdgaNumOne}&pdga_number2=${pdgaNumTwo}`
+          : `./head2head.php?pdga_number2=${pdgaNumTwo}`;
+      }
+      playerTwoSuggestion.append(player);
+    })
+    playerTwoSuggestion.style.display = 'flex';
+  } else {
+    playerTwoSuggestion.style.display = 'none';
+  }
+
+})
+
+
+
 
 
 
