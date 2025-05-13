@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 require_once __DIR__ . '/../../../config/db.php';
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-// $db->set_charset('utf8mb4');
+$db->set_charset('utf8mb4');
 
 if ($db->connect_error) {
   http_response_code(500);

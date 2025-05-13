@@ -17,6 +17,7 @@
   
   // Connect (using your config constants)
   $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+  $db->set_charset('utf8mb4');
   
   //if the 'connect_error' property has a value, then return the http error code
   // and return a json format error, then exit or end the process.

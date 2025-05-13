@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../../config/db.php';// defines $db = new mysqli(...
 
 //Connecting to the database
 $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$db->set_charset('utf8mb4');
 
 //Read and validate the PDGA number
 if (! isset($_GET['pdga_number'])) {

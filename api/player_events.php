@@ -11,6 +11,8 @@
   }
 
   $db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+  $db->set_charset('utf8mb4');
+  
   $pdga = intval($_GET['pdga_number']);
   $year = intval($_GET['year']);
 
