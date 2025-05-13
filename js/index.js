@@ -64,6 +64,7 @@ async function playerBio() {
     // document.getElementById('first_name').innerHTML = data.player.first_name;
     // document.getElementById('last_name').innerHTML = data.player.last_name;
     document.getElementById('full_name').innerHTML = data.player.full_name
+    document.getElementById('player_window_title').innerHTML = data.player.full_name;
     document.getElementById('bio_pdga_number').innerHTML = "#" + data.player.pdga_number + ", member since " + data.player.member_since;
     document.getElementById('hometown').innerHTML  = data.player.hometown;
     document.getElementById('bio_division').innerHTML = `${data.player.division} Division`

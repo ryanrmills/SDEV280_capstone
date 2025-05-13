@@ -2,7 +2,8 @@
   <!DOCTYPE html>
   <html lang="en">
   <head>
-    <title>Document</title>
+    <title>Head-to-Head</title>
+    <link rel="icon" type="image/x-icon" href="./../assets/statmando_icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- handmade stylesheet -->
