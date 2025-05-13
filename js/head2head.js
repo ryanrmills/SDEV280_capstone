@@ -13,7 +13,7 @@ const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/g
 const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
 const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
 const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
-const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
 
 
 async function getJsons(url){

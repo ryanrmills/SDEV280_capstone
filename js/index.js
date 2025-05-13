@@ -10,6 +10,7 @@ const pdgaNum  = urlParams.get("pdga_number");
 // const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 // const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
 // const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 
 
 
@@ -22,6 +23,7 @@ const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api
 const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
 const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
 const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 
 
 
@@ -373,10 +375,6 @@ async function playerRadar(){
     if (valuesIds.length > 0){
       url = url + "&ids=" + valuesIds;
     }
-
-
-    console.log(valuesIds)
-    console.log("hello?: ", url)
       
     const data = await getJsons(url);
 
@@ -850,7 +848,7 @@ function createOrUpdateHbar(labels, data, elementId){
 //   });
 
 // 4) Fetch your pre‑geocoded event locations
-fetch(`http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`)
+fetch(globeUrl)
   .then(res => res.json())
   .then(locations => {
     const tooltip = document.getElementById('globe_tooltip');
