@@ -32,7 +32,8 @@
     <!-- <script src="https://unpkg.com/three" defer></script> -->
     <script src="https://unpkg.com/globe.gl" defer></script>
     <!-- handmade js file for this specific page -->
-    <script src="./js/index.js" defer></script>
+    <!-- <script src="./js/index.js" defer></script> -->
+     <script type="text/javascript" src="./js/index.js" defer></script>
   </head>
   
   <body>

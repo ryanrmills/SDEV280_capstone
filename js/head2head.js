@@ -2,18 +2,18 @@ const urlParams = new URLSearchParams(window.location.search);
 let pdgaNumOne = urlParams.get("pdga_number1");
 let pdgaNumTwo = urlParams.get("pdga_number2");
 
-// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
-// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
-// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
-// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
-// const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
 
 
-const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
-const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
-const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
-const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
-const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
+// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
+// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
+// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
+// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+// const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
 
 
 async function getJsons(url){

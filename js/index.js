@@ -2,34 +2,30 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number");
 
 //I put all the urls in one place
-// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 
 
 
 
-const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 
 
-
-//function defined so that I can keep reusing to retrieve json data
-
-//if the pdgaNum is null, then redirect the user to playerList so that they can pick a player's stats
 window.addEventListener('DOMContentLoaded', () => {
   if (pdgaNum === 'undefined' || pdgaNum === null || pdgaNum === ''){
     window.location.href = './pages/player_list.php';
@@ -53,10 +49,10 @@ async function getJsons(url){
   }
 }
 
-//this part of the code starts displaying the player bio
+
 async function playerBio() {
   function createOrUpdateCareerProfile(data){
-    //adding appropriate commas to thousands place to earnings
+
     let earnings = parseFloat(data.player.earnings).toLocaleString('en-US');
 
     //populate your player info into the HTML
@@ -107,28 +103,6 @@ async function playerBio() {
 
   drawCareerProfile('');
 
-  /*
-  //adding appropriate commas to thousands place to earnings
-  let earnings = parseFloat(data.player.earnings).toLocaleString('en-US');
-
-  //populate your player info into the HTML
-  document.getElementById('athlete_image').src = `./assets/${data.player.pdga_number}.jpg`;
-  // document.getElementById('first_name').innerHTML = data.player.first_name;
-  // document.getElementById('last_name').innerHTML = data.player.last_name;
-  document.getElementById('full_name').innerHTML = data.player.full_name
-  document.getElementById('bio_pdga_number').innerHTML = "#" + data.player.pdga_number + ", member since " + data.player.member_since;
-  document.getElementById('hometown').innerHTML  = data.player.hometown;
-  document.getElementById('bio_division').innerHTML = `${data.player.division} Division`
-  document.getElementById('wins').innerHTML = data.player.wins;
-  document.getElementById('top_tens').innerHTML = data.player.top_tens;
-  document.getElementById('earnings').innerHTML = `\$${earnings}`;
-  document.getElementById('podiums').innerHTML = data.player.podiums;
-  //document.getElementById('first_name_compared').innerHTML = data.player.first_name;
-  document.getElementById('total_events').innerHTML = data.player.total_events;
-  document.getElementById('avg_place').innerHTML = Math.floor(data.player.avg_place) + "th";
-  document.getElementById('avg_rating').innerHTML = data.player.avg_rating;
-  document.getElementById('avg_strokes').innerHTML = Math.floor(data.player.avg_strokes_per_event);
-  */
 }
 playerBio();
 
@@ -291,10 +265,9 @@ async function createOrUpdateLine(label, data, barData, elementId){
 
 
 
-//this part is responsible for retrieving the data for the radar graph
+
 async function playerRadar(){
-  //populate the checkboxes
-  
+
   
   const radarChecklistContainer = document.getElementById('radar_checklist_container');
   const statIdsData = await getJsons(statIdsList);
@@ -346,7 +319,7 @@ async function playerRadar(){
 
   const allOptEvents = document.createElement('option');
   allOptEvents.value = '';
-  // allOptEvents.class = 'radarEventSelectDefault'
+
   allOptEvents.textContent = 'All Events';
   radarSelect.append(allOptEvents);
 
@@ -369,9 +342,7 @@ async function playerRadar(){
       ? url + "&event=" + eventId
       : url
     
-    // url = valuesIds
-    //   ? url + "&ids=" + encodeURIComponent(values.join(","))
-    //   : url
+
 
     if (valuesIds.length > 0){
       url = url + "&ids=" + valuesIds;
@@ -386,7 +357,7 @@ async function playerRadar(){
     
   }
 
-  //function to retrieve events from specific year
+
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
@@ -400,7 +371,7 @@ async function playerRadar(){
   }
 
   yearSelect.addEventListener('change', e => {
-    //let currentYear = e.target.value;
+
 
     radarSelect.innerHTML = '';
 
@@ -412,7 +383,7 @@ async function playerRadar(){
   })
 
   radarSelect.addEventListener('change', e => {
-    //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+
     drawRadar(yearSelect.value, e.target.value, values);
   })
 
@@ -470,7 +441,7 @@ playerRadar();
 
 let radarChart;
 async function createOrUpdateRadar(label, data, elementId){
-  //grab element
+
   let canvas = document.getElementById(`${elementId}`);
   let options = {
     type: 'radar',
@@ -542,7 +513,7 @@ async function createOrUpdateRadar(label, data, elementId){
 
 
 
-//let fwhChart, c2rChart, c1xChart;
+
 async function playerRadial(){
   const yearSelect = document.getElementById('radial_dropdown');
   
@@ -567,11 +538,11 @@ async function playerRadial(){
       : playerRadialUrl;
     const data = await getJsons(url);
 
-    // destructure
+
     const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
     const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
 
-    // call our create/update helper
+
     createOrUpdateRadial("FWH_radial", fwhLabel, fwhVal);
     createOrUpdateRadial("C2R_radial", c2rLabel, c2rVal);
     createOrUpdateRadial("C1X_radial", c1xLabel, c1xVal);
@@ -631,11 +602,11 @@ function createOrUpdateRadial(elementId, label, value) {
   };
 
   if (radialCharts[elementId]) {
-    // already created → just update
+
     radialCharts[elementId].updateSeries(opts.series);
     radialCharts[elementId].updateOptions({ labels: opts.labels });
   } else {
-    // first time → create & render
+
     radialCharts[elementId] = new ApexCharts(el, opts);
     radialCharts[elementId].render();
   }
@@ -695,13 +666,7 @@ function createOrUpdateRadial(elementId, label, value) {
 
 
 async function playerHbar(){
-  // Chart.register(ChartDataLabels);
-  // const data = await getJsons(playerHbarUrl);
 
-  // const statLabels = data.stat_abbrev;
-  // const percentileValues = data.percentile;
-
-  // in your JS, after loading Chart.js
   const yearSelect = document.getElementById('hbar_dropdown_years');
   const eventSelect = document.getElementById('hbar_dropdown_events');
   
@@ -744,7 +709,7 @@ async function playerHbar(){
     
   }
 
-  //function to retrieve events from specific year
+
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
@@ -758,7 +723,7 @@ async function playerHbar(){
   }
 
   yearSelect.addEventListener('change', e => {
-    //let currentYear = e.target.value;
+
 
     eventSelect.innerHTML = '';
 
@@ -770,7 +735,7 @@ async function playerHbar(){
   })
 
   eventSelect.addEventListener('change', e => {
-    //console.log("year: " + yearSelect.value + "\neventId: " + e.target.value);
+
     drawHbar(yearSelect.value, e.target.value);
   })
 
@@ -835,20 +800,6 @@ function createOrUpdateHbar(labels, data, elementId){
 
 
 
-// fetch(`http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`)
-//   .then(r => r.json())
-//   .then(locations => {
-//     Globe()
-//       (document.getElementById('globe'))
-//       .pointAltitude(0.02)
-//       .pointColor(() => '#EA7317')
-//       .labelsData(locations)
-//       .labelLat(d => d.latitude)
-//       .labelLng(d => d.longitude)
-//       .labelText(d => `${d.start_date} • ${d.name}`);
-//   });
-
-// 4) Fetch your pre‑geocoded event locations
 fetch(globeUrl)
   .then(res => res.json())
   .then(locations => {
@@ -859,13 +810,11 @@ fetch(globeUrl)
       (globeEl)
       .width(400)
       .height(400)
-      // Earth day‑texture & bump map
-      // .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-      // .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-      // Transparent background
+
       .backgroundColor('rgba(0,0,0,0)')
-      // Plot only points (no labelsData)
+
       .pointsData(locations)
       .pointLat(d => d.latitude)
       .pointLng(d => d.longitude)
@@ -885,14 +834,12 @@ fetch(globeUrl)
         ${point.city}, ${point.state}, ${point.country}<br>
         ${point.start_date}
         `;
-        // Position tooltip at mouse
-        // (we’ll listen to the globeEl’s mousemove for coords)
+
         tooltip.style.display = 'flex';
       })
       .pointOfView({lat:40.176404, lng: -95.327418, altitude: 1}, 0);
-      //40.176404, -95.327418
 
-    // 6) Sync tooltip position with mouse
+
     globeEl.addEventListener('mousemove', e => {
       tooltip.style.top  = /*e.clientY + */10 + 'px';
       tooltip.style.right = /*e.clientX + */10 + 'px';
