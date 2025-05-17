@@ -364,7 +364,7 @@ nav div img:hover {
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
   /* border: 2px solid gray; */
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
   display: flex;
   align-items: center;
@@ -465,7 +465,7 @@ nav div img:hover {
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
   /* border: 2px solid gray; */
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
 
   display: flex;
@@ -534,7 +534,7 @@ nav div img:hover {
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
   /* border: 2px solid gray; */
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
   
   display: flex;
@@ -621,7 +621,7 @@ nav div img:hover {
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
   /* border: 2px solid gray; */
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
 
   display: flex;
