@@ -1,15 +1,28 @@
 <?php
   require_once __DIR__ . '/../../../config/db.php';
   header('Content-Type: application/json');
+
   if (!isset($_GET['pdga_number'])) {
     http_response_code(400);
     echo json_encode(['error'=>'Missing pdga_number']);
     exit;
   }
+
   $db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
   $db->set_charset('utf8mb4');
+
   
   $pdga = intval($_GET['pdga_number']);
+  
+  // if (isset($_GET['pdga_number1']) && isset($_GET['pdga_number2'])){
+  //   $pdga = intval($_GET['pdga_number1']);
+  // } else if (isset($_GET['pdga_number1']) && !isset($_GET['pdga_number2'])){
+  //   $pdga = intval($_GET['pdga_number1']);
+  // } else if (!isset($_GET['pdga_number1']) && isset($_GET['pdga_number2'])){
+  //   $pdga = intval($_GET['pdga_number2']);
+  // }
+
+  // echo $pdga;
 
   // Pull every unique year from your events table (assuming events.start_date)
   $sql = "

@@ -44,5 +44,5 @@
   $stmt->bind_param('ii',$pdga, $year);
   $stmt->execute();
   $events = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-  echo json_encode([$events]);
+  echo json_encode($events);
 ?>

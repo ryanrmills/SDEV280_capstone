@@ -12,7 +12,9 @@ $db->set_charset('utf8mb4');
 $sql = 
 'SELECT
   stats.stat_id,
-  stats.abbreviation
+  stats.abbreviation,
+  stats.stat_name,
+  stats.description
 FROM
   stats
 WHERE 
@@ -23,12 +25,16 @@ $stmt = $db->query($sql);
 
 $name = [];
 $id = [];
+$fullName = [];
+$desc = [];
 
 if ($stmt && $stmt -> num_rows > 0){
   
   while ($row = $stmt->fetch_assoc()) {
     $id[] = $row['stat_id'];
     $name[] = $row['abbreviation'];
+    $fullName[] = $row['stat_name'];
+    $desc[] = $row['description'];
   }
 
 }
@@ -36,5 +42,7 @@ if ($stmt && $stmt -> num_rows > 0){
 
 echo json_encode([
   "id" => $id,
-  "name" => $name
+  "name" => $name,
+  "fullName" => $fullName,
+  "desc" => $desc
 ]);

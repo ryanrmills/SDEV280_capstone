@@ -22,8 +22,23 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
     
     <!-- JS and CSS for DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" defer></script>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js" defer></script> -->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <!-- ??????????????????????????????????????????????????????????????????????? -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+
     <!-- cdn for Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
@@ -304,21 +319,33 @@
         </canvas>
       </div>
     </section>
-    <section style="height: 25px; width: 100%;">
+    <br>
+    <section class="playerStatsContainer">
+      <div class="playerStats_tabsSection">
+        <div id="tabsSection_eventTab">
+          <h1>Events</h1>
+        </div>
+        <div id="tabsSection_roundsTab">
+          <h1>Rounds</h1>
+        </div>
+      </div>
+      <div id="eventsTableParentContainer" class="eventsTableParentContainer">
+        <table id="eventsTable" class="display stripe hover">
+        
+        </table>
+      </div>
 
+
+      <div id="roundsTableParentContainer" class="roundsTableParentContainer">
+        <table id="roundsTable" class="display stripe hover" style="width: 100%;">
+        
+        </table>
+      </div>
+
+      <div style="height: 100px;">
+
+      </div>
+    
     </section>
-
-    <!-- <section class="playerStats_tableStats">
-      <table id="eventsTable" class="display" style="width: 100%;">
-
-      </table>
-
-      <table id="statsTable"  class="display" style="width:100%">
-
-      </table>
-    </section> -->
-    <!-- <div class="window_globe_tooltip_container">
-      
-      </div> -->
   </body>
   </html>

@@ -153,6 +153,12 @@
           <h3>
             Performance
           </h3>
+
+          <div class="h2h_radialDropdown_container">
+            <select class="categoryDropdown" id="h2h_radial_dropdown">
+
+            </select>
+          </div>
         </div>
 
         <div class="playertwo_radials_container">
@@ -219,6 +225,13 @@
           <h3>
             Career Profile
           </h3>
+
+          <div>
+            <select class="categoryDropdown" id="h2h_careerProfile_dropdown">
+              <option value=''>All-time</option>
+              <option value='true'>Last 12 months</option>
+            </select>
+          </div>
         </div>
 
         <div class="comparison_playertwo_stats">
@@ -272,6 +285,22 @@
           <h3>
             Skill Profile
           </h3>
+          <select id="radar_yearSelect" class="categoryDropdown"></select>
+          <select id="radar_eventSelect" class="categoryDropdown"></select>
+          <div class="radar_modification_container">
+            <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
+              Select all
+            </button>
+            <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
+              Unselect all
+            </button>
+            <div id="radar_checklist_container">
+
+            </div>
+            <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
+              Submit
+            </button>
+          </div>
         </div>
 
         <div class="playertwo_radarContainer">

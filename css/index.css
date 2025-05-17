@@ -18,6 +18,7 @@ nav {
   font-family: "Urbanist", sans-serif;
   font-weight: 700;
   min-width: 1200px;
+  width: 100%;
   /* height: 100px; */
   height: 75px;
   justify-content: space-between;
@@ -219,6 +220,7 @@ i {
   font-family: "Urbanist", sans-serif;
   margin: 0em;
   padding: 0em;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
 .playerbio_globe_events #globe {
@@ -257,6 +259,7 @@ i {
   background-image: linear-gradient(to bottom, rgb(0, 52, 0), rgb(0, 33, 15));
   border-radius: 0.4em;
   position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .playerbio_ratingOverTime .ratingOverTime_headerSection {
@@ -365,6 +368,7 @@ select {
   font-family: "Urbanist", sans-serif;
   gap: 0.4em;
   box-sizing: border-box;
+  
 }
 
 .mainStats_wins {
@@ -376,19 +380,14 @@ select {
   align-items: center;
   justify-content: center;
 
-  /* width:75px;
-  height: 75px; */
   min-width: 100px;
   min-height: 100px;
-  /* max-height: 90px; */
 
-  /* background-color: rgb(0, 57, 0); */
   background-image: linear-gradient(to bottom, rgba(0, 57, 0, 0.841), rgb(0, 37, 0));
-  /* background-color: #fefae0c1; */
-  /* background-color: #d5ffedf8; */
-  /* background-image: linear-gradient(to bottom, rgb(0, 71, 0),rgb(0, 33, 15)); */
+
   border-radius: 0.4em;
-  /* box-shadow: 0px 1px rgb(87, 87, 87); */
+
+  
 }
 
 .mainStats_wins h1 {
@@ -525,6 +524,7 @@ p {
   /* box-sizing: border-box; */
   font-family: "Urbanist", sans-serif;
   position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .radialPerformance_headerSection {
@@ -656,6 +656,8 @@ p {
 
   position: relative;
   gap: 1em;
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
   /* box-sizing: border-box; */
 }
 
@@ -739,6 +741,15 @@ p {
   -ms-overflow-style: none;
 } */
 
+.radar_modification_list_hover {
+  background-color: rgba(255, 255, 255, 0.749);
+  border-radius: 0.4em;
+  z-index: 30;
+  width: 200px;
+  padding: 0.4em;
+  color: rgb(69, 69, 69);
+}
+
 .radar_checklist_submitBtn {
   width: 100%;
   height: 50px;
@@ -817,6 +828,9 @@ canvas {
   position: relative;
   overflow-y: auto;
   overflow-x: auto;
+
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
 .breakdown_hbars {
@@ -825,16 +839,156 @@ canvas {
   width: 100%;
 }
 
-.playerStats_tableStats {
-  margin-top: 5em;
-  min-height: 500px;
+/* .playerStatsContainer {
   width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.playerStats_tableStats table {
-  font-family: "Urbanist", sans-serif;
+.eventsTableParentContainer {
+  width: 100%;
   max-width: 1200px;
+} */
+
+.playerStatsContainer {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
 }
+
+.playerStatsContainer .playerStats_tabsSection {
+  font-family: "Urbanist", sans-serif;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+.playerStatsContainer .playerStats_tabsSection h1{
+  margin: 0em;
+  padding: 0em;
+}
+
+.tabsSection_eventTab {
+  width: 50%;
+  height: 50px;
+  color: white;
+  background-color: rgb(0, 56, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-top-left-radius: 0.8em;
+  /* border-top-right-radius: 0.8em; */
+
+}
+
+.tabsSection_eventTab_active {
+  width: 50%;
+  height: 50px;
+  color: white;
+  background-image: linear-gradient(to bottom, rgb(94, 200, 68), green, rgb(0, 79, 7));
+  box-shadow: rgb(65, 65, 65) 0px -2px 10px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  border-top-left-radius: 0.8em;
+  /* border-top-right-radius: 0.8em; */
+}
+
+.tabsSection_roundsTab {
+  width: 50%;
+  height: 50px;
+  color: white;
+  background-color: rgb(0, 56, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  /* border-top-left-radius: 0.8em; */
+  border-top-right-radius: 0.8em;
+}
+
+.tabsSection_roundsTab_active {
+  width: 50%;
+  height: 50px;
+  color: white;
+  background-image: linear-gradient(to bottom, rgb(94, 200, 68), green, rgb(0, 79, 7));
+  box-shadow: rgb(65, 65, 65) 0px -2px 10px;
+
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* border-top-left-radius: 0.8em; */
+  border-top-right-radius: 0.8em;
+}
+
+.eventsTableParentContainer {
+  display: none;
+  width: 100%;
+  max-width: 1050px;
+  padding: 1rem;
+  background-color: white;
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  border-radius: 8px;
+
+  font-family: "Urbanist", sans-serif;
+}
+
+#eventsTable {
+  width: 100% !important;
+}
+
+.roundsTableParentContainer {
+  width: 100%;
+  max-width: 1050px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+
+  font-family: "Urbanist", sans-serif;
+
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+}
+
+#roundsTable {
+  width: 100% !important;
+}
+
+/* Pagination and button styling (optional) */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  margin: 0 2px;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  color: #333 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #004080 !important;
+  color: white !important;
+}
+
 
 .window_globe_tooltip_container{
   /* display: none; */

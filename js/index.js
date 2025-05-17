@@ -2,28 +2,32 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number");
 
 //I put all the urls in one place
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
 
 
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -284,7 +288,40 @@ async function playerRadar(){
 
     label.append(statIdsData.name[i]);
 
-    radarChecklistContainer.append(label)
+    const hoverDiv = document.createElement('div');
+    hoverDiv.className = 'radar_modification_list_hover';
+    hoverDiv.style.display = 'none';
+    hoverDiv.style.position = 'fixed';
+
+    const hoverDivTextTitle = document.createElement('p');
+    hoverDivTextTitle.style.fontWeight = 'bolder';
+    const hoverDivTextDesc = document.createElement('p');
+
+
+    hoverDivTextTitle.innerHTML = statIdsData.fullName[i];
+    hoverDivTextTitle.style.display = 'block';
+    hoverDiv.append(hoverDivTextTitle);
+
+    hoverDivTextDesc.innerHTML = statIdsData.desc[i];
+    hoverDivTextDesc.style.display = 'block';
+    hoverDiv.append(hoverDivTextDesc);   
+
+    label.addEventListener('mouseover', e => {
+      hoverDiv.style.display = 'block';
+    })
+
+    label.addEventListener('mousemove', e => {
+      hoverDiv.style.left = (e.clientX + 8) + 'px';
+      hoverDiv.style.top = (e.clientY - 30) + 'px';
+    })
+
+    label.addEventListener('mouseout', e => {
+      hoverDiv.style.display = 'none';
+    })
+
+    label.append(hoverDiv);
+    radarChecklistContainer.append(label);    
+
   }
 
   
@@ -361,7 +398,7 @@ async function playerRadar(){
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
-    eventsList[0].forEach((e) => {
+    eventsList.forEach((e) => {
       const option = document.createElement('option');
       option.value = e.pdga_event_id;
       option.innerHTML = e.name;
@@ -489,6 +526,9 @@ async function createOrUpdateRadar(label, data, elementId){
   }
 
 }
+
+
+
 
 
 
@@ -713,7 +753,7 @@ async function playerHbar(){
   async function getEventsFromYear(year){
 
     const eventsList = await getJsons(`${playerEventsUrl}${year}`);
-    eventsList[0].forEach((e) => {
+    eventsList.forEach((e) => {
       const option = document.createElement('option');
       option.value = e.pdga_event_id;
       option.innerHTML = e.name;
@@ -845,3 +885,176 @@ fetch(globeUrl)
       tooltip.style.right = /*e.clientX + */10 + 'px';
     });
   });
+
+
+
+document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let eventsTable;
+
+async function displayEventsTable(){
+  const roundsContainer = document.getElementById('roundsTableParentContainer');
+  roundsContainer.style.display = 'none';
+  
+  const roundTab = document.getElementById('tabsSection_roundsTab');
+  roundTab.className = 'tabsSection_roundsTab';
+  
+  const eventContainer = document.getElementById('eventsTableParentContainer');
+  eventContainer.style.display = 'flex';
+
+  const eventTab = document.getElementById('tabsSection_eventTab');
+  eventTab.className = 'tabsSection_eventTab_active'
+
+  const eventsData = await getJsons(playerEventsListUrl);
+
+
+  let table = document.getElementById('eventsTable');
+  let options = {
+    data: eventsData.events,
+    columns: [
+      {
+        title: "Name", 
+        data: "name",
+        width: "400px",
+        className: "scrollable-cell",
+        render: function (data){
+          return `<div class="scroll-x">${data}</div>`;
+        }
+      },
+      {title: "Month", data: "event_month"},
+      {title: "Year", data: "event_year"},
+      {title: "City", data: "city"},
+      {title: "State", data: "state"},
+      {title: "Country", data: "country"},
+      {title: "Place", data: "place"},
+      {title: "Strokes", data: "strokes"},
+      {title: "Cash", data: "cash"},
+      {
+        title: "Rating", 
+        data: "event_rating",
+        render: function(data){
+          return `<div><strong>${data}</strong></div>`
+        }
+      }
+    ],
+    createdRow: function (row, data, dataIndex){
+      row.style.fontSize = '12px'
+    },
+    pageLength: 10,
+    paging: true,
+    searching: true,
+    ordering: true
+  };
+
+  if (eventsTable){
+
+  } else {
+    eventsTable = new DataTable(table, options);
+  }
+
+
+
+
+
+
+
+
+
+  
+  
+}
+
+displayEventsTable();
+
+let roundsTable;
+async function displayRoundsTable(){
+  const eventContainer = document.getElementById('eventsTableParentContainer');
+  eventContainer.style.display = 'none';
+    
+  const eventTab = document.getElementById('tabsSection_eventTab');
+  eventTab.className = 'tabsSection_eventTab'
+  
+  const roundsContainer = document.getElementById('roundsTableParentContainer');
+  roundsContainer.style.display = 'flex';
+  
+  const roundTab = document.getElementById('tabsSection_roundsTab');
+  roundTab.className = 'tabsSection_roundsTab_active';
+
+  const roundsData = await getJsons(playerRoundsListUrl);
+
+
+  let table = document.getElementById('roundsTable');
+  let options = {
+    autoWidth: false,
+    data: roundsData.rounds,
+    columns: [
+      {
+        title: "Name", 
+        data: "name",
+        width: "550px",
+        className: "scrollable-cell",
+        render: function (data){
+          return `<div class="scroll-x">${data}</div>`;
+        }
+      },
+      {title: "Month", data: "event_month"},
+      {title: "Year", data: "event_year"},
+      {title: "Division", data: "division"},
+      {title: "Round", data: "round"},
+      {title: "Strokes", data: "score"},
+      {
+        title: "Rating", 
+        data: "rating",
+        render: function(data){
+          return `<div><strong>${data}</strong></div>`
+        }
+      }
+    ],
+    createdRow: function (row, data, dataIndex){
+      row.style.fontSize = '12px';
+    },
+    pageLength: 10,
+    paging: true,
+    searching: true,
+    ordering: true
+  };
+
+  if (roundsTable){
+
+  } else {
+    roundsTable = new DataTable(table, options);
+  }
+}
+
+document.getElementById('tabsSection_eventTab').addEventListener('click', () => {
+  displayEventsTable();
+})
+document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
+  displayRoundsTable();
+})
+
+
+
+
+
+
+

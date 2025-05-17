@@ -2,18 +2,24 @@ const urlParams = new URLSearchParams(window.location.search);
 let pdgaNumOne = urlParams.get("pdga_number1");
 let pdgaNumTwo = urlParams.get("pdga_number2");
 
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
-const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
+// const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`;
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
-// const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
 
 
 async function getJsons(url){
@@ -201,83 +207,109 @@ function createOrUpdateRadial(elementId, label, value, color) {
 
 async function displayPlayerRadials(){
 
-  let url = pdgaNumOne
-    ? playerRadialUrl + `?pdga_number=${pdgaNumOne}`
-    : '';
-      
-  let url2 = pdgaNumTwo
-    ? playerRadialUrl + `?pdga_number=${pdgaNumTwo}`
-    : '';
-      
-      
-  const data = pdgaNumOne ? await getJsons(url) : '';
-  const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
-  const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
-      
-  const data2 = pdgaNumTwo ? await getJsons(url2) : '';
-  const [ fwhLabel2, c2rLabel2, c1xLabel2 ] = data2 ? data2.stat : '';
-  const [ fwhVal2,   c2rVal2,   c1xVal2   ] = data2 ? data2.values : '';
-  
 
-    /**
-     * Color comparison section
-     * depending on the comparison of tow values, they're either
-     * #FF3E3E or'#A6FFA6 if they're higher or lwoer than the other
-     * then assign the color to 'createOrUpdateRadial
-     */
+  let yearUrl = 
+    pdgaNumOne && !pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumOne :
+    pdgaNumOne && pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumOne :
+    !pdgaNumOne && pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumTwo :
+    '';
 
-  let fwhValcolor, c2rValcolor, c1xValcolor, fwhVal2color, c2rVal2color, c1xVal2color
-  if (data && data2){
-    if (Number(fwhVal) < Number(fwhVal2)){
-      fwhValcolor = '#C20017';
-      fwhVal2color = '#20A000';
-    } else if (Number(fwhVal) > Number(fwhVal2)){
-      fwhValcolor = '#20A000';
-      fwhVal2color = '#C20017';
-    }
-  
-    if (Number(c2rVal) < Number(c2rVal2)){
-      c2rValcolor = '#C20017';
-      c2rVal2color = '#20A000';
-    } else if (Number(c2rVal) > Number(c2rVal2)){
-      c2rValcolor = '#20A000';
-      c2rVal2color = '#C20017';
-    }
-  
-    if (Number(c1xVal) < Number(c1xVal2)){
-      c1xValcolor = '#C20017';
-      c1xVal2color = '#20A000';
-    } else if (Number(c1xVal) > Number(c1xVal2)){
-      c1xValcolor = '#20A000';
-      c1xVal2color = '#C20017';
-    }
-  }
+  const yearSelect = document.getElementById('h2h_radial_dropdown');
+  const allOptYears = document.createElement('option');
+  allOptYears.innerHTML = 'All Time';
+  allOptYears.value = '';
+  yearSelect.append(allOptYears);
 
+  const yearData = yearUrl ? await getJsons(yearUrl) : '';
+
+  yearData.forEach((year) => {
+    let yearOption = document.createElement('option');
+    yearOption.innerHTML = year;
+    yearOption.value = year;
+    yearSelect.append(yearOption);
+  })
+
+  async function drawRadials(year){
+    let url = pdgaNumOne
+      ? playerRadialUrl + `?pdga_number=${pdgaNumOne}`
+      : '';
+
+    url = year
+      ? url + "&year=" + year : url;
+        
+    let url2 = pdgaNumTwo
+      ? playerRadialUrl + `?pdga_number=${pdgaNumTwo}`
+      : '';
     
-  if (data){
-    createOrUpdateRadial("FWH_radial", fwhLabel, fwhVal, fwhValcolor);
-    createOrUpdateRadial("C2R_radial", c2rLabel, c2rVal, c2rValcolor);
-    createOrUpdateRadial("C1X_radial", c1xLabel, c1xVal, c1xValcolor);
+    url2 = year
+      ? url2 + "&year=" + year : url2;
+        
+        
+    const data = pdgaNumOne ? await getJsons(url) : '';
+    const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
+    const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
+        
+    const data2 = pdgaNumTwo ? await getJsons(url2) : '';
+    const [ fwhLabel2, c2rLabel2, c1xLabel2 ] = data2 ? data2.stat : '';
+    const [ fwhVal2,   c2rVal2,   c1xVal2   ] = data2 ? data2.values : '';
+    
+
+      /**
+       * Color comparison section
+       * depending on the comparison of tow values, they're either
+       * #FF3E3E or'#A6FFA6 if they're higher or lwoer than the other
+       * then assign the color to 'createOrUpdateRadial
+       */
+
+    let fwhValcolor, c2rValcolor, c1xValcolor, fwhVal2color, c2rVal2color, c1xVal2color
+    if (data && data2){
+      if (Number(fwhVal) < Number(fwhVal2)){
+        fwhValcolor = '#C20017';
+        fwhVal2color = '#20A000';
+      } else if (Number(fwhVal) > Number(fwhVal2)){
+        fwhValcolor = '#20A000';
+        fwhVal2color = '#C20017';
+      }
+    
+      if (Number(c2rVal) < Number(c2rVal2)){
+        c2rValcolor = '#C20017';
+        c2rVal2color = '#20A000';
+      } else if (Number(c2rVal) > Number(c2rVal2)){
+        c2rValcolor = '#20A000';
+        c2rVal2color = '#C20017';
+      }
+    
+      if (Number(c1xVal) < Number(c1xVal2)){
+        c1xValcolor = '#C20017';
+        c1xVal2color = '#20A000';
+      } else if (Number(c1xVal) > Number(c1xVal2)){
+        c1xValcolor = '#20A000';
+        c1xVal2color = '#C20017';
+      }
+    }
+
+      
+    if (data){
+      createOrUpdateRadial("FWH_radial", fwhLabel, fwhVal, fwhValcolor);
+      createOrUpdateRadial("C2R_radial", c2rLabel, c2rVal, c2rValcolor);
+      createOrUpdateRadial("C1X_radial", c1xLabel, c1xVal, c1xValcolor);
+    }
+
+    if (data2){
+      createOrUpdateRadial("FWH_radial2", fwhLabel2, fwhVal2, fwhVal2color);
+      createOrUpdateRadial("C2R_radial2", c2rLabel2, c2rVal2, c2rVal2color);
+      createOrUpdateRadial("C1X_radial2", c1xLabel2, c1xVal2, c1xVal2color);
+    }
   }
 
-  if (data2){
-    createOrUpdateRadial("FWH_radial2", fwhLabel2, fwhVal2, fwhVal2color);
-    createOrUpdateRadial("C2R_radial2", c2rLabel2, c2rVal2, c2rVal2color);
-    createOrUpdateRadial("C1X_radial2", c1xLabel2, c1xVal2, c1xVal2color);
-  }
+  yearSelect.addEventListener('change', (e) => {
+    drawRadials(e.target.value);
+  });
+
+  drawRadials('');
 }
 
 displayPlayerRadials();
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -315,16 +347,24 @@ async function displayPlayerBio(
   totalEventsElement2,
   avgPlaceElement2,
   avgStrokesPerEventElement2
-){
+)
+{
 
-  /**
-   * Pulling data for playerOne
-   * Adding contents for playerOne
-   */
+  const h2hCareerProfileDropdown = document.getElementById('h2h_careerProfile_dropdown');
+    
+  async function drawCareerProfile(isLast12){
+      /**
+     * Pulling data for playerOne
+     * Adding contents for playerOne
+     */
 
-  let url = pdgaNum
-    ? playerBioUrl + `?pdga_number=${pdgaNum}`
-    : '';
+    let url = pdgaNum
+      ? playerBioUrl + `?pdga_number=${pdgaNum}`
+      : '';
+
+    url = isLast12
+      ? url + '&is_last_12_months=' + isLast12
+      : url;
   
     
     const data = url ? await getJsons(url) : '';
@@ -358,8 +398,12 @@ async function displayPlayerBio(
      * Inserting data to proper elements - playerTwo
      */
     let url2 = pdgaNum2
-    ? playerBioUrl + `?pdga_number=${pdgaNum2}`
-    : '';
+      ? playerBioUrl + `?pdga_number=${pdgaNum2}`
+      : '';
+
+    url2 = isLast12
+      ? url2 + '&is_last_12_months=' + isLast12
+      : url2;
     
     
     const data2 = url2 ? await getJsons(url2) : '';
@@ -471,176 +515,293 @@ async function displayPlayerBio(
         document.getElementById(avgStrokesPerEventElement).style.color = '#FF3E3E';
       }
     }
-    
-    
   }
 
-  displayPlayerBio(
-    pdgaNumOne,
-    'playerone_pic',
-    'playerone_name',
-    'playerone_home',
-    'playerone_pdgaNum',
-    'playerone_division',
-    'playerone_memberSince',
-    "playerone_wins",
-    "playerone_topTens",
-    "playerone_podiums",
-    "playerone_earnings",
-    "playerone_rating",
-    "playerone_events",
-    "playerone_place",
-    "playerone_strokes",
+  h2hCareerProfileDropdown.addEventListener('change', (e) => {
+    document.getElementById(winsElement).innerHTML = '';
+    document.getElementById(tensElement).innerHTML = '';
+    document.getElementById(podiumsElement).innerHTML = '';
+    document.getElementById(earningsElement).innerHTML = '';
+    document.getElementById(avgRateElement).innerHTML = '';
+    document.getElementById(totalEventsElement).innerHTML = '';
+    document.getElementById(avgPlaceElement).innerHTML = '';
+    document.getElementById(avgStrokesPerEventElement).innerHTML = '';
+
+    document.getElementById(winsElement2).innerHTML = '';
+    document.getElementById(tensElement2).innerHTML = '';
+    document.getElementById(podiumsElement2).innerHTML = '';
+    document.getElementById(earningsElement2).innerHTML = '';
+    document.getElementById(avgRateElement2).innerHTML = '';
+    document.getElementById(totalEventsElement2).innerHTML = '';
+    document.getElementById(avgPlaceElement2).innerHTML = '';
+    document.getElementById(avgStrokesPerEventElement2).innerHTML = '';
+
+    drawCareerProfile(e.target.value);
+  })
+
+  drawCareerProfile('');
+}
+
+displayPlayerBio(
+  pdgaNumOne,
+  'playerone_pic',
+  'playerone_name',
+  'playerone_home',
+  'playerone_pdgaNum',
+  'playerone_division',
+  'playerone_memberSince',
+  "playerone_wins",
+  "playerone_topTens",
+  "playerone_podiums",
+  "playerone_earnings",
+  "playerone_rating",
+  "playerone_events",
+  "playerone_place",
+  "playerone_strokes",
 
 
-    pdgaNumTwo,
-    'playertwo_pic',
-    'playertwo_name',
-    'playertwo_home',
-    'playertwo_pdgaNum',
-    'playertwo_division',
-    'playertwo_memberSince',
-    "playertwo_wins",
-    "playertwo_topTens",
-    "playertwo_podiums",
-    "playertwo_earnings",
-    "playertwo_rating",
-    "playertwo_events",
-    "playertwo_place",
-    "playertwo_strokes"
-  )
+  pdgaNumTwo,
+  'playertwo_pic',
+  'playertwo_name',
+  'playertwo_home',
+  'playertwo_pdgaNum',
+  'playertwo_division',
+  'playertwo_memberSince',
+  "playertwo_wins",
+  "playertwo_topTens",
+  "playertwo_podiums",
+  "playertwo_earnings",
+  "playertwo_rating",
+  "playertwo_events",
+  "playertwo_place",
+  "playertwo_strokes"
+)
 
 
 
 
 
 
-
-  async function displayPlayerRadars(
+async function displayPlayerRadars(
+){
+  /**
+   * Creating radar blueprint
+   * to be called upon later
+   */
+  let radarChartOne, radarChartTwo;
+  async function createOrUpdateRadar(
+    label, 
+    data, 
+    elementId,
+    label2,
+    data2,
+    elementId2
   ){
-    /**
-     * Creating radar blueprint
-     * to be called upon later
-     */
-    let radarChartOne, radarChartTwo;
-    async function createOrUpdateRadar(
-      label, 
-      data, 
-      elementId,
-      label2,
-      data2,
-      elementId2
-    ){
-      //grab element
-      let canvas = document.getElementById(`${elementId}`);
-      let canvas2 = document.getElementById(`${elementId2}`);
+    //grab element
+    let canvas = document.getElementById(`${elementId}`);
+    let canvas2 = document.getElementById(`${elementId2}`);
 
-      let options = {
-        type: 'radar',
-        data: {
-          labels: label,//data.abbrev,
-          datasets: [{
-            label: 'Performance',
-            data: data,//data.z_score,
-            fill: true,
-            backgroundColor: 'rgba(0, 183, 64, 0.2)',
-            borderColor:   'rgb(1, 97, 27)',
-            borderWidth: 2,
-            pointBackgroundColor: 'rgb(54, 162, 235)'
-          }]
+    let options = {
+      type: 'radar',
+      data: {
+        labels: label,//data.abbrev,
+        datasets: [{
+          label: 'Performance',
+          data: data,//data.z_score,
+          fill: true,
+          backgroundColor: 'rgba(0, 183, 64, 0.2)',
+          borderColor:   'rgb(1, 97, 27)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(54, 162, 235)'
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          r: {
+            beginAtZero: false,
+            suggestedMax: 0.8,
+            suggestedMin: -1,
+            ticks: {
+              font: { size: 8 },
+              color: '#EA7317'
+            },
+            pointLabels: {
+              font: { size: 12 },
+              color: '#252525'
+            },
+            grid: { circular: true }
+          }
         },
-        options: {
-          responsive: false,
-          scales: {
-            r: {
-              beginAtZero: false,
-              suggestedMax: 0.8,
-              suggestedMin: -1,
-              ticks: {
-                font: { size: 8 },
-                color: '#EA7317'
-              },
-              pointLabels: {
-                font: { size: 12 },
-                color: '#252525'
-              },
-              grid: { circular: true }
-            }
-          },
-          plugins: { legend: { display: false } }
-        }
+        plugins: { legend: { display: false } }
       }
+    }
 
-      let options2 = {
-        type: 'radar',
-        data: {
-          labels: label2,//data.abbrev,
-          datasets: [{
-            label: 'Performance',
-            data: data2,//data.z_score,
-            fill: true,
-            backgroundColor: 'rgba(0, 183, 64, 0.2)',
-            borderColor:   'rgb(1, 97, 27)',
-            borderWidth: 2,
-            pointBackgroundColor: 'rgb(54, 162, 235)'
-          }]
+    let options2 = {
+      type: 'radar',
+      data: {
+        labels: label2,//data.abbrev,
+        datasets: [{
+          label: 'Performance',
+          data: data2,//data.z_score,
+          fill: true,
+          backgroundColor: 'rgba(0, 183, 64, 0.2)',
+          borderColor:   'rgb(1, 97, 27)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(54, 162, 235)'
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          r: {
+            beginAtZero: false,
+            suggestedMax: 0.8,
+            suggestedMin: -1,
+            ticks: {
+              font: { size: 8 },
+              color: '#EA7317'
+            },
+            pointLabels: {
+              font: { size: 12 },
+              color: '#252525'
+            },
+            grid: { circular: true }
+          }
         },
-        options: {
-          responsive: false,
-          scales: {
-            r: {
-              beginAtZero: false,
-              suggestedMax: 0.8,
-              suggestedMin: -1,
-              ticks: {
-                font: { size: 8 },
-                color: '#EA7317'
-              },
-              pointLabels: {
-                font: { size: 12 },
-                color: '#252525'
-              },
-              grid: { circular: true }
-            }
-          },
-          plugins: { legend: { display: false } }
-        }
+        plugins: { legend: { display: false } }
       }
-
-
-
-      if (radarChartOne){
-        radarChartOne.data.labels = label;
-        radarChartOne.data.datasets[0].data = data;
-        radarChartOne.update();
-      } else {
-
-        radarChartOne = new Chart(canvas, options);
-      }
-
-      if (radarChartTwo){
-        radarChartTwo.data.labels = label2;
-        radarChartTwo.data.datasets[0].data = data2;
-        radarChartTwo.update();
-      } else {
-
-        radarChartTwo = new Chart(canvas2, options2);
-      }
-
     }
 
 
 
+    if (radarChartOne){
+      radarChartOne.data.labels = label;
+      radarChartOne.data.datasets[0].data = data;
+      radarChartOne.update();
+    } else {
+
+      radarChartOne = new Chart(canvas, options);
+    }
+
+    if (radarChartTwo){
+      radarChartTwo.data.labels = label2;
+      radarChartTwo.data.datasets[0].data = data2;
+      radarChartTwo.update();
+    } else {
+
+      radarChartTwo = new Chart(canvas2, options2);
+    }
+
+  }
+  const radarChecklistContainer = document.getElementById('radar_checklist_container');
+  const statIdsData = await getJsons(statIdsList);
+
+  for (let i = 0; i < statIdsData.id.length; i++){
+    const label = document.createElement('label');
+    label.style.display = 'block';
+
+    const checkInput = document.createElement('input');
+    checkInput.type = 'checkbox';
+    checkInput.id = 'stats_check';
+    checkInput.value = statIdsData.id[i]
+    label.append(checkInput);
+
+    label.append(statIdsData.name[i]);
+
+    const hoverDiv = document.createElement('div');
+    hoverDiv.className = 'radar_modification_list_hover';
+    hoverDiv.style.display = 'none';
+    hoverDiv.style.position = 'fixed';
+
+    const hoverDivTextTitle = document.createElement('p');
+    hoverDivTextTitle.style.fontWeight = 'bolder';
+    const hoverDivTextDesc = document.createElement('p');
 
 
+    hoverDivTextTitle.innerHTML = statIdsData.fullName[i];
+    hoverDivTextTitle.style.display = 'block';
+    hoverDiv.append(hoverDivTextTitle);
 
+    hoverDivTextDesc.innerHTML = statIdsData.desc[i];
+    hoverDivTextDesc.style.display = 'block';
+    hoverDiv.append(hoverDivTextDesc);   
+
+    label.addEventListener('mouseover', e => {
+      hoverDiv.style.display = 'block';
+    })
+
+    label.addEventListener('mousemove', e => {
+      hoverDiv.style.left = (e.clientX + 8) + 'px';
+      hoverDiv.style.top = (e.clientY - 30) + 'px';
+    })
+
+    label.addEventListener('mouseout', e => {
+      hoverDiv.style.display = 'none';
+    })
+
+    label.append(hoverDiv);
+    radarChecklistContainer.append(label);  
+  }
+
+  const yearSelect = document.getElementById('radar_yearSelect');
+  const radarSelect = document.getElementById('radar_eventSelect');
+  
+  const allOptYears = document.createElement('option');
+  allOptYears.value = '';
+  allOptYears.textContent = 'All Time';
+  yearSelect.append(allOptYears);
+
+  const allOptEvents = document.createElement('option');
+  allOptEvents.value = '';
+
+  allOptEvents.textContent = 'All Events';
+  radarSelect.append(allOptEvents);
+
+  let yearUrl = 
+    pdgaNumOne && !pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumOne :
+    pdgaNumOne && pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumOne :
+    !pdgaNumOne && pdgaNumTwo ? playerYearsUrl + "?pdga_number=" + pdgaNumTwo :
+    '';
+
+  const dataYear = yearUrl ? await getJsons(yearUrl) : '';
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option'); 
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+  async function drawRadars(year, eventId, valuesIds){
     let url = pdgaNumOne
       ? playerRadarUrl + `?pdga_number=${pdgaNumOne}`
-      : ''
+      : '';
+
+    url = year 
+      ? url + "&year=" + year
+      : url;
     
+    url = eventId
+      ? url + "&event=" + eventId
+      : url;
+      
     let url2 = pdgaNumTwo
       ? playerRadarUrl + `?pdga_number=${pdgaNumTwo}`
-      : ''
+      : '';
+    
+    url2 = year
+      ? url2 + "&year=" + year
+      : url2;
+    
+    url2 = eventId
+      ? url2 + "&event=" + eventId
+      : url2;
+    
+    if (valuesIds.length > 0){
+      url = url + "&ids=" + valuesIds;
+      url2 = url2 + "&ids=" + valuesIds;
+    }
 
     const data = url ? await getJsons(url) : '';
     let labelsOne = data ? data.abbrev : '';
@@ -663,7 +824,92 @@ async function displayPlayerBio(
     )
   }
 
-  displayPlayerRadars()
+  async function getEventsFromYear(year){
+    let eventsUrl = 
+      pdgaNumOne && !pdgaNumTwo ? playerEventsUrl + "?pdga_number=" + pdgaNumOne :
+      pdgaNumOne && pdgaNumTwo ? playerEventsUrl + "?pdga_number=" + pdgaNumOne :
+      !pdgaNumOne && pdgaNumTwo ? playerEventsUrl + "?pdga_number=" + pdgaNumTwo :
+      '';
+    eventsUrl = year ? eventsUrl + "&year=" + year : eventsUrl;
+
+    console.log(eventsUrl)
+
+    const eventsList = eventsUrl ? await getJsons(eventsUrl) : '';
+    eventsList.forEach((e) => {
+      const option = document.createElement('option');
+      option.value = e.pdga_event_id;
+      option.innerHTML = e.name;
+      radarSelect.append(option);
+    })
+
+  }
+
+  yearSelect.addEventListener('change', e => {
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    getEventsFromYear(e.target.value);
+
+    drawRadars(e.target.value, '', values);
+  })
+
+  radarSelect.addEventListener('change', e => {
+    console.log("radar event select is invoked.\n", yearSelect.value, " ", e.target.value, " ",values)
+    drawRadars(yearSelect.value, e.target.value, values);
+  })
+
+  const submitBtn = document.getElementById('radar_checklist_submitBtn');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadars('', '', values);
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
+
+  drawRadars('', '', values);
+}
+
+displayPlayerRadars()
 
 
 
@@ -679,82 +925,245 @@ async function displayPlayerBio(
       barData2
     ){
       const canvas = document.getElementById(`${elementId}`);
-      const options = {
-        chart: {
-          type: 'line',
-          width: 900,
-          height: 400,
-          //sparkline: { enabled: true },   // ← removes axes, grid, legend, title
-        },
-        colors: ["#FF9F50", "#7CC6FF", "#C3956F", "#597F9C"],
-        series: [
-          {
-          //playerOne running averages - line
-          name: 'P1 running',
-          type: 'line',
-          data: lineData
-          },
-          {
-            name: 'P2 running',
+
+      let options;
+      if (lineData && lineData2){
+        options = {
+          chart: {
             type: 'line',
-            data: lineData2
+            width: 900,
+            height: 400,
+            //sparkline: { enabled: true },   // ← removes axes, grid, legend, title
           },
-          {
-            name: 'P1 avg',
-            type: 'column',
-            data: barData
+          colors: ["#FF9F50", "#7CC6FF", "#C3956F", "#597F9C"],
+          series: [
+            {
+            //playerOne running averages - line
+            name: 'P1 running',
+            type: 'line',
+            data: lineData
+            },
+            {
+              name: 'P2 running',
+              type: 'line',
+              data: lineData2
+            },
+            {
+              name: 'P1 avg',
+              type: 'column',
+              data: barData
+            },
+            {
+              name: 'P2 avg',
+              type: 'column',
+              data: barData2
+            }
+          ],
+          stroke: {
+            curve: 'smooth',
+            width: 2
           },
-          {
-            name: 'P2 avg',
-            type: 'column',
-            data: barData2
-          }
-        ],
-        stroke: {
-          curve: 'smooth',
-          width: 2
-        },
-        xaxis: {
-          categories: label,
-          axisBorder: {
-            show: true
-          },
-          axisTicks: {
-            show: false
-          }
-        },
-        yaxis: {
-          //seriesName: 'P1 running',
-          axisBorder: {
-            show: true
-          },
-          min: 950,
-          max: 1100
-        },
-        grid: {
-          show: true,
-          strokeDashArray: 6,
           xaxis: {
-            lines: {
+            categories: label,
+            axisBorder: {
               show: true
+            },
+            axisTicks: {
+              show: false
             }
           },
           yaxis: {
-            lines: {
+            //seriesName: 'P1 running',
+            axisBorder: {
               show: true
+            },
+            min: 950,
+            max: 1100
+          },
+          grid: {
+            show: true,
+            strokeDashArray: 6,
+            xaxis: {
+              lines: {
+                show: true
+              }
+            },
+            yaxis: {
+              lines: {
+                show: true
+              }
             }
+          },
+          markers: {
+            size: 6
+          },
+          tooltip: {
+            enabled: true,
+            theme: 'light',
+            x: { show: false },
+            y: { formatter: v => v.toFixed(1) }
           }
-        },
-        markers: {
-          size: 6
-        },
-        tooltip: {
-          enabled: true,
-          theme: 'light',
-          x: { show: false },
-          y: { formatter: v => v.toFixed(1) }
+        }
+      } else if (lineData && !lineData2){
+        options = {
+          chart: {
+            type: 'line',
+            width: 900,
+            height: 400,
+            //sparkline: { enabled: true },   // ← removes axes, grid, legend, title
+          },
+          colors: ["#FF9F50", /*"#7CC6FF",*/ "#C3956F" /*, "#597F9C"*/],
+          series: [
+            {
+            //playerOne running averages - line
+            name: 'P1 running',
+            type: 'line',
+            data: lineData
+            },
+            // {
+            //   name: 'P2 running',
+            //   type: 'line',
+            //   data: lineData2
+            // },
+            {
+              name: 'P1 avg',
+              type: 'column',
+              data: barData
+            },
+            // {
+            //   name: 'P2 avg',
+            //   type: 'column',
+            //   data: barData2
+            // }
+          ],
+          stroke: {
+            curve: 'smooth',
+            width: 2
+          },
+          xaxis: {
+            categories: label,
+            axisBorder: {
+              show: true
+            },
+            axisTicks: {
+              show: false
+            }
+          },
+          yaxis: {
+            //seriesName: 'P1 running',
+            axisBorder: {
+              show: true
+            },
+            min: 950,
+            max: 1100
+          },
+          grid: {
+            show: true,
+            strokeDashArray: 6,
+            xaxis: {
+              lines: {
+                show: true
+              }
+            },
+            yaxis: {
+              lines: {
+                show: true
+              }
+            }
+          },
+          markers: {
+            size: 6
+          },
+          tooltip: {
+            enabled: true,
+            theme: 'light',
+            x: { show: false },
+            y: { formatter: v => v.toFixed(1) }
+          }
+        }
+      } else if (!lineData && lineData2){
+        options = {
+          chart: {
+            type: 'line',
+            width: 900,
+            height: 400,
+            //sparkline: { enabled: true },   // ← removes axes, grid, legend, title
+          },
+          colors: [/*"#FF9F50",*/ "#7CC6FF",/*"#C3956F",*/ "#597F9C"],
+          series: [
+            // {
+            // //playerOne running averages - line
+            // name: 'P1 running',
+            // type: 'line',
+            // data: lineData
+            // },
+            {
+              name: 'P2 running',
+              type: 'line',
+              data: lineData2
+            },
+            // {
+            //   name: 'P1 avg',
+            //   type: 'column',
+            //   data: barData
+            // },
+            {
+              name: 'P2 avg',
+              type: 'column',
+              data: barData2
+            }
+          ],
+          stroke: {
+            curve: 'smooth',
+            width: 2
+          },
+          xaxis: {
+            categories: label,
+            axisBorder: {
+              show: true
+            },
+            axisTicks: {
+              show: false
+            }
+          },
+          yaxis: {
+            //seriesName: 'P1 running',
+            axisBorder: {
+              show: true
+            },
+            min: 950,
+            max: 1100
+          },
+          grid: {
+            show: true,
+            strokeDashArray: 6,
+            xaxis: {
+              lines: {
+                show: true
+              }
+            },
+            yaxis: {
+              lines: {
+                show: true
+              }
+            }
+          },
+          markers: {
+            size: 6
+          },
+          tooltip: {
+            enabled: true,
+            theme: 'light',
+            x: { show: false },
+            y: { formatter: v => v.toFixed(1) }
+          }
         }
       }
+
+
+
+
+
 
       if (lineChart){
         
@@ -779,18 +1188,20 @@ async function displayPlayerBio(
      */
     let url = pdgaNumOne
       ? playerRatingUrl + `?pdga_number=${pdgaNumOne}`
-      : playerRatingUrl
+      : '';
 
-      let url2 = pdgaNumOne
+    let url2 = pdgaNumTwo
       ? playerRatingUrl + `?pdga_number=${pdgaNumTwo}`
-      : playerRatingUrl
+      : '';
 
-    const p1data = await getJsons(url)
+    
+
+    const p1data = url ? await getJsons(url) : ''
     let labels = p1data.dates;
     let values = p1data.values;
     let regAvg = p1data.reg_avg;
     
-    const p2data = await getJsons(url2);
+    const p2data = url2 ? await getJsons(url2) : '';
     //let labels2 = p2data.dates;
     let values2 = p2data.values;
     let regAvg2 = p2data.reg_avg;

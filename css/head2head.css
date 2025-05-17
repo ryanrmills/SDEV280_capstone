@@ -363,7 +363,8 @@ nav div img:hover {
   /* max-width: 300px; */
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
-  border: 2px solid gray;
+  /* border: 2px solid gray; */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
   display: flex;
   align-items: center;
@@ -463,14 +464,30 @@ nav div img:hover {
   /* max-width: 300px; */
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
-  border: 2px solid gray;
+  /* border: 2px solid gray; */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 
   font-family: "Urbanist", sans-serif;
   color: rgb(87, 87, 87);
+}
+
+.h2h_radialDropdown_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h2h_radialDropdown_container #h2h_radial_dropdown{
+  width: 100px;
+  height: 30px;
 }
 
 .comparison_layout > .playertwo_radials_container {
@@ -516,14 +533,23 @@ nav div img:hover {
   /* max-width: 300px; */
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
-  border: 2px solid gray;
+  /* border: 2px solid gray; */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
+  
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 
   font-family: "Urbanist", sans-serif;
   color: rgb(87, 87, 87);
+}
+
+.playerstats_center #h2h_careerProfile_dropdown{
+  height: 30px;
+  width: 100px;
 }
 
 .comparison_layout > .comparison_playertwo_stats{
@@ -544,6 +570,7 @@ nav div img:hover {
 }
 
 .mainStats_tiles {
+  position: relative;
   color: white;
   font-family: "Urbanist", sans-serif;
   padding: 0.8em;
@@ -562,6 +589,16 @@ nav div img:hover {
 .mainStats_tiles p,h3 {
   margin: 0em;
   padding: 0em;
+}
+
+.mainStats_tiles h3 {
+  position: absolute;
+  top: 34px;
+}
+
+.mainStats_tiles p {
+  position: absolute;
+  bottom: 30px;
 }
 
 .comparison_layout > .playerone_radarContainer{
@@ -583,16 +620,127 @@ nav div img:hover {
   /* max-width: 300px; */
   height: 100%;
   background-color: rgba(212, 212, 212, 0);
-  border: 2px solid gray;
+  /* border: 2px solid gray; */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
   border-radius: 0.4em;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 
   font-family: "Urbanist", sans-serif;
   color: rgb(87, 87, 87);
 
 }
+
+.categoryDropdown {
+  width: 100px;
+  /* max-width: 140px; */
+  height: 20px;
+  /* font-family: "Urbanist", sans-serif;
+  font-weight: bolder;
+  font-size: 1.2em; */
+  color: rgb(92, 92, 92);
+  border-style: none;
+  border-bottom: 1px solid black;
+  background-color: #ffffff00;
+
+}
+
+.center_radarContainer .categoryDropdown:active,
+.categoryDropdown:focus {
+  border-style: none;
+  outline: none;
+  border-bottom: 1px solid black;
+}
+
+.center_radarContainer .radar_modification_container{
+  height: 50%;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.radar_modification_container #radar_checklist_container {
+  border: 1px solid rgb(156, 156, 156);
+  padding: 0.2em;
+  background-color: white;
+  border-radius: 0.4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: left;
+  height: 100%;
+  max-height: 100px;
+  width: 100%;
+  overflow-y: scroll;
+  /* direction: rtl; */
+}
+
+.radar_modification_list_hover {
+  background-color: rgba(255, 255, 255, 0.749);
+  border-radius: 0.4em;
+  z-index: 30;
+  width: 200px;
+  padding: 0.4em;
+  color: rgb(69, 69, 69);
+}
+
+.radar_checklist_submitBtn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  color: white;
+  border-radius: 0.4em;
+  /* background-image: linear-gradient(to bottom, rgb(35, 215, 173), rgb(0, 166, 94)); */
+  background-color: #002c19f8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+}
+
+.radar_checklist_submitBtn:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+.radar_checklist_selectAllBtn {
+  width: 100%;
+  height: 30px;
+  border: none;
+  color: rgb(16, 16, 16);
+  border-radius: 0.4em;
+  /* background-image: linear-gradient(to bottom, rgb(35, 215, 173), rgb(0, 166, 94)); */
+  background-color: #5ae7aaf8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+}
+
+.radar_checklist_selectAllBtn:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+.radar_checklist_unselectBtn {
+  width: 100%;
+  height: 30px;
+  border: none;
+  color: white;
+  border-radius: 0.4em;
+  /* background-image: linear-gradient(to bottom, rgb(35, 215, 173), rgb(0, 166, 94)); */
+  background-color: #ec3737f8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+}
+
+.radar_checklist_unselectBtn:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+
+
 
 .comparison_layout > .playertwo_radarContainer{
   grid-area: radar2;
