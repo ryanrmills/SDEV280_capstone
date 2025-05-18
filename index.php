@@ -347,5 +347,16 @@
       </div>
     
     </section>
+    <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
+      <div class="eventRound_mainContent">
+        
+      </div>
+      <div id="eventRound_pullButton" class="eventRound_pullButton">
+        <div>
+          <span class="material-symbols-outlined" style="font-size: 2em;">chevron_right</span>
+        </div>
+      </div>
+    </section>
+
   </body>
   </html>

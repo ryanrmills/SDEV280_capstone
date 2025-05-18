@@ -22,6 +22,7 @@
   $sql = 
   "SELECT 
      events.name,
+     events.start_date,
      MONTHNAME(events.start_date) AS event_month,
      YEAR(events.start_date) AS event_year,
      event_results.division,

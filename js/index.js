@@ -941,6 +941,11 @@ async function displayEventsTable(){
         }
       },
       {title: "Month", data: "event_month"},
+      {
+        title: "Date", 
+        data: "start_date",
+        width: "100px"
+      },
       {title: "Year", data: "event_year"},
       {title: "City", data: "city"},
       {title: "State", data: "state"},
@@ -1016,6 +1021,11 @@ async function displayRoundsTable(){
           return `<div class="scroll-x">${data}</div>`;
         }
       },
+      {
+        title: "Date", 
+        data: "start_date",
+        width: "100px"
+      },
       {title: "Month", data: "event_month"},
       {title: "Year", data: "event_year"},
       {title: "Division", data: "division"},
@@ -1051,6 +1061,20 @@ document.getElementById('tabsSection_eventTab').addEventListener('click', () => 
 document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
   displayRoundsTable();
 })
+
+
+
+
+
+
+
+
+
+
+document.getElementById('eventRound_pullButton').addEventListener('click', () => {
+  document.getElementById('hoverTab_eventRound_comparison').classList.toggle('clicked');
+})
+
 
 
 
