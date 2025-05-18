@@ -349,6 +349,9 @@
     </section>
     <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
       <div class="eventRound_mainContent">
+        <div class="hoverTab_mainContent_headerSection">
+          <h1>Quick Compare</h1>
+        </div>
         
       </div>
       <div id="eventRound_pullButton" class="eventRound_pullButton">
