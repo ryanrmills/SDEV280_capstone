@@ -2,32 +2,32 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number");
 
 //I put all the urls in one place
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
 
 
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-// const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-// const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -471,10 +471,217 @@ async function playerRadar(){
     })
   }
 
+  
+
   drawRadar('', '', values);
 
 };
 playerRadar();
+
+
+
+
+
+async function playerRadar2(){
+  const radarChecklistContainer = document.getElementById('radar_checklist_container2');
+  const statIdsData = await getJsons(statIdsList);
+
+  for (let i = 0; i < statIdsData.id.length; i++){
+    const label = document.createElement('label');
+    label.style.display = 'block';
+
+    const checkInput = document.createElement('input');
+    checkInput.type = 'checkbox';
+    checkInput.id = 'stats_check2';
+    checkInput.value = statIdsData.id[i]
+    label.append(checkInput);
+
+    label.append(statIdsData.name[i]);
+
+    const hoverDiv = document.createElement('div');
+    hoverDiv.className = 'radar_modification_list_hover2';
+    hoverDiv.style.display = 'none';
+    hoverDiv.style.position = 'fixed';
+
+    const hoverDivTextTitle = document.createElement('p');
+    hoverDivTextTitle.style.fontWeight = 'bolder';
+    const hoverDivTextDesc = document.createElement('p');
+
+
+    hoverDivTextTitle.innerHTML = statIdsData.fullName[i];
+    hoverDivTextTitle.style.display = 'block';
+    hoverDiv.append(hoverDivTextTitle);
+
+    hoverDivTextDesc.innerHTML = statIdsData.desc[i];
+    hoverDivTextDesc.style.display = 'block';
+    hoverDiv.append(hoverDivTextDesc);   
+
+    label.addEventListener('mouseover', e => {
+      hoverDiv.style.display = 'block';
+    })
+
+    label.addEventListener('mousemove', e => {
+      hoverDiv.style.left = (e.clientX + 8) + 'px';
+      hoverDiv.style.top = (e.clientY - 30) + 'px';
+    })
+
+    label.addEventListener('mouseout', e => {
+      hoverDiv.style.display = 'none';
+    })
+
+    label.append(hoverDiv);
+    radarChecklistContainer.append(label);    
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const yearSelect = document.getElementById('radar_yearSelect2');
+  const radarSelect = document.getElementById('radar_eventSelect2');
+  
+  const allOptYears = document.createElement('option');
+  allOptYears.value = '';
+  allOptYears.textContent = 'All Time';
+  yearSelect.append(allOptYears);
+
+  const allOptEvents = document.createElement('option');
+  allOptEvents.value = '';
+
+  allOptEvents.textContent = 'All Events';
+  radarSelect.append(allOptEvents);
+
+  
+  const dataYear = await getJsons(playerYearsUrl);
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option'); 
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+  async function drawRadar(year, eventId, valuesIds){
+    let url = year
+      ? playerRadarUrl + "&year=" + year
+      : playerRadarUrl;
+    
+    url = eventId
+      ? url + "&event=" + eventId
+      : url
+    
+
+
+    if (valuesIds.length > 0){
+      url = url + "&ids=" + valuesIds;
+    }
+      
+    const data = await getJsons(url);
+
+    const label = data.abbrev;
+    const statData = data.z_score;
+
+    createOrUpdateRadar2(label, statData, 'radar_chart2');
+  }
+
+
+  async function getEventsFromYear(year){
+
+    const eventsList = await getJsons(`${playerEventsUrl}${year}`);
+    eventsList.forEach((e) => {
+      const option = document.createElement('option');
+      option.value = e.pdga_event_id;
+      option.innerHTML = e.name;
+      radarSelect.append(option);
+    })
+
+  }
+
+  yearSelect.addEventListener('change', e => {
+
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    getEventsFromYear(e.target.value);
+
+    drawRadar(e.target.value, '', values);
+  })
+
+  radarSelect.addEventListener('change', e => {
+
+    drawRadar(yearSelect.value, e.target.value, values);
+  })
+
+  const submitBtn = document.getElementById('radar_checklist_submitBtn2');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check2');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadar('', '', values);
+
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn2');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn2');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
+
+  drawRadar('', '', values);
+
+};
 
 let radarChart;
 async function createOrUpdateRadar(label, data, elementId){
@@ -524,8 +731,81 @@ async function createOrUpdateRadar(label, data, elementId){
 
     radarChart = new Chart(canvas, options);
   }
-
 }
+
+
+
+
+
+
+
+let radarChart2;
+async function createOrUpdateRadar2(label2, data2, elementId2){
+
+  let canvas2 = document.getElementById(`${elementId2}`)
+  let options2 = {
+    type: 'radar',
+    data: {
+      labels: label2,//data.abbrev,
+      datasets: [{
+        label: 'Performance',
+        data: data2,//data.z_score,
+        fill: true,
+        backgroundColor: 'rgba(0, 183, 64, 0.2)',
+        borderColor:   'rgb(1, 97, 27)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgb(54, 162, 235)'
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        r: {
+          beginAtZero: false,
+          suggestedMax: 0.8,
+          suggestedMin: -1,
+          ticks: {
+            font: { size: 8 },
+            color: '#EA7317'
+          },
+          pointLabels: {
+            font: { size: 12 },
+            color: '#252525'
+          },
+          grid: { circular: true }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  }
+
+  if (radarChart2){
+    radarChart2.data.labels = label2;
+    radarChart2.data.datasets[0].data = data2;
+    radarChart2.update();
+  } else {
+
+    radarChart2 = new Chart(canvas2, options2);
+  }
+}
+
+let radar2 = document.getElementById('radarChart_comparisonContainer');
+
+let radarCompareButton = document.getElementById('radarGraphCompareButton');
+radarCompareButton.addEventListener('click', () => {
+  radarCompareButton.style.display = 'none';
+  radar2.classList.toggle('toggled');
+  playerRadar2();
+})
+
+
+let radarCompareCloseButton = document.getElementById('radarCompareCloseButton');
+radarCompareCloseButton.addEventListener('click', () => {
+  radar2.classList.toggle('toggled');
+  radarCompareButton.style.display = 'block';
+})
+
+
 
 
 
@@ -1060,6 +1340,11 @@ document.getElementById('tabsSection_eventTab').addEventListener('click', () => 
 })
 document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
   displayRoundsTable();
+})
+
+
+document.getElementById('compareSelector_optionSelect').addEventListener('change', () => {
+
 })
 
 

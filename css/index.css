@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   /* background-color: #d5ffedf8; */
-  background-color: #00000000;
+  background-color: #0000000d;
   min-width: 1200px;
 }
 
@@ -72,13 +72,15 @@ nav img:hover {
 
 .player_container {
   width: 100%;
-  height: 450px;
+  height: 500px;
   margin-top: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  box-sizing: border-box;
   /* box-sizing: border-box; */
-  position: relative;
+  /* position: relative; */
 }
 
 /* .playerbio_section {
@@ -111,35 +113,34 @@ nav img:hover {
   /* margin: 1em; */
   grid-template-areas:
     "pic pic stat stat stat stat wins wins wins"
-    "pic pic xstat xstat xstat xstat wins wins wins"
+    "pic pic stat stat stat stat wins wins wins"
     "bio bio radial radial radial radial rate rate rate"
     "spons spons radial radial radial radial rate rate rate";
 
   grid-template-columns: repeat(9, 1fr);
   gap: 0.6em;
   /* padding: 1em; */
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 .playerbio_section > .playerbio_section_profilepic {
   grid-area: pic;
-  height: 100%;
-  max-height: 400px;
+  height: 99%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.4em;
   overflow: hidden;
   position: relative;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
 .playerbio_section_profilepic img {
-  border-radius: 0.4em;
   height: 100%;
-  /* max-height: 400px; */
-  top: 0em;
+  max-height: 300px;
   position: absolute;
-  border-radius: 0.4em;
 }
 
 .playerbio_section > .playerbio_section_selfIntro {
@@ -204,22 +205,30 @@ i {
 
 .playerbio_section > .playerbio_globe_events {
   grid-area: wins;
+  
+  position: relative;
+  margin: 0em;
+  padding: 0em;
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+
+  box-sizing: border-box;
+
+
   display: flex;
   align-items: center;
   justify-content: center;
   /* min-height: 100%; */
-  width: 100%;
-  height: 100%;
+
+
   background-color: #ffedd500;
   border-radius: 0.4em;
   overflow-x: hidden;
   overflow-y: hidden;
   /* border: 1px solid #fc2200;*/
-  position: relative;
   color: white;
   font-family: "Urbanist", sans-serif;
-  margin: 0em;
-  padding: 0em;
   box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
@@ -306,6 +315,8 @@ select {
   grid-area: stat;
   width: 100%;
   height: 100%;
+
+  max-height: 300px;
   
   border-radius: 0.4em;
 
@@ -321,8 +332,10 @@ select {
 .playerbio_highlights .highlights_headerSection {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  height: 2em;
   width: 90%;
-  padding: 0.4em 0em;
   font-family: "Urbanist", sans-serif;
   color: rgb(68, 68, 68);
 }
@@ -355,19 +368,17 @@ select {
 
 .playerbio_highlights .playerbio_section_mainStats {
   width: 100%;
-  height: 100%;
-  /* background-color: #e65100a5; */
-  /* background-image: linear-gradient(to bottom, rgb(0, 40, 0), rgb(0, 47, 0)); */
+  height: 70%;
+
   color: rgb(235, 235, 235);
-  /* padding: 0.5em 0.5em; */
   border-radius: 0.4em;
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   font-family: "Urbanist", sans-serif;
   gap: 0.4em;
-  box-sizing: border-box;
 
   padding: 0.5em;
   
@@ -402,20 +413,20 @@ select {
   bottom: 30px;
 }
 
-.mainStats_topTens {
+/* .mainStats_topTens {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  /* width: 75px;
-  height: 75px; */
+  width: 75px;
+  height: 75px;
   min-width: 100px;
   min-height: 95px;
   max-height: 100px;
 
-  /* background-color: #606c38b8; */
-  /* background-color: #dda25ea4; */
+  background-color: #606c38b8;
+  background-color: #dda25ea4;
   background-color: #d5ffedf8;
   border-radius: 0.4em;
   padding: 0.2em;
@@ -428,14 +439,14 @@ select {
   align-items: center;
   justify-content: center;
 
-  /* width: 75px;
-  height: 75px; */
+  width: 75px;
+  height: 75px; 
   min-width: 100px;
   min-height: 95px;
   max-height: 100px;
 
-  /* background-color: #fefae0c1; */
-  /* background-color: #bc6b25b6; */
+  background-color: #fefae0c1;
+  background-color: #bc6b25b6;
   background-color: #d5ffedf8;
   border-radius: 0.4em;
   padding: 0.2em;
@@ -449,25 +460,27 @@ select {
   align-items: center;
   justify-content: center;
 
-  /* min-width: 115px;
-  height: 75px; */
+  min-width: 115px;
+  height: 75px;
   min-width: 100px;
   min-height: 95px;
   max-height: 100px;
 
-  /* background-color: #bc6b25b6; */
-  /* background-color: #606c38b8; */
+  background-color: #bc6b25b6;
+  background-color: #606c38b8;
   background-color: #d5ffedf8;
   border-radius: 0.4em;
   padding: 0.2em;
   box-shadow: 0px 1px rgb(87, 87, 87);
 }
-
+*/
 .playerbio_section_mainStats h1,
 p {
   margin: 0px;
   padding: 0px;
 }
+
+/*
 
 .playerbio_section > .playerbio_section_xStats {
   grid-area: xstat;
@@ -492,9 +505,9 @@ p {
   min-height: 95px;
   max-height: 100px;
 
-  /* background-color: #bc6b25b6; */
-  /* background-color: #606c38b8; */
-  /* background-color: #ffedd5f8; */
+  background-color: #bc6b25b6; 
+  background-color: #606c38b8;
+  background-color: #ffedd5f8;
   background-color: #d5ffedf8;
   border-radius: 0.4em;
   padding: 0.2em;
@@ -507,12 +520,17 @@ p {
   padding: 0px;
 }
 
+*/
+
 .playerbio_section > .player_mainRadials {
   grid-area: radial;
-  box-sizing: border-box;
-  padding-top: 0.4em;
+
+
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+
   width: 100%;
   height: 100%;
   /* background-color:#ff9d0013; */
@@ -520,13 +538,14 @@ p {
   border-radius: 0.4em;
   /* border: 1px solid #ea7317; */
 
-  align-items: center;
-  justify-content: center;
   gap: 0em;
   /* box-sizing: border-box; */
   font-family: "Urbanist", sans-serif;
   position: relative;
   box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .radialPerformance_headerSection {
@@ -544,10 +563,6 @@ p {
   margin: 0em;
 }
 
-.radial_bin {
-  display: flex;
-  flex-direction: row;
-}
 
 .radial_dropdown {
   background-color: rgba(255, 255, 255, 0);
@@ -564,18 +579,21 @@ p {
 }
 
 .radial_bin {
-  /* position: relative; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  overflow-y: hidden;
+
+  position: absolute;
+  top: 2em;
 }
 
 .player_radials {
-  width: 150px;
-  /* height: 50px; */
+
+  width: 140px;
   margin: 0em;
-  margin-top: 0.8em;
   padding: 0em;
 }
 
@@ -627,28 +645,39 @@ p {
   background-color: rgb(0, 133, 20);
 }
 
-.totalStats_container {
+.allStats_container {
   width: 100%;
-  /* max-width: 1100px; */
-  margin-top: 1em;
+  height: 500px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* position: relative; */
+}
+
+.totalStats_container {
+  width: 1050px;
+  height: 500px;
+
+  padding: 0em 1em;
+  
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
   gap: 0.5em;
+
+  overflow-x: auto;
 }
 
 .totalStats_section {
-  /* background-color: #d5ffedf8; */
-  /* border: solid 1px #077445f8;
-  background-color: #cbffe95d; */
   background-image: linear-gradient(to bottom, #d5ffed77, #d5ffedf8 );
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
 
-  min-width: 500px;
-  max-width: 560px;
-  width: 60%;
+  width: 550px;
   height: 400px;
 
   display: flex;
@@ -660,7 +689,7 @@ p {
   gap: 1em;
   /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
   box-shadow: 0 5px 10px rgba(0,0,0,0.6);
-  /* box-sizing: border-box; */
+  flex: 0 0 auto;
 }
 
 .totalStats_sectionHeader {
@@ -670,6 +699,24 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.sectionHeader_titles {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+
+  gap: 0.4em;
+}
+
+.sectionHeader_titles button {
+  border: none;
+  border-radius: 0.4em;
+  background-color: rgb(44, 135, 255);
+  color: white;
+  height: 30px;
+  width: 100px;
 }
 
 .totalStats_section_title {
@@ -727,21 +774,8 @@ p {
   max-height: 100px;
   width: 100%;
   overflow-y: scroll;
-  /* direction: rtl; */
+
 }
-
-/* #radar_checklist_container::-webkit-scrollbar {
-  display: none;
-}
-
-#radar_checklist_container {
-  scrollbar-width: none;
-}
-
-
-#radar_checklist_container {
-  -ms-overflow-style: none;
-} */
 
 .radar_modification_list_hover {
   background-color: rgba(255, 255, 255, 0.749);
@@ -801,7 +835,6 @@ p {
 }
 
 
-
 canvas {
   /* position: absolute;
   right: 50px; */
@@ -809,29 +842,227 @@ canvas {
   height: 44%;
 }
 
+#radarChart_comparisonContainer {
+  background-image: linear-gradient(to bottom, #d5ffed77, #d5ffedf8 );
+  border-radius: 0.4em;
+  font-family: "Urbanist", sans-serif;
+  color: rgb(99, 99, 99);
+
+  width: 0px;
+  height: 400px;
+
+  display: flex;
+  overflow: hidden;
+  
+  align-items: center;
+  justify-content: space-evenly;
+
+  position: relative;
+  gap: 1em;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+
+  opacity: 0;
+  flex: 0 0 auto;
+  transition: opacity 1.4s ease, width 0.6s ease;
+}
+
+#radarChart_comparisonContainer.toggled {
+  width: 500px;
+  padding: 1em;
+
+  opacity: 1;
+}
+
+
+
+.totalStats_sectionHeader2 {
+  width: 95%;
+  position: absolute;
+  top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex: 0 0 auto;
+}
+
+.sectionHeader2_titles {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+
+  gap: 0.2em;
+  flex: 0 0 auto;
+}
+
+.sectionHeader2_titles button{
+  background-color: red;
+  border: none;
+  color: white;
+  flex: 0 0 auto;
+
+  border-radius: 0.4em;
+  height: 30px;
+  width: 80px
+}
+
+.sectionHeader2_titles button:active{
+  background-color: rgb(174, 0, 0);
+}
+
+.totalStats_section_title2 {
+  margin: 0px;
+  padding: 0px;
+  flex: 0 0 auto;
+}
+
+.totalStats_categoryDropdown2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.categoryDropdown2 {
+  width: 120px;
+
+  height: 30px;
+  font-family: "Urbanist", sans-serif;
+  font-weight: bolder;
+  font-size: 1.2em;
+  color: rgb(92, 92, 92);
+  border-style: none;
+  border-bottom: 1px solid black;
+  background-color: #ffffff00;
+}
+
+.categoryDropdown2:active,
+.categoryDropdown2:focus {
+  border-style: none;
+  outline: none;
+  border-bottom: 1px solid black;
+}
+
+.radar_modification_container2{
+  height: 50%;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+
+  flex: 0 0 auto;
+}
+
+#radar_checklist_container2 {
+  border: 1px solid rgb(156, 156, 156);
+  padding: 0.2em;
+  background-color: white;
+  border-radius: 0.4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: left;
+  height: 100%;
+  max-height: 100px;
+  width: 100%;
+  overflow-y: scroll;
+
+}
+
+
+
+.radar_modification_list_hover2 {
+  background-color: rgba(255, 255, 255, 0.749);
+  border-radius: 0.4em;
+  z-index: 30;
+  width: 200px;
+  padding: 0.4em;
+  color: rgb(69, 69, 69);
+}
+
+.radar_checklist_submitBtn2 {
+  width: 100%;
+  height: 50px;
+  border: none;
+  color: white;
+  border-radius: 0.4em;
+  
+  background-color: #002c19f8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+
+}
+
+.radar_checklist_submitBtn2:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+.radar_checklist_selectAllBtn2 {
+  width: 100%;
+  height: 30px;
+  border: none;
+  color: rgb(16, 16, 16);
+  border-radius: 0.4em;
+ 
+  background-color: #5ae7aaf8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+
+}
+
+.radar_checklist_selectAllBtn2:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+.radar_checklist_unselectBtn2 {
+  width: 100%;
+  height: 30px;
+  border: none;
+  color: white;
+  border-radius: 0.4em;
+ 
+  background-color: #ec3737f8;
+  transform: translateY(2px);
+  box-shadow: black 0px 1px 2px;
+
+}
+
+.radar_checklist_unselectBtn2:active {
+  box-shadow: black 0px 0px 0px;
+}
+
+
+#radar_chart2 {
+ 
+  margin-top: 2em;
+  height: 44%;
+
+  flex: 0 0 auto;
+}
+
+
+
 .totalStats_breakdown {
-  /* background-color: #d5ffedf8; */
-  /* border: solid 1px #ea7317; */
   background-image: linear-gradient(to bottom, #ff9d0013, #ff9d003e );
   background-color: #ff9d0013;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
   color: rgb(99, 99, 99);
 
-  min-width: 300px;
-  max-width: 440px;
-  width: 40%;
-  min-height: 400px;
+
+  width: 425px;
+  height: 400px;
 
   display: flex;
   padding: 1em;
   align-items: center;
 
   position: relative;
-  overflow-y: auto;
-  overflow-x: auto;
-
-  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  flex: 0 0 auto;
   box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
@@ -1041,6 +1272,23 @@ canvas {
   justify-content: center;
   
   width: 100%;
+}
+
+.hoverTab_mainContent_compareSelector {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.2em;
+}
+
+
+.hoverTab_mainContent_compareSelector select {
+  height: 2em;
+  margin: 0em;
+  padding: 0em;
 }
 
 .hoverTab_eventRound_comparison .eventRound_pullButton {

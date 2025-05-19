@@ -264,102 +264,155 @@
       </div>
     </section>
     <br>
-    <section class="totalStats_container">
-      <div class="totalStats_section" id="radarChart_container">
-        <div class="totalStats_sectionHeader">
-          <h2 class="totalStats_section_title">Skill Profile</h2>
-
-          <div class="totalStats_categoryDropdown">
-            <div class="categoryDropdown_years">
-              <select id="radar_yearSelect" class="categoryDropdown">
-              </select>
+    <div class="allStats_container">
+      <div class="totalStats_container">
+        <div class="totalStats_section" id="radarChart_container">
+          <div class="totalStats_sectionHeader">
+            <div class="sectionHeader_titles">
+              <h2 class="totalStats_section_title">Skill Profile</h2>
+              <button id="radarGraphCompareButton">Compare</button>
             </div>
 
-            <div class="categoryDropdown_years">
-              <select id="radar_eventSelect" class="categoryDropdown">
-              </select>
+            <div class="totalStats_categoryDropdown">
+              <div class="categoryDropdown_years">
+                <select id="radar_yearSelect" class="categoryDropdown">
+                </select>
+              </div>
+
+              <div class="categoryDropdown_years">
+                <select id="radar_eventSelect" class="categoryDropdown">
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="radar_modification_container">
-          <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
-            Select all
-          </button>
-          <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
-            Unselect all
-          </button>
-          <div id="radar_checklist_container">
+          <div class="radar_modification_container">
+            <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
+              Select all
+            </button>
+            <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
+              Unselect all
+            </button>
+            <div id="radar_checklist_container">
 
+            </div>
+            <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
+              Submit
+            </button>
           </div>
-          <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
-            Submit
-          </button>
+          <canvas id="radar_chart"></canvas>
         </div>
-        <canvas id="radar_chart"></canvas>
+
+        <div id="radarChart_comparisonContainer">
+          <div class="totalStats_sectionHeader2">
+            <div class="sectionHeader2_titles">
+              <h2 class="totalStats_section_title2">Skill Profile 2</h2>
+              <button id="radarCompareCloseButton">Close</button>
+            </div>  
+
+            <div class="totalStats_categoryDropdown2">
+              <div class="categoryDropdown_years2">
+                <select id="radar_yearSelect2" class="categoryDropdown2">
+                </select>
+              </div>
+
+              <div class="categoryDropdown_years">
+                <select id="radar_eventSelect2" class="categoryDropdown2">
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="radar_modification_container2">
+            <button id="radar_checklist_selectAllBtn2" class="radar_checklist_selectAllBtn2">
+              Select all
+            </button>
+            <button id="radar_checklist_unselectBtn2" class="radar_checklist_unselectBtn2">
+              Unselect all
+            </button>
+            <div id="radar_checklist_container2">
+
+            </div>
+            <button id="radar_checklist_submitBtn2" class="radar_checklist_submitBtn2">
+              Submit
+            </button>
+          </div>
+          <canvas id="radar_chart2"></canvas>
+        </div>
+
+        <div class="totalStats_breakdown">
+          <div class="totalStats_sectionHeader">
+            <h2 class="totalStats_section_title">Breakdown</h2>
+
+            <div class="totalStats_categoryDropdown">
+              <div  class="categoryDropdown_years">
+                <select id="hbar_dropdown_years" class="categoryDropdown">
+                </select>
+              </div>
+
+              <div class="categoryDropdown_years">
+                <select id="hbar_dropdown_events" class="categoryDropdown">
+                </select>
+              </div>
+            </div>
+          </div>
+          <canvas id="hbar_percentile_chart" class="breakdown_hbars">
+
+          </canvas>
+        </div>
       </div>
+      
+    </div>
 
-      <div class="totalStats_breakdown">
-        <div class="totalStats_sectionHeader">
-          <h2 class="totalStats_section_title">Breakdown</h2>
-
-          <div class="totalStats_categoryDropdown">
-            <div  class="categoryDropdown_years">
-              <select id="hbar_dropdown_years" class="categoryDropdown">
-              </select>
-            </div>
-
-            <div class="categoryDropdown_years">
-              <select id="hbar_dropdown_events" class="categoryDropdown">
-              </select>
-            </div>
-          </div>
-        </div>
-        <canvas id="hbar_percentile_chart" class="breakdown_hbars">
-
-        </canvas>
-      </div>
-    </section>
     <br>
-    <section class="playerStatsContainer">
-      <div class="playerStats_tabsSection">
-        <div id="tabsSection_eventTab">
-          <h1>Events</h1>
+      <section class="playerStatsContainer">
+        <div class="playerStats_tabsSection">
+          <div id="tabsSection_eventTab">
+            <h1>Events</h1>
+          </div>
+          <div id="tabsSection_roundsTab">
+            <h1>Rounds</h1>
+          </div>
         </div>
-        <div id="tabsSection_roundsTab">
-          <h1>Rounds</h1>
+        <div id="eventsTableParentContainer" class="eventsTableParentContainer">
+          <table id="eventsTable" class="display stripe hover">
+          
+          </table>
         </div>
-      </div>
-      <div id="eventsTableParentContainer" class="eventsTableParentContainer">
-        <table id="eventsTable" class="display stripe hover">
-        
-        </table>
-      </div>
 
 
-      <div id="roundsTableParentContainer" class="roundsTableParentContainer">
-        <table id="roundsTable" class="display stripe hover" style="width: 100%;">
-        
-        </table>
-      </div>
+        <div id="roundsTableParentContainer" class="roundsTableParentContainer">
+          <table id="roundsTable" class="display stripe hover" style="width: 100%;">
+          
+          </table>
+        </div>
 
-      <div style="height: 100px;">
+        <div style="height: 100px;">
 
-      </div>
+        </div>
+      
+      </section>
+      <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
+        <div class="eventRound_mainContent">
+          <div class="hoverTab_mainContent_headerSection">
+            <h1>Quick Compare</h1>
+          </div>
+
+          <div class="hoverTab_mainContent_compareSelector">
+            <p>Compare</p>
+            <select id="compareSelector_optionSelect">
+              <option>Choose...</option>
+              <option>Events</option>
+              <option>Rounds</option>
+            </select>
+          </div>
+          
+        </div>
+        <div id="eventRound_pullButton" class="eventRound_pullButton">
+          <div>
+            <span class="material-symbols-outlined" style="font-size: 2em;">chevron_right</span>
+          </div>
+        </div>
+      </section>
     
-    </section>
-    <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
-      <div class="eventRound_mainContent">
-        <div class="hoverTab_mainContent_headerSection">
-          <h1>Quick Compare</h1>
-        </div>
-        
-      </div>
-      <div id="eventRound_pullButton" class="eventRound_pullButton">
-        <div>
-          <span class="material-symbols-outlined" style="font-size: 2em;">chevron_right</span>
-        </div>
-      </div>
-    </section>
 
   </body>
   </html>
