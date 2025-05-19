@@ -850,6 +850,7 @@ canvas {
 
   width: 0px;
   height: 400px;
+  padding: 1em 0em;
 
   display: flex;
   overflow: hidden;

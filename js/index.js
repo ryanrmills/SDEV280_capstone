@@ -733,6 +733,8 @@ async function createOrUpdateRadar(label, data, elementId){
   }
 }
 
+playerRadar2();
+
 
 
 
@@ -795,7 +797,6 @@ let radarCompareButton = document.getElementById('radarGraphCompareButton');
 radarCompareButton.addEventListener('click', () => {
   radarCompareButton.style.display = 'none';
   radar2.classList.toggle('toggled');
-  playerRadar2();
 })
 
 
