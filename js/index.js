@@ -1359,7 +1359,7 @@ document.getElementById('eventRound_pullButton').addEventListener('click', () =>
 
 async function displayPlayerRankings(){
 
-  let url = allPlayerRankingsUrl;
+  let url = pdgaNum ? allPlayerRankingsUrl + "?pdga_number=" + pdgaNum : console.log("displayPlayerRankings(): missing pdga number");
 
   let rankingData = await getJsons(url);
 
