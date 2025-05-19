@@ -13,6 +13,7 @@ const pdgaNum  = urlParams.get("pdga_number");
 // const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 // const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
 // const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
 
 
 
@@ -28,6 +29,7 @@ const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/ge
 const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
 const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
 const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -1350,16 +1352,76 @@ document.getElementById('compareSelector_optionSelect').addEventListener('change
 
 
 
-
-
-
-
-
-
-
 document.getElementById('eventRound_pullButton').addEventListener('click', () => {
   document.getElementById('hoverTab_eventRound_comparison').classList.toggle('clicked');
 })
+
+
+async function displayPlayerRankings(){
+
+  let url = allPlayerRankingsUrl;
+
+  let rankingData = await getJsons(url);
+
+  let playerRankingsContainer = document.getElementById('playerRankings_container');
+
+  for (let i = 0; i < rankingData.length; i++){
+
+    if (rankingData[i].pdga_number == pdgaNum){
+      document.getElementById('primaryPlayerRanking_fullName').innerHTML = rankingData[i].full_name;
+      document.getElementById('primaryPlayerRanking_ranking').innerHTML = i + 1;
+      document.getElementById('primaryPlayerEventNum').innerHTML = `E: ${rankingData[i].total_events}`;
+      document.getElementById('primaryPlayerRoundNum').innerHTML = `R: ${rankingData[i].total_rounds}`;
+      document.getElementById('primaryPlayerRatingNum').innerHTML = `${rankingData[i].average_rating}`;
+    }
+
+    if (i < 10){
+      //create the container for the player
+      let playerBin = document.createElement('div');
+      playerBin.className = 'playerRankingBin';
+
+      if (rankingData[i].pdga_number == pdgaNum){
+        playerBin.style.border = '2px solid rgb(10, 173, 255)'
+      }
+
+      //create the container for ranking and name
+      let playerRankingAndNameBin = document.createElement('div');
+      playerRankingAndNameBin.className = 'playerRankingAndNameBin';
+      
+      let playerName = document.createElement('h4');
+      playerName.innerHTML = rankingData[i].full_name;
+      playerRankingAndNameBin.append(playerName);
+
+      let playerRanking = document.createElement('h3');
+      playerRanking.innerHTML = i + 1;
+      playerRankingAndNameBin.append(playerRanking);
+
+      playerBin.append(playerRankingAndNameBin);
+
+      //create the container for events, rounds, rating
+      let playerRankingFinerDetail = document.createElement('div');
+      playerRankingFinerDetail.className = 'playerRankingFinerDetail';
+
+      let playerEventsNum = document.createElement('p');
+      playerEventsNum.innerHTML =  `E: ${rankingData[i].total_events}`
+      playerRankingFinerDetail.append(playerEventsNum);
+
+      let playerRoundsNum = document.createElement('p');
+      playerRoundsNum.innerHTML =  `R: ${rankingData[i].total_rounds}`
+      playerRankingFinerDetail.append(playerRoundsNum);
+
+      let playerRatingNum = document.createElement('h3');
+      playerRatingNum.innerHTML = rankingData[i].average_rating;
+      playerRankingFinerDetail.append(playerRatingNum);
+
+      playerBin.append(playerRankingFinerDetail);
+
+      playerRankingsContainer.append(playerBin);
+    }
+  }
+}
+
+displayPlayerRankings();
 
 
 

@@ -70,6 +70,26 @@ nav img:hover {
   font-size: 2em;
 }
 
+.lowerhalf_container {
+  width: 100%;
+
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+
+  gap: 1em;
+}
+
+.lowerhalf_mainContent_container {
+  width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .player_container {
   width: 100%;
   height: 500px;
@@ -719,6 +739,10 @@ p {
   width: 100px;
 }
 
+.sectionHeader_titles button:active {
+  background-color: rgb(0, 104, 153);
+}
+
 .totalStats_section_title {
   margin: 0px;
   padding: 0px;
@@ -865,7 +889,7 @@ canvas {
 
   opacity: 0;
   flex: 0 0 auto;
-  transition: opacity 1.4s ease, width 0.6s ease;
+  transition: opacity 0s ease, width 0.6s ease;
 }
 
 #radarChart_comparisonContainer.toggled {
@@ -1304,5 +1328,119 @@ canvas {
   border-top-right-radius: 0.4em;
   border-bottom-right-radius: 0.4em;
 }
+
+.playerRankings_container {
+  position: sticky;
+  top: 5em;
+  margin-top: 2em;
+
+  width: 240px;
+  height: 800px;
+
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+
+  gap: 0.4em;
+
+  font-family: "Urbanist", sans-serif;
+}
+
+.playerRankings_headerSection h2{
+  margin: 0em;
+  padding: 0em;
+}
+
+.primary_playerRanking_container {
+  padding: 0.5em 1em;
+  margin-bottom: 0.4em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: white;
+  color: rgb(55, 55, 55);
+  border-radius: 0.4em;
+  border: 3px solid rgb(10, 173, 255);
+  width: 80%;
+}
+
+.primary_playerRanking_container .primaryPlayer_nameAndRank{
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}  
+
+.primary_playerRanking_container .primaryPlayer_nameAndRank h3,h4{
+  margin: 0em;
+  padding: 0em;
+}
+
+.primary_playerRanking_container .primaryPlayer_finerDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  gap: 1em;
+}
+
+.primary_playerRanking_container .primaryPlayer_finerDetails h3,p{
+  margin: 0em;
+  padding: 0em;
+}
+
+.playerRankings_container .playerRankingBin {
+  padding: 0.5em 1em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: white;
+  color: rgb(55, 55, 55);
+  border-radius: 0.4em;
+  border: 1px solid black;
+  width: 80%;
+  max-width: 170px;
+}
+
+.playerRankingBin .playerRankingAndNameBin {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.playerRankingBin .playerRankingAndNameBin h3, h4{
+  margin: 0em;
+  padding: 0em;
+}
+
+.playerRankingBin .playerRankingFinerDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1em;
+}
+
+.playerRankingBin .playerRankingFinerDetail h3, p{
+  margin: 0em;
+  padding: 0em;
+}
+
+
+
+
+
 
 

@@ -93,326 +93,342 @@
       </div>
   
     </nav>
-  
-    <section class="player_container">
+
+    <div class="lowerhalf_container">
+      <div class="lowerhalf_mainContent_container">
+        <section class="player_container">
+          <div class="playerbio_section">
+            <div class="playerbio_section_profilepic">
+              <img id="athlete_image">
+            </div>
+            
       
-      <div class="playerbio_section">
-        <div class="playerbio_section_profilepic">
-          <img id="athlete_image">
-        </div>
-        
-  
-        <div class="playerbio_section_selfIntro">
+            <div class="playerbio_section_selfIntro">
 
-          <h4 id="full_name"></h4>
-          <div class="player_origin">
-            <p id="hometown"></p>
-          </div>
-          
-          <p id="bio_pdga_number"></p>
-          <p id="bio_division"></p>
+              <h4 id="full_name"></h4>
+              <div class="player_origin">
+                <p id="hometown"></p>
+              </div>
+              
+              <p id="bio_pdga_number"></p>
+              <p id="bio_division"></p>
 
-        </div>
-        <div class="playerbio_sponsors">
-
-        </div>
-
-        <div class="playerbio_ratingOverTime">
-
-          <div class="ratingOverTime_headerSection">
-            <h4>Rating Progression</h4>
-            <select class="rating_dropdown">
-              <option>All time</option>
-            </select>
-          </div >
-
-          <div id="rating_lineChart" class="ratingOverTime_chartDiv">
-
-          </div>
-        </div>
-
-        <div class="playerbio_globe_events">
-          <div id="globe">
-
-          </div>
-          
-          <div id="globe_tooltip"></div>
-        </div>
-
-        <!-- <div class="player_social_media">
-          <i class="fa fa-instagram" style="font-size: 24px"></i>
-          <i class="fa fa-facebook" style="font-size: 24px"></i>
-          <i class="fa fa-twitter" style="font-size: 24px"></i>
-        </div> -->
-  
-        <!-- <div class="playerbio_section_media">
-          <p><i class="material-symbols-outlined">visibility</i>3M views in 17 media appearances</p>
-          <div class="playerbio_section_searchCompare">
-            <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
-          </div>
-        </div> -->
-        <div class="playerbio_highlights">
-          <div class="highlights_headerSection">
-            <div class="highlights_titleAndH2H">
-              <h4>Career Profile</h4>
-              <p><a id="head2head_link" target="_blank" style="color: red;">Head-to-Head</a></p>
             </div>
-            <select id="careerProfile_12moBool" class="career_dropdown">
-              <option value=''>All-time</option>
-              <option value="true">Last 12 Months</option>
-            </select>
-          </div>
-          <div class="playerbio_section_mainStats">
-            <div class="mainStats_wins">
-              <h1 id="wins"></h1>
-              <p>Wins</p>
+            <div class="playerbio_sponsors">
+
             </div>
 
-            <div class="mainStats_wins">
-              <h1 id="podiums"></h1>
-              <p>Podiums</p>
-            </div>
-    
-            <div class="mainStats_wins">
-              <h1 id="top_tens"></h1>
-              <p>Top Tens</p>
-            </div>
-    
-            <div class="mainStats_wins">
-              <h1 id="earnings"></h1>
-              <p>Earnings</p>
-            </div>
+            <div class="playerbio_ratingOverTime">
 
-            <div class="mainStats_wins">
-              <h1 id="total_events"></h1>
-              <p>Total Events</p>
-            </div>
-
-            <div class="mainStats_wins">
-              <h1 id="avg_place"></h1>
-              <p>Avg. Place</p>
-            </div>
-
-            <div class="mainStats_wins">
-              <h1 id="avg_rating"></h1>
-              <p>Avg. Rating</p>
-            </div>
-
-            <div class="mainStats_wins">
-              <h1 id="avg_strokes"></h1>
-              <p>Avg. Strokes</p>
-            </div>
-          </div>
-        </div>
-  
-        
-
-        <!-- <div class="playerbio_section_xStats">
-          <div class="xStats_totalEvents">
-            <h1 id="total_events"></h1>
-            <p>Total Events</p>
-          </div>
-
-          <div class="xStats_totalEvents">
-            <h1 id="avg_place"></h1>
-            <p>Avg. Place</p>
-          </div>
-
-          <div class="xStats_totalEvents">
-            <h1 id="avg_rating"></h1>
-            <p>Avg. Rating</p>
-          </div>
-
-          <div class="xStats_totalEvents">
-            <h1 id="avg_strokes"></h1>
-            <p>Avg. Strokes</p>
-          </div>
-        </div> -->
-
-        
-        
-
-        <!-- <div class="playerbio_section_searchCompare">
-          <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
-        </div> -->
-        
-        <div class="player_mainRadials">
-          <!-- <div style="display:flex; align-items:center;justify-content:center"> -->
-            <div class="radialPerformance_headerSection">
-              <h4>Performance</h4>
-              <div class="radial_configs">
-                <select id="radial_dropdown" class="radial_dropdown">
+              <div class="ratingOverTime_headerSection">
+                <h4>Rating Progression</h4>
+                <select class="rating_dropdown">
+                  <option>All time</option>
                 </select>
+              </div >
+
+              <div id="rating_lineChart" class="ratingOverTime_chartDiv">
+
               </div>
             </div>
 
-            <div class="radial_bin">
-              <div class="player_radials" id="FWH_radial">
-    
+            <div class="playerbio_globe_events">
+              <div id="globe">
+
               </div>
-    
-              <div class="player_radials" id="C2R_radial">
-    
-              </div>
-    
-              <div class="player_radials" id="C1X_radial">
-    
-              </div>
-            </div>
-          <!-- </div> -->
-          </div>
-      </div>
-    </section>
-    <br>
-    <div class="allStats_container">
-      <div class="totalStats_container">
-        <div class="totalStats_section" id="radarChart_container">
-          <div class="totalStats_sectionHeader">
-            <div class="sectionHeader_titles">
-              <h2 class="totalStats_section_title">Skill Profile</h2>
-              <button id="radarGraphCompareButton">Compare</button>
+              
+              <div id="globe_tooltip"></div>
             </div>
 
-            <div class="totalStats_categoryDropdown">
-              <div class="categoryDropdown_years">
-                <select id="radar_yearSelect" class="categoryDropdown">
-                </select>
-              </div>
-
-              <div class="categoryDropdown_years">
-                <select id="radar_eventSelect" class="categoryDropdown">
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="radar_modification_container">
-            <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
-              Select all
-            </button>
-            <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
-              Unselect all
-            </button>
-            <div id="radar_checklist_container">
-
-            </div>
-            <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
-              Submit
-            </button>
-          </div>
-          <canvas id="radar_chart"></canvas>
-        </div>
-
-        <div id="radarChart_comparisonContainer">
-          <div class="totalStats_sectionHeader2">
-            <div class="sectionHeader2_titles">
-              <h2 class="totalStats_section_title2">Skill Profile 2</h2>
-              <button id="radarCompareCloseButton">Close</button>
-            </div>  
-
-            <div class="totalStats_categoryDropdown2">
-              <div class="categoryDropdown_years2">
-                <select id="radar_yearSelect2" class="categoryDropdown2">
-                </select>
-              </div>
-
-              <div class="categoryDropdown_years">
-                <select id="radar_eventSelect2" class="categoryDropdown2">
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="radar_modification_container2">
-            <button id="radar_checklist_selectAllBtn2" class="radar_checklist_selectAllBtn2">
-              Select all
-            </button>
-            <button id="radar_checklist_unselectBtn2" class="radar_checklist_unselectBtn2">
-              Unselect all
-            </button>
-            <div id="radar_checklist_container2">
-
-            </div>
-            <button id="radar_checklist_submitBtn2" class="radar_checklist_submitBtn2">
-              Submit
-            </button>
-          </div>
-          <canvas id="radar_chart2"></canvas>
-        </div>
-
-        <div class="totalStats_breakdown">
-          <div class="totalStats_sectionHeader">
-            <h2 class="totalStats_section_title">Breakdown</h2>
-
-            <div class="totalStats_categoryDropdown">
-              <div  class="categoryDropdown_years">
-                <select id="hbar_dropdown_years" class="categoryDropdown">
-                </select>
-              </div>
-
-              <div class="categoryDropdown_years">
-                <select id="hbar_dropdown_events" class="categoryDropdown">
-                </select>
-              </div>
-            </div>
-          </div>
-          <canvas id="hbar_percentile_chart" class="breakdown_hbars">
-
-          </canvas>
-        </div>
-      </div>
+            <!-- <div class="player_social_media">
+              <i class="fa fa-instagram" style="font-size: 24px"></i>
+              <i class="fa fa-facebook" style="font-size: 24px"></i>
+              <i class="fa fa-twitter" style="font-size: 24px"></i>
+            </div> -->
       
+            <!-- <div class="playerbio_section_media">
+              <p><i class="material-symbols-outlined">visibility</i>3M views in 17 media appearances</p>
+              <div class="playerbio_section_searchCompare">
+                <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
+              </div>
+            </div> -->
+            <div class="playerbio_highlights">
+              <div class="highlights_headerSection">
+                <div class="highlights_titleAndH2H">
+                  <h4>Career Profile</h4>
+                  <p><a id="head2head_link" target="_blank" style="color: red;">Head-to-Head</a></p>
+                </div>
+                <select id="careerProfile_12moBool" class="career_dropdown">
+                  <option value=''>All-time</option>
+                  <option value="true">Last 12 Months</option>
+                </select>
+              </div>
+              <div class="playerbio_section_mainStats">
+                <div class="mainStats_wins">
+                  <h1 id="wins"></h1>
+                  <p>Wins</p>
+                </div>
+
+                <div class="mainStats_wins">
+                  <h1 id="podiums"></h1>
+                  <p>Podiums</p>
+                </div>
+        
+                <div class="mainStats_wins">
+                  <h1 id="top_tens"></h1>
+                  <p>Top Tens</p>
+                </div>
+        
+                <div class="mainStats_wins">
+                  <h1 id="earnings"></h1>
+                  <p>Earnings</p>
+                </div>
+
+                <div class="mainStats_wins">
+                  <h1 id="total_events"></h1>
+                  <p>Total Events</p>
+                </div>
+
+                <div class="mainStats_wins">
+                  <h1 id="avg_place"></h1>
+                  <p>Avg. Place</p>
+                </div>
+
+                <div class="mainStats_wins">
+                  <h1 id="avg_rating"></h1>
+                  <p>Avg. Rating</p>
+                </div>
+
+                <div class="mainStats_wins">
+                  <h1 id="avg_strokes"></h1>
+                  <p>Avg. Strokes</p>
+                </div>
+              </div>
+            </div>
+      
+            
+
+            <!-- <div class="playerbio_section_xStats">
+              <div class="xStats_totalEvents">
+                <h1 id="total_events"></h1>
+                <p>Total Events</p>
+              </div>
+
+              <div class="xStats_totalEvents">
+                <h1 id="avg_place"></h1>
+                <p>Avg. Place</p>
+              </div>
+
+              <div class="xStats_totalEvents">
+                <h1 id="avg_rating"></h1>
+                <p>Avg. Rating</p>
+              </div>
+
+              <div class="xStats_totalEvents">
+                <h1 id="avg_strokes"></h1>
+                <p>Avg. Strokes</p>
+              </div>
+            </div> -->
+
+            
+            
+
+            <!-- <div class="playerbio_section_searchCompare">
+              <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
+            </div> -->
+            
+            <div class="player_mainRadials">
+              <!-- <div style="display:flex; align-items:center;justify-content:center"> -->
+                <div class="radialPerformance_headerSection">
+                  <h4>Performance</h4>
+                  <div class="radial_configs">
+                    <select id="radial_dropdown" class="radial_dropdown">
+                    </select>
+                  </div>
+                </div>
+
+                <div class="radial_bin">
+                  <div class="player_radials" id="FWH_radial">
+        
+                  </div>
+        
+                  <div class="player_radials" id="C2R_radial">
+        
+                  </div>
+        
+                  <div class="player_radials" id="C1X_radial">
+        
+                  </div>
+                </div>
+              <!-- </div> -->
+              </div>
+          </div>
+        </section>
+        <br>
+        <div class="allStats_container">
+          <div class="totalStats_container">
+            <div class="totalStats_section" id="radarChart_container">
+              <div class="totalStats_sectionHeader">
+                <div class="sectionHeader_titles">
+                  <h2 class="totalStats_section_title">Skill Profile</h2>
+                  <button id="radarGraphCompareButton">Compare</button>
+                </div>
+
+                <div class="totalStats_categoryDropdown">
+                  <div class="categoryDropdown_years">
+                    <select id="radar_yearSelect" class="categoryDropdown">
+                    </select>
+                  </div>
+
+                  <div class="categoryDropdown_years">
+                    <select id="radar_eventSelect" class="categoryDropdown">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="radar_modification_container">
+                <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
+                  Select all
+                </button>
+                <button id="radar_checklist_unselectBtn" class="radar_checklist_unselectBtn">
+                  Unselect all
+                </button>
+                <div id="radar_checklist_container">
+
+                </div>
+                <button id="radar_checklist_submitBtn" class="radar_checklist_submitBtn">
+                  Submit
+                </button>
+              </div>
+              <canvas id="radar_chart"></canvas>
+            </div>
+
+            <div id="radarChart_comparisonContainer">
+              <div class="totalStats_sectionHeader2">
+                <div class="sectionHeader2_titles">
+                  <h2 class="totalStats_section_title2">Skill Profile 2</h2>
+                  <button id="radarCompareCloseButton">Close</button>
+                </div>  
+
+                <div class="totalStats_categoryDropdown2">
+                  <div class="categoryDropdown_years2">
+                    <select id="radar_yearSelect2" class="categoryDropdown2">
+                    </select>
+                  </div>
+
+                  <div class="categoryDropdown_years">
+                    <select id="radar_eventSelect2" class="categoryDropdown2">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="radar_modification_container2">
+                <button id="radar_checklist_selectAllBtn2" class="radar_checklist_selectAllBtn2">
+                  Select all
+                </button>
+                <button id="radar_checklist_unselectBtn2" class="radar_checklist_unselectBtn2">
+                  Unselect all
+                </button>
+                <div id="radar_checklist_container2">
+
+                </div>
+                <button id="radar_checklist_submitBtn2" class="radar_checklist_submitBtn2">
+                  Submit
+                </button>
+              </div>
+              <canvas id="radar_chart2"></canvas>
+            </div>
+
+            <div class="totalStats_breakdown">
+              <div class="totalStats_sectionHeader">
+                <h2 class="totalStats_section_title">Breakdown</h2>
+
+                <div class="totalStats_categoryDropdown">
+                  <div  class="categoryDropdown_years">
+                    <select id="hbar_dropdown_years" class="categoryDropdown">
+                    </select>
+                  </div>
+
+                  <div class="categoryDropdown_years">
+                    <select id="hbar_dropdown_events" class="categoryDropdown">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <canvas id="hbar_percentile_chart" class="breakdown_hbars">
+
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+        <br>
+          <section class="playerStatsContainer">
+            <div class="playerStats_tabsSection">
+              <div id="tabsSection_eventTab">
+                <h1>Events</h1>
+              </div>
+              <div id="tabsSection_roundsTab">
+                <h1>Rounds</h1>
+              </div>
+            </div>
+            <div id="eventsTableParentContainer" class="eventsTableParentContainer">
+              <table id="eventsTable" class="display stripe hover">
+              
+              </table>
+            </div>
+
+
+            <div id="roundsTableParentContainer" class="roundsTableParentContainer">
+              <table id="roundsTable" class="display stripe hover" style="width: 100%;">
+              
+              </table>
+            </div>
+
+            <div style="height: 100px;">
+
+            </div>
+          
+          </section>
+          <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
+            <div class="eventRound_mainContent">
+              <div class="hoverTab_mainContent_headerSection">
+                <h1>Quick Compare</h1>
+              </div>
+
+              <div class="hoverTab_mainContent_compareSelector">
+                <p>Compare</p>
+                <select id="compareSelector_optionSelect">
+                  <option>Choose...</option>
+                  <option>Events</option>
+                  <option>Rounds</option>
+                </select>
+              </div>
+              
+            </div>
+            <div id="eventRound_pullButton" class="eventRound_pullButton">
+              <div>
+                <span class="material-symbols-outlined" style="font-size: 2em;">chevron_right</span>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div id="playerRankings_container" class="playerRankings_container">
+          <div class="playerRankings_headerSection">
+            <h2>Player Rankings</h2>
+          </div>
+          <div class="primary_playerRanking_container">
+            <div class="primaryPlayer_nameAndRank">
+              <h4 id="primaryPlayerRanking_fullName"></h4>
+              <h3 id="primaryPlayerRanking_ranking"></h3>
+            </div>
+            <div class="primaryPlayer_finerDetails">
+              <p id="primaryPlayerEventNum"></p>
+              <p id="primaryPlayerRoundNum"></p>
+              <h3 id="primaryPlayerRatingNum"></h3>
+            </div>
+          </div>
+        </div>
     </div>
-
-    <br>
-      <section class="playerStatsContainer">
-        <div class="playerStats_tabsSection">
-          <div id="tabsSection_eventTab">
-            <h1>Events</h1>
-          </div>
-          <div id="tabsSection_roundsTab">
-            <h1>Rounds</h1>
-          </div>
-        </div>
-        <div id="eventsTableParentContainer" class="eventsTableParentContainer">
-          <table id="eventsTable" class="display stripe hover">
-          
-          </table>
-        </div>
-
-
-        <div id="roundsTableParentContainer" class="roundsTableParentContainer">
-          <table id="roundsTable" class="display stripe hover" style="width: 100%;">
-          
-          </table>
-        </div>
-
-        <div style="height: 100px;">
-
-        </div>
-      
-      </section>
-      <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
-        <div class="eventRound_mainContent">
-          <div class="hoverTab_mainContent_headerSection">
-            <h1>Quick Compare</h1>
-          </div>
-
-          <div class="hoverTab_mainContent_compareSelector">
-            <p>Compare</p>
-            <select id="compareSelector_optionSelect">
-              <option>Choose...</option>
-              <option>Events</option>
-              <option>Rounds</option>
-            </select>
-          </div>
-          
-        </div>
-        <div id="eventRound_pullButton" class="eventRound_pullButton">
-          <div>
-            <span class="material-symbols-outlined" style="font-size: 2em;">chevron_right</span>
-          </div>
-        </div>
-      </section>
-    
-
   </body>
   </html>
