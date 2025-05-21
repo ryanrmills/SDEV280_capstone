@@ -306,7 +306,7 @@
             <div id="radarChart_comparisonContainer">
               <div class="totalStats_sectionHeader2">
                 <div class="sectionHeader2_titles">
-                  <h2 class="totalStats_section_title2">Skill Profile 2</h2>
+                  <h2 class="totalStats_section_title2">Skill Profile</h2>
                   <button id="radarCompareCloseButton">Close</button>
                 </div>  
 
@@ -399,10 +399,90 @@
               <div class="hoverTab_mainContent_compareSelector">
                 <p>Compare</p>
                 <select id="compareSelector_optionSelect">
-                  <option>Choose...</option>
-                  <option>Events</option>
-                  <option>Rounds</option>
+                  <option value=''>Choose...</option>
+                  <option value='years'>Years</option>
+                  <option value='events'>Events</option>
+                  <option value='rounds'>Rounds</option>
                 </select>
+              </div>
+
+              <div id="hoverTab_mainContent_resultsDisplay" class="hoverTab_mainContent_resultsDisplay">
+                <!-- <div id="mainContent_resultsDisplay_firstCompare">
+                </div>
+
+                <div id="mainContent_resultsDisplay_secondCompare">
+
+                </div> -->
+                <style>
+                  table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                  }
+                </style>
+                <table>
+                  <tr>
+                    <th></th>
+                    <th>
+                      <div id="mainContent_resultsDisplay_firstCompare">
+                      </div>
+                    </th>
+                    <th>
+                      <div id="mainContent_resultsDisplay_secondCompare">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th>AvgRating</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Earnings</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Wins</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Podiums</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>TopTens</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Events</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>AvgStrokes</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>FWH%</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>C2R%</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>C1X%</th>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+                
               </div>
               
             </div>
