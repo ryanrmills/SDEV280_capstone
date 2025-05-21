@@ -1319,14 +1319,28 @@ canvas {
   min-height: 400px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 
   background-color: orange;
 
   gap: 1em;
 }
 
-.hoverTab_mainContent_resultsDisplay #mainContent_resultsDisplay_firstCompare {
+.resultsTable_yearOption th{
+  text-align: left;
+}
+
+.resultsTable_yearOption tr{
+  height: 40px;
+}
+
+.resultsTable_yearOption td{
+  padding-left: 1em;
+  text-align: center;
+}
+
+
+/* .hoverTab_mainContent_resultsDisplay #mainContent_resultsDisplay_firstCompare {
   width: 45%;
   min-height: 300px;
   padding: 1em;
@@ -1354,7 +1368,7 @@ canvas {
   justify-content: center;
 
   border-radius: 0.4em;
-}
+} */
 
 
 .hoverTab_mainContent_compareSelector select {

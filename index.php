@@ -413,13 +413,10 @@
                 <div id="mainContent_resultsDisplay_secondCompare">
 
                 </div> -->
-                <style>
-                  table, th, td {
-                    border: 1px solid black;
-                    border-collapse: collapse;
-                  }
-                </style>
-                <table>
+                <div class="resultsDisplay_yearOption">
+
+                </div>
+                <table class=resultsTable_yearOption>
                   <tr>
                     <th></th>
                     <th>
@@ -432,54 +429,59 @@
                     </th>
                   </tr>
                   <tr>
-                    <th>AvgRating</th>
-                    <td></td>
-                    <td></td>
+                    <th>Avg. Rating</th>
+                    <td id="year1_rating"></td>
+                    <td id="year2_rating"></td>
                   </tr>
                   <tr>
                     <th>Earnings</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_earnings"></td>
+                    <td id="year2_earnings"></td>
                   </tr>
                   <tr>
                     <th>Wins</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_wins"></td>
+                    <td id="year2_wins"></td>
                   </tr>
                   <tr>
                     <th>Podiums</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_podiums"></td>
+                    <td id="year2_podiums"></td>
                   </tr>
                   <tr>
                     <th>TopTens</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_topTens"></td>
+                    <td id="year2_topTens"></td>
                   </tr>
                   <tr>
                     <th>Events</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_events"></td>
+                    <td id="year2_events"></td>
                   </tr>
                   <tr>
-                    <th>AvgStrokes</th>
-                    <td></td>
-                    <td></td>
+                    <th>Avg. Strokes</th>
+                    <td id="year1_strokes"></td>
+                    <td id="year2_strokes"></td>
+                  </tr>
+                  <tr>
+                    <th>Avg. Place</th>
+                    <td id="year1_place"></td>
+                    <td id="year2_place"></td>
                   </tr>
                   <tr>
                     <th>FWH%</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_fwh"></td>
+                    <td id="year2_fwh"></td>
                   </tr>
                   <tr>
                     <th>C2R%</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_c2r"></td>
+                    <td id="year2_c2r"></td>
                   </tr>
                   <tr>
                     <th>C1X%</th>
-                    <td></td>
-                    <td></td>
+                    <td id="year1_c1x"></td>
+                    <td id="year2_c1x"></td>
                   </tr>
                 </table>
                 

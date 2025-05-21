@@ -14,6 +14,7 @@ const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_location
 const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
 const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
 const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
 
 
 
@@ -1494,10 +1495,116 @@ async function displayQuickCompareResults(){
       containerFirstCompare.append(year1Selector);
       containerSecondCompare.append(year2Selector);
 
+      let year1Rating = document.getElementById('year1_rating');
+      let year1Earnings = document.getElementById('year1_earnings');
+      let year1Wins = document.getElementById('year1_wins');
+      let year1Podiums = document.getElementById('year1_podiums');
+      let year1topTens = document.getElementById('year1_topTens');
+      let year1Events = document.getElementById('year1_events');
+      let year1Strokes = document.getElementById('year1_strokes');
+      let year1Place = document.getElementById('year1_place');
+      let year1Fwh = document.getElementById('year1_fwh');
+      let year1C2r = document.getElementById('year1_c2r');
+      let year1C1x = document.getElementById('year1_c1x');
 
-      year1Selector.addEventListener('change', (e) => {
+      year1Selector.addEventListener('change', async(e) => {
         
+
+        year1Rating.innerHTML = '';
+        year1Earnings.innerHTML = '';
+        year1Wins.innerHTML = '';
+        year1Podiums.innerHTML = '';
+        year1topTens.innerHTML = '';
+        year1Events.innerHTML = '';
+        year1Strokes.innerHTML = '';
+        year1Place.innerHTML = '';
+        year1Fwh.innerHTML = '';
+        year1C2r.innerHTML = '';
+        year1C1x.innerHTML = '';
+
+        let url = e.target.value 
+          ? getYearQuickCompare + '&year=' + e.target.value : '';
+
+        let yearQuickData = await getJsons(url);
+
+        year1Rating.innerHTML = yearQuickData.player.avg_rating;
+        year1Earnings.innerHTML = yearQuickData.player.earnings;
+        year1Wins.innerHTML = yearQuickData.player.wins;
+        year1Podiums.innerHTML = yearQuickData.player.podiums;
+        year1topTens.innerHTML = yearQuickData.player.top_tens;
+        year1Events.innerHTML = yearQuickData.player.total_events;
+        year1Strokes.innerHTML = yearQuickData.player.avg_strokes_per_event;
+        year1Place.innerHTML = yearQuickData.player.avg_place;
+        year1Fwh.innerHTML = yearQuickData.main3[0].avg_percentage;
+        year1C2r.innerHTML = yearQuickData.main3[1].avg_percentage;
+        year1C1x.innerHTML = yearQuickData.main3[2].avg_percentage;
+
       })
+
+      let year2Rating = document.getElementById('year2_rating');
+      let year2Earnings = document.getElementById('year2_earnings');
+      let year2Wins = document.getElementById('year2_wins');
+      let year2Podiums = document.getElementById('year2_podiums');
+      let year2topTens = document.getElementById('year2_topTens');
+      let year2Events = document.getElementById('year2_events');
+      let year2Strokes = document.getElementById('year2_strokes');
+      let year2Place = document.getElementById('year2_place');
+      let year2Fwh = document.getElementById('year2_fwh');
+      let year2C2r = document.getElementById('year2_c2r');
+      let year2C1x = document.getElementById('year2_c1x');
+
+      year2Selector.addEventListener('change', async(e) => {
+
+        year2Rating.innerHTML = '';
+        year2Earnings.innerHTML = '';
+        year2Wins.innerHTML = '';
+        year2Podiums.innerHTML = '';
+        year2topTens.innerHTML = '';
+        year2Events.innerHTML = '';
+        year2Strokes.innerHTML = '';
+        year2Place.innerHTML = '';
+        year2Fwh.innerHTML = '';
+        year2C2r.innerHTML = '';
+        year2C1x.innerHTML = '';
+
+        let url2 = e.target.value 
+          ? getYearQuickCompare + '&year=' + e.target.value : '';
+
+        let yearQuickData2 = await getJsons(url2);
+
+        year2Rating.innerHTML = yearQuickData2.player.avg_rating;
+        year2Earnings.innerHTML = yearQuickData2.player.earnings;
+        year2Wins.innerHTML = yearQuickData2.player.wins;
+        year2Podiums.innerHTML = yearQuickData2.player.podiums;
+        year2topTens.innerHTML = yearQuickData2.player.top_tens;
+        year2Events.innerHTML = yearQuickData2.player.total_events;
+        year2Strokes.innerHTML = yearQuickData2.player.avg_strokes_per_event;
+        year2Place.innerHTML = yearQuickData2.player.avg_place;
+        year2Fwh.innerHTML = yearQuickData2.main3[0].avg_percentage;
+        year2C2r.innerHTML = yearQuickData2.main3[1].avg_percentage;
+        year2C1x.innerHTML = yearQuickData2.main3[2].avg_percentage;
+
+        console.log(typeof (parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)));
+        if (year1Selector.value && year2Selector.value){
+          year2Rating.innerHTML += parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) < 0
+            ? `<p style="color: red;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+            : parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) > 0
+            ? `<p style="color: green;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+            : ''
+        }
+      })
+
+        
+      
+
+
+        // if (parseFloat(year1Earnings) > parseFloat(year2Earnings)){
+        //   year1Earnings.style.color = 'green';
+        //   year2Earnings.style.color = 'red';
+        // } else if (parseFloat(year1Earnings) < parseFloat(year2Earnings)){
+        //   year1Earnings.style.color = 'red';
+        //   year2Earnings.style.color = 'green';
+        // }
     }
   })
 }
