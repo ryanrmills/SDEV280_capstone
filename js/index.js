@@ -2,35 +2,38 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number");
 
 //I put all the urls in one place
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
-const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+// const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
 
 
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-// const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-// const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-// const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
+const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -171,7 +174,7 @@ async function createOrUpdateLine(label, data, barData, elementId){
       type: 'line',
       width: 320,
       height: 120,
-      sparkline: { enabled: true },   // ← removes axes, grid, legend, title
+      sparkline: { enabled: true },
       stacked: false
     },
     colors: ["#00F5D4", "#FFF"],
@@ -246,6 +249,31 @@ async function createOrUpdateLine(label, data, barData, elementId){
   
 
 }
+
+
+
+async function grabMostRecentEvent(){
+  const mostRecentData = await getJsons(getMostRecentResults);
+
+  const eventName = document.getElementById('mostRecent_eventName')
+  eventName.innerHTML = mostRecentData.event.event_name;
+
+  const eventLocation = document.getElementById('mostRecent_eventLocation')
+  eventLocation.innerHTML = mostRecentData.event.event_location;
+
+  const eventDate = document.getElementById('mostRecent_eventDate')
+  eventDate.innerHTML = mostRecentData.event.event_start_date;
+
+  const eventRating = document.getElementById('mostRecent_eventRating')
+  eventRating.innerHTML = mostRecentData.event.event_rating;
+
+  const eventScore = document.getElementById('mostRecent_eventScore')
+  eventScore.innerHTML = mostRecentData.event.event_score;
+
+
+}
+
+grabMostRecentEvent();
 
 
 
@@ -427,9 +455,11 @@ async function playerRadar(){
     drawRadar(yearSelect.value, e.target.value, values);
   })
 
+  //the section of the code responsible fo r the checklist. 
   const submitBtn = document.getElementById('radar_checklist_submitBtn');
   let values = []
   let checkboxes = document.querySelectorAll('#stats_check');
+
   submitBtn.onclick = () => {
     values = [];
     checkboxes.forEach(checkbox => {
@@ -473,6 +503,100 @@ async function playerRadar(){
       }
     })
   }
+
+  const radarCuratedOptions = document.getElementById('radarModification_curatedOptions');
+
+  radarCuratedOptions.addEventListener('change', (e) => {
+    values = [];
+
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+
+    if (e.target.value == 1){
+      values=[1,9,17]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 2){
+      values=[2,3,4,5]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 3){
+      values=[6,7,8,16,18]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 4){
+      values=[10,11,12,13,14,15]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (!e.target.value){
+      drawRadar('', '', values);
+    }
+  })
+
+
 
   
 
@@ -681,6 +805,97 @@ async function playerRadar2(){
       }
     })
   }
+
+  const radarCuratedOptions = document.getElementById('radarModification_curatedOptions2');
+  radarCuratedOptions.addEventListener('change', (e) => {
+    values = [];
+    
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+
+    if (e.target.value == 1){
+      values=[1,9,17]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 2){
+      values=[2,3,4,5]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 3){
+      values=[6,7,8,16,18]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (e.target.value == 4){
+      values=[10,11,12,13,14,15]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadar('', '', values);
+    } else if (!e.target.value){
+      drawRadar('', '', values);
+    }
+  })
 
   drawRadar('', '', values);
 
@@ -1026,11 +1241,22 @@ async function playerHbar(){
       
     const data = await getJsons(url);
 
-    const label = data.stat_abbrev;
-    const statData = data.percentile;
+    const drivingLabel = data.drivingAbbrev;
+    const drivingStatData = data.drivingPercentile;
 
-    createOrUpdateHbar(label, statData, 'hbar_percentile_chart');
-    
+    const shortGameLabel = data.shortGameAbbrev;
+    const shortGameStatData = data.shortGamePercentile;
+
+    const puttingLabel = data.puttingAbbrev;
+    const puttingStatData = data.puttingPercentile;
+
+    const scoringLabel = data.scoringAbbrev;
+    const scoringStatData = data.scoringPercentile;
+
+    createOrUpdateDrivingHbar(drivingLabel, drivingStatData, 'drivingHbar_percentile_chart');
+    createOrUpdateApproachHbar(shortGameLabel, shortGameStatData, 'shortGameHbar_percentile_chart');
+    createOrUpdatePuttingHbar(puttingLabel, puttingStatData, 'puttingHbar_percentile_chart');
+    createOrUpdateScoringHbar(scoringLabel, scoringStatData, 'scoringHbar_percentile_chart');
   }
 
 
@@ -1070,8 +1296,60 @@ async function playerHbar(){
 playerHbar();
 
 
-let hbarChart;
-function createOrUpdateHbar(labels, data, elementId){
+// let hbarChart;
+// function createOrUpdateHbar(labels, data, elementId){
+//   const canvas = document.getElementById(elementId).getContext('2d');
+//   options = {
+//     data: {
+//       labels: labels,
+//       datasets: [
+//         // the thin bars
+//         {
+//           type: 'bar',
+//           label: 'Percentile',
+//           data: data,
+//           backgroundColor: '#38A169',
+//           barThickness: 8,
+//         },
+//       ]
+//     },
+//     options: {
+//       maintainAspectRatio: false,
+//       responsive:true,
+//       indexAxis: 'y',
+//       scales: {
+//         x: {
+//           max: 100,
+//           grid: { display: true }
+//         },
+//         y: {
+//           grid: { display: true }
+//         }
+//       },
+//       plugins: {
+//         datalabels: {
+//           display: false
+//         },
+//         legend: { display: false },
+//         tooltip: { enabled: true }
+//       }
+//     },
+//     // plugins: [ChartDataLabels]
+//   }
+
+//   if (hbarChart){
+//     hbarChart.data.datasets[0].data = data;
+//     hbarChart.data.labels = labels;
+//     hbarChart.update();
+//   } else {
+//     hbarChart = new Chart(canvas, options);
+//   }
+
+// }
+
+let drivingHbar;
+Chart.register(ChartDataLabels);
+function createOrUpdateDrivingHbar(labels, data, elementId){
   const canvas = document.getElementById(elementId).getContext('2d');
   options = {
     data: {
@@ -1088,38 +1366,241 @@ function createOrUpdateHbar(labels, data, elementId){
       ]
     },
     options: {
-      maintainAspectRatio: false,
+      maintainAspectRatio: true,
+      aspectRatio: 7,
       responsive:true,
       indexAxis: 'y',
       scales: {
         x: {
-          max: 100,
-          grid: { display: true }
+          max: 110,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
         },
         y: {
-          grid: { display: true }
+          grid: { display: false }
         }
       },
       plugins: {
+        // datalabels: {
+        //   display: true
+        // },
         datalabels: {
-          display: false
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
         },
         legend: { display: false },
         tooltip: { enabled: true }
       }
     },
-    // plugins: [ChartDataLabels]
+    plugins: [ChartDataLabels]
   }
 
-  if (hbarChart){
-    hbarChart.data.datasets[0].data = data;
-    hbarChart.data.labels = labels;
-    hbarChart.update();
+  if (drivingHbar){
+    drivingHbar.data.datasets[0].data = data;
+    drivingHbar.data.labels = labels;
+    drivingHbar.update();
   } else {
-    hbarChart = new Chart(canvas, options);
+    drivingHbar = new Chart(canvas, options);
+  }
+}
+
+let approachHbar;
+function createOrUpdateApproachHbar(labels, data, elementId){
+  const canvas = document.getElementById(elementId).getContext('2d');
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 5,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 100,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: false
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
   }
 
+  if (approachHbar){
+    approachHbar.data.datasets[0].data = data;
+    approachHbar.data.labels = labels;
+    approachHbar.update();
+  } else {
+    approachHbar = new Chart(canvas, options);
+  }
 }
+
+let puttingHbar;
+function createOrUpdatePuttingHbar(labels, data, elementId){
+  const canvas = document.getElementById(elementId).getContext('2d');
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 4.4,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 100,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: false
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  }
+
+  if (puttingHbar){
+    puttingHbar.data.datasets[0].data = data;
+    puttingHbar.data.labels = labels;
+    puttingHbar.update();
+  } else {
+    puttingHbar = new Chart(canvas, options);
+  }
+}
+
+let scoringHbar;
+function createOrUpdateScoringHbar(labels, data, elementId){
+  const canvas = document.getElementById(elementId).getContext('2d');
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 3.6,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 100,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: false
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  }
+
+  if (scoringHbar){
+    scoringHbar.data.datasets[0].data = data;
+    scoringHbar.data.labels = labels;
+    scoringHbar.update();
+  } else {
+    scoringHbar = new Chart(canvas, options);
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -1458,7 +1939,9 @@ async function displayQuickCompareResults(){
     containerSecondCompare.innerHTML = '';
 
     if (e.target.value == 'years'){
+      resultsDisplayMainContainer.style.display = 'flex';
       //now create the year1 and year2 selectors and add them to their containers
+
       let year1Selector = document.createElement('select');
       let year2Selector = document.createElement('select');
 
@@ -1539,6 +2022,129 @@ async function displayQuickCompareResults(){
         year1C2r.innerHTML = yearQuickData.main3[1].avg_percentage;
         year1C1x.innerHTML = yearQuickData.main3[2].avg_percentage;
 
+
+        if (year1Rating.textContent && year2Rating.textContent){
+          if (parseFloat(year1Rating.textContent) > parseFloat(year2Rating.textContent)){
+            year1Rating.style.color = 'green';
+            year2Rating.style.color = 'red';
+          } else if (parseFloat(year1Rating.textContent) < parseFloat(year2Rating.textContent)){
+            year1Rating.style.color = 'red';
+            year2Rating.style.color = 'green';
+          } else {
+            year1Rating.style.color = 'black';
+            year2Rating.style.color = 'black';
+          }
+
+          if (parseFloat(year1Earnings.textContent) > parseFloat(year2Earnings.textContent)){
+            year1Earnings.style.color = 'green';
+            year2Earnings.style.color = 'red';
+          } else if (parseFloat(year1Earnings.textContent) < parseFloat(year2Earnings.textContent)){
+            year1Earnings.style.color = 'red';
+            year2Earnings.style.color = 'green';
+          } else {
+            year1Earnings.style.color = 'black';
+            year2Earnings.style.color = 'black';
+          }
+
+          if (parseFloat(year1Wins.textContent) > parseFloat(year2Wins.textContent)){
+            year1Wins.style.color = 'green';
+            year2Wins.style.color = 'red';
+          } else if (parseFloat(year1Wins.textContent) < parseFloat(year2Wins.textContent)){
+            year1Wins.style.color = 'red';
+            year2Wins.style.color = 'green';
+          } else {
+            year1Wins.style.color = 'black';
+            year2Wins.style.color = 'black';
+          }
+
+          if (parseFloat(year1Podiums.textContent) > parseFloat(year2Podiums.textContent)){
+            year1Podiums.style.color = 'green';
+            year2Podiums.style.color = 'red';
+          } else if (parseFloat(year1Podiums.textContent) < parseFloat(year2Podiums.textContent)){
+            year1Podiums.style.color = 'red';
+            year2Podiums.style.color = 'green';
+          } else {
+            year1Podiums.style.color = 'black';
+            year2Podiums.style.color = 'black';
+          }
+
+          if (parseFloat(year1topTens.textContent) > parseFloat(year2topTens.textContent)){
+            year1topTens.style.color = 'green';
+            year2topTens.style.color = 'red';
+          } else if (parseFloat(year1topTens.textContent) < parseFloat(year2topTens.textContent)){
+            year1topTens.style.color = 'red';
+            year2topTens.style.color = 'green';
+          } else {
+            year1topTens.style.color = 'black';
+            year2topTens.style.color = 'black';
+          }
+
+          if (parseFloat(year1Events.textContent) > parseFloat(year2Events.textContent)){
+            year1Events.style.color = 'green';
+            year2Events.style.color = 'red';
+          } else if (parseFloat(year1Events.textContent) < parseFloat(year2Events.textContent)){
+            year1Events.style.color = 'red';
+            year2Events.style.color = 'green';
+          } else {
+            year1Events.style.color = 'black';
+            year2Events.style.color = 'black';
+          }
+
+          if (parseFloat(year1Strokes.textContent) > parseFloat(year2Strokes.textContent)){
+            year1Strokes.style.color = 'green';
+            year2Strokes.style.color = 'red';
+          } else if (parseFloat(year1Strokes.textContent) < parseFloat(year2Strokes.textContent)){
+            year1Strokes.style.color = 'red';
+            year2Strokes.style.color = 'green';
+          } else {
+            year1Strokes.style.color = 'black';
+            year2Strokes.style.color = 'black';
+          }
+
+          if (parseFloat(year1Place.textContent) > parseFloat(year2Place.textContent)){
+            year1Place.style.color = 'green';
+            year2Place.style.color = 'red';
+          } else if (parseFloat(year1Place.textContent) < parseFloat(year2Place.textContent)){
+            year1Place.style.color = 'red';
+            year2Place.style.color = 'green';
+          } else {
+            year1Place.style.color = 'black';
+            year2Place.style.color = 'black';
+          }
+
+          if (parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)){
+            year1Fwh.style.color = 'green';
+            year2Fwh.style.color = 'red';
+          } else if (parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)){
+            year1Fwh.style.color = 'red';
+            year2Fwh.style.color = 'green';
+          } else {
+            year1Fwh.style.color = 'black';
+            year2Fwh.style.color = 'black';
+          }
+
+          if (parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)){
+            year1C2r.style.color = 'green';
+            year2C2r.style.color = 'red';
+          } else if (parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)){
+            year1C2r.style.color = 'red';
+            year2C2r.style.color = 'green';
+          } else {
+            year1C2r.style.color = 'black';
+            year2C2r.style.color = 'black';
+          }
+
+          if (parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)){
+            year1C1x.style.color = 'green';
+            year2C1x.style.color = 'red';
+          } else if (parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)){
+            year1C1x.style.color = 'red';
+            year2C1x.style.color = 'green';
+          } else {
+            year1C1x.style.color = 'black';
+            year2C1x.style.color = 'black';
+          }
+        }
       })
 
       let year2Rating = document.getElementById('year2_rating');
@@ -1584,13 +2190,145 @@ async function displayQuickCompareResults(){
         year2C2r.innerHTML = yearQuickData2.main3[1].avg_percentage;
         year2C1x.innerHTML = yearQuickData2.main3[2].avg_percentage;
 
-        console.log(typeof (parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)));
-        if (year1Selector.value && year2Selector.value){
-          year2Rating.innerHTML += parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) < 0
-            ? `<p style="color: red;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
-            : parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) > 0
-            ? `<p style="color: green;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
-            : ''
+        //if (year1Selector.value && year2Selector.value){
+          // year2Rating.innerHTML += 
+          //   parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) < 0
+          //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+          //   : parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) > 0
+          //   ? `<p style="color: green;">+${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+          //   : ''
+
+          
+          // year2Earnings.innerHTML += 
+          //   parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) < 0
+          //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+          //   : parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) > 0
+          //   ? `<p style="color: green;">+${parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent)}</p>`
+          //   : ''
+        //}
+
+        if (year1Rating.textContent && year2Rating.textContent){
+          if (parseFloat(year1Rating.textContent) > parseFloat(year2Rating.textContent)){
+            year1Rating.style.color = 'green';
+            year2Rating.style.color = 'red';
+          } else if (parseFloat(year1Rating.textContent) < parseFloat(year2Rating.textContent)){
+            year1Rating.style.color = 'red';
+            year2Rating.style.color = 'green';
+          } else {
+            year1Rating.style.color = 'black';
+            year2Rating.style.color = 'black';
+          }
+
+
+          if (parseFloat(year1Earnings.textContent) > parseFloat(year2Earnings.textContent)){
+            year1Earnings.style.color = 'green';
+            year2Earnings.style.color = 'red';
+          } else if (parseFloat(year1Earnings.textContent) < parseFloat(year2Earnings.textContent)){
+            year1Earnings.style.color = 'red';
+            year2Earnings.style.color = 'green';
+          } else {
+            year1Earnings.style.color = 'black';
+            year2Earnings.style.color = 'black';
+          }
+
+          if (parseFloat(year1Wins.textContent) > parseFloat(year2Wins.textContent)){
+            year1Wins.style.color = 'green';
+            year2Wins.style.color = 'red';
+          } else if (parseFloat(year1Wins.textContent) < parseFloat(year2Wins.textContent)){
+            year1Wins.style.color = 'red';
+            year2Wins.style.color = 'green';
+          } else {
+            year1Wins.style.color = 'black';
+            year2Wins.style.color = 'black';
+          }
+
+          if (parseFloat(year1Podiums.textContent) > parseFloat(year2Podiums.textContent)){
+            year1Podiums.style.color = 'green';
+            year2Podiums.style.color = 'red';
+          } else if (parseFloat(year1Podiums.textContent) < parseFloat(year2Podiums.textContent)){
+            year1Podiums.style.color = 'red';
+            year2Podiums.style.color = 'green';
+          } else {
+            year1Podiums.style.color = 'black';
+            year2Podiums.style.color = 'black';
+          }
+
+          if (parseFloat(year1topTens.textContent) > parseFloat(year2topTens.textContent)){
+            year1topTens.style.color = 'green';
+            year2topTens.style.color = 'red';
+          } else if (parseFloat(year1topTens.textContent) < parseFloat(year2topTens.textContent)){
+            year1topTens.style.color = 'red';
+            year2topTens.style.color = 'green';
+          } else {
+            year1topTens.style.color = 'black';
+            year2topTens.style.color = 'black';
+          }
+
+          if (parseFloat(year1Events.textContent) > parseFloat(year2Events.textContent)){
+            year1Events.style.color = 'green';
+            year2Events.style.color = 'red';
+          } else if (parseFloat(year1Events.textContent) < parseFloat(year2Events.textContent)){
+            year1Events.style.color = 'red';
+            year2Events.style.color = 'green';
+          } else {
+            year1Events.style.color = 'black';
+            year2Events.style.color = 'black';
+          }
+
+          if (parseFloat(year1Strokes.textContent) > parseFloat(year2Strokes.textContent)){
+            year1Strokes.style.color = 'green';
+            year2Strokes.style.color = 'red';
+          } else if (parseFloat(year1Strokes.textContent) < parseFloat(year2Strokes.textContent)){
+            year1Strokes.style.color = 'red';
+            year2Strokes.style.color = 'green';
+          } else {
+            year1Strokes.style.color = 'black';
+            year2Strokes.style.color = 'black';
+          }
+
+          if (parseFloat(year1Place.textContent) > parseFloat(year2Place.textContent)){
+            year1Place.style.color = 'green';
+            year2Place.style.color = 'red';
+          } else if (parseFloat(year1Place.textContent) < parseFloat(year2Place.textContent)){
+            year1Place.style.color = 'red';
+            year2Place.style.color = 'green';
+          } else {
+            year1Place.style.color = 'black';
+            year2Place.style.color = 'black';
+          }
+
+          if (parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)){
+            year1Fwh.style.color = 'green';
+            year2Fwh.style.color = 'red';
+          } else if (parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)){
+            year1Fwh.style.color = 'red';
+            year2Fwh.style.color = 'green';
+          } else {
+            year1Fwh.style.color = 'black';
+            year2Fwh.style.color = 'black';
+          }
+
+          if (parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)){
+            year1C2r.style.color = 'green';
+            year2C2r.style.color = 'red';
+          } else if (parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)){
+            year1C2r.style.color = 'red';
+            year2C2r.style.color = 'green';
+          } else {
+            year1C2r.style.color = 'black';
+            year2C2r.style.color = 'black';
+          }
+
+          if (parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)){
+            year1C1x.style.color = 'green';
+            year2C1x.style.color = 'red';
+          } else if (parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)){
+            year1C1x.style.color = 'red';
+            year2C1x.style.color = 'green';
+          } else {
+            year1C1x.style.color = 'black';
+            year2C1x.style.color = 'black';
+          }
         }
       })
 
@@ -1605,6 +2343,8 @@ async function displayQuickCompareResults(){
         //   year1Earnings.style.color = 'red';
         //   year2Earnings.style.color = 'green';
         // }
+    } else {
+      resultsDisplayMainContainer.style.display = 'none';
     }
   })
 }

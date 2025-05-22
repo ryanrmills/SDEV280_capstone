@@ -41,14 +41,14 @@
 
     <!-- cdn for Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
     <!-- Testing Globe Chart -->
     <!-- <script src="https://unpkg.com/three" defer></script> -->
     <script src="https://unpkg.com/globe.gl" defer></script>
     <!-- handmade js file for this specific page -->
     <!-- <script src="./js/index.js" defer></script> -->
-     <script type="text/javascript" src="./js/index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
+    <script type="text/javascript" src="./js/index.js" defer></script>
   </head>
   
   <body>
@@ -117,8 +117,54 @@
             <div class="playerbio_sponsors">
 
             </div>
+            <!-- This is the part where I create the slideshow -->
+            <div class="player_informationalDiv">
+              <div class="informationalDiv_mostRecentEvent">
+                <div class="mostRecentEvents_headerSection">
+                  <h3>Most Recent Event</h3>
+                </div>
+                <div class="mostRecentEvents_mainContent">
+                  <table>
+                    <tr>
+                      <th>Event:</th>
+                      <td id="mostRecent_eventName" style="font-size: 14px;"></td>
+                    </tr>
+                    <tr>
+                      <th>Location:</th>
+                      <td id="mostRecent_eventLocation"></td>
+                    </tr>
+                    <tr>
+                      <th>Date:</th>
+                      <td id="mostRecent_eventDate"></td>
+                    </tr>
+                    <tr>
+                      <th>Rating:</th>
+                      <td id="mostRecent_eventRating"></td>
+                    </tr>
+                    <tr>
+                      <th>Score:</th>
+                      <td id="mostRecent_eventScore"></td>
+                    </tr>
+                  </table>
 
-            <div class="playerbio_ratingOverTime">
+                  <!-- <table>
+                      <th>R1:</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>R2:</th>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>R3:</th>
+                      <td></td>
+                    </tr>
+                  </table> -->
+                  
+                </div>
+              </div>
+            </div>
+            <!-- <div class="playerbio_ratingOverTime">
 
               <div class="ratingOverTime_headerSection">
                 <h4>Rating Progression</h4>
@@ -130,8 +176,8 @@
               <div id="rating_lineChart" class="ratingOverTime_chartDiv">
 
               </div>
-            </div>
-
+            </div> -->
+            <!-- block it off here for the slideshow. It should end here -->
             <div class="playerbio_globe_events">
               <div id="globe">
 
@@ -208,34 +254,6 @@
       
             
 
-            <!-- <div class="playerbio_section_xStats">
-              <div class="xStats_totalEvents">
-                <h1 id="total_events"></h1>
-                <p>Total Events</p>
-              </div>
-
-              <div class="xStats_totalEvents">
-                <h1 id="avg_place"></h1>
-                <p>Avg. Place</p>
-              </div>
-
-              <div class="xStats_totalEvents">
-                <h1 id="avg_rating"></h1>
-                <p>Avg. Rating</p>
-              </div>
-
-              <div class="xStats_totalEvents">
-                <h1 id="avg_strokes"></h1>
-                <p>Avg. Strokes</p>
-              </div>
-            </div> -->
-
-            
-            
-
-            <!-- <div class="playerbio_section_searchCompare">
-              <p>See </p><h4 id="first_name_compared"></h4><p> compared to </p><input placeholder="ATHLETE NAME..."><button>Go</button>
-            </div> -->
             
             <div class="player_mainRadials">
               <!-- <div style="display:flex; align-items:center;justify-content:center"> -->
@@ -287,6 +305,13 @@
                 </div>
               </div>
               <div class="radar_modification_container">
+                <select id="radarModification_curatedOptions">
+                  <option value=''>Default</option>
+                  <option value=1>Driving</option>
+                  <option value=2>Short Game</option>
+                  <option value=3>Putting</option>
+                  <option value=4>Scoring</option>
+                </select>
                 <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
                   Select all
                 </button>
@@ -323,6 +348,13 @@
                 </div>
               </div>
               <div class="radar_modification_container2">
+                <select id="radarModification_curatedOptions2">
+                  <option value=''>Default</option>
+                  <option value=1>Driving</option>
+                  <option value=2>Short Game</option>
+                  <option value=3>Putting</option>
+                  <option value=4>Scoring</option>
+                </select>
                 <button id="radar_checklist_selectAllBtn2" class="radar_checklist_selectAllBtn2">
                   Select all
                 </button>
@@ -355,9 +387,26 @@
                   </div>
                 </div>
               </div>
-              <canvas id="hbar_percentile_chart" class="breakdown_hbars">
+              <!-- <canvas id="hbar_percentile_chart" class="breakdown_hbars">
 
-              </canvas>
+              </canvas> -->
+              <div class="breakdownStats_containsAllHbars">
+                <h4>Driving</h4>
+                <canvas id="drivingHbar_percentile_chart" class="breakdown_hbars">
+                </canvas>
+                <h4>Short Game</h4>
+                <canvas id="shortGameHbar_percentile_chart" class="breakdown_hbars">
+                </canvas>
+                <h4>Putting</h4>
+                <canvas id="puttingHbar_percentile_chart" class="breakdown_hbars">
+                </canvas>
+                
+                <h4>Scoring</h4>
+                <canvas id="scoringHbar_percentile_chart" class="breakdown_hbars">
+                </canvas>
+              </div>
+              
+              
             </div>
           </div>
         </div>
@@ -407,15 +456,6 @@
               </div>
 
               <div id="hoverTab_mainContent_resultsDisplay" class="hoverTab_mainContent_resultsDisplay">
-                <!-- <div id="mainContent_resultsDisplay_firstCompare">
-                </div>
-
-                <div id="mainContent_resultsDisplay_secondCompare">
-
-                </div> -->
-                <div class="resultsDisplay_yearOption">
-
-                </div>
                 <table class=resultsTable_yearOption>
                   <tr>
                     <th></th>
