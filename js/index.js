@@ -16,6 +16,7 @@ const pdgaNum  = urlParams.get("pdga_number");
 // const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
 // const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
 // const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+// const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 
@@ -34,6 +35,7 @@ const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capston
 const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
 const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
 const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -274,6 +276,89 @@ async function grabMostRecentEvent(){
 }
 
 grabMostRecentEvent();
+
+
+const goLeft = document.getElementById('infoDiv_cycleLeft')
+const goRight = document.getElementById('infoDiv_cycleRight')
+
+let slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("infoDivSlide");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "flex";  
+}
+
+goLeft.onclick = () => {
+  plusDivs(-1);
+}
+
+goRight.onclick = () => {
+  plusDivs(1);
+}
+
+
+
+async function topThreeMetric(){
+  function getOrdinalSuffix(number) {
+  if (number >= 11 && number <= 19) {
+    return "th";
+  }
+  switch (number % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+}
+
+
+  const topThreeData = await getJsons(getTopThree);
+
+  let firstMetricValue = document.getElementById('topThree_firstMetricValue');
+  firstMetricValue.innerHTML = topThreeData.top3[0].player_average_value;
+
+  let firstMetricName = document.getElementById('topThree_firstMetricName');
+  firstMetricName.innerHTML = topThreeData.top3[0].abbreviation;
+
+  let firstMetricRank = document.getElementById('topThree_firstMetricRank');
+  firstMetricRank.innerHTML = `ranked ${topThreeData.top3[0].rank_in_division}${getOrdinalSuffix(topThreeData.top3[0].rank_in_division)}`;
+
+  let secondMetricValue = document.getElementById('topThree_secondMetricValue');
+  secondMetricValue.innerHTML = topThreeData.top3[1].player_average_value;
+
+  let secondMetricName = document.getElementById('topThree_secondMetricName');
+  secondMetricName.innerHTML = topThreeData.top3[1].abbreviation;
+
+  let secondMetricRank = document.getElementById('topThree_secondMetricRank');
+  secondMetricRank.innerHTML = `ranked ${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}`;
+
+  let thirdMetricValue = document.getElementById('topThree_thirdMetricValue');
+  thirdMetricValue.innerHTML = topThreeData.top3[2].player_average_value;
+
+  let thirdMetricName = document.getElementById('topThree_thirdMetricName');
+  thirdMetricName.innerHTML = topThreeData.top3[2].abbreviation;
+
+  let thirdMetricRank = document.getElementById('topThree_thirdMetricRank');
+  thirdMetricRank.innerHTML = `ranked ${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}`;
+}
+
+topThreeMetric();
+
 
 
 

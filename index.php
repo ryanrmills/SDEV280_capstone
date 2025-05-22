@@ -119,7 +119,7 @@
             </div>
             <!-- This is the part where I create the slideshow -->
             <div class="player_informationalDiv">
-              <div class="informationalDiv_mostRecentEvent">
+              <div class="informationalDiv_mostRecentEvent infoDivSlide">
                 <div class="mostRecentEvents_headerSection">
                   <h3>Most Recent Event</h3>
                 </div>
@@ -163,20 +163,61 @@
                   
                 </div>
               </div>
-            </div>
-            <!-- <div class="playerbio_ratingOverTime">
 
-              <div class="ratingOverTime_headerSection">
-                <h4>Rating Progression</h4>
-                <select class="rating_dropdown">
-                  <option>All time</option>
-                </select>
-              </div >
+              <div class="infoDiv_top3MetricContainer infoDivSlide">
+                <div class="infoDiv_topThreeStat_headerSection">
+                  <h3>Top 3 Metrics</h3>
+                </div>
+                
+                <div class="topThree_allMetricsBin">
+                  <div class="topThree_firstMetricOverallBin">
+                    <div class="topThree_firstMetricContainer">
+                      <h3 id="topThree_firstMetricValue"></h3>
+                      <h5 id="topThree_firstMetricName"></h5>
+                    </div>
+                    <p id="topThree_firstMetricRank"></p>
+                  </div>
 
-              <div id="rating_lineChart" class="ratingOverTime_chartDiv">
+                  <div class="topThree_firstMetricOverallBin">
+                    <div class="topThree_firstMetricContainer">
+                      <h3 id="topThree_secondMetricValue"></h3>
+                      <h5 id="topThree_secondMetricName"></h5>
+                    </div>
+                    <p id="topThree_secondMetricRank"></p>
+                  </div>
 
+                  <div class="topThree_firstMetricOverallBin">
+                    <div class="topThree_firstMetricContainer">
+                      <h3 id="topThree_thirdMetricValue"></h3>
+                      <h5 id="topThree_thirdMetricName"></h5>
+                    </div>
+                    <p id="topThree_thirdMetricRank"></p>
+                  </div>
+
+                </div>
               </div>
-            </div> -->
+
+              <div class="playerbio_ratingOverTime infoDivSlide">
+                <div class="ratingOverTime_headerSection">
+                  <h4>Rating Progression</h4>
+                  <select class="rating_dropdown">
+                    <option>All time</option>
+                  </select>
+                </div >
+
+                <div id="rating_lineChart" class="ratingOverTime_chartDiv">
+
+                </div>
+              </div>
+
+              
+
+              <div class="informationalDiv_leftRightNavigate">
+                <span id="infoDiv_cycleLeft" class="material-symbols-outlined" style="cursor: pointer">keyboard_arrow_left</span>
+                <span id="infoDiv_cycleRight" class="material-symbols-outlined" style="cursor: pointer">keyboard_arrow_right</span>
+              </div>
+            </div>
+            
             <!-- block it off here for the slideshow. It should end here -->
             <div class="playerbio_globe_events">
               <div id="globe">

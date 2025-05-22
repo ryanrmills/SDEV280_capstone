@@ -102,12 +102,14 @@ nav img:hover {
   box-sizing: border-box;
   /* box-sizing: border-box; */
   /* position: relative; */
+
 }
 
 
 
 .playerbio_section {
-  background-color: white;
+  /* background-color: white; */
+  background-color: #00000000;
   border-radius: 0.4em;
   /* min-width: 1200px; */
   max-width: 1075px;
@@ -266,13 +268,15 @@ i {
   background-image: linear-gradient(to bottom, rgb(0, 52, 0), rgb(0, 33, 15));
   border-radius: 0.4em;
   box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+
+  position: relative;
 }
 
 .player_informationalDiv .informationalDiv_mostRecentEvent{
   width: 100%;
   height: 100%;
 
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -320,9 +324,22 @@ i {
 
 
 
-/* .playerbio_section > .playerbio_ratingOverTime {
-  grid-area: rate;
+.informationalDiv_leftRightNavigate {
+  position: absolute;
+  bottom: 1em;
+
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 98%;
+  height: 1em;
+
+  color: white;
+}
+
+.playerbio_ratingOverTime {
+  display: none;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -330,7 +347,7 @@ i {
   background-image: linear-gradient(to bottom, rgb(0, 52, 0), rgb(0, 33, 15));
   border-radius: 0.4em;
   position: relative;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  /* box-shadow: 0 5px 10px rgba(0,0,0,0.6); */
 }
 
 .playerbio_ratingOverTime .ratingOverTime_headerSection {
@@ -370,7 +387,82 @@ select {
   position: absolute;
   top: 2em;
   left: 1em;
-} */
+}
+
+.infoDiv_top3MetricContainer {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+
+  
+  font-family: "Urbanist", sans-serif;
+  position: relative;
+}
+
+.infoDiv_top3MetricContainer .infoDiv_topThreeStat_headerSection{
+  width: 80%;
+  position: absolute;
+  top: 0.6em;
+  left: 0.6em;
+
+  color: white;
+}
+
+.infoDiv_top3MetricContainer .infoDiv_topThreeStat_headerSection h3{
+  margin: 0em;
+  padding: 0em;
+}
+
+.topThree_allMetricsBin {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1.4em;
+}
+
+.topThree_allMetricsBin .topThree_firstMetricOverallBin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.topThree_firstMetricOverallBin .topThree_firstMetricContainer {
+  height: 80px;
+  min-width: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  border-radius: 0.4em;
+
+  color: rgba(0, 36, 10, 0.99);
+}
+
+.topThree_firstMetricOverallBin .topThree_firstMetricContainer h3,h5{
+  margin: 0em;
+  padding: 0em;
+
+  color: rgba(0, 36, 10, 0.99);
+}
+
+.topThree_firstMetricOverallBin p{
+  margin: 0em;
+  padding: 0em;
+
+  color: rgba(255, 255, 255, 0.99);
+}
+
+
+
 
 .playerbio_highlights {
   grid-area: stat;
@@ -387,7 +479,7 @@ select {
   align-items: center;
   box-sizing: border-box;
 
-  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+  /* box-shadow: 0 5px 10px rgba(0,0,0,0.6); */
 }
 
 .playerbio_highlights .highlights_headerSection {
@@ -461,7 +553,7 @@ select {
 
   border-radius: 0.4em;
 
-  
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
 }
 
 .mainStats_wins h1 {
