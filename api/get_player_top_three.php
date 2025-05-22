@@ -86,7 +86,7 @@
     ranked_averages.pdga_number = ?
   ORDER BY
     player_average_value DESC
-  LIMIT 3;
+  LIMIT 4;
   
  ";
 

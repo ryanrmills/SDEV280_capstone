@@ -1,41 +1,41 @@
 const urlParams = new URLSearchParams(window.location.search);
-const pdgaNum  = urlParams.get("pdga_number");
+const pdgaNum  = urlParams.get("pdga_number"); //?pdga_number=
 
 //I put all the urls in one place
-// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
-// const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-// const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-// const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 
 
-const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
-const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
+// const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+// const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -330,31 +330,31 @@ async function topThreeMetric(){
   const topThreeData = await getJsons(getTopThree);
 
   let firstMetricValue = document.getElementById('topThree_firstMetricValue');
-  firstMetricValue.innerHTML = topThreeData.top3[0].player_average_value;
+  firstMetricValue.innerHTML = topThreeData.top3[1].player_average_value;
 
   let firstMetricName = document.getElementById('topThree_firstMetricName');
-  firstMetricName.innerHTML = topThreeData.top3[0].abbreviation;
+  firstMetricName.innerHTML = topThreeData.top3[1].abbreviation;
 
   let firstMetricRank = document.getElementById('topThree_firstMetricRank');
-  firstMetricRank.innerHTML = `ranked ${topThreeData.top3[0].rank_in_division}${getOrdinalSuffix(topThreeData.top3[0].rank_in_division)}`;
+  firstMetricRank.innerHTML = `ranked ${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}`;
 
   let secondMetricValue = document.getElementById('topThree_secondMetricValue');
-  secondMetricValue.innerHTML = topThreeData.top3[1].player_average_value;
+  secondMetricValue.innerHTML = topThreeData.top3[2].player_average_value;
 
   let secondMetricName = document.getElementById('topThree_secondMetricName');
-  secondMetricName.innerHTML = topThreeData.top3[1].abbreviation;
+  secondMetricName.innerHTML = topThreeData.top3[2].abbreviation;
 
   let secondMetricRank = document.getElementById('topThree_secondMetricRank');
-  secondMetricRank.innerHTML = `ranked ${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}`;
+  secondMetricRank.innerHTML = `ranked ${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}`;
 
   let thirdMetricValue = document.getElementById('topThree_thirdMetricValue');
-  thirdMetricValue.innerHTML = topThreeData.top3[2].player_average_value;
+  thirdMetricValue.innerHTML = topThreeData.top3[3].player_average_value;
 
   let thirdMetricName = document.getElementById('topThree_thirdMetricName');
-  thirdMetricName.innerHTML = topThreeData.top3[2].abbreviation;
+  thirdMetricName.innerHTML = topThreeData.top3[3].abbreviation;
 
   let thirdMetricRank = document.getElementById('topThree_thirdMetricRank');
-  thirdMetricRank.innerHTML = `ranked ${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}`;
+  thirdMetricRank.innerHTML = `ranked ${topThreeData.top3[3].rank_in_division}${getOrdinalSuffix(topThreeData.top3[3].rank_in_division)}`;
 }
 
 topThreeMetric();
