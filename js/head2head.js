@@ -2,24 +2,24 @@ const urlParams = new URLSearchParams(window.location.search);
 let pdgaNumOne = urlParams.get("pdga_number1");
 let pdgaNumTwo = urlParams.get("pdga_number2");
 
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
-const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`;
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
+// const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`;
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
-// const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
-// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php`;
-// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
 
 
 async function getJsons(url){
@@ -35,6 +35,10 @@ async function getJsons(url){
   } catch (error){
     console.log("Something went wrong: " + error);
   }
+}
+
+if (pdgaNumOne || pdgaNumTwo){
+  document.getElementById('comparison_layout').style.display = 'grid';
 }
 
 
@@ -246,8 +250,8 @@ async function displayPlayerRadials(){
         
         
     const data = pdgaNumOne ? await getJsons(url) : '';
-    const [ fwhLabel, c2rLabel, c1xLabel ] = data.stat;
-    const [ fwhVal,   c2rVal,   c1xVal   ] = data.values;
+    const [ fwhLabel, c2rLabel, c1xLabel ] = data ? data.stat : '';
+    const [ fwhVal,   c2rVal,   c1xVal   ] = data ? data.values : '';
         
     const data2 = pdgaNumTwo ? await getJsons(url2) : '';
     const [ fwhLabel2, c2rLabel2, c1xLabel2 ] = data2 ? data2.stat : '';

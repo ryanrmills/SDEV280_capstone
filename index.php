@@ -418,7 +418,14 @@
 
             <div class="totalStats_breakdown">
               <div class="totalStats_sectionHeader">
-                <h2 class="totalStats_section_title">Breakdown</h2>
+                <!-- <div>
+                  <h2 class="totalStats_section_title">Breakdown</h2>
+
+                </div> -->
+                <div class="sectionHeader_titles">
+                  <h2 class="totalStats_section_title">Breakdown</h2>
+                  <button id="hBarGraphCompareButton">Compare</button>
+                </div>
 
                 <div class="totalStats_categoryDropdown">
                   <div  class="categoryDropdown_years">
@@ -452,6 +459,48 @@
               </div>
               
               
+            </div>
+            <div class="totalStats_breakdown2" id="totalStats_breakdown2">
+              <div class="totalStats_sectionHeader">
+                <!-- <div>
+                  <h2 class="totalStats_section_title">Breakdown</h2>
+
+                </div> -->
+                <div class="sectionHeader2_titles">
+                  <h2 class="totalStats_section_title">Breakdown</h2>
+                  <button id="hBarGraphCompareButton2">Close</button>
+                </div>
+
+                <div class="totalStats_categoryDropdown">
+                  <div  class="categoryDropdown_years">
+                    <select id="hbar_dropdown_years2" class="categoryDropdown">
+                    </select>
+                  </div>
+
+                  <div class="categoryDropdown_years">
+                    <select id="hbar_dropdown_events2" class="categoryDropdown">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- <canvas id="hbar_percentile_chart" class="breakdown_hbars">
+
+              </canvas> -->
+              <div class="breakdownStats_containsAllHbars">
+                <h4>Driving</h4>
+                <canvas id="drivingHbar_percentile_chart2" class="breakdown_hbars">
+                </canvas>
+                <!-- <h4>Short Game</h4>
+                <canvas id="shortGameHbar_percentile_chart" class="breakdown_hbars">
+                </canvas> -->
+                <h4>Putting</h4>
+                <canvas id="puttingHbar_percentile_chart2" class="breakdown_hbars">
+                </canvas>
+                
+                <h4>Scoring</h4>
+                <canvas id="scoringHbar_percentile_chart2" class="breakdown_hbars">
+                </canvas>
+              </div>
             </div>
           </div>
         </div>

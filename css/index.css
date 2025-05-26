@@ -767,7 +767,7 @@ p {
   background-color: rgb(44, 135, 255);
   color: white;
   height: 30px;
-  width: 100px;
+  width: 80px;
 }
 
 .sectionHeader_titles button:active {
@@ -1134,12 +1134,107 @@ canvas {
 
   overflow-y: scroll;
   overflow-x: hidden;
+
+  flex: 0 0 auto;
 }
 
 .breakdown_hbars {
   /* height: 100px !important; */
+  width: 420px !important;
+  margin-top: 0em;
+
+  flex: 0 0 auto;
+}
+
+
+.totalStats_breakdown2 {
+  background-image: linear-gradient(to bottom, #ff9d0013, #ff9d003e );
+  background-color: #ff9d0013;
+  border-radius: 0.4em;
+  font-family: "Urbanist", sans-serif;
+  color: rgb(99, 99, 99);
+
+
+
+  width: 0px;
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0em;
+  align-items: center;
+
+  flex: 0 0 auto;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+
+  
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0s ease, width 0.6s ease;
+}
+
+.totalStats_breakdown2.active {
+  width: 475px;
+  padding: 1em;
+
+  opacity: 1;
+}
+
+
+/* .totalStats_breakdown2{
+  background-image: linear-gradient(to bottom, #d5ffed77, #d5ffedf8 );
+  border-radius: 0.4em;
+  font-family: "Urbanist", sans-serif;
+  color: rgb(99, 99, 99);
+
+  width: 0px;
+  height: 400px;
+  padding: 1em 0em;
+
+  display: flex;
+  overflow: hidden;
+  
+  align-items: center;
+  justify-content: space-evenly;
+
+  position: relative;
+  gap: 1em;
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+
+  opacity: 0;
+  flex: 0 0 auto;
+  transition: opacity 0s ease, width 0.6s ease;
+}
+
+.totalStats_breakdown2.active {
+  width: 500px;
+  padding: 1em;
+
+  opacity: 1;
+} */
+
+/*
+.breakdownStats_containsAllHbars2 {
+  position: absolute;
+  top: 3em;
+  left: 1em;
+  height: 340px;
+  width: 90%;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  flex: 0 0 auto;
+} 
+*/
+
+.breakdown_hbars2 {
+  /* height: 100px !important; */
   width: 400px !important;
   margin-top: 0em;
+  flex: 0 0 auto;
 }
 
 

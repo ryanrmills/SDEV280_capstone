@@ -2,40 +2,40 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number"); //?pdga_number=
 
 //I put all the urls in one place
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
-const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+// const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+// const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 
 
-// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-// const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-// const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-// const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
-// const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-// const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-// const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
+const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -348,7 +348,7 @@ async function topThreeMetric(){
   const topThreeData = await getJsons(getTopThree);
 
   let firstMetricValue = document.getElementById('topThree_firstMetricValue');
-  firstMetricValue.innerHTML = topThreeData.top3[1].player_average_value;
+  firstMetricValue.innerHTML = `${topThreeData.top3[1].player_average_value}%`;
 
   let firstMetricName = document.getElementById('topThree_firstMetricName');
   firstMetricName.innerHTML = topThreeData.top3[1].abbreviation;
@@ -357,7 +357,7 @@ async function topThreeMetric(){
   firstMetricRank.innerHTML = `ranked ${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}`;
 
   let secondMetricValue = document.getElementById('topThree_secondMetricValue');
-  secondMetricValue.innerHTML = topThreeData.top3[2].player_average_value;
+  secondMetricValue.innerHTML = `${topThreeData.top3[2].player_average_value}%`;
 
   let secondMetricName = document.getElementById('topThree_secondMetricName');
   secondMetricName.innerHTML = topThreeData.top3[2].abbreviation;
@@ -366,7 +366,7 @@ async function topThreeMetric(){
   secondMetricRank.innerHTML = `ranked ${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}`;
 
   let thirdMetricValue = document.getElementById('topThree_thirdMetricValue');
-  thirdMetricValue.innerHTML = topThreeData.top3[3].player_average_value;
+  thirdMetricValue.innerHTML = `${topThreeData.top3[3].player_average_value}%`;
 
   let thirdMetricName = document.getElementById('topThree_thirdMetricName');
   thirdMetricName.innerHTML = topThreeData.top3[3].abbreviation;
@@ -843,53 +843,6 @@ async function playerRadar2(){
     drawRadar(yearSelect.value, e.target.value, values);
   })
 
-  const submitBtn = document.getElementById('radar_checklist_submitBtn2');
-  let values = []
-  let checkboxes = document.querySelectorAll('#stats_check2');
-  submitBtn.onclick = () => {
-    values = [];
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        values.push(parseInt(checkbox.value));
-      }
-    })
-    yearSelect.innerHTML = ''
-
-    yearSelect.append(allOptYears);
-
-    dataYear.forEach((y) => {
-      const option = document.createElement('option'); 
-      option.value = y;
-      option.innerHTML = y;
-      yearSelect.append(option);
-    })
-
-    radarSelect.innerHTML = '';
-
-    radarSelect.append(allOptEvents);
-
-    drawRadar('', '', values);
-
-  }
-
-  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn2');
-  selectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (!checkbox.checked){
-        checkbox.checked = true;
-      }
-    })
-  }
-
-  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn2');
-  unselectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        checkbox.checked = false;
-      }
-    })
-  }
-
   const radarCuratedOptions = document.getElementById('radarModification_curatedOptions2');
   radarCuratedOptions.addEventListener('change', (e) => {
     values = [];
@@ -965,6 +918,55 @@ async function playerRadar2(){
   drawRadar('', '', values);
 
 };
+
+  const submitBtn = document.getElementById('radar_checklist_submitBtn2');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check2');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadar('', '', values);
+
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn2');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn2');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
+
+  
 
 let radarChart;
 async function createOrUpdateRadar(label, data, elementId){
@@ -1437,7 +1439,7 @@ function createOrUpdateDrivingHbar(labels, data, elementId){
       indexAxis: 'y',
       scales: {
         x: {
-          max: 110,
+          max: 105,
           grid: { display: false },
           ticks: {
             display: false
@@ -1474,6 +1476,8 @@ function createOrUpdateDrivingHbar(labels, data, elementId){
     drivingHbar = new Chart(canvas, options);
   }
 }
+
+
 
 // let approachHbar;
 // function createOrUpdateApproachHbar(labels, data, elementId){
@@ -1561,7 +1565,7 @@ function createOrUpdatePuttingHbar(labels, data, elementId){
       indexAxis: 'y',
       scales: {
         x: {
-          max: 100,
+          max: 105,
           grid: { display: false },
           ticks: {
             display: false
@@ -1623,7 +1627,7 @@ function createOrUpdateScoringHbar(labels, data, elementId){
       indexAxis: 'y',
       scales: {
         x: {
-          max: 100,
+          max: 105,
           grid: { display: false },
           ticks: {
             display: false
@@ -1658,6 +1662,311 @@ function createOrUpdateScoringHbar(labels, data, elementId){
     scoringHbar.update();
   } else {
     scoringHbar = new Chart(canvas, options);
+  }
+}
+
+
+
+
+
+
+
+let hBarCompare = document.getElementById('hBarGraphCompareButton');
+hBarCompare.addEventListener('click', () => {
+  hBarCompare.style.display = 'none';
+  document.getElementById('totalStats_breakdown2').classList.toggle('active');
+})
+
+let hBar2Close = document.getElementById('hBarGraphCompareButton2');
+hBar2Close.addEventListener('click', () => {
+  hBarCompare.style.display = 'block';
+  document.getElementById('totalStats_breakdown2').classList.toggle('active');
+})
+
+
+
+
+
+
+async function playerHbar2(){
+
+  const yearSelect = document.getElementById('hbar_dropdown_years2');
+  const eventSelect = document.getElementById('hbar_dropdown_events2');
+  
+  const allOptYears = document.createElement('option');
+  allOptYears.value = '';
+  allOptYears.textContent = 'All Time';
+  yearSelect.append(allOptYears);
+
+  const allOptEvents = document.createElement('option');
+  allOptEvents.value = '';
+  // allOptEvents.class = 'radarEventSelectDefault'
+  allOptEvents.textContent = 'All Events';
+  eventSelect.append(allOptEvents);
+
+  
+  const dataYear = await getJsons(playerYearsUrl);
+
+  dataYear.forEach((y) => {
+    const option = document.createElement('option'); 
+    option.value = y;
+    option.innerHTML = y;
+    yearSelect.append(option);
+  })
+
+  async function drawHbar(year, eventId){
+    let url = year
+      ? playerHbarUrl + "&year=" + year
+      : playerHbarUrl;
+    
+    url = eventId
+      ? url + "&event=" + eventId
+      : url
+      
+    const data = await getJsons(url);
+
+    const drivingLabel = data.drivingAbbrev;
+    const drivingStatData = data.drivingPercentile;
+
+    //const shortGameLabel = data.shortGameAbbrev;
+    //const shortGameStatData = data.shortGamePercentile;
+
+    const puttingLabel = data.puttingAbbrev;
+    const puttingStatData = data.puttingPercentile;
+
+    const scoringLabel = data.scoringAbbrev;
+    const scoringStatData = data.scoringPercentile;
+
+    createOrUpdateDrivingHbar2(drivingLabel, drivingStatData, 'drivingHbar_percentile_chart2');
+    //createOrUpdateApproachHbar(shortGameLabel, shortGameStatData, 'shortGameHbar_percentile_chart');
+    createOrUpdatePuttingHbar2(puttingLabel, puttingStatData, 'puttingHbar_percentile_chart2');
+    createOrUpdateScoringHbar2(scoringLabel, scoringStatData, 'scoringHbar_percentile_chart2');
+  }
+
+
+  async function getEventsFromYear(year){
+
+    const eventsList = await getJsons(`${playerEventsUrl}${year}`);
+    eventsList.forEach((e) => {
+      const option = document.createElement('option');
+      option.value = e.pdga_event_id;
+      option.innerHTML = e.name;
+      eventSelect.append(option);
+    })
+
+  }
+
+  yearSelect.addEventListener('change', e => {
+
+
+    eventSelect.innerHTML = '';
+
+    eventSelect.append(allOptEvents);
+
+    getEventsFromYear(e.target.value);
+
+    drawHbar(e.target.value, '');
+  })
+
+  eventSelect.addEventListener('change', e => {
+
+    drawHbar(yearSelect.value, e.target.value);
+  })
+
+  drawHbar('', '');
+  
+}
+
+playerHbar2();
+
+
+
+let drivingHbar2;
+Chart.register(ChartDataLabels);
+function createOrUpdateDrivingHbar2(labels, data, elementId){
+  const canvas = document.getElementById(elementId)
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 3.2,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 105,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: true
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  }
+
+  if (drivingHbar2){
+    drivingHbar2.data.datasets[0].data = data;
+    drivingHbar2.data.labels = labels;
+    drivingHbar2.update();
+  } else {
+    drivingHbar2 = new Chart(canvas, options);
+  }
+}
+
+
+
+let puttingHbar2;
+function createOrUpdatePuttingHbar2(labels, data, elementId){
+  const canvas = document.getElementById(elementId);
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 4.4,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 105,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: false
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  }
+
+  if (puttingHbar2){
+    puttingHbar2.data.datasets[0].data = data;
+    puttingHbar2.data.labels = labels;
+    puttingHbar2.update();
+  } else {
+    puttingHbar2 = new Chart(canvas, options);
+  }
+}
+
+let scoringHbar2;
+function createOrUpdateScoringHbar2(labels, data, elementId){
+  const canvas = document.getElementById(elementId)
+  options = {
+    data: {
+      labels: labels,
+      datasets: [
+        // the thin bars
+        {
+          type: 'bar',
+          label: 'Percentile',
+          data: data,
+          backgroundColor: '#38A169',
+          barThickness: 8,
+        },
+      ]
+    },
+    options: {
+      maintainAspectRatio: true,
+      aspectRatio: 3.6,
+      responsive:true,
+      indexAxis: 'y',
+      scales: {
+        x: {
+          max: 105,
+          grid: { display: false },
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        // datalabels: {
+        //   display: false
+        // },
+        datalabels: {
+          display: true,
+          color: '#616161',
+          anchor: 'end',
+          align: 'end',
+          offset: 4,
+          formatter: value => value
+        },
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  }
+
+  if (scoringHbar2){
+    scoringHbar2.data.datasets[0].data = data;
+    scoringHbar2.data.labels = labels;
+    scoringHbar2.update();
+  } else {
+    scoringHbar2 = new Chart(canvas, options);
   }
 }
 
@@ -1718,9 +2027,9 @@ fetch(globeUrl)
 
 
 
-document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
+// document.getElementById('tabsSection_roundsTab').addEventListener('click', () => {
 
-})
+// })
 
 
 
@@ -1872,7 +2181,7 @@ async function displayRoundsTable(){
     createdRow: function (row, data, dataIndex){
       row.style.fontSize = '12px';
     },
-    pageLength: 10,
+    pageLength: 25,
     paging: true,
     searching: true,
     ordering: true

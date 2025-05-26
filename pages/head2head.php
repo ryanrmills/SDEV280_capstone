@@ -84,7 +84,7 @@
     </div>
     
     <section class="comparison_container">
-      <div class="comparison_layout">
+      <div class="comparison_layout" id="comparison_layout">
         <div class="search_container">
           <div class="player1_search_container">
             <h2>Athlete 1</h2>
