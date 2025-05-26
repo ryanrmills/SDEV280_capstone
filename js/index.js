@@ -2,40 +2,40 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum  = urlParams.get("pdga_number"); //?pdga_number=
 
 //I put all the urls in one place
-// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
-// const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-// const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-// const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 
 
-const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
-const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
-const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
-const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
-const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
+// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`
+// const playerRoundsListUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`
+// const allPlayerRankingsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_stat_ranking.php`;
+// const getYearQuickCompare = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const getMostRecentResults = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`
+// const getTopThree = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -255,6 +255,21 @@ async function createOrUpdateLine(label, data, barData, elementId){
 
 
 async function grabMostRecentEvent(){
+  function getOrdinalSuffix(number) {
+    if (number >= 11 && number <= 19) {
+      return "th";
+    }
+    switch (number % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
   const mostRecentData = await getJsons(getMostRecentResults);
 
   const eventName = document.getElementById('mostRecent_eventName')
@@ -270,7 +285,10 @@ async function grabMostRecentEvent(){
   eventRating.innerHTML = mostRecentData.event.event_rating;
 
   const eventScore = document.getElementById('mostRecent_eventScore')
-  eventScore.innerHTML = mostRecentData.event.event_score;
+  eventScore.innerHTML = `${mostRecentData.event.event_score}, <strong>${mostRecentData.event.place}${getOrdinalSuffix(parseInt(mostRecentData.event.place))} place</strong>`;
+
+  // const eventPlace = document.getElementById('mostRecent_eventPlace')
+  // eventPlace.innerHTML = mostRecentData.event.place;
 
 
 }
@@ -601,26 +619,7 @@ async function playerRadar(){
     })
 
     if (e.target.value == 1){
-      values=[1,9,17]
-
-      yearSelect.innerHTML = ''
-
-      yearSelect.append(allOptYears);
-
-      dataYear.forEach((y) => {
-        const option = document.createElement('option'); 
-        option.value = y;
-        option.innerHTML = y;
-        yearSelect.append(option);
-      })
-
-      radarSelect.innerHTML = '';
-
-      radarSelect.append(allOptEvents);
-
-      drawRadar('', '', values);
-    } else if (e.target.value == 2){
-      values=[2,3,4,5]
+      values=[1, 9, 17, 2, 3, 4, 5]
 
       yearSelect.innerHTML = ''
 
@@ -902,26 +901,7 @@ async function playerRadar2(){
     })
 
     if (e.target.value == 1){
-      values=[1,9,17]
-
-      yearSelect.innerHTML = ''
-
-      yearSelect.append(allOptYears);
-
-      dataYear.forEach((y) => {
-        const option = document.createElement('option'); 
-        option.value = y;
-        option.innerHTML = y;
-        yearSelect.append(option);
-      })
-
-      radarSelect.innerHTML = '';
-
-      radarSelect.append(allOptEvents);
-
-      drawRadar('', '', values);
-    } else if (e.target.value == 2){
-      values=[2,3,4,5]
+      values=[1, 9, 17, 2, 3, 4, 5]
 
       yearSelect.innerHTML = ''
 
@@ -1329,8 +1309,8 @@ async function playerHbar(){
     const drivingLabel = data.drivingAbbrev;
     const drivingStatData = data.drivingPercentile;
 
-    const shortGameLabel = data.shortGameAbbrev;
-    const shortGameStatData = data.shortGamePercentile;
+    //const shortGameLabel = data.shortGameAbbrev;
+    //const shortGameStatData = data.shortGamePercentile;
 
     const puttingLabel = data.puttingAbbrev;
     const puttingStatData = data.puttingPercentile;
@@ -1339,7 +1319,7 @@ async function playerHbar(){
     const scoringStatData = data.scoringPercentile;
 
     createOrUpdateDrivingHbar(drivingLabel, drivingStatData, 'drivingHbar_percentile_chart');
-    createOrUpdateApproachHbar(shortGameLabel, shortGameStatData, 'shortGameHbar_percentile_chart');
+    //createOrUpdateApproachHbar(shortGameLabel, shortGameStatData, 'shortGameHbar_percentile_chart');
     createOrUpdatePuttingHbar(puttingLabel, puttingStatData, 'puttingHbar_percentile_chart');
     createOrUpdateScoringHbar(scoringLabel, scoringStatData, 'scoringHbar_percentile_chart');
   }
@@ -1383,7 +1363,7 @@ playerHbar();
 
 // let hbarChart;
 // function createOrUpdateHbar(labels, data, elementId){
-//   const canvas = document.getElementById(elementId).getContext('2d');
+//   const canvas = document.getElementById(elementId).getrow('2d');
 //   options = {
 //     data: {
 //       labels: labels,
@@ -1435,7 +1415,7 @@ playerHbar();
 let drivingHbar;
 Chart.register(ChartDataLabels);
 function createOrUpdateDrivingHbar(labels, data, elementId){
-  const canvas = document.getElementById(elementId).getContext('2d');
+  const canvas = document.getElementById(elementId)
   options = {
     data: {
       labels: labels,
@@ -1452,7 +1432,7 @@ function createOrUpdateDrivingHbar(labels, data, elementId){
     },
     options: {
       maintainAspectRatio: true,
-      aspectRatio: 7,
+      aspectRatio: 3.2,
       responsive:true,
       indexAxis: 'y',
       scales: {
@@ -1495,71 +1475,71 @@ function createOrUpdateDrivingHbar(labels, data, elementId){
   }
 }
 
-let approachHbar;
-function createOrUpdateApproachHbar(labels, data, elementId){
-  const canvas = document.getElementById(elementId).getContext('2d');
-  options = {
-    data: {
-      labels: labels,
-      datasets: [
-        // the thin bars
-        {
-          type: 'bar',
-          label: 'Percentile',
-          data: data,
-          backgroundColor: '#38A169',
-          barThickness: 8,
-        },
-      ]
-    },
-    options: {
-      maintainAspectRatio: true,
-      aspectRatio: 5,
-      responsive:true,
-      indexAxis: 'y',
-      scales: {
-        x: {
-          max: 100,
-          grid: { display: false },
-          ticks: {
-            display: false
-          }
-        },
-        y: {
-          grid: { display: false }
-        }
-      },
-      plugins: {
-        // datalabels: {
-        //   display: false
-        // },
-        datalabels: {
-          display: true,
-          color: '#616161',
-          anchor: 'end',
-          align: 'end',
-          offset: 4,
-          formatter: value => value
-        },
-        legend: { display: false },
-        tooltip: { enabled: true }
-      }
-    },
-    plugins: [ChartDataLabels]
-  }
+// let approachHbar;
+// function createOrUpdateApproachHbar(labels, data, elementId){
+//   const canvas = document.getElementById(elementId);
+//   options = {
+//     data: {
+//       labels: labels,
+//       datasets: [
+//         // the thin bars
+//         {
+//           type: 'bar',
+//           label: 'Percentile',
+//           data: data,
+//           backgroundColor: '#38A169',
+//           barThickness: 8,
+//         },
+//       ]
+//     },
+//     options: {
+//       maintainAspectRatio: true,
+//       aspectRatio: 5,
+//       responsive:true,
+//       indexAxis: 'y',
+//       scales: {
+//         x: {
+//           max: 100,
+//           grid: { display: false },
+//           ticks: {
+//             display: false
+//           }
+//         },
+//         y: {
+//           grid: { display: false }
+//         }
+//       },
+//       plugins: {
+//         // datalabels: {
+//         //   display: false
+//         // },
+//         datalabels: {
+//           display: true,
+//           color: '#616161',
+//           anchor: 'end',
+//           align: 'end',
+//           offset: 4,
+//           formatter: value => value
+//         },
+//         legend: { display: false },
+//         tooltip: { enabled: true }
+//       }
+//     },
+//     plugins: [ChartDataLabels]
+//   }
 
-  if (approachHbar){
-    approachHbar.data.datasets[0].data = data;
-    approachHbar.data.labels = labels;
-    approachHbar.update();
-  } else {
-    approachHbar = new Chart(canvas, options);
-  }
-}
+//   if (approachHbar){
+//     approachHbar.data.datasets[0].data = data;
+//     approachHbar.data.labels = labels;
+//     approachHbar.update();
+//   } else {
+//     approachHbar = new Chart(canvas, options);
+//   }
+// }
 
 let puttingHbar;
 function createOrUpdatePuttingHbar(labels, data, elementId){
-  const canvas = document.getElementById(elementId).getContext('2d');
+  const canvas = document.getElementById(elementId);
   options = {
     data: {
       labels: labels,
@@ -1621,7 +1601,7 @@ function createOrUpdatePuttingHbar(labels, data, elementId){
 
 let scoringHbar;
 function createOrUpdateScoringHbar(labels, data, elementId){
-  const canvas = document.getElementById(elementId).getContext('2d');
+  const canvas = document.getElementById(elementId)
   options = {
     data: {
       labels: labels,
@@ -1786,8 +1766,8 @@ async function displayEventsTable(){
         data: "name",
         width: "400px",
         className: "scrollable-cell",
-        render: function (data){
-          return `<div class="scroll-x">${data}</div>`;
+        render: function (data, type, row, meta){
+          return `<div class="scroll-x"><a target="_blank" style="text-decoration: none; color: inherit;" href='https://www.pdga.com/tour/event/${row.pdga_event_id}'>${data}</a></div>`;
         }
       },
       {title: "Month", data: "event_month"},

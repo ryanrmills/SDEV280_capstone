@@ -31,7 +31,8 @@
     ) AS event_location,
     CONCAT(MONTHNAME(events.start_date), ' ', DAY(events.start_date), ', ', YEAR(events.start_date)) AS event_start_date,
     event_results.event_rating  AS event_rating,
-    event_totals.total_score AS event_score
+    event_totals.total_score AS event_score,
+    event_results.place
   FROM
     events
   JOIN

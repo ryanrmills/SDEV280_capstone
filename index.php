@@ -144,7 +144,13 @@
                     <tr>
                       <th>Score:</th>
                       <td id="mostRecent_eventScore"></td>
+                      <!-- <th>Place:</th>
+                      <td id="mostRecent_eventPlace"></td> -->
                     </tr>
+                    <!-- <tr>
+                      <th>Place:</th>
+                      <td id="mostRecent_eventPlace"></td>
+                    </tr> -->
                   </table>
 
                   <!-- <table>
@@ -349,7 +355,6 @@
                 <select id="radarModification_curatedOptions">
                   <option value=''>Default</option>
                   <option value=1>Driving</option>
-                  <option value=2>Short Game</option>
                   <option value=3>Putting</option>
                   <option value=4>Scoring</option>
                 </select>
@@ -392,7 +397,6 @@
                 <select id="radarModification_curatedOptions2">
                   <option value=''>Default</option>
                   <option value=1>Driving</option>
-                  <option value=2>Short Game</option>
                   <option value=3>Putting</option>
                   <option value=4>Scoring</option>
                 </select>
@@ -435,9 +439,9 @@
                 <h4>Driving</h4>
                 <canvas id="drivingHbar_percentile_chart" class="breakdown_hbars">
                 </canvas>
-                <h4>Short Game</h4>
+                <!-- <h4>Short Game</h4>
                 <canvas id="shortGameHbar_percentile_chart" class="breakdown_hbars">
-                </canvas>
+                </canvas> -->
                 <h4>Putting</h4>
                 <canvas id="puttingHbar_percentile_chart" class="breakdown_hbars">
                 </canvas>

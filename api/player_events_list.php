@@ -21,6 +21,7 @@
   //This is our sql query that we'll be sending to the database to get our information
   $sql = 
   "SELECT 
+     events.pdga_event_id,
      events.name,
      events.start_date,
      MONTHNAME(events.start_date) AS event_month,
