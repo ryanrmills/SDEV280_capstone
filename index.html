@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Players by Score</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/chart_score.js" defer></script>
+    <script src="js/chart-score-player.js" defer></script>
+    <script src="js/chart-score-trend.js" defer></script>
+    <script src="js/chart-top-rated.js" defer></script>
+    <script src="js/chart-top-earners.js" defer></script>
+    <script src="js/chart-longest-throws.js" defer></script>
+</head>
+<body>
+
+
+    <nav class="navbar">
+    <div class="logo">
+        <img src="images/logo.png" alt="StatMando Logo">
+    </div>
+    <ul class="nav-links">
+        <li><a href="#">Live</a></li>
+        <li><a href="#">Rankings</a></li>
+        <li><a href="#">Player Profiles</a></li>
+        <li><a href="#">Monday</a></li>
+        <li><a href="#">Head-to-Head</a></li>
+        <li><a href="#">StatZone</a></li>
+    </ul>
+    </nav>
+
+
+    <h2>Top 10 Players by Total Score</h2>
+
+    <label for="divisionSelect">Select Division:</label>
+    <select id="divisionSelect">
+        <option value="MPO">MPO</option>
+        <option value="FPO">FPO</option>
+        <option value="MP40">MP40</option>
+        <option value="MA1">MA1</option>
+    </select>
+
+    <div id="chart-container">
+        <canvas id="scoreChart"></canvas>
+    </div>
+
+
+    <label for="playerSelect">Select Player:</label>
+    <select id="playerSelect">
+    <option value="">-- Choose a Player --</option>
+    </select>
+
+    <div class="chart-row">
+        <div id="playerChartContainer">
+            <canvas id="playerChart"></canvas>
+        </div>
+        <div id="trendChartContainer">
+            <canvas id="trendChart"></canvas>
+        </div>
+    </div>
+
+
+    <h2>Top Player Highlights</h2>
+    <div class="chart-row">
+        <div id="topRatedChartContainer">
+            <canvas id="topRatedChart"></canvas>
+        </div>
+        <div id="longestThrowChartContainer">
+            <canvas id="longestThrowChart"></canvas>
+        </div>
+    </div>
+
+
+
+    <div id="topEarnerChartContainer" style="max-width: 800px; margin: 40px auto;">
+        <canvas id="topEarnerChart" height="400"></canvas>
+    </div>
+
+
+</body>
+</html>

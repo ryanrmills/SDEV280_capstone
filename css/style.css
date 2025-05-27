@@ -1,0 +1,113 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 40px;
+    background: #f5e7b0;
+}
+
+h2 {
+    color: #333;
+}
+
+.navbar {
+    background-color: #002900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo img {
+    height: 32px;
+    object-fit: contain;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #66ff66;
+}
+
+#chart-container {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+select {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.chart-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+#playerChartContainer,
+#trendChartContainer {
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    height: 450px;
+    background: #fff8db;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 4px solid #002900; 
+}
+
+
+#topRatedChartContainer,
+#longestThrowChartContainer {
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    height: 500px; 
+    background: #fff8db;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 4px solid #002900;
+}
+
+#topEarnerChartContainer {
+    flex: 1;
+    min-width: 400px;
+    max-width: 600px;
+    height: 500px; 
+    background: #fff8db;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 4px solid #002900;
+}
