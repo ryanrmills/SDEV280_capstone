@@ -45,12 +45,15 @@
       JOIN
         event_rounds
           ON event_round_player_stats.event_round_id = event_rounds.event_round_id
+      JOIN events
+          ON event_rounds.pdga_event_id = events.pdga_event_id
       JOIN
         players
           ON event_rounds.pdga_number = players.pdga_number
       JOIN
         target_player
           ON players.division = target_player.division
+      WHERE events.start_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
       GROUP BY
         event_round_player_stats.stat_id,
         event_rounds.pdga_number

@@ -115,7 +115,17 @@
 
             </div>
             <div class="playerbio_sponsors">
-
+              <div class="sponsors_socials">
+                <img src="./assets/yt.png">
+                <img src="./assets/x.png">
+                <img src="./assets/ig.png">
+                <img src="./assets/linkedin.png">
+              </div>
+              <div class="sponsors_sponsors">
+                <img src="./assets/discmania.png">
+                <img src="./assets/huklab.png">
+                <img src="./assets/innova.png">
+              </div>
             </div>
             <!-- This is the part where I create the slideshow -->
             <div class="player_informationalDiv">
@@ -142,7 +152,7 @@
                       <td id="mostRecent_eventRating"></td>
                     </tr>
                     <tr>
-                      <th>Score:</th>
+                      <th>Results:</th>
                       <td id="mostRecent_eventScore"></td>
                       <!-- <th>Place:</th>
                       <td id="mostRecent_eventPlace"></td> -->
@@ -172,7 +182,7 @@
 
               <div class="infoDiv_top3MetricContainer infoDivSlide">
                 <div class="infoDiv_topThreeStat_headerSection">
-                  <h3>Top 3 Metrics</h3>
+                  <h3>Top 3 Metrics</h3><p>(last 12 mos)</p>
                 </div>
                 
                 <div class="topThree_allMetricsBin">

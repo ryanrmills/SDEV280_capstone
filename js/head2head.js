@@ -39,6 +39,8 @@ async function getJsons(url){
 
 if (pdgaNumOne || pdgaNumTwo){
   document.getElementById('comparison_layout').style.display = 'grid';
+} else if (!pdgaNumOne && !pdgaNumTwo){
+  document.getElementById('slider_container').style.display = 'flex';
 }
 
 
@@ -910,6 +912,79 @@ async function displayPlayerRadars(
     })
   }
 
+  const radarCuratedOptions = document.getElementById('radarModification_curatedOptions');
+
+  radarCuratedOptions.addEventListener('change', (e) => {
+    values = [];
+
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+
+    if (e.target.value == 1){
+      values=[1, 9, 17, 2, 3, 4, 5]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadars('', '', values);
+    } else if (e.target.value == 3){
+      values=[6,7,8,16,18]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadars('', '', values);
+    } else if (e.target.value == 4){
+      values=[10,11,12,13,14,15]
+
+      yearSelect.innerHTML = ''
+
+      yearSelect.append(allOptYears);
+
+      dataYear.forEach((y) => {
+        const option = document.createElement('option'); 
+        option.value = y;
+        option.innerHTML = y;
+        yearSelect.append(option);
+      })
+
+      radarSelect.innerHTML = '';
+
+      radarSelect.append(allOptEvents);
+
+      drawRadars('', '', values);
+    } else if (!e.target.value){
+      drawRadars('', '', values);
+    }
+  })
+
   drawRadars('', '', values);
 }
 
@@ -1265,3 +1340,65 @@ displayPlayerRadars()
     active = active - 1 >= 0 ? active - 1 : active;
     loadShow();
   }
+
+  let playerCards = document.querySelectorAll('.item');
+
+  playerCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      console.log(card.dataset.value)
+      window.location.href = `http://localhost/sdev280capstone/pages/head2head.php?pdga_number1=${card.dataset.value}`
+    })
+  })
+
+
+
+
+let initialInput = document.getElementById('initial_search_input');
+
+let initialPlayerSuggestion = document.getElementById('initialPlayer_suggestion');
+
+initialInput.addEventListener('input', async () => {
+
+  let query = initialInput.value.trim();
+  if (query.length === 0){
+    initialPlayerSuggestion.style.display = 'none';
+    return;
+  }
+
+  let url = query
+    ? playerSearchUrl + `?query=` + query
+    : '';
+
+  let searchData = await getJsons(url);
+
+
+  initialPlayerSuggestion.innerHTML = "";
+
+  if (searchData.length > 0){
+    searchData.forEach((suggestion) => {
+      let player = document.createElement('div');
+      player.className = 'initialPlayerOptions';
+      
+      let playerName = document.createElement('h4');
+      playerName.innerHTML = suggestion.full_name;
+
+      let playerId = document.createElement('p');
+      playerId.innerHTML = `#${suggestion.pdga_number}`;
+
+      player.append(playerName);
+      player.append(playerId);
+
+
+      player.onclick = () => {
+        pdgaNumOne = suggestion.pdga_number;
+        window.location.href = pdgaNumOne
+          ? `./head2head.php?pdga_number1=${pdgaNumOne}` : '';
+      }
+      initialPlayerSuggestion.append(player);
+    })
+    initialPlayerSuggestion.style.display = 'flex';
+  } else {
+    initialPlayerSuggestion.style.display = 'none';
+  }
+
+})

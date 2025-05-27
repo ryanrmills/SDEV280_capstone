@@ -765,7 +765,7 @@ nav div img:hover {
   background-image: linear-gradient(to bottom, rgba(242, 242, 242, 0.141), rgba(187, 187, 187, 0.338));
   min-height: 400px;
 
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -776,18 +776,15 @@ nav div img:hover {
   color: rgb(92, 92, 92);
 }
 
-.playerVplayer_lineComparison .lineComparison_titleSection {
-
-}
 
 .slider_container {
-  width: 100%;
+  width: 80%;
   height: 600px;
   background-image: linear-gradient(to bottom, rgb(8, 118, 0), rgb(0, 57, 14));
   z-index: 0;
 
 
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -802,11 +799,83 @@ nav div img:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
 
   color: white;
   font-family: "Urbanist", sans-serif;
   font-size: 1.4em;
+
+  gap: 2em;
 }
+
+.sliderContainer_headerSection h2,p{
+  margin: 0em;
+  padding: 0em;
+}
+
+.sliderContainer_headerSection input{
+  height: 40px;
+  width: 180px;
+  padding: 0em 1em;
+  
+  border: none;
+  border-radius: 0.4em;
+}
+
+.initialPlayer_search_container {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  position: relative;
+}
+
+.initialPlayer_search_container .suggestion_box{
+  box-sizing: border-box;
+  position: absolute;
+  top: 100%;
+  left: 0em;
+  width: 220px;
+  z-index: 10;
+  background-color: white;
+
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-evenly;
+  color: black
+}
+
+.initialPlayerOptions {
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+
+  padding: 0.2em 0.4em;
+  border-radius: 0.4em;
+  background-color: rgb(222, 222, 222);
+}
+
+.initialPlayerOptions:hover {
+  background-color: rgb(217, 255, 160);
+}
+
+.initialPlayerOptions:active {
+  background-color: rgb(129, 179, 55);
+}
+
+.initialPlayerOptions h4,p {
+  margin: 0em;
+  padding: 0em;
+
+  font-size: 0.8em;
+}
+
 
 .slider {
   position: relative;
@@ -820,12 +889,86 @@ nav div img:hover {
   width: 200px;
   height: 320px;
   text-align: justify;
-  background-color: #fff;
+  /* background-color: #fff */
   border-radius: 10px;
-  padding: 20px;
+  padding: 2em 1em;
   transition: 0.5s;
   left: calc(50% - 110px);
   top: 0;
+  color: rgb(242, 242, 242);
+
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  flex-direction: column;
+  box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.703);
+  transition: 0.1s;
+}
+
+.item:active {
+  box-shadow: 0px 0px 0px black;
+  transform: translateY(-2px)
+}
+
+.item h1,p{
+  margin: 0em;
+  padding: 0em;
+}
+
+.item1 {
+  background-image: url(./../assets/37817.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item2 {
+  background-image: url(./../assets/64927.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item3 {
+  background-image: url(./../assets/38008.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item4 {
+  background-image: url(./../assets/75412.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item5 {
+  background-image: url(./../assets/73986.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item6 {
+  background-image: url(./../assets/27523.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item7 {
+  background-image: url(./../assets/48976.jpg);
+  
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #next, #prev {

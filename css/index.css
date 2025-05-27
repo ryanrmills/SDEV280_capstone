@@ -155,7 +155,7 @@ nav img:hover {
   /* border: 1px solid rgb(6, 129, 0); */
   height: 100%;
   max-height: 100px;
-  padding: 0em;
+  padding: 0em 0.6em;
   border-radius: 0.4em;
   font-family: "Urbanist", sans-serif;
   display: flex;
@@ -180,14 +180,51 @@ i {
 
 .playerbio_section > .playerbio_sponsors {
   grid-area: spons;
-  background-color: rgb(182, 232, 255);
-  border: 1px solid rgb(0, 71, 111);
+  /* background-color: rgb(182, 232, 255); */
+  /* border: 1px solid rgb(0, 71, 111); */
   border-radius: 0.4em;
   min-height: 90px;
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   box-sizing: border-box;
+
+  padding: 0em 0.6em;
+}
+
+.playerbio_sponsors .sponsors_socials {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+
+  gap: 1em;
+}
+
+
+
+.playerbio_sponsors .sponsors_socials img {
+  height: 30px;
+}
+
+.playerbio_sponsors .sponsors_sponsors {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+
+  gap: 1em;
+}
+
+.playerbio_sponsors .sponsors_sponsors img{
+  height: 30px;
 }
 
 .playerbio_section > .playerbio_section_media {
@@ -407,6 +444,11 @@ select {
   left: 0.6em;
 
   color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 0.4em;
 }
 
 .infoDiv_top3MetricContainer .infoDiv_topThreeStat_headerSection h3{
@@ -430,6 +472,8 @@ select {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  gap: 0.4em;
 }
 
 .topThree_firstMetricOverallBin .topThree_firstMetricContainer {

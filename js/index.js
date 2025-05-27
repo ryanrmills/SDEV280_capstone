@@ -273,7 +273,7 @@ async function grabMostRecentEvent(){
   const mostRecentData = await getJsons(getMostRecentResults);
 
   const eventName = document.getElementById('mostRecent_eventName')
-  eventName.innerHTML = mostRecentData.event.event_name;
+  eventName.innerHTML = `<a target="_blank" href="https://www.pdga.com/tour/event/${mostRecentData.event.pdga_event_id}" style="color: white;">${mostRecentData.event.event_name}</a>`;
 
   const eventLocation = document.getElementById('mostRecent_eventLocation')
   eventLocation.innerHTML = mostRecentData.event.event_location;
@@ -285,7 +285,7 @@ async function grabMostRecentEvent(){
   eventRating.innerHTML = mostRecentData.event.event_rating;
 
   const eventScore = document.getElementById('mostRecent_eventScore')
-  eventScore.innerHTML = `${mostRecentData.event.event_score}, <strong>${mostRecentData.event.place}${getOrdinalSuffix(parseInt(mostRecentData.event.place))} place</strong>`;
+  eventScore.innerHTML = `<strong>${mostRecentData.event.event_score}</strong> strokes, <strong>${mostRecentData.event.place}${getOrdinalSuffix(parseInt(mostRecentData.event.place))}</strong> place`;
 
   // const eventPlace = document.getElementById('mostRecent_eventPlace')
   // eventPlace.innerHTML = mostRecentData.event.place;
@@ -354,7 +354,7 @@ async function topThreeMetric(){
   firstMetricName.innerHTML = topThreeData.top3[1].abbreviation;
 
   let firstMetricRank = document.getElementById('topThree_firstMetricRank');
-  firstMetricRank.innerHTML = `ranked ${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}`;
+  firstMetricRank.innerHTML = `<strong>${topThreeData.top3[1].rank_in_division}${getOrdinalSuffix(topThreeData.top3[1].rank_in_division)}</strong> place`;
 
   let secondMetricValue = document.getElementById('topThree_secondMetricValue');
   secondMetricValue.innerHTML = `${topThreeData.top3[2].player_average_value}%`;
@@ -363,7 +363,7 @@ async function topThreeMetric(){
   secondMetricName.innerHTML = topThreeData.top3[2].abbreviation;
 
   let secondMetricRank = document.getElementById('topThree_secondMetricRank');
-  secondMetricRank.innerHTML = `ranked ${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}`;
+  secondMetricRank.innerHTML = `<strong>${topThreeData.top3[2].rank_in_division}${getOrdinalSuffix(topThreeData.top3[2].rank_in_division)}</strong> place`;
 
   let thirdMetricValue = document.getElementById('topThree_thirdMetricValue');
   thirdMetricValue.innerHTML = `${topThreeData.top3[3].player_average_value}%`;
@@ -372,7 +372,7 @@ async function topThreeMetric(){
   thirdMetricName.innerHTML = topThreeData.top3[3].abbreviation;
 
   let thirdMetricRank = document.getElementById('topThree_thirdMetricRank');
-  thirdMetricRank.innerHTML = `ranked ${topThreeData.top3[3].rank_in_division}${getOrdinalSuffix(topThreeData.top3[3].rank_in_division)}`;
+  thirdMetricRank.innerHTML = `<strong>${topThreeData.top3[3].rank_in_division}${getOrdinalSuffix(topThreeData.top3[3].rank_in_division)}</strong> place`;
 }
 
 topThreeMetric();
@@ -843,8 +843,56 @@ async function playerRadar2(){
     drawRadar(yearSelect.value, e.target.value, values);
   })
 
-  const radarCuratedOptions = document.getElementById('radarModification_curatedOptions2');
-  radarCuratedOptions.addEventListener('change', (e) => {
+
+  const submitBtn = document.getElementById('radar_checklist_submitBtn2');
+  let values = []
+  let checkboxes = document.querySelectorAll('#stats_check2');
+  submitBtn.onclick = () => {
+    values = [];
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        values.push(parseInt(checkbox.value));
+      }
+    })
+    yearSelect.innerHTML = ''
+
+    yearSelect.append(allOptYears);
+
+    dataYear.forEach((y) => {
+      const option = document.createElement('option'); 
+      option.value = y;
+      option.innerHTML = y;
+      yearSelect.append(option);
+    })
+
+    radarSelect.innerHTML = '';
+
+    radarSelect.append(allOptEvents);
+
+    drawRadar('', '', values);
+
+  }
+
+  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn2');
+  selectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+    })
+  }
+
+  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn2');
+  unselectAllBtn.onclick = () => {
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+    })
+  }
+
+  const radarCuratedOptions2 = document.getElementById('radarModification_curatedOptions2');
+  radarCuratedOptions2.addEventListener('change', (e) => {
     values = [];
     
     checkboxes.forEach(checkbox => {
@@ -918,53 +966,6 @@ async function playerRadar2(){
   drawRadar('', '', values);
 
 };
-
-  const submitBtn = document.getElementById('radar_checklist_submitBtn2');
-  let values = []
-  let checkboxes = document.querySelectorAll('#stats_check2');
-  submitBtn.onclick = () => {
-    values = [];
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        values.push(parseInt(checkbox.value));
-      }
-    })
-    yearSelect.innerHTML = ''
-
-    yearSelect.append(allOptYears);
-
-    dataYear.forEach((y) => {
-      const option = document.createElement('option'); 
-      option.value = y;
-      option.innerHTML = y;
-      yearSelect.append(option);
-    })
-
-    radarSelect.innerHTML = '';
-
-    radarSelect.append(allOptEvents);
-
-    drawRadar('', '', values);
-
-  }
-
-  const selectAllBtn = document.getElementById('radar_checklist_selectAllBtn2');
-  selectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (!checkbox.checked){
-        checkbox.checked = true;
-      }
-    })
-  }
-
-  const unselectAllBtn = document.getElementById('radar_checklist_unselectBtn2');
-  unselectAllBtn.onclick = () => {
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        checkbox.checked = false;
-      }
-    })
-  }
 
   
 

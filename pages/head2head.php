@@ -84,40 +84,51 @@
     </div>
     
     <section class="comparison_container">
-      <div class="slider_container">
+      <div class="slider_container" id="slider_container">
         <div class="sliderContainer_headerSection">
-          <h2>
-            Pick a Player to Start!
-          </h2>
+          <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <h2>Pick a Player</h2>
+          </div>
+
+          Or
+
+          <div class="initialPlayer_search_container">
+            <input id="initial_search_input" placeholder="Search athlete..." type="text">
+            <div id="initialPlayer_suggestion" class="suggestion_box"></div>
+          </div>
+          <!-- <input placeholder="Search for a specific player.."> -->
         </div>
         <div class="slider">
-          <div class="item">
-            <h1>Slide 1</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item1" data-value='37817'>
+            <!-- <img src="./../assets/75412.jpg"> -->
+            <h1>Eagle McMahon</h1>
+            <p>#37817</p>
+            
           </div>
-          <div class="item">
-            <h1>Slide 2</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item2" data-value='64927'>
+            <h1>Eveliina Salonen</h1>
+            <p>#64927</p>
+            
           </div>
-          <div class="item">
-            <h1>Slide 3</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item3" data-value='38008'>
+            <h1>Richard Wysocki</h1>
+            <p>#38008</p>
           </div>
-          <div class="item">
-            <h1>Slide 4</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item4" data-value='75412'>
+            <h1>Gannon Buhr</h1>
+            <p>#75412</p>
           </div>
-          <div class="item">
-            <h1>Slide 5</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item5" data-value='73986'>
+            <h1>Kristin Latt</h1>
+            <p>#73986</p>
           </div>
-          <div class="item">
-            <h1>Slide 6</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item6" data-value='27523'>
+            <h1>Paul McBeth</h1>
+            <p>#27523</p>
           </div>
-          <div class="item">
-            <h1>Slide 7</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          <div class="item item7" data-value='48976'>
+            <h1>Ohn Scoggins</h1>
+            <p>#48976</p>
           </div>
           <button id="next">></button>
           <button id="prev"><</button>
@@ -326,6 +337,12 @@
           </h3>
           <select id="radar_yearSelect" class="categoryDropdown"></select>
           <select id="radar_eventSelect" class="categoryDropdown"></select>
+          <select id="radarModification_curatedOptions">
+            <option value=''>Default</option>
+            <option value=1>Driving</option>
+            <option value=3>Putting</option>
+            <option value=4>Scoring</option>
+          </select>
           <div class="radar_modification_container">
             <button id="radar_checklist_selectAllBtn" class="radar_checklist_selectAllBtn">
               Select all
