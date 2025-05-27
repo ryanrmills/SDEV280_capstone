@@ -84,6 +84,45 @@
     </div>
     
     <section class="comparison_container">
+      <div class="slider_container">
+        <div class="sliderContainer_headerSection">
+          <h2>
+            Pick a Player to Start!
+          </h2>
+        </div>
+        <div class="slider">
+          <div class="item">
+            <h1>Slide 1</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 2</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 3</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 4</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 5</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 6</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <div class="item">
+            <h1>Slide 7</h1>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. A culpa distinctio, mollitia tenetur fugit velit adipisci ex ullam quibusdam quis? Ipsa atque, dolorem modi dolor et deserunt? Commodi, tenetur obcaecati placeat illo, magni quo repellat suscipit nemo aperiam assumenda iusto?
+          </div>
+          <button id="next">></button>
+          <button id="prev"><</button>
+        </div>
+      </div>
       <div class="comparison_layout" id="comparison_layout">
         <div class="search_container">
           <div class="player1_search_container">
@@ -320,6 +359,7 @@
 
       </div>
     </section>
+    
     
     
   </body>

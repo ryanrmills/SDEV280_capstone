@@ -2,24 +2,24 @@ const urlParams = new URLSearchParams(window.location.search);
 let pdgaNumOne = urlParams.get("pdga_number1");
 let pdgaNumTwo = urlParams.get("pdga_number2");
 
-// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
-// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
-// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
-// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
-// const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
-// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php`;
-// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`;
+const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php`;
+const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php`;
+const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php`;
+const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php`;
+const playerSearchUrl =  `http://localhost/sdev280capstone/api/player_search.php`;
+const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php`;
+const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`;
 
 
-const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
-const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
-const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
-const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
-const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
-const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php`;
-const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
-const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
+// const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php`;
+// const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php`;
+// const playerRadarUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radar.php`;
+// const playerRatingUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_rating.php`;
+// const playerSearchUrl =  `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_search.php`;
+// const playerYearsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_years.php`;
+// const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
 
 
 async function getJsons(url){
@@ -1220,4 +1220,48 @@ displayPlayerRadars()
     )
   }
 
-  displayPlayerRatingLine();
+  displayPlayerRatingLine()
+
+
+
+  let items = document.querySelectorAll('.slider .item');
+  let next = document.getElementById('next');
+  let prev = document.getElementById('prev');
+
+
+  let active = 3;
+  function loadShow(){
+    let stt = 0;
+    items[active].style.transform = 'none';
+    items[active].style.zIndex = 1;
+    items[active].style.filter = 'none';
+    items[active].style.opacity = 1;
+    for (var i = active + 1; i < items.length; i++){
+      stt++;
+      items[i].style.transform = `translate(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
+      items[i].style.zIndex = -stt;
+      items[i].style.filter = 'blur(5px)';
+      items[i].style.opacity = stt > 2 ? 0 : 0.6;
+    }
+    stt = 0;
+    for(var i = active - 1; i >= 0; i--){
+      stt++;
+      items[i].style.transform = `translate(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
+      items[i].style.zIndex = -stt;
+      items[i].style.filter = 'blur(5px)';
+      items[i].style.opacity = stt > 2 ? 0 : 0.6;
+    }
+  }
+
+  loadShow();
+
+
+  next.onclick = function() {
+    active = active + 1 < items.length ? active + 1 : active;
+    loadShow();
+  }
+
+  prev.onclick = function() {
+    active = active - 1 >= 0 ? active - 1 : active;
+    loadShow();
+  }
