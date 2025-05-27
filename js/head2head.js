@@ -1346,7 +1346,7 @@ displayPlayerRadars()
   playerCards.forEach((card) => {
     card.addEventListener('click', () => {
       console.log(card.dataset.value)
-      window.location.href = `http://localhost/sdev280capstone/pages/head2head.php?pdga_number1=${card.dataset.value}`
+      window.location.href = `./head2head.php?pdga_number1=${card.dataset.value}`
     })
   })
 
