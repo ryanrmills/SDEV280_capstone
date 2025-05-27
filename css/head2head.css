@@ -780,7 +780,7 @@ nav div img:hover {
 .slider_container {
   width: 80%;
   height: 600px;
-  background-image: linear-gradient(to bottom, rgb(8, 118, 0), rgb(0, 57, 14));
+  /* background-image: linear-gradient(to bottom, rgb(8, 118, 0), rgb(0, 57, 14)); */
   z-index: 0;
 
 
@@ -801,7 +801,7 @@ nav div img:hover {
   align-items: center;
   flex-direction: row;
 
-  color: white;
+  color: rgb(43, 43, 43);
   font-family: "Urbanist", sans-serif;
   font-size: 1.4em;
 
@@ -818,7 +818,8 @@ nav div img:hover {
   width: 180px;
   padding: 0em 1em;
   
-  border: none;
+  border: 1px solid black;
+  /* border-bottom: 1px solid black; */
   border-radius: 0.4em;
 }
 
@@ -974,7 +975,7 @@ nav div img:hover {
 #next, #prev {
   position: absolute;
   top: 40%;
-  color: white;
+  color: black;
   background-color: transparent;
   border: none;
   font-size: xx-large;

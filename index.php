@@ -182,7 +182,7 @@
 
               <div class="infoDiv_top3MetricContainer infoDivSlide">
                 <div class="infoDiv_topThreeStat_headerSection">
-                  <h3>Top 3 Metrics</h3><p>(last 12 mos)</p>
+                  <h3>Top 3 Metrics</h3><p>(last 12 months)</p>
                 </div>
                 
                 <div class="topThree_allMetricsBin">
@@ -639,9 +639,27 @@
             </div>
           </section>
         </div>
-        <div id="playerRankings_container" class="playerRankings_container">
+        <div id="playerRankings_container_bin" class="playerRankings_container">
           <div class="playerRankings_headerSection">
             <h2>Player Rankings</h2>
+            <select id="playerRanking_metricSelect">
+              <option value=''>Default</option>
+              <option value="1">Fairway Hits</option>
+              <option value="2">C1R</option>
+              <option value="3">C2R</option>
+              <option value="4">Parked</option>
+              <option value="5">Scramble</option>
+              <option value="6">C1 Putting</option>
+              <option value="7">C1X Putting</option>
+              <option value="8">C2 Putting</option>
+              <option value="10">Birdie Rate</option>
+              <option value="13">Par %</option>
+              <option value="14">Birdie %</option>
+              <option value="15">Eagle+ %</option>
+              <option value="16">Putting(Total Distance)</option>
+              <option value="17">Throw in (Longest)</option>
+              <option value="18">Putting Average</option>
+            </select>
           </div>
           <div class="primary_playerRanking_container">
             <div class="primaryPlayer_nameAndRank">
@@ -654,7 +672,10 @@
               <h3 id="primaryPlayerRatingNum"></h3>
             </div>
           </div>
+          <div id="playerRankings_container" class="playerRankings_container">
+  
+          </div>
         </div>
-    </div>
+      </div>
   </body>
   </html>

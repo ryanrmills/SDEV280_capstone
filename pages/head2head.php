@@ -87,7 +87,7 @@
       <div class="slider_container" id="slider_container">
         <div class="sliderContainer_headerSection">
           <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-            <h2>Pick a Player</h2>
+            <h2>Featured Player</h2>
           </div>
 
           Or
