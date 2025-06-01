@@ -80,3 +80,59 @@ nav div img:hover {
   max-width: 1100px;
   font-family: "Urbanist", sans-serif;
 }
+
+
+
+/* score chart */
+.scoreChart_section {
+  width: 100%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  font-family: "Urbanist", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 4px solid #002900; /* drawing a line to separate */
+}
+
+#chart-container {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  margin: 20px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+/*  end of score chart */
+
+/* for 2nd chart */
+.chart-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.viz-box {
+  flex: 1 1 450px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 4px solid #002900;
+}
+
+.viz-box canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.longest-throw-box {
+  background: #fff8db;
+  border: 4px solid #002900;
+} 
+/* end of 2nd chart */
