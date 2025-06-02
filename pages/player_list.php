@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,43 +13,77 @@
   <link rel="stylesheet" href="./../css/player_list.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
   <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <nav>
-      <div class="navbar_icon">
-        <img src="./../assets/logo-banner.png"></img>
+    <div class="navbar_icon">
+      <img src="./../assets/logo-banner.png"></img>
+    </div>
+
+    <div class="navbar_links">
+      <div>
+        <h3>Live</h3>
       </div>
 
-      <div class="navbar_links">
-        <div>
-          <h3>Live</h3>
-        </div>
-
-        <div>
-          <h3>Rankings</h3>
-        </div>
-
-        <div>
-          <a href="./../pages/player_list.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
-            <h3>Player Profiles</h3>
-          </a>
-        </div>
-
-        <div>
-          <h3>Monday</h3>
-        </div>
-
-        <div>
-          <a href="./../pages/head2head.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
-            <h3>Head-to-Head</h3>
-          </a>
-        </div>
-
-        <div>
-          <h3>StatZone</h3>
-        </div>
+      <div>
+        <h3>Rankings</h3>
       </div>
+
+      <div>
+        <a href="./../pages/player_list.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+          <h3>Player Profiles</h3>
+        </a>
+      </div>
+
+      <div>
+        <h3>Monday</h3>
+      </div>
+
+      <div>
+        <a href="./../pages/head2head.php" target="_blank" style="margin: 0em; padding: 0em;color: white; text-decoration: none;">
+          <h3>Head-to-Head</h3>
+        </a>
+      </div>
+
+      <div>
+        <h3>StatZone</h3>
+      </div>
+    </div>
   </nav>
+
+  <!-- displaying top 10 players by scores -->
+  <section class="scoreChart_section">
+    <div class="chart-row">
+      <!-- Chart 1 -->
+      <div class="viz-box">
+        <h3>Top 10 Players by Total Score</h3>
+        <label for="divisionSelect">Division:</label>
+        <select id="divisionSelect">
+          <option value="MPO">MPO</option>
+          <option value="FPO">FPO</option>
+          <option value="MP40">MP40</option>
+          <option value="MA1">MA1</option>
+        </select>
+        <canvas id="scoreChart"></canvas>
+      </div>
+
+      <!-- Chart 2 -->
+      <div class="viz-box longest-throw-box">
+        <h3>Top 10 Longest Throws</h3>
+        <canvas id="longestThrowChart"></canvas>
+      </div>
+
+      <!-- Chart 3 -->
+      <div class="viz-box top-earner-box">
+        <h3>Top 10 Highest-Earning Players</h3>
+        <canvas id="topEarnerChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+
 
   <section class="playerList_container">
     <table id="player_table">
@@ -67,4 +102,5 @@
     </table>
   </section>
 </body>
+
 </html>
