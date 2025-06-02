@@ -119,11 +119,12 @@ nav div img:hover {
 
 .viz-box {
   flex: 1 1 450px;
-  background: white;
+  background: #fff8db;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: 4px solid #002900;
+  
 }
 
 .viz-box canvas {
@@ -136,3 +137,8 @@ nav div img:hover {
   border: 4px solid #002900;
 } 
 /* end of 2nd chart */
+
+.top-earner-box {
+  background: #fff8db;
+  border: 4px solid #002900;
+}

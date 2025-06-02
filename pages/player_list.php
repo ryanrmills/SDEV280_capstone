@@ -74,6 +74,12 @@
         <h3>Top 10 Longest Throws</h3>
         <canvas id="longestThrowChart"></canvas>
       </div>
+
+      <!-- Chart 3 -->
+      <div class="viz-box top-earner-box">
+        <h3>Top 10 Highest-Earning Players</h3>
+        <canvas id="topEarnerChart"></canvas>
+      </div>
     </div>
   </section>
 
