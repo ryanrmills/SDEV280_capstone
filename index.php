@@ -48,7 +48,8 @@
     <!-- handmade js file for this specific page -->
     <!-- <script src="./js/index.js" defer></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
-    <script type="text/javascript" src="./js/index.js" defer></script>
+    <script src="./js/index.js" defer></script>
+
   </head>
   
   <body>
@@ -536,6 +537,10 @@
               <table id="roundsTable" class="display stripe hover" style="width: 100%;">
               
               </table>
+            </div>
+            
+            <div id="ai_summary" class="player-ai-summary">
+              <!-- “Loading AI summary…” until it arrives -->
             </div>
 
             <div style="height: 100px;">
