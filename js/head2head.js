@@ -20,7 +20,8 @@ const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php`
 // const statIdsList = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_abbrev_and_stat.php`;
 // const playerEventsUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_events.php`;
 
-async function getJsons(url) {
+
+async function getJsons(url){
   try {
     const response = await fetch(url);
     if (!response.ok) {

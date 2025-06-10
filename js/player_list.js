@@ -22,3 +22,180 @@ $(document).ready(function () {
     pageLength: 25,
   });
 });
+
+// Chart 1: Score Chart
+const ctx = document.getElementById('scoreChart');
+let chart;
+
+function loadScoreChart(division = 'MPO') {
+  fetch(`../api/fetch_score.php?division=${division}`)
+    .then(response => response.json())
+    .then(data => {
+      const labels = data.map(item => item.player_name);
+      const scores = data.map(item => item.total_score);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `Total Score (${division})`,
+            data: scores,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderRadius: 10,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Total Score'
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 90,
+                minRotation: 45
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return `Score: ${context.raw}`;
+                }
+              }
+            }
+          }
+        }
+      });
+    })
+    .catch(error => console.error('Error loading chart data:', error));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadScoreChart();
+
+  const select = document.getElementById('divisionSelect');
+  if (select) {
+    select.addEventListener('change', function () {
+      loadScoreChart(this.value);
+    });
+  }
+});
+
+
+// Chart 2: Longest Throw Chart
+const longestCtx = document.getElementById('longestThrowChart');
+
+fetch('../api/fetch_longest_throws.php')
+  .then(res => res.json())
+  .then(data => {
+    const labels = data.map(d => d.player_name);
+    const throws = data.map(d => parseFloat(d.longest_throw));
+
+    new Chart(longestCtx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Longest Throw (feet)',
+          data: throws,
+          backgroundColor: 'rgba(0, 123, 255, 0.6)',
+          borderColor: 'rgba(0, 123, 255, 1)',
+          borderWidth: 1,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            // text: 'Top 10 Longest Throws by Players',
+            font: { size: 18 }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.raw} ft`
+            }
+          },
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Distance (ft)'
+            }
+          }
+        }
+      }
+    });
+  });
+
+
+  // Chart 3: Top Earners Chart
+const topEarnerCtx = document.getElementById('topEarnerChart');
+
+fetch('../api/fetch_top_earners.php')
+  .then(res => res.json())
+  .then(data => {
+    const labels = data.map(d => d.player_name);
+    const cash = data.map(d => parseFloat(d.total_cash));
+
+    new Chart(topEarnerCtx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Total Career Earnings ($)',
+          data: cash,
+          backgroundColor: 'rgba(255, 193, 7, 0.7)',
+          borderColor: 'rgba(255, 193, 7, 1)',
+          borderWidth: 1,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            // text: 'Top 10 Highest-Earning Players',
+            font: { size: 18 }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => `$${ctx.raw.toLocaleString()}`
+            }
+          },
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Earnings ($)'
+            },
+            ticks: {
+              callback: value => `$${value.toLocaleString()}`
+            }
+          }
+        }
+      }
+    });
+  });

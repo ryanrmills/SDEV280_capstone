@@ -50,7 +50,8 @@
     <!-- handmade js file for this specific page -->
     <!-- <script src="./js/index.js" defer></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2" defer></script>
-    <script type="text/javascript" src="./js/index.js" defer></script>
+    <script src="./js/index.js" defer></script>
+
   </head>
   
   <body>
@@ -562,13 +563,14 @@
               
               </table>
             </div>
+            
 
             <div style="height: 100px;">
 
             </div>
           
           </section>
-          <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
+          <!-- <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
             <div class="eventRound_mainContent">
               <div class="hoverTab_mainContent_headerSection">
                 <h1>Quick Compare</h1>
@@ -701,6 +703,20 @@
   
           </div>
         </div>
+      </div> -->
+
+      <div class="chatbot_container">
+        <div class="chat_window_title">
+          <h3>Chat with Birdie!</h3>
+        </div>
+        <div class="chatbot_window" id="ai_summary">
+
+        </div>
+        <div class="chatbot_input_container">
+          <input type="text" placeholder="Ask Birdie..." id="chat_user_message">
+          <button id="send_chat_message"><span class="material-symbols-outlined">arrow_upward</span></button>
+        </div>
+
       </div>
   </body>
   </html>
