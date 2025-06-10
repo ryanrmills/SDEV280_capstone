@@ -1849,6 +1849,7 @@ async function displayRoundsTable() {
   const eventTab = document.getElementById("tabsSection_eventTab");
   eventTab.className = "tabsSection_eventTab";
 
+
   const roundsContainer = document.getElementById("roundsTableParentContainer");
   roundsContainer.style.display = "flex";
 
@@ -2508,6 +2509,7 @@ document
 //             year1Fwh.style.color = "black";
 //             year2Fwh.style.color = "black";
 //           }
+
 
 //           if (
 //             parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)
