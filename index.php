@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- handmade stylesheet -->
     <link rel="stylesheet" href="./css/index.css">
+    <!-- responsive data -->
+    <link rel="stylesheet" href="./css/responsive_data.css">
     <!-- google font styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +54,31 @@
   </head>
   
   <body>
+    <!-- <nav class="mobile_nav">
+      <div class="mobile_nav_logo">
+        <img src="./assets/logo-banner.png" alt="Statmando logo">
+      </div>
+      <div class="mobile_nav_toggle" onclick="toggleMobileMenu()">
+        ☰
+      </div>
+    </nav> -->
+
+<!-- <div id="mobile_nav_menu" class="mobile_nav_menu">
+  <a href="#">Live</a>
+  <a href="#">Rankings</a>
+  <a href="./pages/player_list.php" target="_blank">Player Profiles</a>
+  <a href="#">Monday</a>
+  <a href="./pages/head2head.php" target="_blank">Head-to-Head</a>
+  <a href="#">StatZone</a>
+</div> -->
   
     <nav>
+
+
+
+
+
+
       <div class="navbar_icon">
         <img src="./assets/logo-banner.png">
       </div>
