@@ -1,4 +1,4 @@
-@media (min-width: 950px) {
+@media (min-width: 1200px) {
   body {
     margin: 0px;
     padding: 0px;
@@ -3379,3 +3379,4 @@ canvas {
 .chatbot_input_container button:active {
   background-image: linear-gradient(to bottom right,rgb(0, 126, 149), rgb(0, 96, 147));
 }
+
