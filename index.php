@@ -539,16 +539,13 @@
               </table>
             </div>
             
-            <div id="ai_summary" class="player-ai-summary">
-              <!-- “Loading AI summary…” until it arrives -->
-            </div>
 
             <div style="height: 100px;">
 
             </div>
           
           </section>
-          <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
+          <!-- <section id="hoverTab_eventRound_comparison" class="hoverTab_eventRound_comparison">
             <div class="eventRound_mainContent">
               <div class="hoverTab_mainContent_headerSection">
                 <h1>Quick Compare</h1>
@@ -681,6 +678,20 @@
   
           </div>
         </div>
+      </div> -->
+
+      <div class="chatbot_container">
+        <div class="chat_window_title">
+          <h3>Chat with Birdie!</h3>
+        </div>
+        <div class="chatbot_window" id="ai_summary">
+
+        </div>
+        <div class="chatbot_input_container">
+          <input type="text" placeholder="Ask Birdie..." id="chat_user_message">
+          <button id="send_chat_message"><span class="material-symbols-outlined">arrow_upward</span></button>
+        </div>
+
       </div>
   </body>
   </html>

@@ -1915,656 +1915,790 @@ document
     displayRoundsTable();
   });
 
-document
-  .getElementById("compareSelector_optionSelect")
-  .addEventListener("change", () => {});
-
-document
-  .getElementById("eventRound_pullButton")
-  .addEventListener("click", () => {
-    document
-      .getElementById("hoverTab_eventRound_comparison")
-      .classList.toggle("clicked");
-  });
-
-async function displayPlayerRankings(id) {
-  let url = pdgaNum
-    ? allPlayerRankingsUrl + "?pdga_number=" + pdgaNum
-    : console.log("displayPlayerRankings(): missing pdga number");
-  url = id ? url + "&id=" + id : url;
-
-  let rankingData = await getJsons(url);
-
-  let playerRankingsContainer = document.getElementById(
-    "playerRankings_container"
-  );
-
-  for (let i = 0; i < rankingData.length; i++) {
-    if (rankingData[i].pdga_number == pdgaNum) {
-      document.getElementById("primaryPlayerRanking_fullName").innerHTML =
-        rankingData[i].full_name;
-      document.getElementById("primaryPlayerRanking_ranking").innerHTML = i + 1;
-      document.getElementById(
-        "primaryPlayerEventNum"
-      ).innerHTML = `E: ${rankingData[i].total_events}`;
-      document.getElementById(
-        "primaryPlayerRoundNum"
-      ).innerHTML = `R: ${rankingData[i].total_rounds}`;
-      document.getElementById(
-        "primaryPlayerRatingNum"
-      ).innerHTML = `${rankingData[i].average_stat_value}`;
-    }
-
-    if (i < 10) {
-      //create the container for the player
-      let playerBin = document.createElement("div");
-      playerBin.className = "playerRankingBin";
-
-      if (rankingData[i].pdga_number == pdgaNum) {
-        playerBin.style.border = "2px solid rgb(10, 173, 255)";
-      }
-
-      //create the container for ranking and name
-      let playerRankingAndNameBin = document.createElement("div");
-      playerRankingAndNameBin.className = "playerRankingAndNameBin";
-
-      let playerName = document.createElement("h4");
-      playerName.innerHTML = rankingData[i].full_name;
-      playerRankingAndNameBin.append(playerName);
-
-      let playerRanking = document.createElement("h3");
-      playerRanking.innerHTML = i + 1;
-      playerRankingAndNameBin.append(playerRanking);
-
-      playerBin.append(playerRankingAndNameBin);
-
-      //create the container for events, rounds, rating
-      let playerRankingFinerDetail = document.createElement("div");
-      playerRankingFinerDetail.className = "playerRankingFinerDetail";
-
-      let playerEventsNum = document.createElement("p");
-      playerEventsNum.innerHTML = `E: ${rankingData[i].total_events}`;
-      playerRankingFinerDetail.append(playerEventsNum);
-
-      let playerRoundsNum = document.createElement("p");
-      playerRoundsNum.innerHTML = `R: ${rankingData[i].total_rounds}`;
-      playerRankingFinerDetail.append(playerRoundsNum);
-
-      let playerRatingNum = document.createElement("h3");
-      playerRatingNum.innerHTML = rankingData[i].average_stat_value;
-      playerRankingFinerDetail.append(playerRatingNum);
-
-      playerBin.append(playerRankingFinerDetail);
-
-      playerRankingsContainer.append(playerBin);
-    }
-  }
-}
-
-displayPlayerRankings();
-
-let rankingMetricSelect = document.getElementById("playerRanking_metricSelect");
-rankingMetricSelect.addEventListener("change", (e) => {
-  document.getElementById("primaryPlayerRanking_fullName").innerHTML = "";
-  document.getElementById("primaryPlayerRanking_ranking").innerHTML = "";
-  document.getElementById("primaryPlayerEventNum").innerHTML = "";
-  document.getElementById("primaryPlayerRoundNum").innerHTML = "";
-  document.getElementById("primaryPlayerRatingNum").innerHTML = "";
-  document.getElementById("playerRankings_container").innerHTML = "";
-
-  displayPlayerRankings(e.target.value);
-});
-
-async function displayQuickCompareResults() {
-  let resultsDisplayMainContainer = document.getElementById(
-    "hoverTab_mainContent_resultsDisplay"
-  );
-  let containerFirstCompare = document.getElementById(
-    "mainContent_resultsDisplay_firstCompare"
-  );
-  let containerSecondCompare = document.getElementById(
-    "mainContent_resultsDisplay_secondCompare"
-  );
-
-  let initialSelector = document.getElementById("compareSelector_optionSelect");
-
-  initialSelector.addEventListener("change", async (e) => {
-    containerFirstCompare.innerHTML = "";
-    containerSecondCompare.innerHTML = "";
-
-    if (e.target.value == "years") {
-      resultsDisplayMainContainer.style.display = "flex";
-      //now create the year1 and year2 selectors and add them to their containers
-
-      let year1Selector = document.createElement("select");
-      let year2Selector = document.createElement("select");
-
-      //append default empty values in year selectors
-      let yearDefaultOption = document.createElement("option");
-      yearDefaultOption.value = "";
-      yearDefaultOption.innerHTML = "Choose a year...";
-
-      let yearDefaultOption2 = document.createElement("option");
-      yearDefaultOption2.value = "";
-      yearDefaultOption2.innerHTML = "Choose a year...";
-
-      year1Selector.append(yearDefaultOption);
-      year2Selector.append(yearDefaultOption2);
-
-      let yearData = await getJsons(playerYearsUrl);
-
-      //populate both year selectors with the years we have in our database
-      yearData.forEach((year) => {
-        let yearOption = document.createElement("option");
-        yearOption.value = year;
-        yearOption.innerHTML = year;
-
-        let yearOption2 = document.createElement("option");
-        yearOption2.value = year;
-        yearOption2.innerHTML = year;
-
-        year1Selector.append(yearOption);
-        year2Selector.append(yearOption2);
-      });
-
-      //add the year selectors to their respective containers
-      containerFirstCompare.append(year1Selector);
-      containerSecondCompare.append(year2Selector);
-
-      let year1Rating = document.getElementById("year1_rating");
-      let year1Earnings = document.getElementById("year1_earnings");
-      let year1Wins = document.getElementById("year1_wins");
-      let year1Podiums = document.getElementById("year1_podiums");
-      let year1topTens = document.getElementById("year1_topTens");
-      let year1Events = document.getElementById("year1_events");
-      let year1Strokes = document.getElementById("year1_strokes");
-      let year1Place = document.getElementById("year1_place");
-      let year1Fwh = document.getElementById("year1_fwh");
-      let year1C2r = document.getElementById("year1_c2r");
-      let year1C1x = document.getElementById("year1_c1x");
-
-      year1Selector.addEventListener("change", async (e) => {
-        year1Rating.innerHTML = "";
-        year1Earnings.innerHTML = "";
-        year1Wins.innerHTML = "";
-        year1Podiums.innerHTML = "";
-        year1topTens.innerHTML = "";
-        year1Events.innerHTML = "";
-        year1Strokes.innerHTML = "";
-        year1Place.innerHTML = "";
-        year1Fwh.innerHTML = "";
-        year1C2r.innerHTML = "";
-        year1C1x.innerHTML = "";
-
-        let url = e.target.value
-          ? getYearQuickCompare + "&year=" + e.target.value
-          : "";
-
-        let yearQuickData = await getJsons(url);
-
-        year1Rating.innerHTML = yearQuickData.player.avg_rating;
-        year1Earnings.innerHTML = yearQuickData.player.earnings;
-        year1Wins.innerHTML = yearQuickData.player.wins;
-        year1Podiums.innerHTML = yearQuickData.player.podiums;
-        year1topTens.innerHTML = yearQuickData.player.top_tens;
-        year1Events.innerHTML = yearQuickData.player.total_events;
-        year1Strokes.innerHTML = yearQuickData.player.avg_strokes_per_event;
-        year1Place.innerHTML = yearQuickData.player.avg_place;
-        year1Fwh.innerHTML = yearQuickData.main3[0].avg_percentage;
-        year1C2r.innerHTML = yearQuickData.main3[1].avg_percentage;
-        year1C1x.innerHTML = yearQuickData.main3[2].avg_percentage;
-
-        if (year1Rating.textContent && year2Rating.textContent) {
-          if (
-            parseFloat(year1Rating.textContent) >
-            parseFloat(year2Rating.textContent)
-          ) {
-            year1Rating.style.color = "green";
-            year2Rating.style.color = "red";
-          } else if (
-            parseFloat(year1Rating.textContent) <
-            parseFloat(year2Rating.textContent)
-          ) {
-            year1Rating.style.color = "red";
-            year2Rating.style.color = "green";
-          } else {
-            year1Rating.style.color = "black";
-            year2Rating.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Earnings.textContent) >
-            parseFloat(year2Earnings.textContent)
-          ) {
-            year1Earnings.style.color = "green";
-            year2Earnings.style.color = "red";
-          } else if (
-            parseFloat(year1Earnings.textContent) <
-            parseFloat(year2Earnings.textContent)
-          ) {
-            year1Earnings.style.color = "red";
-            year2Earnings.style.color = "green";
-          } else {
-            year1Earnings.style.color = "black";
-            year2Earnings.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Wins.textContent) >
-            parseFloat(year2Wins.textContent)
-          ) {
-            year1Wins.style.color = "green";
-            year2Wins.style.color = "red";
-          } else if (
-            parseFloat(year1Wins.textContent) <
-            parseFloat(year2Wins.textContent)
-          ) {
-            year1Wins.style.color = "red";
-            year2Wins.style.color = "green";
-          } else {
-            year1Wins.style.color = "black";
-            year2Wins.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Podiums.textContent) >
-            parseFloat(year2Podiums.textContent)
-          ) {
-            year1Podiums.style.color = "green";
-            year2Podiums.style.color = "red";
-          } else if (
-            parseFloat(year1Podiums.textContent) <
-            parseFloat(year2Podiums.textContent)
-          ) {
-            year1Podiums.style.color = "red";
-            year2Podiums.style.color = "green";
-          } else {
-            year1Podiums.style.color = "black";
-            year2Podiums.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1topTens.textContent) >
-            parseFloat(year2topTens.textContent)
-          ) {
-            year1topTens.style.color = "green";
-            year2topTens.style.color = "red";
-          } else if (
-            parseFloat(year1topTens.textContent) <
-            parseFloat(year2topTens.textContent)
-          ) {
-            year1topTens.style.color = "red";
-            year2topTens.style.color = "green";
-          } else {
-            year1topTens.style.color = "black";
-            year2topTens.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Events.textContent) >
-            parseFloat(year2Events.textContent)
-          ) {
-            year1Events.style.color = "green";
-            year2Events.style.color = "red";
-          } else if (
-            parseFloat(year1Events.textContent) <
-            parseFloat(year2Events.textContent)
-          ) {
-            year1Events.style.color = "red";
-            year2Events.style.color = "green";
-          } else {
-            year1Events.style.color = "black";
-            year2Events.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Strokes.textContent) >
-            parseFloat(year2Strokes.textContent)
-          ) {
-            year1Strokes.style.color = "green";
-            year2Strokes.style.color = "red";
-          } else if (
-            parseFloat(year1Strokes.textContent) <
-            parseFloat(year2Strokes.textContent)
-          ) {
-            year1Strokes.style.color = "red";
-            year2Strokes.style.color = "green";
-          } else {
-            year1Strokes.style.color = "black";
-            year2Strokes.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Place.textContent) >
-            parseFloat(year2Place.textContent)
-          ) {
-            year1Place.style.color = "green";
-            year2Place.style.color = "red";
-          } else if (
-            parseFloat(year1Place.textContent) <
-            parseFloat(year2Place.textContent)
-          ) {
-            year1Place.style.color = "red";
-            year2Place.style.color = "green";
-          } else {
-            year1Place.style.color = "black";
-            year2Place.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)
-          ) {
-            year1Fwh.style.color = "green";
-            year2Fwh.style.color = "red";
-          } else if (
-            parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)
-          ) {
-            year1Fwh.style.color = "red";
-            year2Fwh.style.color = "green";
-          } else {
-            year1Fwh.style.color = "black";
-            year2Fwh.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)
-          ) {
-            year1C2r.style.color = "green";
-            year2C2r.style.color = "red";
-          } else if (
-            parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)
-          ) {
-            year1C2r.style.color = "red";
-            year2C2r.style.color = "green";
-          } else {
-            year1C2r.style.color = "black";
-            year2C2r.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)
-          ) {
-            year1C1x.style.color = "green";
-            year2C1x.style.color = "red";
-          } else if (
-            parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)
-          ) {
-            year1C1x.style.color = "red";
-            year2C1x.style.color = "green";
-          } else {
-            year1C1x.style.color = "black";
-            year2C1x.style.color = "black";
-          }
-        }
-      });
-
-      let year2Rating = document.getElementById("year2_rating");
-      let year2Earnings = document.getElementById("year2_earnings");
-      let year2Wins = document.getElementById("year2_wins");
-      let year2Podiums = document.getElementById("year2_podiums");
-      let year2topTens = document.getElementById("year2_topTens");
-      let year2Events = document.getElementById("year2_events");
-      let year2Strokes = document.getElementById("year2_strokes");
-      let year2Place = document.getElementById("year2_place");
-      let year2Fwh = document.getElementById("year2_fwh");
-      let year2C2r = document.getElementById("year2_c2r");
-      let year2C1x = document.getElementById("year2_c1x");
-
-      year2Selector.addEventListener("change", async (e) => {
-        year2Rating.innerHTML = "";
-        year2Earnings.innerHTML = "";
-        year2Wins.innerHTML = "";
-        year2Podiums.innerHTML = "";
-        year2topTens.innerHTML = "";
-        year2Events.innerHTML = "";
-        year2Strokes.innerHTML = "";
-        year2Place.innerHTML = "";
-        year2Fwh.innerHTML = "";
-        year2C2r.innerHTML = "";
-        year2C1x.innerHTML = "";
-
-        let url2 = e.target.value
-          ? getYearQuickCompare + "&year=" + e.target.value
-          : "";
-
-        let yearQuickData2 = await getJsons(url2);
-
-        year2Rating.innerHTML = yearQuickData2.player.avg_rating;
-        year2Earnings.innerHTML = yearQuickData2.player.earnings;
-        year2Wins.innerHTML = yearQuickData2.player.wins;
-        year2Podiums.innerHTML = yearQuickData2.player.podiums;
-        year2topTens.innerHTML = yearQuickData2.player.top_tens;
-        year2Events.innerHTML = yearQuickData2.player.total_events;
-        year2Strokes.innerHTML = yearQuickData2.player.avg_strokes_per_event;
-        year2Place.innerHTML = yearQuickData2.player.avg_place;
-        year2Fwh.innerHTML = yearQuickData2.main3[0].avg_percentage;
-        year2C2r.innerHTML = yearQuickData2.main3[1].avg_percentage;
-        year2C1x.innerHTML = yearQuickData2.main3[2].avg_percentage;
-
-        //if (year1Selector.value && year2Selector.value){
-        // year2Rating.innerHTML +=
-        //   parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) < 0
-        //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
-        //   : parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) > 0
-        //   ? `<p style="color: green;">+${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
-        //   : ''
-
-        // year2Earnings.innerHTML +=
-        //   parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) < 0
-        //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
-        //   : parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) > 0
-        //   ? `<p style="color: green;">+${parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent)}</p>`
-        //   : ''
-        //}
-
-        if (year1Rating.textContent && year2Rating.textContent) {
-          if (
-            parseFloat(year1Rating.textContent) >
-            parseFloat(year2Rating.textContent)
-          ) {
-            year1Rating.style.color = "green";
-            year2Rating.style.color = "red";
-          } else if (
-            parseFloat(year1Rating.textContent) <
-            parseFloat(year2Rating.textContent)
-          ) {
-            year1Rating.style.color = "red";
-            year2Rating.style.color = "green";
-          } else {
-            year1Rating.style.color = "black";
-            year2Rating.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Earnings.textContent) >
-            parseFloat(year2Earnings.textContent)
-          ) {
-            year1Earnings.style.color = "green";
-            year2Earnings.style.color = "red";
-          } else if (
-            parseFloat(year1Earnings.textContent) <
-            parseFloat(year2Earnings.textContent)
-          ) {
-            year1Earnings.style.color = "red";
-            year2Earnings.style.color = "green";
-          } else {
-            year1Earnings.style.color = "black";
-            year2Earnings.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Wins.textContent) >
-            parseFloat(year2Wins.textContent)
-          ) {
-            year1Wins.style.color = "green";
-            year2Wins.style.color = "red";
-          } else if (
-            parseFloat(year1Wins.textContent) <
-            parseFloat(year2Wins.textContent)
-          ) {
-            year1Wins.style.color = "red";
-            year2Wins.style.color = "green";
-          } else {
-            year1Wins.style.color = "black";
-            year2Wins.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Podiums.textContent) >
-            parseFloat(year2Podiums.textContent)
-          ) {
-            year1Podiums.style.color = "green";
-            year2Podiums.style.color = "red";
-          } else if (
-            parseFloat(year1Podiums.textContent) <
-            parseFloat(year2Podiums.textContent)
-          ) {
-            year1Podiums.style.color = "red";
-            year2Podiums.style.color = "green";
-          } else {
-            year1Podiums.style.color = "black";
-            year2Podiums.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1topTens.textContent) >
-            parseFloat(year2topTens.textContent)
-          ) {
-            year1topTens.style.color = "green";
-            year2topTens.style.color = "red";
-          } else if (
-            parseFloat(year1topTens.textContent) <
-            parseFloat(year2topTens.textContent)
-          ) {
-            year1topTens.style.color = "red";
-            year2topTens.style.color = "green";
-          } else {
-            year1topTens.style.color = "black";
-            year2topTens.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Events.textContent) >
-            parseFloat(year2Events.textContent)
-          ) {
-            year1Events.style.color = "green";
-            year2Events.style.color = "red";
-          } else if (
-            parseFloat(year1Events.textContent) <
-            parseFloat(year2Events.textContent)
-          ) {
-            year1Events.style.color = "red";
-            year2Events.style.color = "green";
-          } else {
-            year1Events.style.color = "black";
-            year2Events.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Strokes.textContent) >
-            parseFloat(year2Strokes.textContent)
-          ) {
-            year1Strokes.style.color = "green";
-            year2Strokes.style.color = "red";
-          } else if (
-            parseFloat(year1Strokes.textContent) <
-            parseFloat(year2Strokes.textContent)
-          ) {
-            year1Strokes.style.color = "red";
-            year2Strokes.style.color = "green";
-          } else {
-            year1Strokes.style.color = "black";
-            year2Strokes.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Place.textContent) >
-            parseFloat(year2Place.textContent)
-          ) {
-            year1Place.style.color = "green";
-            year2Place.style.color = "red";
-          } else if (
-            parseFloat(year1Place.textContent) <
-            parseFloat(year2Place.textContent)
-          ) {
-            year1Place.style.color = "red";
-            year2Place.style.color = "green";
-          } else {
-            year1Place.style.color = "black";
-            year2Place.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)
-          ) {
-            year1Fwh.style.color = "green";
-            year2Fwh.style.color = "red";
-          } else if (
-            parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)
-          ) {
-            year1Fwh.style.color = "red";
-            year2Fwh.style.color = "green";
-          } else {
-            year1Fwh.style.color = "black";
-            year2Fwh.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)
-          ) {
-            year1C2r.style.color = "green";
-            year2C2r.style.color = "red";
-          } else if (
-            parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)
-          ) {
-            year1C2r.style.color = "red";
-            year2C2r.style.color = "green";
-          } else {
-            year1C2r.style.color = "black";
-            year2C2r.style.color = "black";
-          }
-
-          if (
-            parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)
-          ) {
-            year1C1x.style.color = "green";
-            year2C1x.style.color = "red";
-          } else if (
-            parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)
-          ) {
-            year1C1x.style.color = "red";
-            year2C1x.style.color = "green";
-          } else {
-            year1C1x.style.color = "black";
-            year2C1x.style.color = "black";
-          }
-        }
-      });
-
-      // if (parseFloat(year1Earnings) > parseFloat(year2Earnings)){
-      //   year1Earnings.style.color = 'green';
-      //   year2Earnings.style.color = 'red';
-      // } else if (parseFloat(year1Earnings) < parseFloat(year2Earnings)){
-      //   year1Earnings.style.color = 'red';
-      //   year2Earnings.style.color = 'green';
-      // }
-    } else {
-      resultsDisplayMainContainer.style.display = "none";
-    }
-  });
-}
-
-displayQuickCompareResults();
-
-async function loadAISummary(pdgaNum) {
+// document
+//   .getElementById("compareSelector_optionSelect")
+//   .addEventListener("change", () => {});
+
+// document
+//   .getElementById("eventRound_pullButton")
+//   .addEventListener("click", () => {
+//     document
+//       .getElementById("hoverTab_eventRound_comparison")
+//       .classList.toggle("clicked");
+//   });
+
+// async function displayPlayerRankings(id) {
+//   let url = pdgaNum
+//     ? allPlayerRankingsUrl + "?pdga_number=" + pdgaNum
+//     : console.log("displayPlayerRankings(): missing pdga number");
+//   url = id ? url + "&id=" + id : url;
+
+//   let rankingData = await getJsons(url);
+
+//   let playerRankingsContainer = document.getElementById(
+//     "playerRankings_container"
+//   );
+
+//   for (let i = 0; i < rankingData.length; i++) {
+//     if (rankingData[i].pdga_number == pdgaNum) {
+//       document.getElementById("primaryPlayerRanking_fullName").innerHTML =
+//         rankingData[i].full_name;
+//       document.getElementById("primaryPlayerRanking_ranking").innerHTML = i + 1;
+//       document.getElementById(
+//         "primaryPlayerEventNum"
+//       ).innerHTML = `E: ${rankingData[i].total_events}`;
+//       document.getElementById(
+//         "primaryPlayerRoundNum"
+//       ).innerHTML = `R: ${rankingData[i].total_rounds}`;
+//       document.getElementById(
+//         "primaryPlayerRatingNum"
+//       ).innerHTML = `${rankingData[i].average_stat_value}`;
+//     }
+
+//     if (i < 10) {
+//       //create the container for the player
+//       let playerBin = document.createElement("div");
+//       playerBin.className = "playerRankingBin";
+
+//       if (rankingData[i].pdga_number == pdgaNum) {
+//         playerBin.style.border = "2px solid rgb(10, 173, 255)";
+//       }
+
+//       //create the container for ranking and name
+//       let playerRankingAndNameBin = document.createElement("div");
+//       playerRankingAndNameBin.className = "playerRankingAndNameBin";
+
+//       let playerName = document.createElement("h4");
+//       playerName.innerHTML = rankingData[i].full_name;
+//       playerRankingAndNameBin.append(playerName);
+
+//       let playerRanking = document.createElement("h3");
+//       playerRanking.innerHTML = i + 1;
+//       playerRankingAndNameBin.append(playerRanking);
+
+//       playerBin.append(playerRankingAndNameBin);
+
+//       //create the container for events, rounds, rating
+//       let playerRankingFinerDetail = document.createElement("div");
+//       playerRankingFinerDetail.className = "playerRankingFinerDetail";
+
+//       let playerEventsNum = document.createElement("p");
+//       playerEventsNum.innerHTML = `E: ${rankingData[i].total_events}`;
+//       playerRankingFinerDetail.append(playerEventsNum);
+
+//       let playerRoundsNum = document.createElement("p");
+//       playerRoundsNum.innerHTML = `R: ${rankingData[i].total_rounds}`;
+//       playerRankingFinerDetail.append(playerRoundsNum);
+
+//       let playerRatingNum = document.createElement("h3");
+//       playerRatingNum.innerHTML = rankingData[i].average_stat_value;
+//       playerRankingFinerDetail.append(playerRatingNum);
+
+//       playerBin.append(playerRankingFinerDetail);
+
+//       playerRankingsContainer.append(playerBin);
+//     }
+//   }
+// }
+
+// displayPlayerRankings();
+
+// let rankingMetricSelect = document.getElementById("playerRanking_metricSelect");
+// rankingMetricSelect.addEventListener("change", (e) => {
+//   document.getElementById("primaryPlayerRanking_fullName").innerHTML = "";
+//   document.getElementById("primaryPlayerRanking_ranking").innerHTML = "";
+//   document.getElementById("primaryPlayerEventNum").innerHTML = "";
+//   document.getElementById("primaryPlayerRoundNum").innerHTML = "";
+//   document.getElementById("primaryPlayerRatingNum").innerHTML = "";
+//   document.getElementById("playerRankings_container").innerHTML = "";
+
+//   displayPlayerRankings(e.target.value);
+// });
+
+// async function displayQuickCompareResults() {
+//   let resultsDisplayMainContainer = document.getElementById(
+//     "hoverTab_mainContent_resultsDisplay"
+//   );
+//   let containerFirstCompare = document.getElementById(
+//     "mainContent_resultsDisplay_firstCompare"
+//   );
+//   let containerSecondCompare = document.getElementById(
+//     "mainContent_resultsDisplay_secondCompare"
+//   );
+
+//   let initialSelector = document.getElementById("compareSelector_optionSelect");
+
+//   initialSelector.addEventListener("change", async (e) => {
+//     containerFirstCompare.innerHTML = "";
+//     containerSecondCompare.innerHTML = "";
+
+//     if (e.target.value == "years") {
+//       resultsDisplayMainContainer.style.display = "flex";
+//       //now create the year1 and year2 selectors and add them to their containers
+
+//       let year1Selector = document.createElement("select");
+//       let year2Selector = document.createElement("select");
+
+//       //append default empty values in year selectors
+//       let yearDefaultOption = document.createElement("option");
+//       yearDefaultOption.value = "";
+//       yearDefaultOption.innerHTML = "Choose a year...";
+
+//       let yearDefaultOption2 = document.createElement("option");
+//       yearDefaultOption2.value = "";
+//       yearDefaultOption2.innerHTML = "Choose a year...";
+
+//       year1Selector.append(yearDefaultOption);
+//       year2Selector.append(yearDefaultOption2);
+
+//       let yearData = await getJsons(playerYearsUrl);
+
+//       //populate both year selectors with the years we have in our database
+//       yearData.forEach((year) => {
+//         let yearOption = document.createElement("option");
+//         yearOption.value = year;
+//         yearOption.innerHTML = year;
+
+//         let yearOption2 = document.createElement("option");
+//         yearOption2.value = year;
+//         yearOption2.innerHTML = year;
+
+//         year1Selector.append(yearOption);
+//         year2Selector.append(yearOption2);
+//       });
+
+//       //add the year selectors to their respective containers
+//       containerFirstCompare.append(year1Selector);
+//       containerSecondCompare.append(year2Selector);
+
+//       let year1Rating = document.getElementById("year1_rating");
+//       let year1Earnings = document.getElementById("year1_earnings");
+//       let year1Wins = document.getElementById("year1_wins");
+//       let year1Podiums = document.getElementById("year1_podiums");
+//       let year1topTens = document.getElementById("year1_topTens");
+//       let year1Events = document.getElementById("year1_events");
+//       let year1Strokes = document.getElementById("year1_strokes");
+//       let year1Place = document.getElementById("year1_place");
+//       let year1Fwh = document.getElementById("year1_fwh");
+//       let year1C2r = document.getElementById("year1_c2r");
+//       let year1C1x = document.getElementById("year1_c1x");
+
+//       year1Selector.addEventListener("change", async (e) => {
+//         year1Rating.innerHTML = "";
+//         year1Earnings.innerHTML = "";
+//         year1Wins.innerHTML = "";
+//         year1Podiums.innerHTML = "";
+//         year1topTens.innerHTML = "";
+//         year1Events.innerHTML = "";
+//         year1Strokes.innerHTML = "";
+//         year1Place.innerHTML = "";
+//         year1Fwh.innerHTML = "";
+//         year1C2r.innerHTML = "";
+//         year1C1x.innerHTML = "";
+
+//         let url = e.target.value
+//           ? getYearQuickCompare + "&year=" + e.target.value
+//           : "";
+
+//         let yearQuickData = await getJsons(url);
+
+//         year1Rating.innerHTML = yearQuickData.player.avg_rating;
+//         year1Earnings.innerHTML = yearQuickData.player.earnings;
+//         year1Wins.innerHTML = yearQuickData.player.wins;
+//         year1Podiums.innerHTML = yearQuickData.player.podiums;
+//         year1topTens.innerHTML = yearQuickData.player.top_tens;
+//         year1Events.innerHTML = yearQuickData.player.total_events;
+//         year1Strokes.innerHTML = yearQuickData.player.avg_strokes_per_event;
+//         year1Place.innerHTML = yearQuickData.player.avg_place;
+//         year1Fwh.innerHTML = yearQuickData.main3[0].avg_percentage;
+//         year1C2r.innerHTML = yearQuickData.main3[1].avg_percentage;
+//         year1C1x.innerHTML = yearQuickData.main3[2].avg_percentage;
+
+//         if (year1Rating.textContent && year2Rating.textContent) {
+//           if (
+//             parseFloat(year1Rating.textContent) >
+//             parseFloat(year2Rating.textContent)
+//           ) {
+//             year1Rating.style.color = "green";
+//             year2Rating.style.color = "red";
+//           } else if (
+//             parseFloat(year1Rating.textContent) <
+//             parseFloat(year2Rating.textContent)
+//           ) {
+//             year1Rating.style.color = "red";
+//             year2Rating.style.color = "green";
+//           } else {
+//             year1Rating.style.color = "black";
+//             year2Rating.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Earnings.textContent) >
+//             parseFloat(year2Earnings.textContent)
+//           ) {
+//             year1Earnings.style.color = "green";
+//             year2Earnings.style.color = "red";
+//           } else if (
+//             parseFloat(year1Earnings.textContent) <
+//             parseFloat(year2Earnings.textContent)
+//           ) {
+//             year1Earnings.style.color = "red";
+//             year2Earnings.style.color = "green";
+//           } else {
+//             year1Earnings.style.color = "black";
+//             year2Earnings.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Wins.textContent) >
+//             parseFloat(year2Wins.textContent)
+//           ) {
+//             year1Wins.style.color = "green";
+//             year2Wins.style.color = "red";
+//           } else if (
+//             parseFloat(year1Wins.textContent) <
+//             parseFloat(year2Wins.textContent)
+//           ) {
+//             year1Wins.style.color = "red";
+//             year2Wins.style.color = "green";
+//           } else {
+//             year1Wins.style.color = "black";
+//             year2Wins.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Podiums.textContent) >
+//             parseFloat(year2Podiums.textContent)
+//           ) {
+//             year1Podiums.style.color = "green";
+//             year2Podiums.style.color = "red";
+//           } else if (
+//             parseFloat(year1Podiums.textContent) <
+//             parseFloat(year2Podiums.textContent)
+//           ) {
+//             year1Podiums.style.color = "red";
+//             year2Podiums.style.color = "green";
+//           } else {
+//             year1Podiums.style.color = "black";
+//             year2Podiums.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1topTens.textContent) >
+//             parseFloat(year2topTens.textContent)
+//           ) {
+//             year1topTens.style.color = "green";
+//             year2topTens.style.color = "red";
+//           } else if (
+//             parseFloat(year1topTens.textContent) <
+//             parseFloat(year2topTens.textContent)
+//           ) {
+//             year1topTens.style.color = "red";
+//             year2topTens.style.color = "green";
+//           } else {
+//             year1topTens.style.color = "black";
+//             year2topTens.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Events.textContent) >
+//             parseFloat(year2Events.textContent)
+//           ) {
+//             year1Events.style.color = "green";
+//             year2Events.style.color = "red";
+//           } else if (
+//             parseFloat(year1Events.textContent) <
+//             parseFloat(year2Events.textContent)
+//           ) {
+//             year1Events.style.color = "red";
+//             year2Events.style.color = "green";
+//           } else {
+//             year1Events.style.color = "black";
+//             year2Events.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Strokes.textContent) >
+//             parseFloat(year2Strokes.textContent)
+//           ) {
+//             year1Strokes.style.color = "green";
+//             year2Strokes.style.color = "red";
+//           } else if (
+//             parseFloat(year1Strokes.textContent) <
+//             parseFloat(year2Strokes.textContent)
+//           ) {
+//             year1Strokes.style.color = "red";
+//             year2Strokes.style.color = "green";
+//           } else {
+//             year1Strokes.style.color = "black";
+//             year2Strokes.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Place.textContent) >
+//             parseFloat(year2Place.textContent)
+//           ) {
+//             year1Place.style.color = "green";
+//             year2Place.style.color = "red";
+//           } else if (
+//             parseFloat(year1Place.textContent) <
+//             parseFloat(year2Place.textContent)
+//           ) {
+//             year1Place.style.color = "red";
+//             year2Place.style.color = "green";
+//           } else {
+//             year1Place.style.color = "black";
+//             year2Place.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)
+//           ) {
+//             year1Fwh.style.color = "green";
+//             year2Fwh.style.color = "red";
+//           } else if (
+//             parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)
+//           ) {
+//             year1Fwh.style.color = "red";
+//             year2Fwh.style.color = "green";
+//           } else {
+//             year1Fwh.style.color = "black";
+//             year2Fwh.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)
+//           ) {
+//             year1C2r.style.color = "green";
+//             year2C2r.style.color = "red";
+//           } else if (
+//             parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)
+//           ) {
+//             year1C2r.style.color = "red";
+//             year2C2r.style.color = "green";
+//           } else {
+//             year1C2r.style.color = "black";
+//             year2C2r.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)
+//           ) {
+//             year1C1x.style.color = "green";
+//             year2C1x.style.color = "red";
+//           } else if (
+//             parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)
+//           ) {
+//             year1C1x.style.color = "red";
+//             year2C1x.style.color = "green";
+//           } else {
+//             year1C1x.style.color = "black";
+//             year2C1x.style.color = "black";
+//           }
+//         }
+//       });
+
+//       let year2Rating = document.getElementById("year2_rating");
+//       let year2Earnings = document.getElementById("year2_earnings");
+//       let year2Wins = document.getElementById("year2_wins");
+//       let year2Podiums = document.getElementById("year2_podiums");
+//       let year2topTens = document.getElementById("year2_topTens");
+//       let year2Events = document.getElementById("year2_events");
+//       let year2Strokes = document.getElementById("year2_strokes");
+//       let year2Place = document.getElementById("year2_place");
+//       let year2Fwh = document.getElementById("year2_fwh");
+//       let year2C2r = document.getElementById("year2_c2r");
+//       let year2C1x = document.getElementById("year2_c1x");
+
+//       year2Selector.addEventListener("change", async (e) => {
+//         year2Rating.innerHTML = "";
+//         year2Earnings.innerHTML = "";
+//         year2Wins.innerHTML = "";
+//         year2Podiums.innerHTML = "";
+//         year2topTens.innerHTML = "";
+//         year2Events.innerHTML = "";
+//         year2Strokes.innerHTML = "";
+//         year2Place.innerHTML = "";
+//         year2Fwh.innerHTML = "";
+//         year2C2r.innerHTML = "";
+//         year2C1x.innerHTML = "";
+
+//         let url2 = e.target.value
+//           ? getYearQuickCompare + "&year=" + e.target.value
+//           : "";
+
+//         let yearQuickData2 = await getJsons(url2);
+
+//         year2Rating.innerHTML = yearQuickData2.player.avg_rating;
+//         year2Earnings.innerHTML = yearQuickData2.player.earnings;
+//         year2Wins.innerHTML = yearQuickData2.player.wins;
+//         year2Podiums.innerHTML = yearQuickData2.player.podiums;
+//         year2topTens.innerHTML = yearQuickData2.player.top_tens;
+//         year2Events.innerHTML = yearQuickData2.player.total_events;
+//         year2Strokes.innerHTML = yearQuickData2.player.avg_strokes_per_event;
+//         year2Place.innerHTML = yearQuickData2.player.avg_place;
+//         year2Fwh.innerHTML = yearQuickData2.main3[0].avg_percentage;
+//         year2C2r.innerHTML = yearQuickData2.main3[1].avg_percentage;
+//         year2C1x.innerHTML = yearQuickData2.main3[2].avg_percentage;
+
+//         //if (year1Selector.value && year2Selector.value){
+//         // year2Rating.innerHTML +=
+//         //   parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) < 0
+//         //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+//         //   : parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent) > 0
+//         //   ? `<p style="color: green;">+${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+//         //   : ''
+
+//         // year2Earnings.innerHTML +=
+//         //   parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) < 0
+//         //   ? `<p style="color: red; font-size: 12px; text-align: right;">${parseFloat(year2Rating.textContent) - parseFloat(year1Rating.textContent)}</p>`
+//         //   : parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent) > 0
+//         //   ? `<p style="color: green;">+${parseFloat(year2Earnings.textContent) - parseFloat(year1Earnings.textContent)}</p>`
+//         //   : ''
+//         //}
+
+//         if (year1Rating.textContent && year2Rating.textContent) {
+//           if (
+//             parseFloat(year1Rating.textContent) >
+//             parseFloat(year2Rating.textContent)
+//           ) {
+//             year1Rating.style.color = "green";
+//             year2Rating.style.color = "red";
+//           } else if (
+//             parseFloat(year1Rating.textContent) <
+//             parseFloat(year2Rating.textContent)
+//           ) {
+//             year1Rating.style.color = "red";
+//             year2Rating.style.color = "green";
+//           } else {
+//             year1Rating.style.color = "black";
+//             year2Rating.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Earnings.textContent) >
+//             parseFloat(year2Earnings.textContent)
+//           ) {
+//             year1Earnings.style.color = "green";
+//             year2Earnings.style.color = "red";
+//           } else if (
+//             parseFloat(year1Earnings.textContent) <
+//             parseFloat(year2Earnings.textContent)
+//           ) {
+//             year1Earnings.style.color = "red";
+//             year2Earnings.style.color = "green";
+//           } else {
+//             year1Earnings.style.color = "black";
+//             year2Earnings.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Wins.textContent) >
+//             parseFloat(year2Wins.textContent)
+//           ) {
+//             year1Wins.style.color = "green";
+//             year2Wins.style.color = "red";
+//           } else if (
+//             parseFloat(year1Wins.textContent) <
+//             parseFloat(year2Wins.textContent)
+//           ) {
+//             year1Wins.style.color = "red";
+//             year2Wins.style.color = "green";
+//           } else {
+//             year1Wins.style.color = "black";
+//             year2Wins.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Podiums.textContent) >
+//             parseFloat(year2Podiums.textContent)
+//           ) {
+//             year1Podiums.style.color = "green";
+//             year2Podiums.style.color = "red";
+//           } else if (
+//             parseFloat(year1Podiums.textContent) <
+//             parseFloat(year2Podiums.textContent)
+//           ) {
+//             year1Podiums.style.color = "red";
+//             year2Podiums.style.color = "green";
+//           } else {
+//             year1Podiums.style.color = "black";
+//             year2Podiums.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1topTens.textContent) >
+//             parseFloat(year2topTens.textContent)
+//           ) {
+//             year1topTens.style.color = "green";
+//             year2topTens.style.color = "red";
+//           } else if (
+//             parseFloat(year1topTens.textContent) <
+//             parseFloat(year2topTens.textContent)
+//           ) {
+//             year1topTens.style.color = "red";
+//             year2topTens.style.color = "green";
+//           } else {
+//             year1topTens.style.color = "black";
+//             year2topTens.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Events.textContent) >
+//             parseFloat(year2Events.textContent)
+//           ) {
+//             year1Events.style.color = "green";
+//             year2Events.style.color = "red";
+//           } else if (
+//             parseFloat(year1Events.textContent) <
+//             parseFloat(year2Events.textContent)
+//           ) {
+//             year1Events.style.color = "red";
+//             year2Events.style.color = "green";
+//           } else {
+//             year1Events.style.color = "black";
+//             year2Events.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Strokes.textContent) >
+//             parseFloat(year2Strokes.textContent)
+//           ) {
+//             year1Strokes.style.color = "green";
+//             year2Strokes.style.color = "red";
+//           } else if (
+//             parseFloat(year1Strokes.textContent) <
+//             parseFloat(year2Strokes.textContent)
+//           ) {
+//             year1Strokes.style.color = "red";
+//             year2Strokes.style.color = "green";
+//           } else {
+//             year1Strokes.style.color = "black";
+//             year2Strokes.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Place.textContent) >
+//             parseFloat(year2Place.textContent)
+//           ) {
+//             year1Place.style.color = "green";
+//             year2Place.style.color = "red";
+//           } else if (
+//             parseFloat(year1Place.textContent) <
+//             parseFloat(year2Place.textContent)
+//           ) {
+//             year1Place.style.color = "red";
+//             year2Place.style.color = "green";
+//           } else {
+//             year1Place.style.color = "black";
+//             year2Place.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1Fwh.textContent) > parseFloat(year2Fwh.textContent)
+//           ) {
+//             year1Fwh.style.color = "green";
+//             year2Fwh.style.color = "red";
+//           } else if (
+//             parseFloat(year1Fwh.textContent) < parseFloat(year2Fwh.textContent)
+//           ) {
+//             year1Fwh.style.color = "red";
+//             year2Fwh.style.color = "green";
+//           } else {
+//             year1Fwh.style.color = "black";
+//             year2Fwh.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1C2r.textContent) > parseFloat(year2C2r.textContent)
+//           ) {
+//             year1C2r.style.color = "green";
+//             year2C2r.style.color = "red";
+//           } else if (
+//             parseFloat(year1C2r.textContent) < parseFloat(year2C2r.textContent)
+//           ) {
+//             year1C2r.style.color = "red";
+//             year2C2r.style.color = "green";
+//           } else {
+//             year1C2r.style.color = "black";
+//             year2C2r.style.color = "black";
+//           }
+
+//           if (
+//             parseFloat(year1C1x.textContent) > parseFloat(year2C1x.textContent)
+//           ) {
+//             year1C1x.style.color = "green";
+//             year2C1x.style.color = "red";
+//           } else if (
+//             parseFloat(year1C1x.textContent) < parseFloat(year2C1x.textContent)
+//           ) {
+//             year1C1x.style.color = "red";
+//             year2C1x.style.color = "green";
+//           } else {
+//             year1C1x.style.color = "black";
+//             year2C1x.style.color = "black";
+//           }
+//         }
+//       });
+
+//       // if (parseFloat(year1Earnings) > parseFloat(year2Earnings)){
+//       //   year1Earnings.style.color = 'green';
+//       //   year2Earnings.style.color = 'red';
+//       // } else if (parseFloat(year1Earnings) < parseFloat(year2Earnings)){
+//       //   year1Earnings.style.color = 'red';
+//       //   year2Earnings.style.color = 'green';
+//       // }
+//     } else {
+//       resultsDisplayMainContainer.style.display = "none";
+//     }
+//   });
+// }
+
+// displayQuickCompareResults();
+
+
+async function loadAISummary(message) {
   const res = await fetch("http://localhost:4000/ai", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ pdga_number: pdgaNum, period: "last 12 months" }),
+    body: JSON.stringify({ prompt: message}),
   });
   const { summary } = await res.json();
-  document.getElementById("ai_summary").innerText = summary;
+  return summary;
 }
 
-// after you’ve fetched stats and rendered charts:
-loadAISummary(pdgaNum);
+
+let ai_context = ''
+
+async function loadAIContext(){
+  let ai_getPlayerInfo = await getJsons(playerBioUrl);
+  let ai_getRecentEvent = await getJsons(getMostRecentResults);
+  let ai_getTopThree = await getJsons(getTopThree);
+  let ai_getPerformanceMetrics = await getJsons(playerRadialUrl);
+  let ai_getStatInfo = await getJsons(statIdsList);
+
+  ai_playerInfoContext = `
+    Current disc golf player the user is examining is ${ai_getPlayerInfo.player.full_name}. The player's PDGA number is ${ai_getPlayerInfo.player.pdga_number}.
+    In the 'Career Profile' section of the current webpage, ${ai_getPlayerInfo.player.full_name} is in the ${ai_getPlayerInfo.player.division} division, they live in ${ai_getPlayerInfo.player.hometown}, their nationality is '${ai_getPlayerInfo.player.nationality}'.
+    They have been a member of the PDGA since ${ai_getPlayerInfo.player.member_since},
+    They have ${ai_getPlayerInfo.player.wins} wins, ${ai_getPlayerInfo.player.top_tens} top tens, 
+    ${ai_getPlayerInfo.player.podiums} podiums, have $${ai_getPlayerInfo.player.earnings} in earnings,
+    average rating of ${ai_getPlayerInfo.player.avg_rating}, attended ${ai_getPlayerInfo.player.total_events} events,
+    have an average place of ${ai_getPlayerInfo.player.avg_place} in all of their events, and have an average of ${ai_getPlayerInfo.player.avg_strokes_per_event} events.
+
+    Located in 'Performance' section of the webpage, contains ${ai_getPlayerInfo.player.full_name}'s metrics for Fairway Hits (FWH), Circle 2 in Regulation (C2R), and C1X Putting (C1X).
+      - Their values for Fairway Hits (FWH) is ${ai_getPerformanceMetrics.values[0]}%
+      - Their values for Circle 2 in Regulation (C2R) is ${ai_getPerformanceMetrics.values[1]}%
+      - Their values for C1X Putting (C1X) is ${ai_getPerformanceMetrics.values[2]}%
+
+    Located in 'Most Recent Event' section of the webpage, ${ai_getPlayerInfo.player.full_name}'s most recent event is the '${ai_getRecentEvent.event.event_name}'. The event is located in ${ai_getRecentEvent.event.event_location} and started on the date of ${ai_getRecentEvent.event.event_start_date}.
+    ${ai_getPlayerInfo.player.full_name}'s rating from the event is ${ai_getRecentEvent.event.event_rating}, and their score is ${ai_getRecentEvent.event.event_score}.
+    They placed in '${ai_getRecentEvent.event.place}' place in the event. 
+
+    Located in 'Top 3 Metrics (last 12 months)' section of the webpage, ${ai_getPlayerInfo.player.full_name}'s overall top three career metrics are:
+      - '${ai_getTopThree.top3[1].stat_name}' (with a value of ${ai_getTopThree.top3[1].player_average_value}% and this stat ranking in '${ai_getTopThree.top3[1].rank_in_division}' place in their division).
+      - '${ai_getTopThree.top3[2].stat_name}' (with a value of ${ai_getTopThree.top3[2].player_average_value}% and this stat ranking in '${ai_getTopThree.top3[2].rank_in_division}' place in their division).
+      - '${ai_getTopThree.top3[3].stat_name}' (with a value of ${ai_getTopThree.top3[3].player_average_value}% and this stat ranking in '${ai_getTopThree.top3[3].rank_in_division}' place in their division).
+    
+    Here's some context about what each performance metric abbreviations mean:
+      - "${ai_getStatInfo.name[0]}" is "${ai_getStatInfo.fullName[0]}" and it means "${ai_getStatInfo.desc[0]}".
+      - "${ai_getStatInfo.name[1]}" is "${ai_getStatInfo.fullName[1]}" and it means "${ai_getStatInfo.desc[1]}".
+      - "${ai_getStatInfo.name[2]}" is "${ai_getStatInfo.fullName[2]}" and it means "${ai_getStatInfo.desc[2]}".
+      - "${ai_getStatInfo.name[3]}" is "${ai_getStatInfo.fullName[3]}" and it means "${ai_getStatInfo.desc[3]}".
+      - "${ai_getStatInfo.name[4]}" is "${ai_getStatInfo.fullName[4]}" and it means "${ai_getStatInfo.desc[4]}".
+      - "${ai_getStatInfo.name[5]}" is "${ai_getStatInfo.fullName[5]}" and it means "${ai_getStatInfo.desc[5]}".
+      - "${ai_getStatInfo.name[6]}" is "${ai_getStatInfo.fullName[6]}" and it means "${ai_getStatInfo.desc[6]}".
+      - "${ai_getStatInfo.name[7]}" is "${ai_getStatInfo.fullName[7]}" and it means "${ai_getStatInfo.desc[7]}".
+      - "${ai_getStatInfo.name[8]}" is "${ai_getStatInfo.fullName[8]}" and it means "${ai_getStatInfo.desc[8]}".
+      - "${ai_getStatInfo.name[9]}" is "${ai_getStatInfo.fullName[9]}" and it means "${ai_getStatInfo.desc[9]}".
+      - "${ai_getStatInfo.name[10]}" is "${ai_getStatInfo.fullName[10]}" and it means "${ai_getStatInfo.desc[10]}".
+      - "${ai_getStatInfo.name[11]}" is "${ai_getStatInfo.fullName[11]}" and it means "${ai_getStatInfo.desc[11]}".
+      - "${ai_getStatInfo.name[12]}" is "${ai_getStatInfo.fullName[12]}" and it means "${ai_getStatInfo.desc[12]}".
+      - "${ai_getStatInfo.name[13]}" is "${ai_getStatInfo.fullName[13]}" and it means "${ai_getStatInfo.desc[13]}".
+      - "${ai_getStatInfo.name[14]}" is "${ai_getStatInfo.fullName[14]}" and it means "${ai_getStatInfo.desc[14]}".
+      - "${ai_getStatInfo.name[15]}" is "${ai_getStatInfo.fullName[15]}" and it means "${ai_getStatInfo.desc[15]}".
+      - "${ai_getStatInfo.name[16]}" is "${ai_getStatInfo.fullName[16]}" and it means "${ai_getStatInfo.desc[16]}".
+      - "${ai_getStatInfo.name[17]}" is "${ai_getStatInfo.fullName[17]}" and it means "${ai_getStatInfo.desc[17]}".
+
+  `
+  ai_context += ai_playerInfoContext;
+  
+  console.log(ai_context);
+
+
+  const res = await fetch("http://localhost:4000/ai-context", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({context: ai_context})
+  })
+}
+
+loadAIContext();
+
+document.getElementById('send_chat_message').addEventListener('click', async() => {
+  let userMessageInput = document.getElementById('chat_user_message');
+  let userMessage = userMessageInput.value.trim();
+
+  if (userMessage == ''){
+    return;
+  }
+
+  let reqBiggerContainer = document.createElement('div');
+  reqBiggerContainer.className = 'user_response_biggerBox';
+  let reqContainer = document.createElement('div');
+  reqContainer.textContent = userMessage;
+  reqContainer.className = 'user_response_box';
+  reqBiggerContainer.append(reqContainer);
+  document.getElementById('ai_summary').appendChild(reqBiggerContainer);
+  userMessageInput.value = '';
+  document.getElementById('ai_summary').scrollTop = document.getElementById('ai_summary').scrollHeight;
+    
+    
+  let aiResponse = await loadAISummary(userMessage);
+  let resBiggerContainer = document.createElement('div');
+  resBiggerContainer.className = 'ai_response_biggerBox';
+  let resContainer = document.createElement('div');
+  resContainer.textContent = aiResponse;
+  resContainer.className = 'ai_response_box';
+  resBiggerContainer.append(resContainer);
+  document.getElementById('ai_summary').appendChild(resBiggerContainer);
+  document.getElementById('ai_summary').scrollTop = document.getElementById('ai_summary').scrollHeight;
+})
+
+document.getElementById('chat_user_message').addEventListener('keypress', async(e) => {
+  if (e.key == 'Enter'){
+    let userMessageInput = document.getElementById('chat_user_message');
+    let userMessage = userMessageInput.value.trim();
+
+    if (userMessage == ''){
+      return;
+    }
+
+    let reqBiggerContainer = document.createElement('div');
+    reqBiggerContainer.className = 'user_response_biggerBox';
+    let reqContainer = document.createElement('div');
+    // let reqTextBox = document.createElement('p');
+    // reqTextBox.textContent = userMessage;
+    reqContainer.textContent = userMessage;
+    reqContainer.className = 'user_response_box';
+    // reqContainer.append(reqTextBox);
+    reqBiggerContainer.append(reqContainer);
+    document.getElementById('ai_summary').appendChild(reqBiggerContainer);
+    userMessageInput.value = '';
+    document.getElementById('ai_summary').scrollTop = document.getElementById('ai_summary').scrollHeight;
+    
+    
+    let aiResponse = await loadAISummary(userMessage);
+    let resBiggerContainer = document.createElement('div');
+    resBiggerContainer.className = 'ai_response_biggerBox';
+    let resContainer = document.createElement('div');
+    // let resTextBox = document.createElement('p');
+    // resTextBox.textContent = aiResponse;
+    // resContainer.append(resTextBox);
+    resContainer.textContent = aiResponse;
+    resContainer.className = 'ai_response_box';
+    resBiggerContainer.append(resContainer);
+    document.getElementById('ai_summary').appendChild(resBiggerContainer);
+    document.getElementById('ai_summary').scrollTop = document.getElementById('ai_summary').scrollHeight;
+  } 
+})

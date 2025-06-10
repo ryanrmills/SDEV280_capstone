@@ -1,10 +1,10 @@
 // ai.js
 import express from "express";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, createUserContent, createPartFromUri } from "@google/genai";
 import dotenv from "dotenv";
 import cors from "cors";
 
-dotenv.config(); // load GOOGLE_API_KEY
+dotenv.config();
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 const app = express();
@@ -12,40 +12,61 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost", // or whatever host/port your XAMPP site is on
+    origin: "http://localhost",
   })
 );
 
-// POST /api/ai/player-summary
+
+let aIcontext = '';
+
+app.post("/ai-context", async (req, res) => {
+  try {
+    const { context } = req.body;
+    // console.log("Context" + context);
+    aIcontext = "You are a disc golf analytics expert named 'Birdie'. If questions and requests do not relate to disc golf player performance and disc golf analytics, kindly apologize and decline to answer. Be concise and answer a question in 50 words or less, if you can." + context;
+    console.log(aIcontext);
+  } catch (e){
+    console.error(e);
+    return res.status(500).json({ error: e.message });
+  }
+})
+
+
 app.post("/ai", async (req, res) => {
   try {
-    const { pdga_number, period = "last 12 months" } = req.body;
+    const histories = [];
+    console.log(req.body);
+    const { prompt } = req.body;
 
-    // 1) pull that player’s stats however you like (MySQL / PHP / etc)
-    // e.g. const stats = await fetchPlayerStats(pdga_number, period);
+    const modelName = "gemini-2.0-flash";
+    
+    const chat = ai.chats.create({
+      model: modelName,
+      history: histories,
+      config: {
+        systemInstruction: aIcontext
+      }
+    })
 
-    // 2) build a prompt
-    // const prompt = `
-    //   Summarize Player #${pdga_number}'s disc-golf performance over the ${period}.
-    //   Here are their key stats:
-    //   • Events: ${stats.total_events}
-    //   • Wins:   ${stats.wins}
-    //   • Avg Rating: ${stats.average_rating}
-    //   • Top‐3 Metrics: ${stats.top_metrics
-    //     .map((m) => `${m.abbreviation} at ${m.value}%`)
-    //     .join(", ")}
-    //   Produce a 2–3 sentence highlight.
-    // `;
-    // const prompt = `tell me a funny story using number ${pdga_number} in the ${period}`;
-    const prompt = "What was my last request to you?"
+    const response1 = await chat.sendMessage(
+      {
+        message: prompt
+      },
+      {
+        maxOutputTokens: 200
+      }
+    )
 
-    // 3) call the Generative AI API
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: prompt,
-    });
+    let userJsonRes = {role:"user", parts:[{text: prompt}]};
+    histories.push(userJsonRes);
 
-    return res.json({ summary: response.text.trim() });
+    let mlJsonRes = {role:"model", parts:[{text: response1.candidates[0].content.parts[0].text}]};
+    histories.push(mlJsonRes);
+
+    // console.log(histories);
+
+    return res.json({ summary: response1.text.trim() });
+    
   } catch (e) {
     console.error(e);
     return res.status(500).json({ error: e.message });

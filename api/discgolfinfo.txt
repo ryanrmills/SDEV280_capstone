@@ -1,0 +1,360 @@
+**Disc Golf Analytics Reference**
+
+**Version:** 2.0 • **Last Updated:** 2025-06-07
+
+**Author:** Ryan Mills
+
+---
+
+## Table of Contents
+
+1. Introduction to Disc Golf Analytics
+2. PDGA Rating System and Divisions
+3. Core Metrics & Definitions
+4. Database Schema and Relationships
+5. Data Ingestion & ETL Processes
+6. SQL Query Patterns & Examples
+7. Performance Optimization & Indexing
+8. API Design & Endpoint Catalog
+9. Frontend Architecture & Data Flow
+10. Visualization Techniques & Best Practices
+11. Geospatial Mapping & Globe Visualization
+12. AI Integration & Prompt Engineering
+13. Security & Data Privacy Considerations
+14. Testing & Quality Assurance
+15. Deployment & DevOps
+16. Future Directions & Feature Roadmap
+
+---
+
+## 1. Introduction to Disc Golf Analytics
+
+Disc golf blends physical skill, strategy, and mental focus. Players traverse a course of 9 or 18 holes, aiming to complete each hole in as few throws as possible. Like ball golf, par guides performance: under‑par is excellent; over‑par indicates room for improvement.
+
+Analytics in disc golf leverages rich data: per‑round stats, event results, player history, and geolocation. By capturing every throw, putt, and round, we can quantify skill, consistency, and improvement over time.
+
+### Goals of Analytics
+
+* **Performance Tracking:** Monitor a player’s strengths and weaknesses.
+* **Benchmarking:** Compare against peers in division (MPO, FPO).
+* **Predictive Insights:** Anticipate upcoming results or recommend training.
+* **Visualization:** Make data actionable via intuitive charts and maps.
+
+---
+
+## 2. PDGA Rating System and Divisions
+
+### PDGA Ratings
+
+* **Event Rating:** Numeric measure of skill performance in an event. Typical range: 800–1100.
+* **Round Rating:** Rating for a single round within an event.
+* **All‑Time & Annual Averages:** Aggregate across events or seasons.
+
+### Divisions
+
+* **MPO (Men’s Professional Open):** Top male competitors.
+* **FPO (Women’s Professional Open):** Top female competitors.
+* **Age & Amateur Divisions:** Master’s, Senior, Amateurs.
+
+Analytics often partitions by division. All metrics, rankings, and percentiles are computed within a player’s division to ensure fair comparison.
+
+---
+
+## 3. Core Metrics & Definitions
+
+Below are the primary metrics tracked, their definitions, calculation formulas, and interpretation guidelines.
+
+### 3.1 Fairway Hit Rate (FWH)
+
+* **Definition:** % of drives landing within regulation distance.
+* **Formula:** `(C1 hits + C2 hits) ÷ total drives × 100`.
+* **Interpretation:** High FWH correlates with lower scores.
+
+### 3.2 Par Percentage (PAR)
+
+* **Definition:** % of holes completed in par.
+* **Formula:** `# of pars ÷ total holes × 100`.
+
+### 3.3 Birdie Rate (BRD)
+
+* **Definition:** % of holes at birdie or better.
+* **Formula:** `# of birdies ÷ total holes × 100`.
+
+### 3.4 Circle 1 Putting (C1X)
+
+* **Definition:** % putts made from within 10 meters (circle 1).
+* **Formula:** `# made ÷ # attempts × 100`.
+
+### 3.5 Circle 2 Putting (C2P)
+
+* **Definition:** % putts made from 10–20 meters (circle 2).
+* **Formula:** `# made ÷ # attempts × 100`.
+
+### 3.6 Scramble Rate (SCR)
+
+* **Definition:** % of missed regulation holes saved with par.
+* **Formula:** `# of scrambles ÷ # of misses × 100`.
+
+### 3.7 OB Rate
+
+* **Definition:** % of drives out of bounds.
+* **Formula:** `# OB drives ÷ total drives × 100`.
+
+### 3.8 Strokes Gained Metrics (SG)
+
+* **SG\_total:** strokes gained relative to field per hole.
+* **SG\_putting:** strokes gained in putting.
+* **SG\_T2G:** strokes gained tee‑to‑green.
+
+Interpret SG as positive = better than field, negative = below field.
+
+---
+
+## 4. Database Schema and Relationships
+
+### 4.1 Entity Relationship Overview
+
+```text
+players *───< event_results >───* events
+      `───< event_rounds >───* events
+                 │
+                 `───< event_round_player_stats >───* stats
+```
+
+### 4.2 Table Details
+
+#### players
+
+| Column          | Type        | Description                |
+| --------------- | ----------- | -------------------------- |
+| pdga\_number PK | INT         | Unique player identifier   |
+| first\_name     | VARCHAR(50) | Player’s given name        |
+| last\_name      | VARCHAR(50) | Player’s surname           |
+| division        | ENUM        | MPO, FPO, etc.             |
+| city, state…    | VARCHAR     | Hometown                   |
+| nationality     | VARCHAR     | Country code or full name  |
+| member\_since   | DATE        | PDGA membership start date |
+
+#### events
+
+| Column             | Type         | Description             |
+| ------------------ | ------------ | ----------------------- |
+| pdga\_event\_id PK | INT          | Unique event identifier |
+| name               | VARCHAR(100) | Event title             |
+| start\_date        | DATE         | Tournament start date   |
+| city, state…       | VARCHAR      | Location                |
+| latitude,longitude | DOUBLE       | Geocoded coords         |
+
+#### event\_rounds
+
+| Column              | Type    | Description                          |
+| ------------------- | ------- | ------------------------------------ |
+| event\_round\_id PK | INT     | Unique round instance                |
+| pdga\_event\_id FK  | INT     | Parent event                         |
+| pdga\_number FK     | INT     | Player                               |
+| round               | INT     | 1,2,3,…                              |
+| score               | INT     | Total throws in that round           |
+| rating              | DECIMAL | Round rating                         |
+| division            | ENUM    | Redundant copy for ease of filtering |
+
+#### event\_results
+
+| Column             | Type    | Description              |
+| ------------------ | ------- | ------------------------ |
+| pdga\_event\_id FK | INT     | Parent event             |
+| pdga\_number FK    | INT     | Player                   |
+| place              | INT     | Final finishing position |
+| cash               | DECIMAL | Prize earned             |
+| rating             | DECIMAL | Event rating             |
+
+#### event\_round\_player\_stats
+
+| Column              | Type    | Description                      |
+| ------------------- | ------- | -------------------------------- |
+| event\_round\_id FK | INT     | Parent round                     |
+| stat\_id FK         | INT     | Stat reference                   |
+| stat\_count         | INT     | Raw count                        |
+| opportunity\_count  | INT     | Max possible                     |
+| printed\_value      | DECIMAL | Derived metric percentage or avg |
+
+#### stats
+
+| Column       | Type         | Description                 |
+| ------------ | ------------ | --------------------------- |
+| stat\_id PK  | INT          | Unique stat identifier      |
+| stat\_name   | VARCHAR(100) | Full stat name              |
+| abbreviation | VARCHAR(10)  | Short code (FWH, C1X, etc.) |
+
+---
+
+## 5. Data Ingestion & ETL Processes
+
+1. **Bulk Import:** Event and round dumps from PDGA in CSV/JSON, loaded into staging tables.
+2. **Geocoding:** Batch lookup of `city,state,country` via Nominatim; store lat/lon.
+3. **Normalization:** Transform raw counts into `printed_value` percentages.
+4. **Indexing:** Add indexes on `(pdga_number)`, `(pdga_event_id)`, `(stat_id)`, `(start_date)`.
+
+---
+
+## 6. SQL Query Patterns & Examples
+
+### 6.1 Basic Player Summary (All‑Time)
+
+```sql
+SELECT
+  players.pdga_number,
+  CONCAT(players.first_name,' ',players.last_name) AS full_name,
+  COUNT(DISTINCT event_results.pdga_event_id) AS events_played,
+  ROUND(AVG(event_results.rating),1)    AS avg_event_rating
+FROM players
+LEFT JOIN event_results
+  ON players.pdga_number = event_results.pdga_number
+GROUP BY players.pdga_number;
+```
+
+### 6.2 Last 12 Months Aggregation
+
+```sql
+SELECT ...
+WHERE events.start_date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+```
+
+### 6.3 Window Functions: Rank & Percentile
+
+```sql
+SELECT
+  stat_id,
+  pdga_number,
+  average_value,
+  RANK() OVER (PARTITION BY stat_id ORDER BY average_value DESC) AS division_rank,
+  PERCENT_RANK() OVER (PARTITION BY stat_id ORDER BY average_value) AS percentile
+FROM (
+  -- subquery of averages
+) AS sub;
+```
+
+### 6.4 CTE for Top‑3 Metrics
+
+```sql
+WITH ranked AS (
+  ... compute averages per stat per player
+)
+SELECT ...
+ORDER BY average_value DESC
+LIMIT 3;
+```
+
+## 7. Performance Optimization & Indexing
+
+### 7.1 Index Strategies
+
+* **Single-column indexes** on `players.pdga_number`, `events.pdga_event_id`, and `event_rounds.event_round_id` to speed up JOINs.
+* **Composite indexes** on `(pdga_event_id, pdga_number)` in `event_results` and `event_round_player_stats` for filtered aggregates.
+* **Covering indexes** including all columns referenced by a query (e.g., `stat_id, printed_value`) to avoid extra lookups.
+* **Partitioning** large tables (e.g., `events`) by year or date range to improve prune performance.
+
+### 7.2 Query Tuning
+
+* Use `EXPLAIN` or `EXPLAIN ANALYZE` to inspect execution plans and identify full table scans.
+* Avoid `SELECT *`; explicitly select only required columns.
+* Break complex queries into smaller subqueries or temporary tables if necessary.
+
+---
+
+## 8. API Design & Endpoint Catalog
+
+| Endpoint                         | Method | Parameters                     | Description                                          |
+| -------------------------------- | ------ | ------------------------------ | ---------------------------------------------------- |
+| `/api/get_players.php`           | GET    | none                           | Lists all players (`pdga_number`, `full_name`, etc.) |
+| `/api/get_player_info.php`       | GET    | `pdga_number`                  | Key player summary (wins, ratings, events)           |
+| `/api/get_player_events.php`     | GET    | `pdga_number`, `[year]`        | All events attended by player, filterable by year    |
+| `/api/get_event_round_stats.php` | GET    | `pdga_number`, `pdga_event_id` | Round-by-round scores, ratings, cash                 |
+| `/api/player_radar.php`          | GET    | `pdga_number`, `stat_ids`      | Radar chart metric averages                          |
+| `/api/player_percentiles.php`    | GET    | `pdga_number`, `[year]`        | Percentile ranks per metric, filterable by year      |
+| `/api/search_players.php`        | GET    | `q`                            | Autocomplete search of player names                  |
+| `/api/ai_player_summary.php`     | GET    | `pdga_number`, `[period]`      | AI-generated highlight summary                       |
+
+---
+
+## 9. Frontend Architecture & Data Flow
+
+* **Modular Services**: Central `apiClient.js` handles all `fetch()` calls, JSON parsing, and error handling.
+* **State Management**: Lightweight pub/sub or context-based state to share selection (player, year, metric) across UI components.
+* **Component Breakdown**:
+
+  * **Header**: Global search, player selector.
+  * **Profile**: Bio, win/loss summary, key stats.
+  * **Visualizations**: Chart.js / ApexCharts wrappers.
+  * **Tables**: DataTables for event history, round details.
+* **UI Updates**: On dropdown or checkbox change, trigger events that re-fetch and re-render affected components.
+
+---
+
+## 10. Visualization Techniques & Best Practices
+
+* **Semantic Colors**: Green for positive metrics (win %, birdie %), orange/red for areas needing improvement.
+* **Responsive Design**: Use CSS Flexbox / Grid to let charts stack or resize on narrow viewports.
+* **Performance**: Debounce resize events; destroy and re-create charts only when underlying data changes.
+* **Accessibility**: Provide text alternatives for each chart (e.g., `aria-label` summaries) for screen readers.
+
+---
+
+## 11. Geospatial Mapping & Globe Visualization
+
+* **Globe.gl Integration**: Render 3D globe with `pointsData`, `pointLat`, `pointLng`, and `onPointHover` for tooltips.
+* **2D Map Fallback**: Use Leaflet.js with clustered markers if WebGL is unsupported.
+* **Marker Styling**: Size and color scale markers by number of visits or performance at location.
+
+---
+
+## 12. AI Integration & Prompt Engineering
+
+* **Prompt Templates**: Store in DB or filesystem; use placeholders for dynamic values (events, top metrics).
+* **Token Efficiency**: Limit context length by selecting only the most recent or most impactful stats.
+* **Error Handling**: Fallback message when API rate-limits or network errors occur.
+
+---
+
+## 13. Security & Data Privacy
+
+* **Prepared Statements**: All SQL uses parameter binding to eliminate SQL injection.
+* **CORS Configuration**: Restrict to known origins; use `Access-Control-Allow-Origin` headers.
+* **Authentication & Authorization**: Protect AI and export endpoints behind session-based or API-key auth.
+* **Personal Data**: Allow opt-out or deletion for GDPR compliance.
+
+---
+
+## 14. Testing & Quality Assurance
+
+* **Unit Tests**:
+
+  * SQL query results vs. expected outputs using a test schema.
+  * JavaScript functions (search debounce, chart redraw).
+* **Integration Tests**:
+
+  * Postman or PHPUnit to hit each API endpoint, verifying JSON schema.
+* **Visual Regression**:
+
+  * Snapshot chart configs and table DOM structure.
+
+---
+
+## 15. Deployment & DevOps
+
+* **XAMPP**: PHP app hosted under `/htdocs`, MySQL database configured via `my.cnf` for `utf8mb4`.
+* **Node.js AI Proxy**: Run as background service on port 4000, managed by `pm2` or systemd.
+* **CI/CD**: GitHub Actions to run tests, lint code, and deploy PHP via FTP/SFTP.
+* **Backups**: Nightly MySQL dump, and weekly offsite storage to S3.
+
+---
+
+## 16. Future Directions & Feature Roadmap
+
+1. **User Profiles & Authentication**: Extend beyond public data to allow favorites and notifications.
+2. **ML‐Driven Insights**: Leverage clustering to find peer groups and anomaly detection for performance dips.
+3. **Mobile App**: React Native or PWA for offline caching and real-time updates.
+4. **Social Integration**: One‐click sharing of charts and summaries to social media.
+5. **Real‐Time Leaderboards**: WebSockets to push live scores during tournaments.
+
+Expected‐Strokes & “Strokes Gained” by Hole
+You already compute raw metrics like Fairway Hit or Birdie %. But you can go a level deeper by building an expected‐strokes model for each hole—then measure how many strokes over or under expectation each player is on that hole.

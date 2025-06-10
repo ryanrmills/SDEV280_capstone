@@ -1651,6 +1651,131 @@ canvas {
 }
 
 
+.chatbot_container {
+  position: fixed;
+  bottom: 3em;
+  right: 1em;
+  padding: 1em;
+  border-radius: 0.4em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: white;
+
+  gap: 1em;
+
+  box-shadow: 0px 5px 10px black;
+  width: 300px;
+}
+
+.chatbot_window {
+  width: 100%;
+  background-color: white;
+  border-radius: 0.4em;
+  padding: 1em 0em;
+
+  display: flex;
+  flex-direction: column;
+  
+  gap: 1em;
+
+  max-height: 400px;
+  overflow-y: scroll;
+
+  font-family: "Urbanist", sans-serif;
+
+  
+}
+
+.chatbot_window::-webkit-scrollbar{
+  display:none;
+}
+
+.chat_window_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Urbanist", sans-serif;
+}
+
+.chat_window_title h3{
+  margin: 0em;
+  padding: 0em;
+}
+
+.user_response_biggerBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.user_response_box {
+  max-width: 70%;
+  text-align: right;
+  background-color: rgb(200, 200, 200);
+  padding: 0.6em 0.8em;
+  border-radius: 0.4em;
+  scroll-snap-align: end;
+
+  
+}
+
+.ai_response_biggerBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.ai_response_box {
+  max-width: 70%;
+  text-align: left;
+  background-image: linear-gradient(to bottom, rgb(0, 174, 255),rgb(0, 109, 168));
+  padding: 0.6em 0.8em;
+  border-radius: 0.4em;
+  scroll-snap-align: end;
+
+  color: white;
+  box-shadow: 0px 4px 5px black;
+}
+
+.chatbot_input_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.2em;
+}
+
+.chatbot_input_container input {
+  width: 240px;
+  height: 30px;
+  border-radius: 0.4em;
+  border: none;
+  padding: 0em 1em;
+  border: solid black 1px;
+}
+
+.chatbot_input_container input:focus {
+  outline: none;
+}
+
+.chatbot_input_container button {
+  border-radius: 0.4em;
+  border: none;
+  background-image: linear-gradient(to bottom right, rgb(0, 217, 255), rgb(0, 166, 255));
+}
+
+.chatbot_input_container button:active {
+  background-image: linear-gradient(to bottom right,rgb(0, 126, 149), rgb(0, 96, 147));
+}
+
+
 
 
 
