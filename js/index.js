@@ -2,21 +2,37 @@ const urlParams = new URLSearchParams(window.location.search);
 const pdgaNum = urlParams.get("pdga_number"); //?pdga_number=
 
 //I put all the urls in one place
-const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
-const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
-const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
-const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
-const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
-const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
-const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
-const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
-const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
-const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`;
-const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`;
-const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
-const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
-const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`;
-const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`;
+// const playerBioUrl = `http://localhost/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
+// const playerRadialUrl = `http://localhost/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
+// const playerRadarUrl = `http://localhost/sdev280capstone/api/player_radar.php?pdga_number=${pdgaNum}`;
+// const playerHbarUrl = `http://localhost/sdev280capstone/api/player_hbars.php?pdga_number=${pdgaNum}`;
+// const playerYearsUrl = `http://localhost/sdev280capstone/api/player_years.php?pdga_number=${pdgaNum}`;
+// const playerEventsUrl = `http://localhost/sdev280capstone/api/player_events.php?pdga_number=${pdgaNum}&year=`;
+// const playerRatingUrl = `http://localhost/sdev280capstone/api/player_rating.php?pdga_number=${pdgaNum}`;
+// const statIdsList = `http://localhost/sdev280capstone/api/get_abbrev_and_stat.php`;
+// const globeUrl = `http://localhost/sdev280capstone/api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+// const playerEventsListUrl = `http://localhost/sdev280capstone/api/player_events_list.php?pdga_number=${pdgaNum}`;
+// const playerRoundsListUrl = `http://localhost/sdev280capstone/api/player_rounds_list.php?pdga_number=${pdgaNum}`;
+// const allPlayerRankingsUrl = `http://localhost/sdev280capstone/api/player_stat_ranking.php`;
+// const getYearQuickCompare = `http://localhost/sdev280capstone/api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+// const getMostRecentResults = `http://localhost/sdev280capstone/api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`;
+// const getTopThree = `http://localhost/sdev280capstone/api/get_player_top_three.php?pdga_number=${pdgaNum}`;
+
+const playerBioUrl = `./api/get_player_info.php?pdga_number=${pdgaNum}`;
+const playerRadialUrl = `./api/player_radials.php?pdga_number=${pdgaNum}`;
+const playerRadarUrl = `./api/player_radar.php?pdga_number=${pdgaNum}`;
+const playerHbarUrl = `./api/player_hbars.php?pdga_number=${pdgaNum}`;
+const playerYearsUrl = `./api/player_years.php?pdga_number=${pdgaNum}`;
+const playerEventsUrl = `./api/player_events.php?pdga_number=${pdgaNum}&year=`;
+const playerRatingUrl = `./api/player_rating.php?pdga_number=${pdgaNum}`;
+const statIdsList = `./api/get_abbrev_and_stat.php`;
+const globeUrl = `./api/get_player_event_locations.php?pdga_number=${pdgaNum}`;
+const playerEventsListUrl = `./api/player_events_list.php?pdga_number=${pdgaNum}`;
+const playerRoundsListUrl = `./api/player_rounds_list.php?pdga_number=${pdgaNum}`;
+const allPlayerRankingsUrl = `./api/player_stat_ranking.php`;
+const getYearQuickCompare = `./api/getQuickCompare.php?pdga_number=${pdgaNum}`;
+const getMostRecentResults = `./api/player_mostRecentEvent.php?pdga_number=${pdgaNum}`;
+const getTopThree = `./api/get_player_top_three.php?pdga_number=${pdgaNum}`;
 
 // const playerBioUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/get_player_info.php?pdga_number=${pdgaNum}`;
 // const playerRadialUrl = `https://sandboxdev.greenriverdev.com/sdev280capstone/api/player_radials.php?pdga_number=${pdgaNum}`;
