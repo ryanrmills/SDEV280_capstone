@@ -28,7 +28,7 @@ const ctx = document.getElementById('scoreChart');
 let chart;
 
 function loadScoreChart(division = 'MPO') {
-  fetch(`../api/fetch_score.php?division=${division}`)
+  fetch(`./api/fetch_score.php?division=${division}`)
     .then(response => response.json())
     .then(data => {
       const labels = data.map(item => item.player_name);
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Chart 2: Longest Throw Chart
 const longestCtx = document.getElementById('longestThrowChart');
 
-fetch('../api/fetch_longest_throws.php')
+fetch('./api/fetch_longest_throws.php')
   .then(res => res.json())
   .then(data => {
     const labels = data.map(d => d.player_name);
@@ -149,7 +149,7 @@ fetch('../api/fetch_longest_throws.php')
   // Chart 3: Top Earners Chart
 const topEarnerCtx = document.getElementById('topEarnerChart');
 
-fetch('../api/fetch_top_earners.php')
+fetch('./api/fetch_top_earners.php')
   .then(res => res.json())
   .then(data => {
     const labels = data.map(d => d.player_name);
