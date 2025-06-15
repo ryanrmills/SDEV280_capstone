@@ -2574,11 +2574,11 @@ document
 
 // displayQuickCompareResults();
 
-let aiApiLink = window.location.hostname == 'locahost' ? "http://localhost:4000" : `https://${window.location.hostname}:4000`;
+//let aiApiLink = window.location.hostname == 'locahost' ? "http://localhost:4000" : `https://${window.location.hostname}:4000`;
 
 
 async function loadAISummary(message) {
-  const res = await fetch(`${aiApiLink}/ai`, {
+  const res = await fetch(`/ai`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt: message}),
@@ -2646,7 +2646,7 @@ async function loadAIContext(){
   // console.log(ai_context);
 
 
-  const res = await fetch(`${aiApiLink}/ai-context`, {
+  const res = await fetch(`/ai-context`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({context: ai_context})
