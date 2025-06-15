@@ -10,11 +10,11 @@ const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 const app = express();
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: "http://localhost",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:4000"
+  })
+);
 
 
 let aIcontext = '';
