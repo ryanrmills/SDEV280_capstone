@@ -2643,7 +2643,7 @@ async function loadAIContext(){
   `
   ai_context += ai_playerInfoContext;
   
-  console.log(ai_context);
+  // console.log(ai_context);
 
 
   const res = await fetch(`${aiApiLink}/ai-context`, {

@@ -9,7 +9,7 @@
     <!-- handmade stylesheet -->
     <link rel="stylesheet" href="./css/index.css">
     <!-- responsive data -->
-    <link rel="stylesheet" href="./css/responsive_data.css">
+    <!-- <link rel="stylesheet" href="./css/responsive_data.css"> -->
     <!-- google font styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
