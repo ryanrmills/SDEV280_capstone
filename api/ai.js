@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://discgolf.ryanmillsdev.com"
+    origin: ["http://localhost","https://discgolf.ryanmillsdev.com"]
   })
 );
 
