@@ -2644,7 +2644,7 @@ async function loadAIContext(){
   console.log(ai_context);
 
 
-  const res = await fetch("http://localhost:4000/ai-context", {
+  const res = await fetch("/ai-context", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({context: ai_context})
